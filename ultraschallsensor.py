@@ -63,7 +63,7 @@ def distanz():
 
     while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
         StartZeit = time.time()
-        print("Startzeit wurde erfasst.")
+#        print("Startzeit wurde erfasst.")
 #    if bus.read_byte_data(DEVICE,GPIOB) & 0b01000000 == 0b00000000: #2
 #        StartZeit = time.time()
 #        print("Startzeit wurde erfasst.")
@@ -72,9 +72,9 @@ def distanz():
 
     while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
         StopZeit = time.time()
-    #    print("Es wurde eine Stopzeit erfasst")
+#        print("Es wurde eine Stopzeit erfasst")
     #else:
-        print("keine stopzeit erfasst")
+    #    print("keine stopzeit erfasst")
     # speichere Startzeit
     # expander einbinden
     # einzelnen Pin des Entfernungsmesser einbeziehen
