@@ -13,8 +13,9 @@ IODIRB = 0x01 # Pin Register fuer die Richtung
 OLATB = 0x15 # Register fuer Ausgabe (GPB)
 GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
+Trigger = 0x40 #GPB5 pin6 trigger (alle 0 außer pin7 echo)
 
-bus.write_byte_data(DEVICE,IODIRB,1)
+bus.write_byte_data(DEVICE,IODIRB,3)
 def relayEin():
     bus.write_byte_data(DEVICE,IODIRA,0) #Channel 7 Relay eingeschaltet, der Rest aus
 
@@ -24,7 +25,7 @@ def relayAus():
 def entfernungsmesserGpioAn():
     relayEin() #Pin A7 wurde auf output gesetzt,
     print("Trigger wurde gestartet")
-    bus.write_byte_data(DEVICE,IODIRB,3) #setze Trigger auf output
+    bus.write_byte_data(DEVICE,IODIRB,40) #setze Trigger auf output (alle außer pin7)
 #    while bus.read_byte_data(DEVICE,IODIRB) == 0: #2
 #        StartZeit = time.time()
 #        print("Startzeit wurde erfasst.")
