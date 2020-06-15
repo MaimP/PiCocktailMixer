@@ -44,7 +44,7 @@ def entfernungsmesserGpioAus():
 
 def distanz():
     bus.write_byte_data(DEVICE,IODIRA,0x01)
-    bus.write_byte_data(DEVICE,IODIRB,0)
+#    bus.write_byte_data(DEVICE,IODIRB,0)
     # setze Trigger auf HIGH
     # distanzGpioan()
     # starte Sensor über gpio_expander, entfernungsmesserGpioaAn()
@@ -76,8 +76,8 @@ def distanz():
     while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
         StopZeit = time.time()
         print("Es wurde eine Stopzeit erfasst")
-        bus.write_byte_data(DEVICE,IODIRB,0)
-        print("0")
+#        bus.write_byte_data(DEVICE,IODIRB,0)
+#        print("0")
 #    else:
 #        print("keine stopzeit erfasst")
     # speichere Startzeit
