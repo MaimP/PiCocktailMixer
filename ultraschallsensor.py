@@ -34,7 +34,7 @@ def entfernungsmesserGpioAn():
 def entfernungsmesserGpioAus():
     print("Trigger wurde gestoppt")
     write_byte_data(DEVICE,GPIOA,2)
-    if bus.read_byte_data(DEVICE,IODIRB,0x20) == 1:
+    if bus.read_byte_data(DEVICE,IODIRB,20) == 1:
         StopZeit = time.time()
         print("Es wurde eine Stopzeit erfasst")
     else:
