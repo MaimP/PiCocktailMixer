@@ -46,10 +46,10 @@ try:
     while True:
         for i in gpioList:
             #GPIO.output(i, GPIO.LOW)
-            bus.write_byte_data(DEVICE,OLATA,i)
+            bus.write_byte_data(DEVICE,GPIOA,i)
             time.sleep(sleepTimeShort);
             print("Relay auslösen")
-            bus.write_byte_data(DEVICE,OLATA,0)
+            bus.write_byte_data(DEVICE,GPIOA,0)
             time.sleep(sleepTimeLong);
 
 
