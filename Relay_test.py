@@ -12,7 +12,6 @@ OLATA = 0x14
 OLATB = 0x15 # Register fuer Ausgabe (GPB)
 GPIOA = 0x12 # Register fuer Eingabe (GPA)
 
-GPIO.setmode(GPIO.BCM)
 # expander | Relay | hex
 #-------------------------
 #  0    01          0x80
@@ -23,7 +22,7 @@ GPIO.setmode(GPIO.BCM)
 #  5    06          0x4
 #  6    07          0x2
 #  7    08          0x1
-
+bus.write_byte_data(DEVICE,OLATA,1)
 # initiate list with pin gpio pin numbers
 
 gpioList = [0x80, 0x40, 0x20, 0x10, 0x8, 0x4, 0x2, 0x1]
@@ -54,7 +53,3 @@ try:
 # End program cleanly with keyboard
 except KeyboardInterrupt:
     print " Quit"
-
-    # Reset GPIO settings
-
-    GPIO.cleanup()
