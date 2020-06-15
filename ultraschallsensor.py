@@ -48,8 +48,8 @@ def distanz():
     # setze Trigger auf HIGH
     # distanzGpioan()
     # starte Sensor über gpio_expander, entfernungsmesserGpioaAn()
-    StartZeit = time.time()
-    StopZeit = time.time()
+#    StartZeit = time.time()
+#    StopZeit = time.time()
     entfernungsmesserGpioAn()
 
 #    while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
