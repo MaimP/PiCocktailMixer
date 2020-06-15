@@ -24,7 +24,7 @@ def relayAus():
 def entfernungsmesserGpioAn():
     relayEin() #Pin A7 wurde auf output gesetzt,
     print("Trigger wurde gestartet")
-    bus.write_byte_data(DEVICE,IODIRB,FB) #setze Trigger auf output
+    bus.write_byte_data(DEVICE,IODIRB,3) #setze Trigger auf output
     if bus.read_byte_data(DEVICE,GPIOA,2) == 0:
         StartZeit = time.time()
         print("Startzeit wurde erfasst.")
