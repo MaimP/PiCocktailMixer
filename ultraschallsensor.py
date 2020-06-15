@@ -16,14 +16,16 @@ GPIOB = 0x13
 
 bus.write_byte_data(DEVICE,IODIRB,1)
 def relayEin():
-    bus.write_byte_data(DEVICE,IODIRA,7F) #Channel 7 Relay eingeschaltet, der Rest aus
+    bus.write_byte_data(DEVICE,IODIRA,0) #Channel 7 Relay eingeschaltet, der Rest aus
 
+def relayAus():
+    bus.write_byte_data(DEVICE,GPIOA,FF)
 def entfernungsmesserGpioAn():
     relayEin() #Pin B7 wurde auf output gesetzt,
     print("Entfernungsmesser wurde eingeschaltet") #der Rest ist Input --> Relay ausegloest
 
 def entfernungsmesserGpioAus():
-    bus.write_byte_data(DEVICE,GPIOA,1)
+    relayAus()
     print("Entfernungsmesser wurde ausgeschaltet")
 
 def distanz():
@@ -71,3 +73,4 @@ if __name__ == '__main__':
         # Beim Abbruch durch STRG+C resetten
     except KeyboardInterrupt:
         print("Messung vom User gestoppt")
+        bus.write_byte_data(DEVICE,GPIOA,1)
