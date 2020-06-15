@@ -15,7 +15,8 @@ GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
 Trigger = 0x40 #GPB5 pin6 trigger (alle 0 außer pin7 echo)
 
-bus.write_byte_data(DEVICE,IODIRB,3)
+bus.write_byte_data(DEVICE,IODIRB,40)
+
 def relayEin():
     bus.write_byte_data(DEVICE,IODIRA,0) #Channel 7 Relay eingeschaltet, der Rest aus
 
