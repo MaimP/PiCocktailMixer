@@ -6,8 +6,6 @@ import smbus
 
 #bus = smbus.SMBus(0) # Rev 1 Pi
 bus = smbus.SMBus(1) # Rev 2 Pi
-#GPIO Modus (BOARD / BCM)
-GPIO.setmode(GPIO.BCM)
 
 DEVICE = 0x20 # Device Adresse (A0-A2)
 IODIRA = 0x00 # Pin Register fuer die Richtung
@@ -42,11 +40,11 @@ def distanz():
     # speichere Startzeit
     # expander einbinden
     # einzelnen Pin des Entfernungsmesser einbeziehen
-    while bus.read_byte_data(DEVICE,OLATB,0x3):
+    while bus.read_byte_data(DEVICE,OLATB,0x1):
         StartZeit = time.time()
 
     # speichere Ankunftszeit
-    while bus.read_byte_data(DEVICE,OLATB,0x3):
+    while bus.read_byte_data(DEVICE,OLATB,0x2):
         StopZeit = time.time()
 
     # Zeit Differenz zwischen Start und Ankunft
