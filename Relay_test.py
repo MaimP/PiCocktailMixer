@@ -23,7 +23,8 @@ GPIOA = 0x12 # Register fuer Eingabe (GPA)
 #  5    06          0x4
 #  6    07          0x2
 #  7    08          0x1
-bus.write_byte_data(DEVICE,GPIOA,FF)
+
+#bus.write_byte_data(DEVICE,GPIOA,FF)
 # initiate list with pin gpio pin numbers
 
 gpioList = [0x80, 0x40, 0x20, 0x10, 0x8, 0x4, 0x2, 0x1]
