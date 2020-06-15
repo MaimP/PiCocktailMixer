@@ -61,7 +61,7 @@ def distanz():
     # distanzGpioaus()
     entfernungsmesserGpioAus()
 
-while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
+    while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
     StartZeit = time.time()
     print("Startzeit wurde erfasst.")
 #    if bus.read_byte_data(DEVICE,GPIOB) & 0b01000000 == 0b00000000: #2
