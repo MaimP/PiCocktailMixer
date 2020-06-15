@@ -50,16 +50,22 @@ def distanz():
     StartZeit = time.time()
     StopZeit = time.time()
     entfernungsmesserGpioAn()
-    # setze Trigger nach 0.01ms aus LOW
-    time.sleep(0.00001)
-    # distanzGpioaus()
-    entfernungsmesserGpioAus()
 
     if bus.read_byte_data(DEVICE,GPIOB) & 0b01000000 == 0b00000000: #2
         StartZeit = time.time()
         print("Startzeit wurde erfasst.")
     else:
-        print("keine startzeit erfasst")
+            print("keine startzeit erfasst")
+    # setze Trigger nach 0.01ms aus LOW
+    time.sleep(0.00001)
+    # distanzGpioaus()
+    entfernungsmesserGpioAus()
+
+#    if bus.read_byte_data(DEVICE,GPIOB) & 0b01000000 == 0b00000000: #2
+#        StartZeit = time.time()
+#        print("Startzeit wurde erfasst.")
+#    else:
+#        print("keine startzeit erfasst")
 
     if bus.read_byte_data(DEVICE,GPIOB) & 0b01000000 == 0b01000000: #20
         StopZeit = time.time()
