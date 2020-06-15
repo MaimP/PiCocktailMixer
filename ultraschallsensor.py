@@ -15,9 +15,11 @@ GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
 
 bus.write_byte_data(DEVICE,IODIRB,1)
+def relayEin():
+    bus.write_byte_data(DEVICE,IODIRA,7F) #Channel 7 Relay eingeschaltet, der Rest aus
 
 def entfernungsmesserGpioAn():
-    bus.write_byte_data(DEVICE,GPIOA,0xFE) #Pin B7 wurde auf output gesetzt,
+    relayEin() #Pin B7 wurde auf output gesetzt,
     print("Entfernungsmesser wurde eingeschaltet") #der Rest ist Input --> Relay ausegloest
 
 def entfernungsmesserGpioAus():
@@ -31,21 +33,25 @@ def distanz():
 
     entfernungsmesserGpioAn()
     # setze Trigger nach 0.01ms aus LOW
+    while bus.read_byte_data(DEVICE,OLATB,0x1):
+        StartZeit = time.time()
     time.sleep(0.00001)
     # distanzGpioaus()
     entfernungsmesserGpioAus()
+    while bus.read_byte_data(DEVICE,OLATB,0x2):
+        StopZeit = time.time()
     StartZeit = time.time()
     StopZeit = time.time()
 
     # speichere Startzeit
     # expander einbinden
     # einzelnen Pin des Entfernungsmesser einbeziehen
-    while bus.read_byte_data(DEVICE,OLATB,0x1):
-        StartZeit = time.time()
+    #while bus.read_byte_data(DEVICE,OLATB,0x1):
+    #    StartZeit = time.time()
 
     # speichere Ankunftszeit
-    while bus.read_byte_data(DEVICE,OLATB,0x2):
-        StopZeit = time.time()
+    #while bus.read_byte_data(DEVICE,OLATB,0x2):
+    #    StopZeit = time.time()
 
     # Zeit Differenz zwischen Start und Ankunft
     TimeElapsed = StopZeit - StartZeit
