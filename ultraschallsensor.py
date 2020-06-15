@@ -20,30 +20,37 @@ def relayEin():
 
 def relayAus():
     bus.write_byte_data(DEVICE,GPIOA,FF)
+
 def entfernungsmesserGpioAn():
-    relayEin() #Pin B7 wurde auf output gesetzt,
-    print("Entfernungsmesser wurde eingeschaltet") #der Rest ist Input --> Relay ausegloest
+    relayEin() #Pin A7 wurde auf output gesetzt,
+    print("Trigger wurde gestartet")
+    bus.write_byte_data(DEVICE,IODIRB,FB) #setze Trigger auf output
+    if bus.read_byte_data(DEVICE,GPIOA,2) == 0:
+        StartZeit = time.time()
+        print("Startzeit wurde erfasst.")
+    else:
+        print("Es konnte keine Startzeit ermittelt werden.")
 
 def entfernungsmesserGpioAus():
-    relayAus()
-    print("Entfernungsmesser wurde ausgeschaltet")
+    print("Trigger wurde gestoppt")
+    write_byte_data(DEVICE,GPIOA,2)
+    if bus.read_byte_data(DEVICE,IODIRB,0x20) == 1:
+        StopZeit = time.time()
+        print("Es wurde eine Stopzeit erfasst")
+    else:
+        print("Es konnte keine Stopzeit erfasst werden.")
 
 def distanz():
     # setze Trigger auf HIGH
     # distanzGpioan()
     # starte Sensor über gpio_expander, entfernungsmesserGpioaAn()
-
+    StartZeit = time.time()
+    StopZeit = time.time()
     entfernungsmesserGpioAn()
     # setze Trigger nach 0.01ms aus LOW
-    while bus.read_byte_data(DEVICE,OLATB,0x1):
-        StartZeit = time.time()
     time.sleep(0.00001)
     # distanzGpioaus()
     entfernungsmesserGpioAus()
-    while bus.read_byte_data(DEVICE,OLATB,0x2):
-        StopZeit = time.time()
-    StartZeit = time.time()
-    StopZeit = time.time()
 
     # speichere Startzeit
     # expander einbinden
@@ -73,4 +80,3 @@ if __name__ == '__main__':
         # Beim Abbruch durch STRG+C resetten
     except KeyboardInterrupt:
         print("Messung vom User gestoppt")
-        bus.write_byte_data(DEVICE,GPIOA,1)
