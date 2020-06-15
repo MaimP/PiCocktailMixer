@@ -77,6 +77,7 @@ def distanz():
         StopZeit = time.time()
         print("Es wurde eine Stopzeit erfasst")
         bus.write_byte_data(DEVICE,OLATB,0)
+        print("0")
 #    else:
 #        print("keine stopzeit erfasst")
     # speichere Startzeit
