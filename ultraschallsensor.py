@@ -25,18 +25,18 @@ def entfernungsmesserGpioAn():
     relayEin() #Pin A7 wurde auf output gesetzt,
     print("Trigger wurde gestartet")
     bus.write_byte_data(DEVICE,IODIRB,3) #setze Trigger auf output
-    while bus.read_byte_data(DEVICE,IODIRB) == 0: #2
-        StartZeit = time.time()
-        print("Startzeit wurde erfasst.")
+#    while bus.read_byte_data(DEVICE,IODIRB) == 0: #2
+#        StartZeit = time.time()
+#        print("Startzeit wurde erfasst.")
 #    else:
 #        print("Es konnte keine Startzeit ermittelt werden.")
 
 def entfernungsmesserGpioAus():
     print("Trigger wurde gestoppt")
     bus.write_byte_data(DEVICE,GPIOA,2)
-    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
-        StopZeit = time.time()
-        print("Es wurde eine Stopzeit erfasst")
+#    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
+#        StopZeit = time.time()
+#        print("Es wurde eine Stopzeit erfasst")
 #    else:
 #        print("Es konnte keine Stopzeit erfasst werden.")
 
@@ -52,6 +52,13 @@ def distanz():
     # distanzGpioaus()
     entfernungsmesserGpioAus()
 
+    while bus.read_byte_data(DEVICE,IODIRB) == 0: #2
+        StartZeit = time.time()
+        print("Startzeit wurde erfasst.")
+
+    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
+        StopZeit = time.time()
+        print("Es wurde eine Stopzeit erfasst")
     # speichere Startzeit
     # expander einbinden
     # einzelnen Pin des Entfernungsmesser einbeziehen
