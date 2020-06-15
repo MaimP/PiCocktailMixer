@@ -46,6 +46,7 @@ try:
             #GPIO.output(i, GPIO.LOW)
             bus.write_byte_data(DEVICE,OLATA,i)
             time.sleep(sleepTimeShort);
+            print("Relay auslösen")
             bus.write_byte_data(DEVICE,OLATA,0)
             time.sleep(sleepTimeLong);
 
