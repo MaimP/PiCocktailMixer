@@ -1,35 +1,52 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
 #Bibliotheken einbinden
-import RPi.GPIO as GPIO
 import time
+import smbus
 
+#bus = smbus.SMBus(0) # Rev 1 Pi
+bus = smbus.SMBus(1) # Rev 2 Pi
 #GPIO Modus (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
 
-#GPIO Pins zuweisen
-GPIO_TRIGGER = 18
-GPIO_ECHO = 24
+DEVICE = 0x20 # Device Adresse (A0-A2)
+IODIRA = 0x00 # Pin Register fuer die Richtung
+IODIRB = 0x01 # Pin Register fuer die Richtung
+OLATB = 0x15 # Register fuer Ausgabe (GPB)
+GPIOA = 0x12 # Register fuer Eingabe (GPA)
+GPIOB = 0x13
 
-#Richtung der GPIO-Pins festlegen (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-GPIO.setup(GPIO_ECHO, GPIO.IN)
+bus.write_byte_data(DEVICE,IODIRB,1)
+
+def entfernungsmesserGpioAn():
+    bus.write_byte_data(DEVICE,GPIOA,0xFE) #Pin B7 wurde auf output gesetzt,
+    print("Entfernungsmesser wurde eingeschaltet") #der Rest ist Input --> Relay ausegloest
+
+def entfernungsmesserGpioAus():
+    bus.write_byte_data(DEVICE,GPIOA,1)
+    print("Entfernungsmesser wurde ausgeschaltet")
 
 def distanz():
     # setze Trigger auf HIGH
-    distanzGpioan()
+    # distanzGpioan()
+    # starte Sensor über gpio_expander, entfernungsmesserGpioaAn()
 
+    entfernungsmesserGpioAn()
     # setze Trigger nach 0.01ms aus LOW
     time.sleep(0.00001)
-    distanzGpioaus()
+    # distanzGpioaus()
+    entfernungsmesserGpioAus()
     StartZeit = time.time()
     StopZeit = time.time()
 
     # speichere Startzeit
     # expander einbinden
-    while bus.read_byte_data(DEVICE,OLATB):
+    # einzelnen Pin des Entfernungsmesser einbeziehen
+    while bus.read_byte_data(DEVICE,OLATB,0x3):
         StartZeit = time.time()
 
     # speichere Ankunftszeit
-    while GPIO.input(GPIO_ECHO) == 1:
+    while bus.read_byte_data(DEVICE,OLATB,0x3):
         StopZeit = time.time()
 
     # Zeit Differenz zwischen Start und Ankunft
@@ -50,21 +67,3 @@ if __name__ == '__main__':
         # Beim Abbruch durch STRG+C resetten
     except KeyboardInterrupt:
         print("Messung vom User gestoppt")
-        GPIO.cleanup()
-
-#Endlosschleife, die auf Tastendruck wartet
-while True:
-    # Status von GPIOA Register auslesen
-    Taster = bus.read_byte_data(DEVICE,GPIOA)
-
-    if Taster & 0b10000000 == 0b10000000:
-        print "Taster gedrueckt"
-        aufleuchten()
-#Endlosschleife, die auf Tastendruck wartet
-while True:
-    # Status von GPIOA Register auslesen
-    Taster = bus.read_byte_data(DEVICE,GPIOA)
-
-    if Taster & 0b10000000 == 0b10000000:
-        print "Taster gedrueckt"
-        aufleuchten()
