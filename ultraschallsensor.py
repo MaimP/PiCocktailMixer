@@ -70,11 +70,11 @@ def distanz():
 #    else:
 #        print("keine startzeit erfasst")
 
-        if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
-            StopZeit = time.time()
-            print("Es wurde eine Stopzeit erfasst")
-        else:
-            print("keine stopzeit erfasst")
+    if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
+        StopZeit = time.time()
+                print("Es wurde eine Stopzeit erfasst")
+    else:
+        print("keine stopzeit erfasst")
     # speichere Startzeit
     # expander einbinden
     # einzelnen Pin des Entfernungsmesser einbeziehen
