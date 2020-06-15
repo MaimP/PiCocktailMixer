@@ -89,14 +89,17 @@ def distanz():
     # speichere Ankunftszeit
     #while bus.read_byte_data(DEVICE,OLATB,0x2):
     #    StopZeit = time.time()
-
+    if StartZeit && StopZeit != 0:
     # Zeit Differenz zwischen Start und Ankunft
-    TimeElapsed = StopZeit - StartZeit
+        TimeElapsed = StopZeit - StartZeit
     # mit der Schallgeschwindigkeit (34300 cm/s) multiplizieren
     # und durch 2 teilen, da hin und zurueck
-    distanz = (TimeElapsed * 34300) / 2
+        distanz = (TimeElapsed * 34300) / 2
 
-    return distanz
+        return distanz
+
+    else:
+        print("es gibt keine Zeiten")
 
 if __name__ == '__main__':
     try:
