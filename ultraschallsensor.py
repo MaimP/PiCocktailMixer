@@ -44,6 +44,7 @@ def entfernungsmesserGpioAus():
 
 def distanz():
     bus.write_byte_data(DEVICE,IODIRA,0x01)
+    bus.write_byte_data(DEVICE,IODIRB,0)
     # setze Trigger auf HIGH
     # distanzGpioan()
     # starte Sensor über gpio_expander, entfernungsmesserGpioaAn()
