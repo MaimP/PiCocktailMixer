@@ -15,7 +15,7 @@ GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
 Trigger = 0x40 #GPB5 pin6 trigger (alle 0 außer pin7 echo)
 
-bus.write_byte_data(DEVICE,IODIRB,2) #input auf 0x02
+bus.write_byte_data(DEVICE,IODIRB,0x02) #input auf 0x02
 
 def relayEin():
     bus.write_byte_data(DEVICE,IODIRA,0) #Channel 7 Relay eingeschaltet, der Rest aus
@@ -26,7 +26,7 @@ def relayAus():
 def entfernungsmesserGpioAn():
     relayEin() #Pin A7 wurde auf output gesetzt,
     print("Trigger wurde gestartet")
-    bus.write_byte_data(DEVICE,IODIRB,2) #setze Trigger auf output (alle außer pin7)
+    bus.write_byte_data(DEVICE,IODIRA,0x00) #trigger auf GPA7 (00000000)
 #    while bus.read_byte_data(DEVICE,IODIRB) == 0: #2
 #        StartZeit = time.time()
 #        print("Startzeit wurde erfasst.")
@@ -35,7 +35,7 @@ def entfernungsmesserGpioAn():
 
 def entfernungsmesserGpioAus():
     print("Trigger wurde gestoppt")
-    bus.write_byte_data(DEVICE,GPIOB,6) #Trigger auf 1 gesetzt (ausgeschaltet)
+    bus.write_byte_data(DEVICE,IODIRA,0x01) #Trigger auf 1 gesetzt(00000001)
 #    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
 #        StopZeit = time.time()
 #        print("Es wurde eine Stopzeit erfasst")
@@ -43,7 +43,7 @@ def entfernungsmesserGpioAus():
 #        print("Es konnte keine Stopzeit erfasst werden.")
 
 def distanz():
-    bus.write_byte_data(DEVICE,IODIRB,0x2)
+    bus.write_byte_data(DEVICE,IODIRA,0x01)
     # setze Trigger auf HIGH
     # distanzGpioan()
     # starte Sensor über gpio_expander, entfernungsmesserGpioaAn()
@@ -70,11 +70,11 @@ def distanz():
 #    else:
 #        print("keine startzeit erfasst")
 
-    if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
-        StopZeit = time.time()
-        print("Es wurde eine Stopzeit erfasst")
-    else:
-        print("keine stopzeit erfasst")
+        if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
+            StopZeit = time.time()
+            print("Es wurde eine Stopzeit erfasst")
+        else:
+            print("keine stopzeit erfasst")
     # speichere Startzeit
     # expander einbinden
     # einzelnen Pin des Entfernungsmesser einbeziehen
