@@ -13,20 +13,30 @@ IODIRB = 0x01 # Pin Register fuer die Richtung
 OLATB = 0x15 # Register fuer Ausgabe (GPB)
 GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
-Trigger = 0x40 #GPB5 pin6 trigger (alle 0 außer pin7 echo)
+# MCP connection
+#       Input(IODIRB 0x80)      Input(IODIRA 0x00)
+#   GPB  pin    HEX         GPA pin     HEX
+#   0   1      0/1          7   28      1
+#   1   2       0           6   27      0
+#   2   3       0           5   26      0
+#   3   4       0           4   25      0
+#   4   5       0           3   24      0
+#   5   6       0           2   23      0
+#   6   7       0           1   22      0
+#   7   8       0           0   21      0
+bus.write_byte_data(DEVICE,IODIRB,0x80) #input auf 0x80
+bus.write_byte_data(DEVICE,IODIRA,0x00)
+bus.write_byte_data(DEVICE,OLATA,0)
+#def relayEin():
+#    bus.write_byte_data(DEVICE,IODIRA,0) #Channel 7 Relay eingeschaltet, der Rest aus
 
-bus.write_byte_data(DEVICE,IODIRB,0x02) #input auf 0x02
-
-def relayEin():
-    bus.write_byte_data(DEVICE,IODIRA,0) #Channel 7 Relay eingeschaltet, der Rest aus
-
-def relayAus():
-    bus.write_byte_data(DEVICE,GPIOA,FF)
+#def relayAus():
+#    bus.write_byte_data(DEVICE,GPIOA,FF)
 
 def entfernungsmesserGpioAn():
-    relayEin() #Pin A7 wurde auf output gesetzt,
+#    relayEin() #Pin A7 wurde auf output gesetzt,
     print("Trigger wurde gestartet")
-    bus.write_byte_data(DEVICE,IODIRA,0x00) #trigger auf GPA7 (00000000)
+    bus.write_byte_data(DEVICE,OLATA,0x00) #möglicherweise falsch, überprüfen
 #    while bus.read_byte_data(DEVICE,IODIRB) == 0: #2
 #        StartZeit = time.time()
 #        print("Startzeit wurde erfasst.")
@@ -35,7 +45,7 @@ def entfernungsmesserGpioAn():
 
 def entfernungsmesserGpioAus():
     print("Trigger wurde gestoppt")
-    bus.write_byte_data(DEVICE,IODIRA,0x01) #Trigger auf 1 gesetzt(00000001)
+    bus.write_byte_data(DEVICE,OLATA,0xFF) #Trigger auf 1 gesetzt(11111111)
 #    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
 #        StopZeit = time.time()
 #        print("Es wurde eine Stopzeit erfasst")
@@ -62,9 +72,23 @@ def distanz():
     entfernungsmesserGpioAus()
 
     while True:
-        if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
+        echo = bus.read_byte_data(DEVICE,GPIOB)
+
+        if echo & 0b10000000 == 0b00000000:
             StartZeit = time.time()
             print("Startzeit wurde erfasst.")
+            if echo & 0b10000000 == 0b10000000:
+                StopZeit = time.time()
+                print("Es wurde eine Stopzeit erfasst")
+                break
+            else:
+                print("es wurde keine stopzeit erfasst")
+        else:
+            print("es wurde keine stopzeit erfasst")
+            print(echo)
+#                print(bus.read_byte_data(DEVICE,GPIOB))
+
+#        else:
 #            if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010:
 #                StopZeit = time.time()
 #                print("Es wurde eine Stopzeit erfasst")
@@ -72,15 +96,6 @@ def distanz():
 #            else:
 #                print("keine Stopzeit")
 #                print(bus.read_byte_data(DEVICE,GPIOB))
-
-        else:
-            if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010:
-                StopZeit = time.time()
-                print("Es wurde eine Stopzeit erfasst")
-                break
-            else:
-                print("keine Stopzeit")
-                print(bus.read_byte_data(DEVICE,GPIOB))
 #            print("es wurde keine startzeit erfasst")
 #    if bus.read_byte_data(DEVICE,GPIOB) & 0b01000000 == 0b00000000: #2
 #        StartZeit = time.time()
