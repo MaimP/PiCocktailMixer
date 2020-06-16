@@ -11,6 +11,7 @@ DEVICE = 0x20 # Device Adresse (A0-A2)
 IODIRA = 0x00 # Pin Register fuer die Richtung
 IODIRB = 0x01 # Pin Register fuer die Richtung
 OLATB = 0x15 # Register fuer Ausgabe (GPB)
+OLATA = 0x14
 GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
 # MCP connection
