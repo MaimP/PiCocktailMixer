@@ -78,7 +78,7 @@ def distanz():
         if echo & 0b10000000 == 0b00000000:
             StartZeit = time.time()
             print("Startzeit wurde erfasst.")
-            if echo & 0b10000000 == 0b10000000:
+            if echo != 0:
                 StopZeit = time.time()
                 print("Es wurde eine Stopzeit erfasst")
                 break
