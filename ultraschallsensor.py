@@ -101,8 +101,7 @@ def distanz():
 
     return distanz
 
-    else:
-        print("es gibt keine Zeiten")
+    #    print("es gibt keine Zeiten")
 
 if __name__ == '__main__':
     try:
