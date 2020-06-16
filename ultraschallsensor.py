@@ -71,6 +71,8 @@ def distanz():
                 break
             else:
                 print("keine Stopzeit")
+                print(bus.read_byte_data(DEVICE,GPIOB))
+
 
         else:
             print("es wurde keine startzeit erfasst")
