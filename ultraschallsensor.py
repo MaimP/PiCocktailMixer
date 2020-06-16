@@ -78,15 +78,16 @@ def distanz():
         if echo & 0b10000000 == 0b00000000:
             StartZeit = time.time()
             print("Startzeit wurde erfasst.")
-            if echo != 0:
+
+        else:
+            if echo > 0:
                 StopZeit = time.time()
                 print("Es wurde eine Stopzeit erfasst")
                 break
             else:
                 print("es wurde keine stopzeit erfasst")
                 print(echo)
-        else:
-            print("es wurde keine startzeit erfasst")
+                
             print(echo)
 #                print(bus.read_byte_data(DEVICE,GPIOB))
 
