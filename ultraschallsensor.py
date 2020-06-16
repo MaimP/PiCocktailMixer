@@ -62,24 +62,28 @@ def distanz():
     # distanzGpioaus()
     entfernungsmesserGpioAus()
 
-    while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
-        StartZeit = time.time()
-        print("Startzeit wurde erfasst.")
-#    else:
-#        print("es wurde keine startzeit erfasst")
+    while True:
+        if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
+            StartZeit = time.time()
+            print("Startzeit wurde erfasst.")
+            False
+        else:
+            print("es wurde keine startzeit erfasst")
 #    if bus.read_byte_data(DEVICE,GPIOB) & 0b01000000 == 0b00000000: #2
 #        StartZeit = time.time()
 #        print("Startzeit wurde erfasst.")
 #    else:
 #        print("keine startzeit erfasst")
 
-    if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
-        StopZeit = time.time()
-        print("Es wurde eine Stopzeit erfasst")
+    while True:
+        if bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000010: #20
+            StopZeit = time.time()
+            print("Es wurde eine Stopzeit erfasst")
+            False
 #        bus.write_byte_data(DEVICE,IODIRB,0)
 #        print("0")
-    else:
-        print("keine stopzeit erfasst")
+        else:
+            print("keine stopzeit erfasst")
     # speichere Startzeit
     # expander einbinden
     # einzelnen Pin des Entfernungsmesser einbeziehen
