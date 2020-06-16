@@ -84,6 +84,7 @@ def distanz():
                 break
             else:
                 print("es wurde keine stopzeit erfasst")
+                print(echo)
         else:
             print("es wurde keine startzeit erfasst")
             print(echo)
