@@ -70,11 +70,11 @@ def distanz():
 #    StopZeit = time.time()
     entfernungsmesserGpioAn()
 
-    wartezeit = 2000 # 2 Sekunden
+    wartezeit = 2 # 2 Sekunden
     StartZeit = time.time()
 
     while True:
-        if (StartZeit + wartezeit > time.time()):
+        if (StartZeit + wartezeit < time.time()):
             print("Es konnte keine Stopzeit ermittelt werden")
             break
             
