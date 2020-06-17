@@ -69,6 +69,7 @@ def entfernungsmesserGpioAus():
             StopZeit = time.time()
             print("Stopzeit wurde erfasst")
             print(echo)
+            global StopZeit
             break
 
 #    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
