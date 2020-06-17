@@ -57,6 +57,7 @@ def entfernungsmesserGpioAus():
 
     wartezeit = 2000 # 2 Sekunden
     StartZeit = time.time()
+    global StartZeit
 
     while True:
         echo = bus.read_byte_data(DEVICE,GPIOB)
