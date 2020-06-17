@@ -58,29 +58,29 @@ def entfernungsmesserGpioAus():
     wartezeit = 2000 # 2 Sekunden
 
     while True:
+        def draw():
+            if (millis() > wartezeit):
+                break
 
-            while echo & 0b100000 == 0b00000000:
-                def draw():
-                    if (millis() > wartezeit):
-                        echo = bus.read_byte_data(DEVICE,GPIOB)
-                        StartZeit = time.time()
-                        print("Startzeit wurde erfasst")
+            else:
+                echo = bus.read_byte_data(DEVICE,GPIOB)
+
+                if echo & 0b100000 == 0b00000000:
+                    StartZeit = time.time()
+                    print("Startzeit wurde erfasst")
+                    print(echo)
+
+                else:
+                    if echo & 0b100000 == 0b10000000:
+                        StopZeit = time.time()
+                        print("Stopzeit wurde erfasst")
                         print(echo)
-
-                    else:
                         break
 
-                while echo & 0b100000 == 0b10000000:
-                    def draw():
-                        if (millis() > wartezeit):
-                            echo = bus.read_byte_data(DEVICE,GPIOB)
-                            StopZeit = time.time()
-                            print("Stopzeit wurde erfasst")
-                            print(echo)
-                            break
+                    else:
+                        print("Es konnte keine Stopzeit ermittelt werden")
+                        print(echo)
 
-                        else:
-                            break
 #    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
 #        StopZeit = time.time()
 #        print("Es wurde eine Stopzeit erfasst")
