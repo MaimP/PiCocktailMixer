@@ -73,7 +73,7 @@ def distanz():
     wartezeit = 2 # 2 Sekunden
     StartZeit = time.time()
 
-    while True:
+#    while True:
         if (StartZeit + wartezeit < time.time()):
             print("Es konnte keine Stopzeit ermittelt werden")
             break
