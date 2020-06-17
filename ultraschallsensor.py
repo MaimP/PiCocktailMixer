@@ -104,7 +104,7 @@ def distanz():
             print("Es konnte keine Stopzeit ermittelt werden")
             break
 
-        echo = bus.read_byte_data(DEVICE,GPIOB)
+        echo = bus.read_byte_data(DEVICE,OLATB)
 
         if echo:
             StopZeit = time.time()
