@@ -99,6 +99,23 @@ def distanz():
     # distanzGpioaus()
     entfernungsmesserGpioAus()
 
+    while True:
+        if (StartZeit + wartezeit < time.time()):
+            print("Es konnte keine Stopzeit ermittelt werden")
+            break
+
+        echo = bus.read_byte_data(DEVICE,GPIOB)
+
+        if echo:
+            StopZeit = time.time()
+            print("Stopzeit wurde erfasst")
+            print(echo)
+            global StopZeit
+            break
+
+        else:
+            print(echo)
+
 #                print(bus.read_byte_data(DEVICE,GPIOB))
 
 #        else:
