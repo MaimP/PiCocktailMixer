@@ -14,6 +14,8 @@ OLATB = 0x15 # Register fuer Ausgabe (GPB)
 OLATA = 0x14
 GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
+GPIO_Trigger = 0x00 #Binär 00000000 0=Output
+GPIO_Echo = 0x80
 # MCP connection
 #       Input(IODIRB 0x80)      Output(IODIRA 0x00)
 #   GPB  pin    HEX         GPA pin     HEX
@@ -36,6 +38,8 @@ bus.write_byte_data(DEVICE,OLATA,1)
 #    bus.write_byte_data(DEVICE,GPIOA,FF)
 
 def entfernungsmesserGpioAn():
+    triggerSWert = bus.read_byte_data(DEVICE,GPIOA)
+    print(triggerWert)
 #    relayEin() #Pin A7 wurde auf output gesetzt,
     print("Trigger wurde gestartet")
     bus.write_byte_data(DEVICE,OLATA,0x00) #möglicherweise falsch, überprüfen
@@ -46,8 +50,25 @@ def entfernungsmesserGpioAn():
 #        print("Es konnte keine Startzeit ermittelt werden.")
 
 def entfernungsmesserGpioAus():
+    triggerPWert = bus.read_byte_data(DEVICE,GPIOA)
+    print(triggerPWert)
     print("Trigger wurde gestoppt")
     bus.write_byte_data(DEVICE,OLATA,0xFF) #Trigger auf 1 gesetzt(11111111)
+
+    while True:
+        echo = bus.read_byte_data(DEVICE,GPIOB)
+
+        while echo & 0b100000 == 0b00000000:
+            StartZeit = time.time()
+            print("Startzeit wurde erfasst")
+            print(echo)
+
+        while echo & 0b100000 == 0b10000000:
+            StopZeit = time.time()
+            print("Stopzeit wurde erfasst")
+            print(echo)
+            break
+
 #    while bus.read_byte_data(DEVICE,IODIRB) == 1: #20
 #        StopZeit = time.time()
 #        print("Es wurde eine Stopzeit erfasst")
@@ -72,22 +93,6 @@ def distanz():
     time.sleep(0.00001)
     # distanzGpioaus()
     entfernungsmesserGpioAus()
-
-    echo = bus.read_byte_data(DEVICE,GPIOB)
-
-    while bus.read_byte_data(DEVICE,GPIOB) & 0b100000 == 0b00000000:
-        StartZeit = time.time()
-        print("Startzeit wurde erfasst")
-        print(echo)
-
-    if bus.read_byte_data(DEVICE,GPIOB) & 0b100000 == 0b10000000:
-        StopZeit = time.time()
-        print("Stopzeit wurde erfasst")
-        print(echo)
-
-    else:
-        print("Es konnte keine Stopzeit erfasst werden")
-        print(echo)
 
 #                print(bus.read_byte_data(DEVICE,GPIOB))
 
