@@ -65,13 +65,13 @@ def entfernungsmesserGpioAus():
             else:
                 echo = bus.read_byte_data(DEVICE,GPIOB)
 
-                if echo & 0b100000 == 0b00000000:
+                if not echo:
                     StartZeit = time.time()
                     print("Startzeit wurde erfasst")
                     print(echo)
 
                 else:
-                    if echo & 0b100000 == 0b10000000:
+                    if echo:
                         StopZeit = time.time()
                         print("Stopzeit wurde erfasst")
                         print(echo)
