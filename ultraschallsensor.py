@@ -39,7 +39,7 @@ bus.write_byte_data(DEVICE,OLATA,1)
 
 def entfernungsmesserGpioAn():
     triggerSWert = bus.read_byte_data(DEVICE,GPIOA)
-    print(triggerWert)
+    print(triggerSWert)
 #    relayEin() #Pin A7 wurde auf output gesetzt,
     print("Trigger wurde gestartet")
     bus.write_byte_data(DEVICE,OLATA,0x00) #möglicherweise falsch, überprüfen
