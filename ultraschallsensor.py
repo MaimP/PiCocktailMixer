@@ -77,7 +77,7 @@ def distanz():
         if (StartZeit + wartezeit < time.time()):
             print("Es konnte keine Stopzeit ermittelt werden")
             break
-            
+
         echo = bus.read_byte_data(DEVICE,GPIOB)
 
         if echo:
@@ -86,6 +86,9 @@ def distanz():
             print(echo)
             global StopZeit
             break
+
+        else:
+            print(echo)
 #    while bus.read_byte_data(DEVICE,GPIOB) & 0b00000010 == 0b00000000: #2
 #        StartZeit = time.time()
 #        print("Startzeit wurde erfasst.")
