@@ -15,7 +15,7 @@ OLATA = 0x14
 GPIOA = 0x12 # Register fuer Eingabe (GPA)
 GPIOB = 0x13
 # MCP connection
-#       Input(IODIRB 0x80)      Input(IODIRA 0x00)
+#       Input(IODIRB 0x80)      Output(IODIRA 0x00)
 #   GPB  pin    HEX         GPA pin     HEX
 #   0   1      0/1          7   28      1
 #   1   2       0           6   27      0
@@ -25,6 +25,7 @@ GPIOB = 0x13
 #   5   6       0           2   23      0
 #   6   7       0           1   22      0
 #   7   8       0           0   21      0
+# Trigger sitzt auf GPA0/Pin 21
 bus.write_byte_data(DEVICE,IODIRB,0x80) #input auf 0x80
 bus.write_byte_data(DEVICE,IODIRA,0x00)
 bus.write_byte_data(DEVICE,OLATA,0)
@@ -73,7 +74,7 @@ def distanz():
     entfernungsmesserGpioAus()
 
     while True:
-        echo = bus.read_byte_data(DEVICE,GPIOB)
+        echo = bus.read_byte_data(DEVICE,OLATB)
 
         if echo & 0b10000000 == 0b00000000:
             StartZeit = time.time()
@@ -81,7 +82,7 @@ def distanz():
             print(echo)
 
         else:
-            if echo > 0:
+            if echo % 0b10000000 == 0b10000000:
                 StopZeit = time.time()
                 print("Es wurde eine Stopzeit erfasst")
                 print(echo)
