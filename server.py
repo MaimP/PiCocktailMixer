@@ -1,5 +1,5 @@
 import SimpleHTTPServer
-import socketserver
+#import socketserver
 
 PORT = 8080
 Handler = http.server.SimpleHTTPRequestHandler
