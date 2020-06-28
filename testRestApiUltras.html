@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Ultraschallsensor Werte</h1>
+
+<p>Der aktuelle Abstand vom Sensor ist: </p>
+
+<field id="demo">JavaScript can change the style of an HTML element.</field>
+
+<script>
+function myFunction() {
+  $.ajax({
+    type: "POST",
+    url: "/home/pi/PiMixer/PiCocktailMixer/ultraschallsensor.py",
+    data: { param: text}
+  }).done(function( o ) {
+     // do something
+  });
+}
+</script>
+
+<button type="button" onclick="myFunction()">Click Me!</button>
+<output> myFunction.ultraschallsensor.distanz</output>
+
+</body>
+</html>
