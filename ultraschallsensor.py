@@ -40,6 +40,13 @@ def distanz():
 
     return distanz
 
+def entfernung():
+    while True:
+        abstand = distanz()
+        return abstand
+        time.sleep(0.3)
+
+
 if __name__ == '__main__':
     try:
         while True:
