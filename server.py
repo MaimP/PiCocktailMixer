@@ -1,4 +1,4 @@
-import http.server
+import SimpleHTTPServer
 import socketserver
 
 PORT = 8080
