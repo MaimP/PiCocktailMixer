@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import RPi.GPIO as GPIO
-import getData
 
 GPIO.setmode(GPIO.BCM) # GPIO Nummern statt Board Nummern
 
@@ -39,6 +38,6 @@ def stopPump():
     GPIOs = [27, 22, 5, 6, 13, 19]
     for x in GPIOs:
         GPIO.setup(x, GPIO.IN)
-        print("GPIO ", "wurde ausgeschaltet" sep=x)
+#        print("GPIO ", "wurde ausgeschaltet" sep=x)
 
     print("alle Pumpen wurden ausgeschaltet.")
