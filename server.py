@@ -2,6 +2,7 @@
 #-*- coding:utf-8 -*-#
 from bottle import route, run
 from bottle import template
+import app
 
 from bottle import get, post, request # or route
 
@@ -19,7 +20,7 @@ def login():
                 min="0" max="100"
             <label for="Mischverhaeltnis">Mischverhaeltnis</label>
 
-            <select id="Mischgetraenk" name="drinks">
+            <select id="drinknumber" name="drinks">
                 <option value="00" selected="">Fanta</option>
                 <option value="11">Cola</option>
                 <option value="22">Sprite</option>
@@ -31,54 +32,55 @@ def login():
 
 @post('/login') # or @route('/login', method='POST')
 def do_login():
-    alkohol = request.forms.get('drinks')
-    mischverhaeltnis = request.forms.get('mischverhaeltnis')
-    mischgetraenk = request.forms.get('AlkoholAuswahl_1')
+    alcnumber = request.forms.get('drinks')
+    id_mischv = request.forms.get('mischverhaeltnis')
+    drinknumber = request.forms.get('AlkoholAuswahl_1')
+    app.submit()
 
         #Lakohol, pumpen zuweisung
-        if alkohol == 0: #Korn
-            return "<p>Alkohol: Korn</p>"
+        if alcnumber == 0: #Korn
+            return "<p>alcnumber: Korn</p>"
 
-            if mischgetraenk == 00:
+            if drinknumber == 00:
                 return "<p>mischgetränk: Fanta</p>"
-            elif mischgetraenk == 11:
+            elif drinknumber == 11:
                 return "<p>mischgetränk: Cola</p>"
 
-            elif mischgetraenk == 22:
+            elif drinknumber == 22:
                 return "<p>mischgetränk: Sprite</p>"
 
             else:
                 return "<p> keine passende auswahl gefunden"
 
-        elif alkohol == 1: #Bacardi
+        elif  == 1: #Bacardi
             return "<p>alokohl: Bacardi</p>"
 
-            if mischgetraenk == 00:
+            if drinknumber == 00:
                 return "<p>mischgetränk: Fanta</p>"
-            elif mischgetraenk == 11:
+            elif drinknumber == 11:
                 return "<p>mischgetränk: Cola</p>"
 
-            elif mischgetraenk == 22:
+            elif drinknumber == 22:
                 return "<p>mischgetränk: Sprite</p>"
 
             else:
                 return "<p> keine passende auswahl gefunden"
 
-        elif alkohol == 2: #Vodka
+        elif alcnumber == 2: #Vodka
             return "<p>alokohl: Vodka</p>"
 
-            if mischgetraenk == 00:
+            if drinknumber == 00:
                 return "<p>mischgetränk: Fanta</p>"
-            elif mischgetraenk == 11:
+            elif drinknumber == 11:
                 return "<p>mischgetränk: Cola</p>"
 
-            elif mischgetraenk == 22:
+            elif drinknumber == 22:
                 return "<p>mischgetränk: Sprite</p>"
 
             else:
                 return "<p> keine passende auswahl gefunden"
 
         else:
-            return template('{{alkohol}},{{mischgetraenk}}', alkohol=alkohol, mischgetraenk=mischgetraenk)
+            return template('{{alcnumber}},{{drinknumber}}', alcnumber=alcnumber, drinknumber=drinknumber)
 
 run(host='192.168.178.72', port=8080, debug=True)
