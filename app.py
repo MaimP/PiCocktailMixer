@@ -30,12 +30,12 @@ def submit():
         while ultraschallsensor.entfernung() <= fillB:
             pump.startPump(misch) #misch gibt an welche Pumpe gestartet wird
 
-            print("in dem getränk sind nung insgesamt: ")
+            print("in dem getränk sind nun insgesamt: ")
             print(ultraschallsensor.distanz())
             mischM = ultraschallsensor.distanz()
 
             verhaeltnisEcht = (mischM / alcM) * 100
-            print("es sind", "% lakohol im Glas" sep=verhaeltnisEcht)
+#            print("es sind", "% lakohol im Glas" sep=verhaeltnisEcht)
 
         pump.stopPump()
 
