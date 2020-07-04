@@ -1,17 +1,20 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-#
 import ultraschallsensor
-import getData
+import server
 import pump
 
 def dataImport():
     startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
     fuellHoehe = startHoehe * 0.9
-    alc = getData.alcnumber #input von HTML welcher Alkohol
-    misch = getData.drinknumber #input von HTML mischgetraenk
-    mischV = getData.id_mischv #id_mischv = input von HTML Mischverhaeltnis
+    alc = server.alcnumber #input von HTML welcher Alkohol
+    misch = server.drinknumber #input von HTML mischgetraenk
+    mischV = server.id_mischv #id_mischv = input von HTML Mischverhaeltnis
     fillA = fuellHoehe * (mischV / 100)
     fillB = fuellHoehe
 
 def submit():
+    dataImport()
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
     while ultraschallsensor.entfernung() <= fillA:
