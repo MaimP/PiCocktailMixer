@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from bottle import route, run
 from bottle import template
-#import app
+import app
 
 from bottle import get, post, request # or route
 from bottle import static_file
@@ -16,6 +16,7 @@ def process():
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
+    app.enter()
 
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
 
