@@ -13,7 +13,7 @@ def dataImport():
     fillA = fuellHoehe * (mischV / 100)
     fillB = fuellHoehe
 
-def submit():
+def enter():
     dataImport()
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann

@@ -35,7 +35,7 @@ def do_login():
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
-    app.submit()
+    app.enter()
 
     #Lakohol, pumpen zuweisung
     if alcnumber == 0: #Korn
