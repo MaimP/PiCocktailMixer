@@ -30,12 +30,14 @@ def login():
         </form>
     '''
 
-@post('/login') # or @route('/login', method='POST')
+@post('/next') # or @route('/login', method='POST')
 def do_login():
+    import app
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
 
+    app.enter()
     #Lakohol, pumpen zuweisung
     if alcnumber == 0: #Korn
         return "<p>alcnumber: Korn</p>"
