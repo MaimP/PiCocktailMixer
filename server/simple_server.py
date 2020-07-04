@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from bottle import route, run
 from bottle import template
-import app
+from PiCocktailMixer import app
 
 from bottle import get, post, request # or route
 from bottle import static_file
