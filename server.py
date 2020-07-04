@@ -2,7 +2,7 @@
 #-*- coding:utf-8 -*-#
 from bottle import route, run
 from bottle import template
-import app
+#import app
 
 from bottle import get, post, request # or route
 
@@ -33,6 +33,9 @@ def login():
 @post('/login') # or @route('/login', method='POST')
 def do_login():
     import app
+    from importlib import reload
+    reload(app)
+
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
