@@ -30,7 +30,7 @@ def login():
         </form>
     '''
 
-@route('/login', method='POST')
+@route('/next', method='POST')
 def do_login():
     import app
     alcnumber = request.forms.get('drinks')
