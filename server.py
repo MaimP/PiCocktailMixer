@@ -52,7 +52,7 @@ def do_login():
         else:
             return "<p> keine passende auswahl gefunden"
 
-    elif == 1: #Bacardi
+    elif alcnumber == 1: #Bacardi
         return "<p>alokohl: Bacardi</p>"
 
         if drinknumber == 00:
