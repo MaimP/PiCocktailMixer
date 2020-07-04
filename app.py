@@ -26,6 +26,7 @@ def submit():
 
     pump.stopPump()
 
+    if (fillA * 0.85) <= ultraschallsensor.entfernung() <= (fillA * 1.15):
         while ultraschallsensor.entfernung() <= fillB:
             pump.startPump(misch) #misch gibt an welche Pumpe gestartet wird
 
