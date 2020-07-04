@@ -21,7 +21,8 @@ def submit():
         print(ultraschallsensor.distand())
         alcM = ultraschallsensor.distanz() #debugging: Menge an aufgefülltem alc
 
-    if fuellHoehe * (mischV / 120) <= fillA <= FUELLHOEHE * (mischV / 80):
+    pump.stopPump()
+
         while ultraschallsensor.entfernung() <= fillB:
             pump.startPump(misch) #misch gibt an welche Pumpe gestartet wird
 
@@ -31,6 +32,8 @@ def submit():
 
             verhaeltnisEcht = (mischM / alcM) * 100
             print("es sind", "% lakohol im Glas" sep=verhaeltnisEcht)
+
+        pump.stopPump()
 
     else:
         print("Es konnte kein Mischgetränk eingefüllt werden, suche nach fehlern.")
