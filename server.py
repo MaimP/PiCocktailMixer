@@ -8,7 +8,7 @@ from bottle import static_file
 
 @route('/')
 def server_static(filepath="index.html"):
-    return static_file(filepath, root='./public/')
+    return static_file(filepath, root='./')
 
 @post('/doform')
 def process():
