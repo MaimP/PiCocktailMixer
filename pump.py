@@ -6,6 +6,7 @@ GPIO.setmode(GPIO.BCM) # GPIO Nummern statt Board Nummern
 
 def startPump(drink):
     #mischgetraenke, pumpen zuweisung
+    print(drink)
     if drink == 00: #Fanta
         RELAIS_1_GPIO = 17 #In 1
         GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
