@@ -48,10 +48,10 @@ def enter(alc, misch):
 def getData():
     startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
     fuellHoehe = startHoehe * 0.9
-    int(alcnumber) = request.forms.get('drinks')
-    int(id_mischv) = request.forms.get('mischverhaeltnis')
-    int(drinknumber) = request.forms.get('AlkoholAuswahl_1')
-    fillA = fuellHoehe * (id_mischv / 100)
+    alcnumber = request.forms.get('drinks')
+    id_mischv = request.forms.get('mischverhaeltnis')
+    drinknumber = request.forms.get('AlkoholAuswahl_1')
+    fillA = fuellHoehe * (int(id_mischv) / 100)
     fillB = fuellHoehe
     enter(drinknumber, alcnumber)
 
