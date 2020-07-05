@@ -17,6 +17,8 @@ def process():
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
     #app.enter()
+    x = dir(app)
+    return "die Module: {0}".format(x)
 
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
 
