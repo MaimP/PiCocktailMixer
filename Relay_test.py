@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
-gpioList = [27, 22, 5, 6, 13, 19]
+gpioList = [17, 27, 22, 5, 6, 13]
 
 for i in gpioList:
     GPIO.setup(i, GPIO.OUT)
