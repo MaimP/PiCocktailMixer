@@ -25,7 +25,7 @@ try:
             GPIO.output(i, GPIO.LOW)
             time.sleep(sleepTimeShort);
             print("Relay auslösen")
-            GPIO.outpu(i, GPIO.HIGH)
+            GPIO.output(i, GPIO.HIGH)
             time.sleep(sleepTimeLong);
 
 
