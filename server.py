@@ -2,6 +2,7 @@
 from bottle import route, run
 from bottle import template
 import app
+import getData
 
 from bottle import get, post, request # or route
 from bottle import static_file
@@ -18,7 +19,9 @@ def process():
     drinknumber = request.forms.get('AlkoholAuswahl_1')
     #app.enter()
     x = dir(app)
-    return "die Module: {0}".format(x)
+    y = dir(getData)
+    return "die Module App: {0}, die Module getData: {1}".format(x, y)
+
 
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
 
