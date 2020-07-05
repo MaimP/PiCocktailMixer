@@ -45,15 +45,15 @@ def enter(alc, misch):
     else:
         print("Es konnte kein Mischgetränk eingefüllt werden, suche nach fehlern.")
 
-    def getData():
-        startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
-        fuellHoehe = startHoehe * 0.9
-        alcnumber = request.forms.get('drinks')
-        id_mischv = request.forms.get('mischverhaeltnis')
-        drinknumber = request.forms.get('AlkoholAuswahl_1')
-        fillA = fuellHoehe * (mischV / 100)
-        fillB = fuellHoehe
-        enter(drinknumber, alcnumber)
+def getData():
+    startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
+    fuellHoehe = startHoehe * 0.9
+    alcnumber = request.forms.get('drinks')
+    id_mischv = request.forms.get('mischverhaeltnis')
+    drinknumber = request.forms.get('AlkoholAuswahl_1')
+    fillA = fuellHoehe * (mischV / 100)
+    fillB = fuellHoehe
+    enter(drinknumber, alcnumber)
 
 
 run(host='192.168.178.72', reloader=True, port=8080, debug=True)
