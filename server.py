@@ -46,11 +46,11 @@ def enter(alc, misch):
         print("Es konnte kein Mischgetränk eingefüllt werden, suche nach fehlern.")
 
 def getData():
-    startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
-    fuellHoehe = startHoehe * 0.9
-    alcnumber = request.forms.get('drinks')
-    id_mischv = request.forms.get('mischverhaeltnis')
-    drinknumber = request.forms.get('AlkoholAuswahl_1')
+    int(startHoehe) = ultraschallsensor.distanz() #starthoehe für Glasgrösse
+    int(fuellHoehe) = startHoehe * 0.9
+    int(alcnumber) = request.forms.get('drinks')
+    int(id_mischv) = request.forms.get('mischverhaeltnis')
+    int(drinknumber) = request.forms.get('AlkoholAuswahl_1')
     fillA = fuellHoehe * (id_mischv / 100)
     fillB = fuellHoehe
     enter(drinknumber, alcnumber)
