@@ -3,6 +3,8 @@
 import time
 import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BCM)
+
 gpioList = [27, 22, 5, 6, 13, 19]
 
 for i in gpioList:
