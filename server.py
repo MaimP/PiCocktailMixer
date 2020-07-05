@@ -21,6 +21,8 @@ def process():
     dir(app)
 =======
     #app.enter()
+    x = dir(app)
+    return "die Module: {0}".format(x)
 
 >>>>>>> e5dbfdb3c789930f352c3954daccba2d121edde3
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
