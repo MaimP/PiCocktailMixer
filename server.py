@@ -14,10 +14,11 @@ def server_static(filepath="index.html"):
 @post('/doform')
 def process():
 
-    alcnumber = request.forms.get('drinks')
-    id_mischv = request.forms.get('mischverhaeltnis')
-    drinknumber = request.forms.get('AlkoholAuswahl_1')
+#    alcnumber = request.forms.get('drinks')
+#    id_mischv = request.forms.get('mischverhaeltnis')
+#    drinknumber = request.forms.get('AlkoholAuswahl_1')
     #app.enter()
+    app.enter()
     x = dir(app)
     y = dir(getData)
     return "die Module App: {0}, die Module getData: {1}".format(x, y)
