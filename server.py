@@ -51,7 +51,7 @@ def getData():
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
-    fillA = fuellHoehe * (mischV / 100)
+    fillA = fuellHoehe * (id_mischv / 100)
     fillB = fuellHoehe
     enter(drinknumber, alcnumber)
 
