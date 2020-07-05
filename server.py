@@ -13,6 +13,7 @@ def server_static(filepath="index.html"):
 
 @post('/doform')
 def process():
+    import app
 
 #    alcnumber = request.forms.get('drinks')
 #    id_mischv = request.forms.get('mischverhaeltnis')
