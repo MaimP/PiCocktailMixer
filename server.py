@@ -18,6 +18,8 @@ def process():
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
 
 def enter(alc, misch):
+    print(alc)
+    print(misch)
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
     while ultraschallsensor.entfernung() <= fillA:
