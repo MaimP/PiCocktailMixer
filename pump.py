@@ -35,9 +35,9 @@ def startPump(drink):
         print("Dein Getränk konnte keiner Pumpe zugewiesen werden.")
 
 def stopPump():
-    GPIOs = [27, 22, 5, 6, 13, 19]
+    GPIOs = [17, 27, 22, 5, 6, 13]
     for x in GPIOs:
         GPIO.setup(x, GPIO.IN)
-        print("GPIO ", "wurde ausgeschaltet" sep=x)
+#        print("GPIO ", "wurde ausgeschaltet" sep=x)
 
     print("alle Pumpen wurden ausgeschaltet.")
