@@ -3,6 +3,7 @@
 from bottle import route, run
 from bottle import template
 import ultraschallsensor
+import pump
 
 from bottle import get, post, request # or route
 from bottle import static_file
@@ -13,7 +14,7 @@ def server_static(filepath="index.html"):
 
 @post('/doform')
 def process():
-    getDtata()
+    getData()
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
 
 def enter(alc, misch):
@@ -44,7 +45,7 @@ def enter(alc, misch):
     else:
         print("Es konnte kein Mischgetränk eingefüllt werden, suche nach fehlern.")
 
-    def dataImport():
+    def getData():
         startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
         fuellHoehe = startHoehe * 0.9
         alcnumber = request.forms.get('drinks')
