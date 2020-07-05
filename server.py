@@ -61,7 +61,7 @@ def getData():
     drinknumber = request.forms.get('AlkoholAuswahl_1')
     global fillA
     global fillB
-    fillA = fuellHoehe * (int(id_mischv) / 100)
+    fillA = fuellHoehe - (fuellHoehe * (int(id_mischv) / 100))
     fillB = fuellHoehe
     enter(drinknumber, alcnumber)
 
