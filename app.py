@@ -5,8 +5,6 @@ import getData
 import pump
 
 def dataImport():
-    import server
-
     startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
     fuellHoehe = startHoehe * 0.9
     alcnumber = server.request.forms.get('drinks')
