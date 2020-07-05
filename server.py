@@ -18,7 +18,7 @@ def process():
 #    id_mischv = request.forms.get('mischverhaeltnis')
 #    drinknumber = request.forms.get('AlkoholAuswahl_1')
     #app.enter()
-    app.enter()
+    app.enter(request.forms.get('AlkoholAuswahl_1'), request.forms.get('drinks'))
     x = dir(app)
     y = dir(getData)
     return "die Module App: {0}, die Module getData: {1}".format(x, y)
