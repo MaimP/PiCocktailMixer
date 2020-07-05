@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from bottle import route, run
 from bottle import template
-import app
+import mx
 import getData
 
 from bottle import get, post, request # or route
@@ -13,17 +13,17 @@ def server_static(filepath="index.html"):
 
 @post('/doform')
 def process():
-    import app
+    import mx
     #xx
 
 #    alcnumber = request.forms.get('drinks')
 #    id_mischv = request.forms.get('mischverhaeltnis')
 #    drinknumber = request.forms.get('AlkoholAuswahl_1')
-    #app.enter()
-    app.enter(request.forms.get('AlkoholAuswahl_1'), request.forms.get('drinks'))
-    x = dir(app)
+    #mx.enter()
+    mx.enter(request.forms.get('AlkoholAuswahl_1'), request.forms.get('drinks'))
+    x = dir(mx)
     y = dir(getData)
-    return "die Module App: {0}, die Module getData: {1}".format(x, y)
+    return "die Module mx: {0}, die Module getData: {1}".format(x, y)
 
 
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
