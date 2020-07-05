@@ -6,7 +6,7 @@ import pump
 
 def dataImport():
     import server
-    
+
     startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
     fuellHoehe = startHoehe * 0.9
     alcnumber = server.request.forms.get('drinks')
@@ -16,7 +16,7 @@ def dataImport():
     fillB = fuellHoehe
 
 def enter(alc, misch):
-    dataImport()
+#    dataImport()
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
     while ultraschallsensor.entfernung() <= fillA:
