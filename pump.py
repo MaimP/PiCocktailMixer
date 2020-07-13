@@ -17,7 +17,7 @@ def startPump(drink):
 
     GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
     print("Pumpe :")
-    print(RELAIS_1_GPIOAIS_1)
+    print(RELAIS_1_GPIO)
     print("wurde gestartet.")
 #    if drink == 00: #Fanta
 #        RELAIS_1_GPIO = 17 #In 1
