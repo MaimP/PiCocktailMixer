@@ -10,9 +10,9 @@ GPIOs = ["5", "6", "13", "17", "27", "22"]
 def startPump(drink):
     #mischgetraenke, pumpen zuweisung
     print(drink)
-    int(drink)
+    y = int(drink)
 
-    x = GPIOs[drink]
+    x = GPIOs[y]
     RELAIS_1_GPIO = x #In 1
 
     GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
