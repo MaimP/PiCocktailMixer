@@ -13,7 +13,7 @@ def startPump(drink):
     int(drink)
 
 
-    x = GPIOs[drinks]
+    x = GPIOs[drink]
 
     RELAIS_1_GPIO = x #In 1
     GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
