@@ -27,8 +27,13 @@ def enter(alc, misch):
         print(fillA)
         pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
-        print("die aufgefüllte Menge an Alkohol beträgt:") #debugging
+        #debugging
+        print("die aufgefüllte Menge an Alkohol beträgt:")
         print(ultraschallsensor.distanz())
+        print("while ... >= fillA: es muss noch: ")
+        auffuellen = fuellHoehe - fillA
+        print(auffuellen)
+        print("aufgefuellt werden.")
         alcM = ultraschallsensor.distanz() #debugging: Menge an aufgefülltem alc
 
     pump.stopPump()
