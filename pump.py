@@ -1,10 +1,11 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import RPi.GPIO as GPIO
+import numpy
 
 GPIO.setmode(GPIO.BCM) # GPIO Nummern statt Board Nummern
 global GPIOs
-GPIOs = [5, 6, 13, 17, 27, 22]
+GPIOs = numpy.array([5, 6, 13, 17, 27, 22])
 #5=Korn, 6=Bacardi, 13=Vodka,17=Fanta, 27=Cola, 22=Sprite
 
 def startPump(drink):
