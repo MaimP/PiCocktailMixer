@@ -9,6 +9,8 @@ import RPi.GPIO as GPIO
 from bottle import get, post, request # or route
 from bottle import static_file
 
+global hoehe
+
 @route('/')
 def server_static(filepath="index.html"):
     return static_file(filepath, root='./')
@@ -26,7 +28,6 @@ def enter(alc, misch):
     while True:
         try:
             if ultraschallsensor.distanz() >= fillA:
-                global hoehe
                 heohe = ultraschallsensor.distanz()
                 print(fuellHoehe)
                 print(fillA)
