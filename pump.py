@@ -53,7 +53,7 @@ def startPump(drink):
 
 def stopPump():
     for x in GPIOs:
-        GPIO.setup(x, GPIO.IN)
+        GPIO.output(x, GPIO.LOW)
 #        print("GPIO ", "wurde ausgeschaltet" sep=x)
 
     print("alle Pumpen wurden ausgeschaltet.")
