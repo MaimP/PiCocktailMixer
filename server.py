@@ -26,13 +26,14 @@ def enter(alc, misch):
     while True:
         try:
             if ultraschallsensor.distanz() >= fillA:
+                print(fuellHoehe)
                 print(fillA)
                 pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
                 #debugging
                 print("while schleife alkohol einfüllen")
                 print("die aufgefüllte Menge an Alkohol beträgt:")
-                print(fuellHoehe - ultraschallsensor.distanz())
+                print(ultraschallsensor.distanz() - fuellHoehe)
                 print("while ... >= fillA: es muss noch: ")
                 auffuellen = fuellHoehe - fillA
                 print(auffuellen)
