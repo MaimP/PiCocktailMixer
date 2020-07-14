@@ -22,21 +22,25 @@ def enter(alc, misch):
     print(misch)
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
-    while (ultraschallsensor.entfernung() >= fillA):
-        print("while schleife alkohol einfüllen")
-        print(fillA)
-        pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
+    while True:
+        if ultraschallsensor.entfernung() >= fillA:
+            print(fillA)
+            pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
-        #debugging
-        print("die aufgefüllte Menge an Alkohol beträgt:")
-        print(ultraschallsensor.distanz())
-        print("while ... >= fillA: es muss noch: ")
-        auffuellen = fuellHoehe - fillA
-        print(auffuellen)
-        print("aufgefuellt werden.")
-        alcM = ultraschallsensor.distanz() #debugging: Menge an aufgefülltem alc
+            #debugging
+            print("while schleife alkohol einfüllen")
+            print("die aufgefüllte Menge an Alkohol beträgt:")
+            print(ultraschallsensor.distanz())
+            print("while ... >= fillA: es muss noch: ")
+            auffuellen = fuellHoehe - fillA
+            print(auffuellen)
+            print("aufgefuellt werden.")
 
-    pump.stopPump()
+        else:
+            pump.stopPump()
+            print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
+            print(ultraschallsensor.distanz())
+            break
 
     if (fillA * 0.85) <= ultraschallsensor.entfernung() <= (fillA * 1.15):
         while ultraschallsensor.entfernung() <= fillB:
