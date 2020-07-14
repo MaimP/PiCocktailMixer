@@ -33,9 +33,10 @@ def enter(alc, misch):
                 #debugging
                 print("while schleife alkohol einfüllen")
                 print("die aufgefüllte Menge an Alkohol beträgt:")
-                print(ultraschallsensor.distanz() - fuellHoehe)
+                aufgefuellt = ultraschallsensor.distanz() - fuellHoehe
+                print(aufgefuellt)
                 print("while ... >= fillA: es muss noch: ")
-                auffuellen = fuellHoehe - fillA
+                auffuellen = fillA - aufgefuellt
                 print(auffuellen)
                 print("aufgefuellt werden.")
 
