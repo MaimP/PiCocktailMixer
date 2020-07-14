@@ -40,7 +40,7 @@ def enter(alc, misch):
                 print(auffuellen)
                 print("aufgefuellt werden.")
 
-            elif ultraschallsensor.distanz() <= FillA:
+            elif ultraschallsensor.distanz() <= fillA:
                 pump.stopPump()
                 print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
                 print(ultraschallsensor.distanz())
