@@ -23,28 +23,35 @@ def enter(alc, misch):
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
     while True:
-        if ultraschallsensor.distanz() >= fillA:
-            print(fillA)
-            pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
+        try:
+            if ultraschallsensor.distanz() >= fillA:
+                print(fillA)
+                pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
-            #debugging
-            print("while schleife alkohol einfüllen")
-            print("die aufgefüllte Menge an Alkohol beträgt:")
-            print(ultraschallsensor.distanz())
-            print("while ... >= fillA: es muss noch: ")
-            auffuellen = fuellHoehe - fillA
-            print(auffuellen)
-            print("aufgefuellt werden.")
+                #debugging
+                print("while schleife alkohol einfüllen")
+                print("die aufgefüllte Menge an Alkohol beträgt:")
+                print(ultraschallsensor.distanz())
+                print("while ... >= fillA: es muss noch: ")
+                auffuellen = fuellHoehe - fillA
+                print(auffuellen)
+                print("aufgefuellt werden.")
 
-        elif ultraschallsensor.distanz() <= FillA:
+            elif ultraschallsensor.distanz() <= FillA:
+                pump.stopPump()
+                print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
+                print(ultraschallsensor.distanz())
+                break
+
+            else:
+                print("while schleife auffuellen schief gelaufen.")
+                break
+
+            # Beim Abbruch durch STRG+C resetten
+        except KeyboardInterrupt:
+            print("Messung vom User gestoppt")
             pump.stopPump()
-            print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
-            print(ultraschallsensor.distanz())
-            break
-
-        else:
-            print("while schleife auffuellen schief gelaufen.")
-            break
+            GPIO.cleanup()
 
     if (fillA * 0.85) <= ultraschallsensor.entfernung() <= (fillA * 1.15):
         while ultraschallsensor.entfernung() <= fillB:
