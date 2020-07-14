@@ -14,6 +14,13 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 def distanz():
+    #GPIO Modus (BOARD / BCM)
+    GPIO.setmode(GPIO.BCM)
+
+    #GPIO Pins zuweisen
+    GPIO_TRIGGER = 18
+    GPIO_ECHO = 24
+    
     # setze Trigger auf HIGH
     GPIO.output(GPIO_TRIGGER, True)
 
