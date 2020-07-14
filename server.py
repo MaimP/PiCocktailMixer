@@ -83,7 +83,7 @@ def getData():
     int(drinknumber)
     global fillA
     global fillB
-    fillA = fuellHoehe - (fuellHoehe * (int(id_mischv) / 100))
+    fillA = fuellHoehe - (fuellHoehe * (int(id_mischv)) / 100)
     fillB = fuellHoehe
     enter(drinknumber, alcnumber)
 
