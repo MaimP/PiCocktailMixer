@@ -26,6 +26,7 @@ def enter(alc, misch):
     while True:
         try:
             if ultraschallsensor.distanz() >= fillA:
+                global hoehe
                 heohe = ultraschallsensor.distanz()
                 print(fuellHoehe)
                 print(fillA)
