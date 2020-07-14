@@ -20,7 +20,10 @@ def distanz():
     #GPIO Pins zuweisen
     GPIO_TRIGGER = 18
     GPIO_ECHO = 24
-    
+
+    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+    GPIO.setup(GPIO_ECHO, GPIO.IN)
+
     # setze Trigger auf HIGH
     GPIO.output(GPIO_TRIGGER, True)
 
