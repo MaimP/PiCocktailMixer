@@ -4,6 +4,7 @@ from bottle import route, run
 from bottle import template
 import ultraschallsensor
 import pump
+import RPi.GPIO as GPIO
 
 from bottle import get, post, request # or route
 from bottle import static_file
