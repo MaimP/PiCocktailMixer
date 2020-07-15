@@ -10,7 +10,7 @@ GPIOs = [5, 6, 13, 17, 27, 22]
 def stopPump():
     for x in GPIOs:
         GPIO.setup(x, GPIO.OUT)
-        GPIO.output(x, LOW)
+        GPIO.output(x, GPIO.LOW)
 
 if __name__ == '__main__':
     try:
