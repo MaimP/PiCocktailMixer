@@ -60,6 +60,8 @@ def stopPump():
 
 if __name__ == '__main__':
     try:
+        for x in GPIOs:
+            GPIO.setup(x, GPIO.OUT)
         stopPump()
 
         # Beim Abbruch durch STRG+C resetten
