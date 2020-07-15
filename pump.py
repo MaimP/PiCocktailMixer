@@ -57,3 +57,12 @@ def stopPump():
 #        print("GPIO ", "wurde ausgeschaltet" sep=x)
 
     print("alle Pumpen wurden ausgeschaltet.")
+
+if __name__ == '__main__':
+    try:
+        stopPump()
+
+        # Beim Abbruch durch STRG+C resetten
+    except KeyboardInterrupt:
+        print("Messung vom User gestoppt")
+        GPIO.cleanup()
