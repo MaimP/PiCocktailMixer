@@ -25,8 +25,8 @@ def enter(alc, misch):
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
     while True:
-        try:
-            if ultraschallsensor.distanz() >= fillA:
+        if ultraschallsensor.distanz() >= fillA:
+            try:
                 x = ultraschallsensor.distanz()
                 hoehe = x
                 print(fuellHoehe)
@@ -43,21 +43,36 @@ def enter(alc, misch):
                 print(auffuellen)
                 print("aufgefuellt werden.")
 
-            elif ultraschallsensor.distanz() <= fillA:
+            # Beim Abbruch durch STRG+C resetten
+            except KeyboardInterrupt:
+                print("Messung vom User gestoppt")
+                pump.stopPump()
+                GPIO.cleanup()
+
+            except:
+                print("Unbekannter Fehler:", sys.exc_info()[0])
+                raise
+
+
+        elif ultraschallsensor.distanz() <= fillA:
+            try:
                 pump.stopPump()
                 print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
                 print(ultraschallsensor.distanz())
                 break
-
-            else:
-                print("while schleife auffuellen schief gelaufen.")
-                break
-
             # Beim Abbruch durch STRG+C resetten
-        except KeyboardInterrupt:
-            print("Messung vom User gestoppt")
-            pump.stopPump()
-            GPIO.cleanup()
+            except KeyboardInterrupt:
+                print("Messung vom User gestoppt")
+                pump.stopPump()
+                GPIO.cleanup()
+
+            except:
+                print("Unbekannter Fehler:", sys.exc_info()[0])
+                raise
+
+        else:
+            print("while schleife auffuellen schief gelaufen.")
+            break
 
     if (fillA * 0.85) <= ultraschallsensor.entfernung() <= (fillA * 1.15):
         while ultraschallsensor.entfernung() <= fillB:
