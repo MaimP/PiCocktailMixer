@@ -27,7 +27,8 @@ def enter(alc, misch):
     while True:
         try:
             if ultraschallsensor.distanz() >= fillA:
-                heohe = ultraschallsensor.distanz()
+                x = ultraschallsensor.distanz()
+                hoehe = x
                 print(fuellHoehe)
                 print(fillA)
                 pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
