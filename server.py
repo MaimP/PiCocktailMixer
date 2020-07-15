@@ -9,8 +9,6 @@ import RPi.GPIO as GPIO
 from bottle import get, post, request # or route
 from bottle import static_file
 
-global hoehe
-
 @route('/')
 def server_static(filepath="index.html"):
     return static_file(filepath, root='./')
@@ -23,6 +21,7 @@ def process():
 def enter(alc, misch):
     print(alc)
     print(misch)
+    global hoehe
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
     while True:
