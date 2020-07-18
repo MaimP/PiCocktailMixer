@@ -40,7 +40,7 @@ def enter(alc, misch):
                 #debugging
                 print("while schleife alkohol einfüllen")
                 print("die aufgefüllte Menge an Alkohol beträgt:")
-                aufgefuellt = hoehe - fuellHoehe
+                aufgefuellt = startHoehe - hoehe
                 print(aufgefuellt)
                 print("fillA: es muss noch aufgefuellt werden: ")
                 auffuellen = fillA - aufgefuellt
