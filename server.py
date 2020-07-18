@@ -84,6 +84,7 @@ def getData():
     global alcnumber
     global id_mischv
     global drinknumber
+    global startHoehe
     startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
     fuellHoehe = (startHoehe - 5) * 0.9
     alcnumber = request.forms.get('drinks')
