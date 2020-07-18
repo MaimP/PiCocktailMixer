@@ -24,6 +24,8 @@ def enter(alc, misch):
         print(misch)
         print("Die Starthoehe betraegt:")
         print(startHoehe)
+        print("test round:")
+        print(startHoehe)
         global hoehe
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
