@@ -21,6 +21,8 @@ def process():
 def enter(alc, misch):
     print(alc)
     print(misch)
+    print("Die Starthoehe betraegt:")
+    print(startHoehe)
     global hoehe
     #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
     #erst Alkohol dann
