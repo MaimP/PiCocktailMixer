@@ -20,7 +20,7 @@ def server_static(filepath="index.html"):
 
 @post('/doform')
 def process():
-    return "Dein Getraenk ist in Bearbeiutung.")
+    return "Dein Getraenk ist in Bearbeitung.")
     getData()
 
 def enter(alc, misch):
