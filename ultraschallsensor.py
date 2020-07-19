@@ -76,7 +76,7 @@ def real_distance():
     print(counter)
     mostcommon = counter.most_common(1)
     print("die häufigste entfernung ist:{}".format(mostcommon))
-    print([item for items, c in Counter(distance_list).most_common() for item in [items] * c])
+    [item for items, c in Counter(distance_list).most_common() for item in [items] * c]
     distance = distance_list[0]
     return distance
     # [(1, 4), (2, 4), (3, 2)]
