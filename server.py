@@ -54,10 +54,24 @@ def enter(alc, misch):
 
 
             elif entfernung <= fillA:
-                pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
-                print(entfernung)
-                break
+                #Messfehler ausschließen
+                counter = 0
+                while counter > 3:
+                    list_entfernung = []
+                    add_distanz = ultraschallsensor.distanz()
+                    list_entfernung.insert(counter, add_distanz)
+                    counter = counter + 1
+
+                average = (list_entfernung[0] + list_entfernung[1] + list_entfernung[2]) / 3
+                print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
+                if (average * 0.95) > entfernung:
+                    return average
+
+                else:
+                    pump.stopPump()
+                    print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
+                    print(entfernung)
+                    break
 
             else:
                 print("while schleife auffuellen schief gelaufen.")
