@@ -18,10 +18,15 @@ global entfernung
 def server_static(filepath="index.html"):
     return static_file(filepath, root='./')
 
+@post('/process')
+def process():
+    getData()
+    return "Dein Getraenk ist in Bearbeitung."
+
 @post('/doform')
 def process():
-    return "Dein Getraenk ist in Bearbeitung."
     getData()
+    return "Dein Getraenk ist in Bearbeitung."
 
 def enter(alc, misch):
     try:
