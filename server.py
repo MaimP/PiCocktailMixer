@@ -35,6 +35,7 @@ def enter(alc, misch):
         print("Die Starthoehe betraegt: {}".format(startHoehe))
         print("test round: {}".format(fillA))
         zaehler = 0
+        zaehler2 = 0
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
         while True:
@@ -74,7 +75,7 @@ def enter(alc, misch):
                 break
 
         print("Das Einfuellen des LAkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
-        zaheler2 = 0
+
         while True:
             entfernung = ultraschallsensor.real_distance()
 
