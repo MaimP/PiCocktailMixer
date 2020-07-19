@@ -49,7 +49,7 @@ def distanz():
     # mit der Schallgeschwindigkeit (34300 cm/s) multiplizieren
     # und durch 2 teilen, da hin und zurueck
     strecke = (TimeElapsed * 34300) / 2
-    distanz = round(strecke, 2)
+    distanz = round(strecke, 1)
 
     return distanz
 
