@@ -36,8 +36,7 @@ def enter(alc, misch):
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
         while True:
-            for x in range(5):
-                entfernung = ultraschallsensor.real_distance()
+            entfernung = ultraschallsensor.real_distance()
 
             zaehler = zaehler + 1
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
@@ -63,27 +62,11 @@ def enter(alc, misch):
                     print("Die while Schleife hat keine passende if Anweisung.")
 
             elif entfernung <= fillA:
-                #Messfehler ausschließen
-                print("elif anweisung gestartet")
-                counter = 0
-                global c
-                c = 0
-                for x in range(3):
-                    c = c + ultraschallsensor.real_distance()
-                    counter = counter + 1
-                    print("Die addierte Entfernung ist aktuell: {}".format(c))
-                    time.sleep(0.05)
-
-                average = c / 3
-                if (average * 0.95) > fillA:
-                    print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
-
-                else:
-                    pump.stopPump()
-                    print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
-                    print(entfernung)
-                    zustand == False
-                    break
+                pump.stopPump()
+                print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
+                print(entfernung)
+                zustand == False
+                break
 
             else:
                 print("while schleife auffuellen schief gelaufen.")
