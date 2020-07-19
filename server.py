@@ -61,13 +61,16 @@ def enter(alc, misch):
                 #Messfehler ausschließen
                 print("elif anweisung gestartet")
                 counter = 0
+                global c
+                c = 0
                 while counter > 3:
                     list_entfernung = []
                     add_distanz = ultraschallsensor.distanz()
                     list_entfernung.insert(counter, add_distanz)
+                    c = c + list_entfernung[counter]
                     counter = counter + 1
 
-                average = (list_entfernung[0] + list_entfernung[1] + list_entfernung[2]) / 3
+                average = c / 3
                 print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
                 if (average * 0.95) > entfernung:
                     return average
