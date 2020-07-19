@@ -37,7 +37,7 @@ def enter(alc, misch):
             zaehler = zaehler + 1
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
             print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-            if entfernung >= fillA:
+            if entfernung > fillA:
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
@@ -70,7 +70,7 @@ def enter(alc, misch):
                     time.sleep(0.05)
 
                 average = c / 3
-                if (average * 0.95) > entfernung:
+                if (average * 0.95) > fillA:
                     print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
 
                 else:
