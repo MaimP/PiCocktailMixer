@@ -40,7 +40,7 @@ def enter(alc, misch):
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                if pump.startPump():
+                if zustand:
                     #debugging
                     print("while schleife alkohol einfüllen")
                     aufgefuellt = startHoehe - hoehe
@@ -49,7 +49,7 @@ def enter(alc, misch):
                     print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
                     time.sleep(0.1)
 
-                elif pump.startpump() == False:
+                elif zustand == False:
                     pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
                 else:
