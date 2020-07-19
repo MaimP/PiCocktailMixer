@@ -28,13 +28,12 @@ def enter(alc, misch):
         print(fillA)
         global hoehe
         global entfernung
-        global zaehler
         zaehler = 0
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
         while True:
             entfernung = ultraschallsensor.distanz()
-            zaehler =+ 1
+            zaehler = zaehler + 1
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
             if entfernung >= fillA:
                 hoehe = entfernung

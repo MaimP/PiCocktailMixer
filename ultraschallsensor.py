@@ -46,8 +46,8 @@ def distanz():
     TimeElapsed = StopZeit - StartZeit
     # mit der Schallgeschwindigkeit (34300 cm/s) multiplizieren
     # und durch 2 teilen, da hin und zurueck
-    distanz = (TimeElapsed * 34300) / 2
-    round(distanz, 2)
+    strecke = (TimeElapsed * 34300) / 2
+    distanz = round(strecke, 2)
 
     return distanz
 
