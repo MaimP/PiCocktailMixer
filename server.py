@@ -41,7 +41,7 @@ def enter(alc, misch):
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                if counter == 1:
+                if zaehler == 1:
                     pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
                     zustand == True
 
