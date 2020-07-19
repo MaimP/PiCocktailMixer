@@ -63,7 +63,6 @@ def enter(alc, misch):
     except KeyboardInterrupt:
         print("Messung vom User gestoppt")
         pump.stopPump()
-        GPIO.cleanup()
 
 #    if (fillA * 0.85) <= ultraschallsensor.entfernung() <= (fillA * 1.15):
 #        while ultraschallsensor.entfernung() <= fillB:

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 import RPi.GPIO as GPIO
+import stop_relay
 
 GPIO.setmode(GPIO.BCM) # GPIO Nummern statt Board Nummern
 global GPIOs
@@ -19,7 +20,7 @@ def startPump(drink):
     GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
     print("Die gestartete Pumpe ist:")
     print(RELAIS_1_GPIO)
-    GPIO.output(RELAIS_1_GPIO, True)
+    GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
 #    if drink == 00: #Fanta
 #        RELAIS_1_GPIO = 17 #In 1
 #        GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
@@ -54,15 +55,16 @@ def startPump(drink):
 
 def stopPump():
     for x in GPIOs:
-        GPIO.output(x, GPIO.LOW)
+        GPIO.setup(x, GPIO.OUT)
+        GPIO.output(x, GPIO.HIGH)
+
+    GPIO.cleanup()
 #        print("GPIO ", "wurde ausgeschaltet" sep=x)
 
     print("alle Pumpen wurden ausgeschaltet.")
 
 if __name__ == '__main__':
     try:
-        for x in GPIOs:
-            GPIO.setup(x, GPIO.OUT)
         stopPump()
 
         # Beim Abbruch durch STRG+C resetten

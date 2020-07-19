@@ -11,14 +11,11 @@ def stopPump():
     for x in GPIOs:
         GPIO.setup(x, GPIO.OUT)
         GPIO.output(x, GPIO.HIGH)
-        GPIO.output(x, GPIO.LOW)
         print("low")
 
 if __name__ == '__main__':
     try:
         for x in GPIOs:
-            GPIO.setup(x, GPIO.OUT)
-
         stopPump()
         print("Realay wurde gestoppt.")
 
