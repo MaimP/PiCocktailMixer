@@ -63,14 +63,12 @@ def enter(alc, misch):
                 counter = 0
                 global c
                 c = 0
-                while counter < 3:
-                    list_entfernung = []
-                    add_distanz = ultraschallsensor.distanz()
-                    list_entfernung.insert(counter, add_distanz)
-                    c = c + list_entfernung[counter]
+                for x in range(3):
+                    c = c + ultraschallsensor.distanz()
                     counter = counter + 1
                     print("Die addierte Entfernung ist aktuell: {}".format(c))
                     return c
+                    time.sleep(0.05)
 
                 average = c / 3
                 print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
