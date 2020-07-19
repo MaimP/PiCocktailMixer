@@ -27,12 +27,13 @@ def enter(alc, misch):
         print("test round:")
         print(testroundA)
         global hoehe
+        global entfernung
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
         while True:
-            if ultraschallsensor.distanz() >= fillA:
-                x = ultraschallsensor.distanz()
-                hoehe = x
+            entfernung = ultraschallsensor.distanz()
+            if entfernung >= fillA:
+                hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt:")
                 print(fuellHoehe)
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt:")
@@ -49,10 +50,10 @@ def enter(alc, misch):
                 print(auffuellen)
 
 
-            elif ultraschallsensor.distanz() <= fillA:
+            elif entfernung <= fillA:
                 pump.stopPump()
                 print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
-                print(ultraschallsensor.distanz())
+                print(entfernung)
                 break
 
             else:
