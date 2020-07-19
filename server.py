@@ -25,7 +25,7 @@ def enter(alc, misch):
         print("Die Starthoehe betraegt:")
         print(startHoehe)
         print("test round:")
-        print(testroundA)
+        print(fillA)
         global hoehe
         global entfernung
         global zaehler
