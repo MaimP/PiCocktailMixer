@@ -35,7 +35,7 @@ def enter(alc, misch):
         while True:
             entfernung = ultraschallsensor.distanz()
             zaehler + 1
-            print(zaehler)
+            print("while schleife durchfuehrung nummer: {}".format(zaehler))
             if entfernung >= fillA:
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt:")
