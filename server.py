@@ -25,7 +25,7 @@ def enter(alc, misch):
         print("Die Starthoehe betraegt:")
         print(startHoehe)
         print("test round:")
-        print(startHoehe)
+        print(testroundA)
         global hoehe
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
@@ -96,7 +96,8 @@ def getData():
     global fillB
     fillA = fuellHoehe - (fuellHoehe * (int(id_mischv)) / 100)
     fillB = fuellHoehe
-    round(fillA, 2)
+    global testroundA
+    testroundA = round(fillA, 2)
     round(fillB, 2)
     enter(drinknumber, alcnumber)
 
