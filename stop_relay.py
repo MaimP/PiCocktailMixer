@@ -9,6 +9,8 @@ GPIOs = [5, 6, 13, 17, 27, 22]
 
 def stopPump():
     for x in GPIOs:
+        GPIO.setup(x, GPIO.OUT)
+        GPIO.output(x, GPIO.HIGH)
         GPIO.output(x, GPIO.LOW)
         print("low")
 
