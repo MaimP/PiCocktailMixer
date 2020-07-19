@@ -37,8 +37,8 @@ def enter(alc, misch):
         #erst Alkohol dann
         while True:
             for x in range(5):
-                entfernung = ultraschallsensor.real_distance()()
-                
+                entfernung = ultraschallsensor.real_distance()
+
             zaehler = zaehler + 1
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
             print("die aktuelle Entfernung betraegt: {}".format(entfernung))
@@ -69,7 +69,7 @@ def enter(alc, misch):
                 global c
                 c = 0
                 for x in range(3):
-                    c = c + ultraschallsensor.real_distance()()
+                    c = c + ultraschallsensor.real_distance()
                     counter = counter + 1
                     print("Die addierte Entfernung ist aktuell: {}".format(c))
                     time.sleep(0.05)
@@ -100,7 +100,7 @@ def getData():
     global id_mischv
     global drinknumber
     global startHoehe
-    startHoehe = ultraschallsensor.real_distance()() #starthoehe für Glasgrösse
+    startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
     fuellHoehe = (startHoehe - 5) * 0.9
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
