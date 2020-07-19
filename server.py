@@ -123,7 +123,7 @@ def getData():
     global fillB
     global unroundA
     global unroundB
-    unroundA = fuellHoehe - (fuellHoehe * (int(id_mischv)) / 100)
+    unroundA = startHoehe - (fuellHoehe * (int(id_mischv)) / 100)
     unroundB = fuellHoehe
     fillA = round(unroundA, 2)
     fillB = round(unroundB, 2)
