@@ -45,7 +45,8 @@ def enter(alc, misch):
                 aufgefuellt = startHoehe - hoehe
                 print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
                 auffuellen = fillA - aufgefuellt
-                print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
+                print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))#
+                continue
 
 
             elif entfernung <= fillA:
