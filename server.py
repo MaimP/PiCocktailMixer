@@ -22,10 +22,8 @@ def enter(alc, misch):
     try:
         print(alc)
         print(misch)
-        print("Die Starthoehe betraegt:")
-        print(startHoehe)
-        print("test round:")
-        print(fillA)
+        print("Die Starthoehe betraegt: {}".format(startHoehe))
+        print("test round: {}".format(fillA))
         global hoehe
         global entfernung
         zaehler = 0
@@ -35,22 +33,19 @@ def enter(alc, misch):
             entfernung = ultraschallsensor.distanz()
             zaehler = zaehler + 1
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
+            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
             if entfernung >= fillA:
                 hoehe = entfernung
-                print("Das Glas wird bis zur Hoehe aufgefuellt:")
-                print(fuellHoehe)
-                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt:")
-                print(fillA)
+                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
+                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
                 pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
                 #debugging
                 print("while schleife alkohol einfüllen")
-                print("die aufgefüllte Menge an Alkohol beträgt:")
                 aufgefuellt = startHoehe - hoehe
-                print(aufgefuellt)
-                print("fillA: es muss noch aufgefuellt werden: ")
+                print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
                 auffuellen = fillA - aufgefuellt
-                print(auffuellen)
+                print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
 
 
             elif entfernung <= fillA:
