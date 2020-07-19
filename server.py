@@ -51,6 +51,7 @@ def enter(alc, misch):
 
             elif entfernung <= fillA:
                 #Messfehler ausschließen
+                print("elif anweisung gestartet")
                 counter = 0
                 while counter > 3:
                     list_entfernung = []
