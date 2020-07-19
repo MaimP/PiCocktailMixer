@@ -62,6 +62,7 @@ def entfernung():
 #Fehlmessungensvermeidung
 def real_distance():
     import collections
+    from collections import Counter
     distance_list = []
     counterc = 0
     for x in range(10):
