@@ -2,12 +2,14 @@
 #-*- coding:utf-8 -*-#
 from bottle import route, run
 from bottle import template
+from bottle import get, post, request # or route
+from bottle import static_file
+
 import ultraschallsensor
 import pump
 import RPi.GPIO as GPIO
+import time
 
-from bottle import get, post, request # or route
-from bottle import static_file
 
 @route('/')
 def server_static(filepath="index.html"):
@@ -38,16 +40,20 @@ def enter(alc, misch):
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
+                if pump.startPump():
+                    #debugging
+                    print("while schleife alkohol einfüllen")
+                    aufgefuellt = startHoehe - hoehe
+                    print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
+                    auffuellen = fillA - aufgefuellt
+                    print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
+                    time.sleep(0.1)
 
-                #debugging
-                print("while schleife alkohol einfüllen")
-                aufgefuellt = startHoehe - hoehe
-                print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
-                auffuellen = fillA - aufgefuellt
-                print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))#
-                continue
+                elif pump.startpump() == False:
+                    pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
+                else:
+                    print("Die while Schleife hat keine passende if Anweisung.")
 
             elif entfernung <= fillA:
                 #Messfehler ausschließen
