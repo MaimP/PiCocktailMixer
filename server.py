@@ -69,6 +69,8 @@ def enter(alc, misch):
                     list_entfernung.insert(counter, add_distanz)
                     c = c + list_entfernung[counter]
                     counter = counter + 1
+                    print("Die addierte Entfernung ist aktuell: {}".format(c))
+                    return c
 
                 average = c / 3
                 print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
