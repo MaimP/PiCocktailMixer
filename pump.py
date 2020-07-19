@@ -5,7 +5,6 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM) # GPIO Nummern statt Board Nummern
 global GPIOs
 GPIOs = [5, 6, 13, 17, 27, 22]
-global zustand
 #5=Korn, 6=Bacardi, 13=Vodka,17=Fanta, 27=Cola, 22=Sprite
 
 def startPump(drink):
@@ -21,7 +20,6 @@ def startPump(drink):
     print("Die gestartete Pumpe ist:")
     print(RELAIS_1_GPIO)
     GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
-    zustand = True
     return True
 #    if drink == 00: #Fanta
 #        RELAIS_1_GPIO = 17 #In 1
@@ -64,7 +62,6 @@ def stopPump():
 #        print("GPIO ", "wurde ausgeschaltet" sep=x)
 
     print("alle Pumpen wurden ausgeschaltet.")
-    zustand = False
     return False
 
 if __name__ == '__main__':

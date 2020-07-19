@@ -10,6 +10,7 @@ import pump
 import RPi.GPIO as GPIO
 import time
 
+global zustand
 
 @route('/')
 def server_static(filepath="index.html"):
@@ -40,7 +41,11 @@ def enter(alc, misch):
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                if pump.startPump():
+                if counter == 1:
+                    pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
+                    zustand == True
+
+                elif zustand:
                     #debugging
                     print("while schleife alkohol einfüllen")
                     aufgefuellt = startHoehe - hoehe
@@ -48,9 +53,6 @@ def enter(alc, misch):
                     auffuellen = fillA - aufgefuellt
                     print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
                     time.sleep(0.1)
-
-                elif pump.startPump() == False:
-                    pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
 
                 else:
                     print("Die while Schleife hat keine passende if Anweisung.")
@@ -74,6 +76,7 @@ def enter(alc, misch):
                     pump.stopPump()
                     print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
                     print(entfernung)
+                    zustand == False
                     break
 
             else:
