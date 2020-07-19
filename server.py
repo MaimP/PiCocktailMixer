@@ -20,7 +20,7 @@ def server_static(filepath="index.html"):
 
 @post('/doform')
 def process():
-    return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
+    return "Dein Getraenk ist in Bearbeitung.")
     getData()
 
 def enter(alc, misch):
