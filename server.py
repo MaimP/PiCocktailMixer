@@ -20,9 +20,8 @@ def server_static(filepath="index.html"):
 
 @post('/doform')
 def process():
-    getData()
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
-
+    getData()
 
 def enter(alc, misch):
     try:
@@ -70,7 +69,7 @@ def enter(alc, misch):
                 break
 
         print("Das Einfuellen des LAkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
-        zaheler = 0
+        zaheler2 = 0
         while True:
             entfernung = ultraschallsensor.real_distance()
 
@@ -80,8 +79,9 @@ def enter(alc, misch):
             if entfernung > fillB:
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                print("Das Glas wird bis zu .. mit dem Mischgetraenk aufgefuellt: {}".format(fillA))
-                if zaehler == 1:
+                print("Das Glas wird bis zu .. mit dem Mischgetraenk aufgefuellt: {}".format(fillB))
+                if zaehler2 == 0:
+                    zaehler2 = zaehler2 + 1
                     pump.startPump(misch) #alc gibt an welche pumpe gestartet wird
                     zustand = True
 
