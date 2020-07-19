@@ -43,7 +43,7 @@ def enter(alc, misch):
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
                 if zaehler == 1:
                     pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
-                    zustand == True
+                    zustand = True
 
                 elif zustand:
                     #debugging
