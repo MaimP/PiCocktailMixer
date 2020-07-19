@@ -70,6 +70,7 @@ def enter(alc, misch):
                 break
 
         print("Das Einfuellen des LAkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
+        zaheler = 0
         while True:
             entfernung = ultraschallsensor.real_distance()
 
@@ -79,16 +80,16 @@ def enter(alc, misch):
             if entfernung > fillB:
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
+                print("Das Glas wird bis zu .. mit dem Mischgetraenk aufgefuellt: {}".format(fillA))
                 if zaehler == 1:
                     pump.startPump(misch) #alc gibt an welche pumpe gestartet wird
                     zustand = True
 
                 elif zustand:
                     #debugging
-                    print("while schleife alkohol einfüllen")
+                    print("while schleife Mischgetraenk einfüllen")
                     aufgefuellt = startHoehe - hoehe
-                    print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
+                    print("die aufgefüllte Menge an Getraenk beträgt:{}".format(aufgefuellt))
                     auffuellen = fillB - aufgefuellt
                     print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
                     time.sleep(0.1)
@@ -118,7 +119,7 @@ def getData():
     global drinknumber
     global startHoehe
     startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
-    fuellHoehe = (startHoehe - 5) * 0.9
+    fuellHoehe = (startHoehe - 5)
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
