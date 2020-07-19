@@ -67,7 +67,6 @@ def enter(alc, misch):
                     c = c + ultraschallsensor.distanz()
                     counter = counter + 1
                     print("Die addierte Entfernung ist aktuell: {}".format(c))
-                    return c
                     time.sleep(0.05)
 
                 average = c / 3
