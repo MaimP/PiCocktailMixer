@@ -28,10 +28,14 @@ def enter(alc, misch):
         print(testroundA)
         global hoehe
         global entfernung
+        global zaehler
+        zaehler = 0
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
         while True:
             entfernung = ultraschallsensor.distanz()
+            zaehler + 1
+            print(zaehler)
             if entfernung >= fillA:
                 hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt:")
