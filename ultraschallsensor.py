@@ -65,12 +65,12 @@ def real_distance():
     from collections import Counter
     distance_list = []
     counterc = 0
-    for x in range(100):
+    for x in range(50):
         d = distanz()
         distance_list.append(d)
         counterc = counterc + 1
 #        print("test real_distance liste erstellen: {}".format(counterc))
-        time.sleep(0.005)
+        time.sleep(0.01)
 
     counter=collections.Counter(distance_list)
     print(counter)
