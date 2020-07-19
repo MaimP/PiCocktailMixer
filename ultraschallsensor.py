@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
 #Bibliotheken einbinden
 import RPi.GPIO as GPIO
 import time
