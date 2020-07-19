@@ -27,12 +27,17 @@ def enter(alc, misch):
         print("test round:")
         print(testroundA)
         global hoehe
+        global entfernung
+        global zaehler
+        zaehler = 0
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
         while True:
-            if ultraschallsensor.distanz() >= fillA:
-                x = ultraschallsensor.distanz()
-                hoehe = x
+            entfernung = ultraschallsensor.distanz()
+            zaehler + 1
+            print(zaehler)
+            if entfernung >= fillA:
+                hoehe = entfernung
                 print("Das Glas wird bis zur Hoehe aufgefuellt:")
                 print(fuellHoehe)
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt:")
@@ -49,10 +54,10 @@ def enter(alc, misch):
                 print(auffuellen)
 
 
-            elif ultraschallsensor.distanz() <= fillA:
+            elif entfernung <= fillA:
                 pump.stopPump()
                 print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
-                print(ultraschallsensor.distanz())
+                print(entfernung)
                 break
 
             else:
@@ -94,11 +99,12 @@ def getData():
     int(drinknumber)
     global fillA
     global fillB
-    fillA = fuellHoehe - (fuellHoehe * (int(id_mischv)) / 100)
-    fillB = fuellHoehe
-    global testroundA
-    testroundA = round(fillA, 2)
-    round(fillB, 2)
+    global unroundA
+    global unroundB
+    unroundA = fuellHoehe - (fuellHoehe * (int(id_mischv)) / 100)
+    unroundB = fuellHoehe
+    fillA = round(unroundA, 2)
+    fillB = round(unroundB, 2)
     enter(drinknumber, alcnumber)
 
 
