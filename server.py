@@ -11,6 +11,8 @@ import RPi.GPIO as GPIO
 import time
 
 global zustand
+global hoehe
+global entfernung
 
 @route('/')
 def server_static(filepath="index.html"):
@@ -21,8 +23,6 @@ def process():
     getData()
     return "Your name is {0} and you are a(n) {1} {2}".format(alcnumber, id_mischv, drinknumber)
 
-global dismax
-global dismin
 
 def enter(alc, misch):
     try:
@@ -30,8 +30,6 @@ def enter(alc, misch):
         print(misch)
         print("Die Starthoehe betraegt: {}".format(startHoehe))
         print("test round: {}".format(fillA))
-        global hoehe
-        global entfernung
         zaehler = 0
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
@@ -63,8 +61,44 @@ def enter(alc, misch):
 
             elif entfernung <= fillA:
                 pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. es befinden sich: ")
-                print(entfernung)
+                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} ml".format(entfernung))
+                zustand == False
+                break
+
+            else:
+                print("while schleife auffuellen schief gelaufen.")
+                break
+
+        print("Das Einfuellen des LAkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
+        while True:
+            entfernung = ultraschallsensor.real_distance()
+
+            zaehler = zaehler + 1
+            print("while schleife durchfuehrung nummer: {}".format(zaehler))
+            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
+            if entfernung > fillB:
+                hoehe = entfernung
+                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
+                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
+                if zaehler == 1:
+                    pump.startPump(misch) #alc gibt an welche pumpe gestartet wird
+                    zustand = True
+
+                elif zustand:
+                    #debugging
+                    print("while schleife alkohol einfüllen")
+                    aufgefuellt = startHoehe - hoehe
+                    print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
+                    auffuellen = fillB - aufgefuellt
+                    print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
+                    time.sleep(0.1)
+
+                else:
+                    print("Die while Schleife hat keine passende if Anweisung.")
+
+            elif entfernung <= fillB:
+                pump.stopPump()
+                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} ml".format(entfernung))
                 zustand == False
                 break
 
