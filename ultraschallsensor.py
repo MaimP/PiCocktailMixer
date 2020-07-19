@@ -70,7 +70,7 @@ def real_distance():
         distance_list.append(d)
         counterc = counterc + 1
 #        print("test real_distance liste erstellen: {}".format(counterc))
-        time.sleep(0.01)
+        time.sleep(0.021) #maximal 50 Messungen pro sekunde
 
     counter=collections.Counter(distance_list)
     print(counter)
