@@ -70,9 +70,8 @@ def enter(alc, misch):
                     time.sleep(0.05)
 
                 average = c / 3
-                print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
                 if (average * 0.95) > entfernung:
-                    return average
+                    print("entfernung ist kleiner als fillA. der durchschnitt ist: {}".format(average))
 
                 else:
                     pump.stopPump()
