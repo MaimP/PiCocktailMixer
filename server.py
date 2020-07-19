@@ -34,7 +34,7 @@ def enter(alc, misch):
         #erst Alkohol dann
         while True:
             entfernung = ultraschallsensor.distanz()
-            zaehler + 1
+            zaehler =+ 1
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
             if entfernung >= fillA:
                 hoehe = entfernung
