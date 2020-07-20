@@ -47,8 +47,8 @@ def enter(alc, misch):
             entfernung = ultraschallsensor.real_distance()
 
             zaehler = zaehler + 1
-            progress = (startHoehe - entfernung) / glasHoehe * 100
-            prog = int(progress)
+#            progress = (startHoehe - entfernung) / glasHoehe * 100
+#            prog = int(progress)
             progress(prog)
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
             print("die aktuelle Entfernung betraegt: {}".format(entfernung))
