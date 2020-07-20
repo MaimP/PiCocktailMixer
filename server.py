@@ -151,6 +151,7 @@ def getData():
 
 def progress(progr):
     #progressbar in html über abstand
-    x = x + progr
+    y = int(progr)
+    x = x + y
 
 run(host='192.168.178.72', reloader=True, port=8080, debug=True)
