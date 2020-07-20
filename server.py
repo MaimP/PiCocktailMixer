@@ -49,7 +49,7 @@ def enter(alc, misch):
             zaehler = zaehler + 1
 #            progress = (startHoehe - entfernung) / glasHoehe * 100
 #            prog = int(progress)
-            progress(prog)
+#            progress(prog)
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
             print("die aktuelle Entfernung betraegt: {}".format(entfernung))
             if entfernung > fillA:
