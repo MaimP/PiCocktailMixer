@@ -59,6 +59,26 @@ def entfernung():
         return abstand
         time.sleep(0.1)
 
+def first_realDistance():
+    import collections
+    from collections import Counter
+    distance_list = []
+    counterc = 0
+    for x in range(200):
+        d = distanz()
+        distance_list.append(d)
+        counterc = counterc + 1
+#        print("test real_distance liste erstellen: {}".format(counterc))
+        time.sleep(0.021) #maximal 50 Messungen pro sekunde
+
+    counter=collections.Counter(distance_list)
+    print(counter)
+    mostcommon = counter.most_common(1)
+    print("die häufigste entfernung ist:{}".format(mostcommon))
+    new_distancelist = [item for items, c in Counter(distance_list).most_common() for item in [items] * c]
+    distance = new_distancelist[0]
+    return distance
+
 #Fehlmessungensvermeidung
 def real_distance():
     import collections
