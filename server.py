@@ -46,10 +46,12 @@ def enter(alc, misch):
         while True:
             if zaehler == 0:
                 entfernung = ultraschallsensor.first_realDistance()
+                return entfernung
 
             else:
                 entfernung = ultraschallsensor.real_distance()
-
+                return entfernung
+                
             zaehler = zaehler + 1
 #            progress = (startHoehe - entfernung) / glasHoehe * 100
 #            prog = int(progress)
