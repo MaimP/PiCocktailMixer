@@ -13,6 +13,7 @@ import time
 global zustand
 global hoehe
 global entfernung
+global progress
 
 @route('/')
 def server_static(filepath="index.html"):
@@ -30,6 +31,10 @@ def process():
 
 def enter(alc, misch):
     try:
+        @route('/process')
+        def process():
+            return "Dein Getraenk ist in Bearbeitung."
+
         print(alc)
         print(misch)
         print("Die Starthoehe betraegt: {}".format(startHoehe))
@@ -42,6 +47,8 @@ def enter(alc, misch):
             entfernung = ultraschallsensor.real_distance()
 
             zaehler = zaehler + 1
+            progress = ((startHoehe - hoehe) / glasHoehe) * 100
+            progress(progress)
             print("while schleife durchfuehrung nummer: {}".format(zaehler))
             print("die aktuelle Entfernung betraegt: {}".format(entfernung))
             if entfernung > fillA:
@@ -58,7 +65,7 @@ def enter(alc, misch):
                     aufgefuellt = startHoehe - hoehe
                     print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
                     auffuellen = fillA - aufgefuellt
-                    print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
+                    print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
                     time.sleep(0.1)
 
                 else:
@@ -66,7 +73,7 @@ def enter(alc, misch):
 
             elif entfernung <= fillA:
                 pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} ml".format(entfernung))
+                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
                 zustand == False
                 break
 
@@ -74,7 +81,7 @@ def enter(alc, misch):
                 print("while schleife auffuellen schief gelaufen.")
                 break
 
-        print("Das Einfuellen des LAkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
+        print("Das Einfuellen des Alkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
 
         while True:
             entfernung = ultraschallsensor.real_distance()
@@ -88,16 +95,16 @@ def enter(alc, misch):
                 print("Das Glas wird bis zu .. mit dem Mischgetraenk aufgefuellt: {}".format(fillB))
                 if zaehler2 == 0:
                     zaehler2 = zaehler2 + 1
-                    pump.startPump(misch) #alc gibt an welche pumpe gestartet wird
+                    pump.startPump(misch) #misch gibt an welche pumpe gestartet wird
                     zustand = True
 
                 elif zustand:
                     #debugging
                     print("while schleife Mischgetraenk einfüllen")
                     aufgefuellt = startHoehe - hoehe
-                    print("die aufgefüllte Menge an Getraenk beträgt:{}".format(aufgefuellt))
+                    print("die aufgefüllte Menge an Getraenk beträgt insgesamt:{} cm".format(aufgefuellt))
                     auffuellen = fillB - aufgefuellt
-                    print("fillA: es muss noch aufgefuellt werden: {}".format(auffuellen))
+                    print("Es muss noch insgesamt aufgefuellt werden: {} cm".format(auffuellen))
                     time.sleep(0.1)
 
                 else:
@@ -105,7 +112,7 @@ def enter(alc, misch):
 
             elif entfernung <= fillB:
                 pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} ml".format(entfernung))
+                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
                 zustand == False
                 break
 
@@ -124,8 +131,10 @@ def getData():
     global id_mischv
     global drinknumber
     global startHoehe
+    global glasHoehe
     startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
-    fuellHoehe = (startHoehe - 5)
+    fuellHoehe = 5
+    glasHoehe = (startHoehe - 5)
     alcnumber = request.forms.get('drinks')
     id_mischv = request.forms.get('mischverhaeltnis')
     drinknumber = request.forms.get('AlkoholAuswahl_1')
@@ -134,11 +143,14 @@ def getData():
     global fillB
     global unroundA
     global unroundB
-    unroundA = startHoehe - (fuellHoehe * (int(id_mischv)) / 100)
+    unroundA = startHoehe - (glasHoehe * (int(id_mischv)) / 100)
     unroundB = fuellHoehe
     fillA = round(unroundA, 2)
     fillB = round(unroundB, 2)
     enter(drinknumber, alcnumber)
 
+def progress(progr):
+    #progressbar in html über abstand
+    x = x + progr
 
 run(host='192.168.178.72', reloader=True, port=8080, debug=True)
