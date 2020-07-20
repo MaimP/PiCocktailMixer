@@ -44,7 +44,11 @@ def enter(alc, misch):
         #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
         #erst Alkohol dann
         while True:
-            entfernung = ultraschallsensor.real_distance()
+            if zaehler == 0:
+                entfernung = ultraschallsensor.first_realDistance()
+
+            else:
+                entfernung = ultraschallsensor.real_distance()
 
             zaehler = zaehler + 1
 #            progress = (startHoehe - entfernung) / glasHoehe * 100
