@@ -29,11 +29,11 @@ def process():
     getData()
     return "Dein Getraenk ist in Bearbeitung."
 
+def orderManager(drinknumber1, drinknumber2, ):
+
+
 def enter(alc, misch):
     try:
-        @route('/process')
-        def process():
-            return "Dein Getraenk ist in Bearbeitung."
 
         print(alc)
         print(misch)
@@ -51,7 +51,7 @@ def enter(alc, misch):
             else:
                 entfernung = ultraschallsensor.real_distance()
                 return entfernung
-                
+
             zaehler = zaehler + 1
 #            progress = (startHoehe - entfernung) / glasHoehe * 100
 #            prog = int(progress)
@@ -132,29 +132,6 @@ def enter(alc, misch):
         print("Messung vom User gestoppt")
         pump.stopPump()
 
-def getData():
-    global fuellHoehe
-    global alcnumber
-    global id_mischv
-    global drinknumber
-    global startHoehe
-    global glasHoehe
-    startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
-    fuellHoehe = 5
-    glasHoehe = (startHoehe - 5)
-    alcnumber = request.forms.get('drinks')
-    id_mischv = request.forms.get('mischverhaeltnis')
-    drinknumber = request.forms.get('AlkoholAuswahl_1')
-    int(drinknumber)
-    global fillA
-    global fillB
-    global unroundA
-    global unroundB
-    unroundA = startHoehe - (glasHoehe * (int(id_mischv)) / 100)
-    unroundB = fuellHoehe
-    fillA = round(unroundA, 2)
-    fillB = round(unroundB, 2)
-    enter(drinknumber, alcnumber)
 
 def progress(progr):
     #progressbar in html über abstand
