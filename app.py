@@ -1,25 +1,124 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-#
+import time
+
 class App:
     import server
     import ultraschallsensor
     import pump
 
     order_list = []
+    drink_list = []
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
-    def __init__(self,):
+    def __init__(self):
+        #für warteschelife, zeigt an an welcher position deine Bestellung ist
+        ordernumber_raw = 0
+        #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
+        x = 0
+        if len(order_list) > 0:
+            x = order_list[0] + 1
+            ordernumber_raw = ordernumber_raw + 1
+            while True:
+                if x < len(order_list)
+                    x = x + order_list[x] + 1
+                    ordernumber_raw = ordernumber_raw + 1
+                else:
+                    self.ordernumber = ordernumber_raw
+                    print("Deine Bestellung ist an Position: {}".format(self.ordernumber))
+                    break
+        else:
+            print("Dein Bestellung ist an erster Position")
+
+
         #Variabel für Anzahl der getraenke pro Bestelleung
         self.number = 2 #muss noch variabel werden
 
+        #muss auch noch in Array geschrieben werden
+        self.id_mischv = server.request.forms.get('mischverhaeltnis')
+        if server.request.forms.get('drink1'):
+            self.drink1 = server.request.forms.get('drink1')
+            drink_list.append(self.drink1)
+#           mischv1 = server.request.forms.get('mischv1')
+            self.number = self.number + 1
+            if server.request.forms.get('drink2'):
+                self.drink2 = server.request.forms.get('drink2')
+                drink_list.append(self.drink2)
+    #           mischv2 = server.request.forms.get('mischv2')
+                self.number = self.number + 1
+                if server.request.forms.get('drink3'):
+                    self.drink3 = server.request.forms.get('drink3')
+                    drink_list.append(self.drink3)
+        #           mischv3 = server.request.forms.get('mischv3')
+                    self.number = self.number + 1
+                    if server.request.forms.get('drink4'):
+                        self.drink4 = server.request.forms.get('drink4')
+                        drink_list.append(self.drink4)
+            #           mischv4 = server.request.forms.get('mischv4')
+                        self.number = self.number + 1
+                        if server.request.forms.get('drink5'):
+                            self.drink5 = server.request.forms.get('drink5')
+                            drink_list.append(self.drink5)
+                #           mischv5 = server.request.forms.get('mischv5')
+                            self.number = self.number + 1
+                            if server.request.forms.get('drink6'):
+                                self.drink6 = server.request.forms.get('drink6')
+                                drink_list.append(self.drink6)
+                    #           mischv6 = server.request.forms.get('mischv6')
+                                self.number = self.number + 1
+                            else:
+                                pass
+                        else:
+                            pass
+                    else:
+                        pass
+                else:
+                    pass
+            else:
+                pass
+        else:
+            pass
+
+
+        #schreibt bestellung in Array
+        counter3 = 0
+        self.order_list.append(self.number)
+        for x in range(self.number):
+            counter3 = counter3 + 1
+            drink = self.drink_list[counter3]
+            #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
+#            drink = self.order_dict.values(counter3)
+            #macht eine Liste mit den Getraenkenummer
+            #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
+            self.order_list.append(drink)
+            #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
+            print("der counter ist bei: {}, hinzugefuegtes Getraenk in drink_lkist: {}".format(counter3, drink))
+        #loesche Array um neue Bestellung aufzunehmen
+        del self.drink_list
+
+        while True:
+            #führe ordermanager aus mit Bestellungsarray
+            if process == False:
+                orderManager(self)
+                print("Dein Getraenk wird nun aufgefuellt")
+                break
+            else:
+                time.sleep(3)
+                print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
+
+
+    def orderManager(self):
+        self.process = True
+        #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
+        #Bestellung in einem Array festhalten, immer
+        #debug, ob ordernumber funktioniert
+        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
         self.startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
         self.fuellHoehe = 5
         self.glasHoehe = (startHoehe - 5)
-        self.alcnumber = server.request.forms.get('drinks')
-        self.id_mischv = server.request.forms.get('mischverhaeltnis')
-        self.drinknumber = server.request.forms.get('AlkoholAuswahl_1')
-        self.drinknumber = int(drinknumber)
+        #Mischverhaeltnisse muessen noch auf mehrere Getraenke angepasst werden,
+        #erstemal bei zwei lassen
         global unroundA
         global unroundB
         unroundA = startHoehe - (glasHoehe * (int(id_mischv)) / 100)
@@ -27,102 +126,64 @@ class App:
         self.fillA = round(unroundA, 2)
         self.fillB = round(unroundB, 2)
 
-        #provisorisches dict fuer zwei Getraenke:
-        self.order_dict{
-        "1": self.drinknumber
-        "2": self.alcnumber
-        }
-
-        #debug, ob richtig in dict aufgenommen
-        print("order dict 1: {}, order dict 2:{}".format(self.order_dict.values("1"), self.order_dict("2")))
-        #schreibt dict für liste in orderManager()
-#        counter4 = 0
-#        for x in range(self.number):
-#            counter4 = counter4 + 1
-#            order_dict[counter4] = self.drinknumber
-        orderManager()
-        #loescht dict fuer naschte Bestellung
-        del order_dict
-
-    def orderManager(self):
-        #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
-        #Bestellung in einem Array festhalten, immer
-        counter3 = 0
-        self.order_list.append(self.number)
-        for x in range(self.number):
-            counter3 = counter3 + 1
-            #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
-            drink = self.order_dict.values(counter3)
-            #macht eine Liste mit den Getraenkenummer
-            #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
-            self.order_list.append(drink)
-            #gibt die Laenge des Arrays aus
-            order_len = len(order_list)
-            #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
-            print("der counter ist bei: {}, drink(von dict): {}, order_list an Stelle:{} ".format(counter3, drink, order_len))
-
-        #Bestellposition: Bestellung wird in einem Array festgehalten
-        self.ordernumber_raw = len(order_list)
-        self.ordernumber = self.ordernumber_raw / self.number + 1
-        #debug, ob ordernumber funktioniert
-        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
-
+        y = self.order_list[0] + 1
         #fuehre methode zum satrten aller pumpen aus
-        pass
-        #loesche liste fuer naechste Bestellung:
+        for x in range(y):
+            start(self)
 
+        self.order_list.pop(0)
 
     def start(self):
-        for x in self.order_list[1]:
+        #schreibe die Getraenke aus dem Array fuer neue Bestellung raus
+        #nach ausfuehren aller die Bestellung aus Array loeschen,
+        #neueBestellung auf True setzten
+        drink = self.order_list[1]  #Getraenkenummer
+        mischv = self.order_list[2] #Mischverhaeltnis
+        #loesche Eintraege in Array
+        self.order_list.pop(1)
+        self.order_list.pop(2)
 
-            number_for = x
-            zaehler = 0
-            #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
-            #erst Alkohol dann
-            while True:
-                if zaehler == 0:
-                    entfernung = ultraschallsensor.first_realDistance()
-                    return entfernung
+        actually = ultraschallsensor.real_distance()
+        fillUp = actually - (glasHoehe * (mischv / 100))
 
-                else:
-                    entfernung = ultraschallsensor.real_distance()
-                    return entfernung
+        zaehler = 0
+        while True:
+            if zaehler == 0:
+                entfernung = ultraschallsensor.first_realDistance()
+                return entfernung
 
-                zaehler = zaehler + 1
-    #            progress = (startHoehe - entfernung) / glasHoehe * 100
-    #            prog = int(progress)
-    #            progress(prog)
-                print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-                if entfernung > self.fillA:
-                    hoehe = entfernung
-                    print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                    print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                    if zaehler == 1:
-                        pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
-                        zustand = True
+            else:
+                entfernung = ultraschallsensor.real_distance()
+                return entfernung
 
-                    elif zustand:
-                        #debugging
-                        print("while schleife alkohol einfüllen")
-                        aufgefuellt = self.startHoehe - hoehe
-                        print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
-                        auffuellen = self.fillA - aufgefuellt
-                        print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
-                        time.sleep(0.1)
-
-                    else:
-                        print("Die while Schleife hat keine passende if Anweisung.")
-
-                elif entfernung <= self.fillA:
-                    pump.stopPump()
-                    print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                    zustand == False
-                    break
+            zaehler = zaehler + 1
+#            progress = (startHoehe - entfernung) / glasHoehe * 100
+#            prog = int(progress)
+#            progress(prog)
+            print("while schleife durchfuehrung nummer: {}".format(zaehler))
+            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
+            if entfernung > fillUp:
+                hoehe = entfernung
+                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
+                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillUp))
+                if zaehler == 1:
+                    pump.startPump(drink) #alc gibt an welche pumpe gestartet wird
+                    zustand = True
+                elif zustand:
+                    aufgefuellt = self.startHoehe - hoehe
+                    print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
+                    auffuellen = self.fillUp - aufgefuellt
+                    print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
+                    time.sleep(0.1)
 
                 else:
-                    print("while schleife auffuellen schief gelaufen.")
-                    break
+                    print("Die while Schleife hat keine passende if Anweisung.")
+
+            elif entfernung <= self.fillUp:
+                pump.stopPump()
+                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
+                zustand == False
+                break
 
     def enter(alc, misch):
         try:
