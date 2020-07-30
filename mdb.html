@@ -100,7 +100,7 @@
 	//		setGetraenke(3);
 		</script>
 		<form method="post" action="/doform">
-				<select id="select_1" name="drink1" onchange="myFunction()">
+				<select id="select_1" name="drink1" onchange="myFunction("select_1")">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -109,7 +109,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_2" name="drink2">
+						<select id="select_2" name="drink2" onchange="myFunction("select_2")">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -118,7 +118,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_3" name="drink3">
+						<select id="select_3" name="drink3" onchange="myFunction("select_3")">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -127,7 +127,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_4" name="drink4">
+						<select id="select_4" name="drink4" onchange="myFunction("select_4")">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -136,7 +136,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_5" name="drink5">
+						<select id="select_5" name="drink5" onchange="myFunction("select_5")">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -145,7 +145,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_6" name="drink6">
+						<select id="select_6" name="drink6" onchange="myFunction("select_6")">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -159,10 +159,12 @@
 		</form>
 		<p id="demo"></p>
 		<script>
-		function myFunction() {
-  		var x = document.getElementById("select_1").value;
+		var drinks = 0
+		function myFunction(select) {
+			drinks = drinks + 1
+  		var x = document.getElementById(select).value;
   		document.getElementById("demo").innerHTML = "You selected: " + x;
-			setGetraenke(1)
+			setGetraenke(drinks)
 		}
 		</script>
 
