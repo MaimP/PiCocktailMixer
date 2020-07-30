@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+  		<link href="nouislider.css" rel="stylesheet">
+		<script src="nouislider.js"></script>
+  		<style>
+			.noUi-connect {
+			    background: cyan;
+			}
+
+			.noUi-horizontal .noUi-handle {
+			    background: black;
+			    box-shadow: none !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
+		<div id="getraenke"></div>  <!-- Und für die Liste -->
+
+		<script>
+			// Das Element für den Slider suchen
+			var slider = document.getElementById('slider');
+
+			const min = 0 // Konstante für Minimum und
+			const max = 100 // Maximum
+
+			// Basis für die Optionen des Sliders
+			sliderOptions = {
+				connect: true,
+		   		range: {
+		        	'min': min,
+		        	'max': max
+		    	},
+		    	margin: 5, // Mindestentfernung zwischen einzelnen Handles
+
+		    	// Beschriftung für den Slider
+		    	pips: {
+		    	    mode: 'steps',
+		    	    stepped: true,
+		    	    density: 4
+		    	},
+			}
+
+			function setGetraenke(numGetr) {
+				liste = document.getElementById('getraenke')
+
+				str = "<h1>Liste der Getränke</h1>"
+
+				// Für jedes Getränk einen Text hinzufügen
+				for (let i = 1; i <= numGetr; i++) {
+					str += `<h2>Getränk ${i}: <a id="getraenk-${i}">x</a>%</h2>`
+				}
+
+				// Die Getränkeliste updaten
+				liste.innerHTML = str;
+
+				// Jetzt den Slider updaten
+				makeSlider(slider, numGetr);
+			}
+
+			function makeSlider(select, numPoints) {
+				// Wenn der Slider bereits initialisiert ist, die Handles zerstören
+				if (select.noUiSlider != undefined)
+					select.noUiSlider.destroy();
+
+				// Lambda Funktion für die Position der Handles
+				mult = (x) => x * ((max - min) / numPoints + min);
+
+				sliderOptions.start = []; // Handles initialisieren
+				for (let i = 0; i <= numPoints; i++) {
+					sliderOptions.start.push(mult(i)); // Handles einzeln hinzufügen (mit dem Lambda)
+				}
+
+				// Den Slider updaten
+				noUiSlider.create(select, sliderOptions);
+
+				// Einen Event Listener erstellen
+				select.noUiSlider.on('update', function() {
+					// Diese Funktion wird ausgeführt, wenn die Position eines Handles sich ändert
+
+					// Alle Werte sammeln
+					var handleValues = select.noUiSlider.get();
+
+					// Einzeln in die Getränkeliste eintragen
+					for (let i = 1; i <= numPoints; i++) { // numPoints Equivalent to numGetr
+						document.getElementById(`getraenk-${i}`).innerHTML = (handleValues[i] - handleValues[i-1]).toFixed(2);
+					}
+				})
+			}
+
+			// Beim Laden der Seite erstmal 3 Getränke hinzufügen
+			setGetraenke(3);
+		</script>
+	</body>
+</html>
