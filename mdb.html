@@ -107,7 +107,7 @@
 
 		</script>
 		<form method="post" action="/doform">
-				<select id="select_1" name="drink1" onchange="myFunction(select_1)">
+				<select id="select_1" name="drink1" onchange="select1()">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -116,7 +116,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_2" name="drink2" onchange="myFunction(s2)">
+						<select id="select_2" name="drink2" onchange="select2()">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -125,7 +125,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_3" name="drink3" onchange="myFunction(s3)">
+						<select id="select_3" name="drink3" onchange="select3()">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -134,7 +134,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_4" name="drink4" onchange="myFunction(s4)">
+						<select id="select_4" name="drink4" onchange="select4()">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -143,7 +143,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_5" name="drink5" onchange="myFunction(s5)">
+						<select id="select_5" name="drink5" onchange="select5()">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -152,7 +152,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
-						<select id="select_6" name="drink6" onchange="myFunction(s6)">
+						<select id="select_6" name="drink6" onchange="select6()">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
 						<option value="2">Vodka</option>
@@ -176,7 +176,7 @@
 				setGetraenke(drinks)
 			}
 			else {
-				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks;
 				drinks = drinks - 1;
 			}
 		}
@@ -188,7 +188,7 @@
 				setGetraenke(drinks)
 			}
 			else {
-				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks;
 				drinks = drinks - 1;
 			}
 		}
@@ -200,7 +200,7 @@
 				setGetraenke(drinks)
 			}
 			else {
-				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks;
 				drinks = drinks - 1;
 			}
 		}
@@ -212,7 +212,7 @@
 				setGetraenke(drinks)
 			}
 			else {
-				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks;
 				drinks = drinks - 1;
 			}
 		}
@@ -224,7 +224,7 @@
 				setGetraenke(drinks)
 			}
 			else {
-				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks;
 				drinks = drinks - 1;
 			}
 		}
