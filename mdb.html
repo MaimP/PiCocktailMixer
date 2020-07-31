@@ -168,17 +168,76 @@
 		<p id="demo_one"></p>
 		<script>
 		var drinks = 0;
-		function myFunction(select) {
-			if document.getElementById(select).value != 6 {
+		function select1() {
+			if document.getElementById(select_1).value != 6 {
 				drinks = drinks + 1;
-  			var x = document.getElementById(select).value;
+  			var x = document.getElementById(select_1).value;
   			document.getElementById("demo").innerHTML = "You selected: " + x;
 				setGetraenke(drinks)
-
 			}
-
 			else {
-				document.getElementById("demo_one").innerHTML = "you selected keins"
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				drinks = drinks - 1;
+			}
+		}
+		function select2() {
+			if document.getElementById(select_2).value != 6 {
+				drinks = drinks + 1;
+  			var x = document.getElementById(select_2).value;
+  			document.getElementById("demo").innerHTML = "You selected: " + x;
+				setGetraenke(drinks)
+			}
+			else {
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				drinks = drinks - 1;
+			}
+		}
+		function select3() {
+			if document.getElementById(select_3).value != 6 {
+				drinks = drinks + 1;
+  			var x = document.getElementById(select_3).value;
+  			document.getElementById("demo").innerHTML = "You selected: " + x;
+				setGetraenke(drinks)
+			}
+			else {
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				drinks = drinks - 1;
+			}
+		}
+		function select4() {
+			if document.getElementById(select_4).value != 6 {
+				drinks = drinks + 1;
+  			var x = document.getElementById(select_4).value;
+  			document.getElementById("demo").innerHTML = "You selected: " + x;
+				setGetraenke(drinks)
+			}
+			else {
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				drinks = drinks - 1;
+			}
+		}
+		function select5() {
+			if document.getElementById(select_5).value != 6 {
+				drinks = drinks + 1;
+  			var x = document.getElementById(select_5).value;
+  			document.getElementById("demo").innerHTML = "You selected: " + x;
+				setGetraenke(drinks)
+			}
+			else {
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks";
+				drinks = drinks - 1;
+			}
+		}
+		function select6() {
+			if document.getElementById(select_6).value != 6 {
+				drinks = drinks + 1;
+  			var x = document.getElementById(select_6).value;
+  			document.getElementById("demo").innerHTML = "You selected: " + x;
+				setGetraenke(drinks)
+			}
+			else {
+				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks;
+				drinks = drinks - 1;
 			}
 		}
 		</script>
