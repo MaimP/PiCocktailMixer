@@ -165,6 +165,7 @@
 						<button type="submit">Submit</button>
 		</form>
 		<p id="demo"></p>
+		<p id="demo_one"></p>
 		<script>
 		var drinks = 0;
 		function myFunction(select) {
@@ -173,11 +174,11 @@
   			var x = document.getElementById(select).value;
   			document.getElementById("demo").innerHTML = "You selected: " + x;
 				setGetraenke(drinks)
-				
+
 			}
 
 			else {
-				break
+				document.getElementById("demo_one").innerHTML = "you selected keins"
 			}
 		}
 		</script>
