@@ -96,7 +96,9 @@
 			}
 			else {
 				counter1 = counter1 - 1;
-				document.getElementById("demo_one").innerHTML = "you selected keins, drinks: " + drinks;
+				var number = 0;
+				number = slider.nouiSlider.get();
+				document.getElementById("demo_one").innerHTML = "you selected keins, wert: " + number;
 				drinks = drinks - 1;
 				setGetraenke(drinks)
 			}
