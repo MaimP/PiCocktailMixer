@@ -37,32 +37,32 @@ class App:
 
         #muss auch noch in Array geschrieben werden
         self.id_mischv = server.request.forms.get('mischverhaeltnis')
-        if server.request.forms.get('drink1'):
+        if server.request.forms.get('drink1') != 6:
             self.drink1 = server.request.forms.get('drink1')
             drink_list.append(self.drink1)
 #           mischv1 = server.request.forms.get('mischv1')
             self.number = self.number + 1
-            if server.request.forms.get('drink2'):
+            if server.request.forms.get('drink2') != 6:
                 self.drink2 = server.request.forms.get('drink2')
                 drink_list.append(self.drink2)
     #           mischv2 = server.request.forms.get('mischv2')
                 self.number = self.number + 1
-                if server.request.forms.get('drink3'):
+                if server.request.forms.get('drink3') != 6:
                     self.drink3 = server.request.forms.get('drink3')
                     drink_list.append(self.drink3)
         #           mischv3 = server.request.forms.get('mischv3')
                     self.number = self.number + 1
-                    if server.request.forms.get('drink4'):
+                    if server.request.forms.get('drink4') != 6:
                         self.drink4 = server.request.forms.get('drink4')
                         drink_list.append(self.drink4)
             #           mischv4 = server.request.forms.get('mischv4')
                         self.number = self.number + 1
-                        if server.request.forms.get('drink5'):
+                        if server.request.forms.get('drink5') != 6:
                             self.drink5 = server.request.forms.get('drink5')
                             drink_list.append(self.drink5)
                 #           mischv5 = server.request.forms.get('mischv5')
                             self.number = self.number + 1
-                            if server.request.forms.get('drink6'):
+                            if server.request.forms.get('drink6') != 6:
                                 self.drink6 = server.request.forms.get('drink6')
                                 drink_list.append(self.drink6)
                     #           mischv6 = server.request.forms.get('mischv6')

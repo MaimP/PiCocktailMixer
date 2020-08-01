@@ -9,6 +9,7 @@ import ultraschallsensor
 import pump
 import RPi.GPIO as GPIO
 import time
+import app
 
 global zustand
 global hoehe
@@ -16,7 +17,7 @@ global entfernung
 global progress
 
 @route('/')
-def server_static(filepath="index.html"):
+def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
 
 @post('/process')
@@ -26,10 +27,8 @@ def process():
 
 @post('/doform')
 def process():
-    getData()
+    App()
     return "Dein Getraenk ist in Bearbeitung."
-
-def orderManager(drinknumber1, drinknumber2, ):
 
 
 def enter(alc, misch):
