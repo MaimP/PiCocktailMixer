@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-#
 import time
+import math
 
 class App:
     import server
@@ -18,14 +19,14 @@ class App:
         #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
         x = 0
         if len(order_list) > 0:
-            x = order_list[0] + 1
+            x = order_list[0] + 1 #order_list[0] * 2, weil noc hmoischverhaeltnis reingeschrieben werden muss
             ordernumber_raw = ordernumber_raw + 1
             while True:
-                if x < len(order_list)
+                if x < len(order_list):
                     x = x + order_list[x] + 1
                     ordernumber_raw = ordernumber_raw + 1
                 else:
-                    self.ordernumber = ordernumber_raw
+                    self.ordernumber = math.ceil(ordernumber_raw)
                     print("Deine Bestellung ist an Position: {}".format(self.ordernumber))
                     break
         else:
@@ -33,7 +34,7 @@ class App:
 
 
         #Variabel für Anzahl der getraenke pro Bestelleung
-        self.number = 2 #muss noch variabel werden
+        self.number = 0
 
         #muss auch noch in Array geschrieben werden
         self.id_mischv = server.request.forms.get('mischverhaeltnis')
@@ -126,7 +127,7 @@ class App:
         self.fillA = round(unroundA, 2)
         self.fillB = round(unroundB, 2)
 
-        y = self.order_list[0] + 1
+        y = self.order_list[0]
         #fuehre methode zum satrten aller pumpen aus
         for x in range(y):
             start(self)
@@ -138,10 +139,11 @@ class App:
         #nach ausfuehren aller die Bestellung aus Array loeschen,
         #neueBestellung auf True setzten
         drink = self.order_list[1]  #Getraenkenummer
-        mischv = self.order_list[2] #Mischverhaeltnis
+        mischv = self.id_mischv #mischverhaeltnis muss noch in Array geschrieben werden
+#        mischv = self.order_list[2] #Mischverhaeltnis
         #loesche Eintraege in Array
         self.order_list.pop(1)
-        self.order_list.pop(2)
+#        self.order_list.pop(2)
 
         actually = ultraschallsensor.real_distance()
         fillUp = actually - (glasHoehe * (mischv / 100))
