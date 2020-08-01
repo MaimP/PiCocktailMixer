@@ -70,6 +70,7 @@
 						<option value="5">Sprite</option>
 						<option value="6" selected="">keins</option>
 				</select><br>
+				<input type="range" min="1" max="100" value="50" id="mischverhaeltnis">
 				<div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
 
 						<button type="submit">Bestellen</button>
@@ -88,7 +89,7 @@
 		function select1() {
 			if (document.getElementById("select_1").value != 6 && counter1 == 0) {
 				counter1 = counter1 + 1;
-				drinks = drinks + 1; 
+				drinks = drinks + 1;
 				var x = document.getElementById("select_1").value;
 				document.getElementById("demo").innerHTML = "You selected: " + x;
 				setGetraenke(drinks)
