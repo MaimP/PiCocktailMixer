@@ -163,7 +163,8 @@
 		<script>
 		var drinks = 0;
 		function select1() {
-			if (document.getElementById(select_1).value != 6) {
+			var value = document.getElementById(select_1).value;
+			if (value != 6) {
 				drinks = drinks + 1;
   			var x = document.getElementById(select_1).value;
   			document.getElementById("demo").innerHTML = "You selected: " + x;
