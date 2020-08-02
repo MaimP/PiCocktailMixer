@@ -13,103 +13,6 @@ class App:
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
-    def __init__(self, name):
-        self.name = name
-        #für warteschelife, zeigt an an welcher position deine Bestellung ist
-        ordernumber_raw = 0
-        #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
-        x = 0
-        if len(order_list) > 0:
-            x = order_list[0] + 1 #order_list[0] * 2, weil noc hmoischverhaeltnis reingeschrieben werden muss
-            ordernumber_raw = ordernumber_raw + 1
-            while True:
-                if x < len(order_list):
-                    x = x + order_list[x] + 1
-                    ordernumber_raw = ordernumber_raw + 1
-                else:
-                    self.ordernumber = math.ceil(ordernumber_raw)
-                    print("Deine Bestellung ist an Position: {}".format(self.ordernumber))
-                    break
-        else:
-            print("Dein Bestellung ist an erster Position")
-
-
-        #Variabel für Anzahl der getraenke pro Bestelleung
-        self.number = 0
-
-        #muss auch noch in Array geschrieben werden
-        self.id_mischv = server.request.forms.get('mischverhaeltnis')
-        if server.request.forms.get('drink1') != 6:
-            self.drink1 = server.request.forms.get('drink1')
-            drink_list.append(self.drink1)
-#           mischv1 = server.request.forms.get('mischv1')
-            self.number = self.number + 1
-            if server.request.forms.get('drink2') != 6:
-                self.drink2 = server.request.forms.get('drink2')
-                drink_list.append(self.drink2)
-    #           mischv2 = server.request.forms.get('mischv2')
-                self.number = self.number + 1
-                if server.request.forms.get('drink3') != 6:
-                    self.drink3 = server.request.forms.get('drink3')
-                    drink_list.append(self.drink3)
-        #           mischv3 = server.request.forms.get('mischv3')
-                    self.number = self.number + 1
-                    if server.request.forms.get('drink4') != 6:
-                        self.drink4 = server.request.forms.get('drink4')
-                        drink_list.append(self.drink4)
-            #           mischv4 = server.request.forms.get('mischv4')
-                        self.number = self.number + 1
-                        if server.request.forms.get('drink5') != 6:
-                            self.drink5 = server.request.forms.get('drink5')
-                            drink_list.append(self.drink5)
-                #           mischv5 = server.request.forms.get('mischv5')
-                            self.number = self.number + 1
-                            if server.request.forms.get('drink6') != 6:
-                                self.drink6 = server.request.forms.get('drink6')
-                                drink_list.append(self.drink6)
-                    #           mischv6 = server.request.forms.get('mischv6')
-                                self.number = self.number + 1
-                            else:
-                                pass
-                        else:
-                            pass
-                    else:
-                        pass
-                else:
-                    pass
-            else:
-                pass
-        else:
-            pass
-
-
-        #schreibt bestellung in Array
-        counter3 = 0
-        self.order_list.append(self.number)
-        for x in range(self.number):
-            counter3 = counter3 + 1
-            drink = self.drink_list[counter3]
-            #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
-#            drink = self.order_dict.values(counter3)
-            #macht eine Liste mit den Getraenkenummer
-            #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
-            self.order_list.append(drink)
-            #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
-            print("der counter ist bei: {}, hinzugefuegtes Getraenk in drink_lkist: {}".format(counter3, drink))
-        #loesche Array um neue Bestellung aufzunehmen
-        del self.drink_list
-
-        while True:
-            #führe ordermanager aus mit Bestellungsarray
-            if process == False:
-                orderManager(self)
-                print("Dein Getraenk wird nun aufgefuellt")
-                break
-            else:
-                time.sleep(3)
-                print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
-
-
     def order():
         self.name = name
         #für warteschelife, zeigt an an welcher position deine Bestellung ist
@@ -205,7 +108,7 @@ class App:
             else:
                 time.sleep(3)
                 print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
-        
+
     def orderManager(self):
         self.process = True
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
