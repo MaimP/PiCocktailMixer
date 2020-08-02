@@ -9,7 +9,7 @@ import ultraschallsensor
 import pump
 import RPi.GPIO as GPIO
 import time
-from app import myClass
+from .app import myClass
 obj = app.myClass.order()
 
 global zustand
