@@ -31,7 +31,8 @@ def process():
 
 @post('/doform')
 def process():
-    app.App('Peter')
+    a = app.App('Peter')
+    app.a()
     return "Dein Getraenk ist in Bearbeitung."
 
 
