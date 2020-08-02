@@ -13,7 +13,8 @@ class App:
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
-    def __init__():
+    def __init__(self, name):
+        self.name = name
         #für warteschelife, zeigt an an welcher position deine Bestellung ist
         ordernumber_raw = 0
         #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
