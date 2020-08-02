@@ -13,7 +13,7 @@ class App:
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
-    def __init__(self):
+    def __init__():
         #für warteschelife, zeigt an an welcher position deine Bestellung ist
         ordernumber_raw = 0
         #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
@@ -187,102 +187,5 @@ class App:
                 zustand == False
                 break
 
-    def enter(alc, misch):
-        try:
-
-            print(alc)
-            print(misch)
-            print("Die Starthoehe betraegt: {}".format(self.startHoehe))
-            print("test round: {}".format(self.fillA))
-            zaehler = 0
-            zaehler2 = 0
-            #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
-            #erst Alkohol dann
-            while True:
-                if zaehler == 0:
-                    entfernung = ultraschallsensor.first_realDistance()
-                    return entfernung
-
-                else:
-                    entfernung = ultraschallsensor.real_distance()
-                    return entfernung
-
-                zaehler = zaehler + 1
-    #            progress = (startHoehe - entfernung) / glasHoehe * 100
-    #            prog = int(progress)
-    #            progress(prog)
-                print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-                if entfernung > self.fillA:
-                    hoehe = entfernung
-                    print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                    print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                    if zaehler == 1:
-                        pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
-                        zustand = True
-
-                    elif zustand:
-                        #debugging
-                        print("while schleife alkohol einfüllen")
-                        aufgefuellt = self.startHoehe - hoehe
-                        print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
-                        auffuellen = self.fillA - aufgefuellt
-                        print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
-                        time.sleep(0.1)
-
-                    else:
-                        print("Die while Schleife hat keine passende if Anweisung.")
-
-                elif entfernung <= self.fillA:
-                    pump.stopPump()
-                    print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                    zustand == False
-                    break
-
-                else:
-                    print("while schleife auffuellen schief gelaufen.")
-                    break
-
-            print("Das Einfuellen des Alkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
-
-            while True:
-                entfernung = ultraschallsensor.real_distance()
-
-                zaehler = zaehler + 1
-                print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-                if entfernung > self.fillB:
-                    hoehe = entfernung
-                    print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                    print("Das Glas wird bis zu .. mit dem Mischgetraenk aufgefuellt: {}".format(fillB))
-                    if zaehler2 == 0:
-                        zaehler2 = zaehler2 + 1
-                        pump.startPump(misch) #misch gibt an welche pumpe gestartet wird
-                        zustand = True
-
-                    elif zustand:
-                        #debugging
-                        print("while schleife Mischgetraenk einfüllen")
-                        aufgefuellt = self.startHoehe - hoehe
-                        print("die aufgefüllte Menge an Getraenk beträgt insgesamt:{} cm".format(aufgefuellt))
-                        auffuellen = self.fillB - aufgefuellt
-                        print("Es muss noch insgesamt aufgefuellt werden: {} cm".format(auffuellen))
-                        time.sleep(0.1)
-
-                    else:
-                        print("Die while Schleife hat keine passende if Anweisung.")
-
-                elif entfernung <= self.fillB:
-                    pump.stopPump()
-                    print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                    zustand == False
-                    break
-
-                else:
-                    print("while schleife auffuellen schief gelaufen.")
-                    break
-
-        # Beim Abbruch durch STRG+C resetten
-        except KeyboardInterrupt:
-            print("Messung vom User gestoppt")
-            pump.stopPump()
+    def getMischV():
+        pass
