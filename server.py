@@ -16,6 +16,10 @@ global hoehe
 global entfernung
 global progress
 
+@route('/static/:path#.+#', name='static')
+def static(path):
+    return static_file(path, root='static')
+
 @route('/')
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
@@ -27,7 +31,7 @@ def process():
 
 @post('/doform')
 def process():
-    app.App()
+    app.__init__()
     return "Dein Getraenk ist in Bearbeitung."
 
 
