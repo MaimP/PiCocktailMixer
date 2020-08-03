@@ -2,7 +2,6 @@
 #-*- coding:utf-8 -*-#
 import time
 import math
-import server
 
 class myClass:
     import ultraschallsensor
