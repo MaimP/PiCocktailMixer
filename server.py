@@ -10,7 +10,7 @@ import pump
 import RPi.GPIO as GPIO
 import time
 import app
-global app
+global ap
 
 global zustand
 global hoehe
@@ -145,8 +145,8 @@ def order():
 #    while True:
 #        #führe ordermanager aus mit Bestellungsarray
 #        if process == False:
-    app = app.App(order_list)
-    app.orderManager()
+    ap = app.App(order_list)
+    ap.orderManager()
     print("nach app.app")
 #            print("Dein Getraenk wird nun aufgefuellt")
 #            break
