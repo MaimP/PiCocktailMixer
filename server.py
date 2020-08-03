@@ -119,7 +119,7 @@ def order():
 
 
     #schreibt bestellung in Array
-    counter3 = 1
+    counter3 = 0
     order_list.append(number)
     z = order_list[0]
     print("index 0: {}".format(z))
