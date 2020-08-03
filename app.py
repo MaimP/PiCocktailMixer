@@ -3,7 +3,7 @@
 import time
 import math
 
-class myClass:
+class App:
     import ultraschallsensor
     import pump
 
