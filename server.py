@@ -9,7 +9,7 @@ import ultraschallsensor
 import pump
 import RPi.GPIO as GPIO
 import time
-from app import App
+import app
 global app
 app = app.App(order_list)
 
