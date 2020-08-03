@@ -74,21 +74,21 @@ def order():
     if drink_1 != 6:
         drink1 = request.forms.get('drink1')
         drink_list.append(drink1)
-        print("drink_list: hinzugefügtes Getraenk: {}".format(drink1))
 #           mischv1 = request.forms.get('mischv1')
         number = number + 1
+        print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}".format(drink1, number))
         if drink_2 != 6:
             drink2 = request.forms.get('drink2')
             drink_list.append(drink2)
-            print("drink_list: hinzugefügtes Getraenk: {}".format(drink2))
 #           mischv2 = request.forms.get('mischv2')
             number = number + 1
+            print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}".format(drink2, number))
             if drink_3 != 6:
                 drink3 = request.forms.get('drink3')
                 drink_list.append(drink3)
-                print("drink_list: hinzugefügtes Getraenk: {}".format(drink3))
     #           mischv3 = request.forms.get('mischv3')
                 number = number + 1
+                print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}".format(drink3, number))
                 if drink_4 != 6:
                     drink4 = request.forms.get('drink4')
                     drink_list.append(drink4)
