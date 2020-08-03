@@ -12,7 +12,7 @@ class myClass:
     drink_list = []
 
     def __init__(self, orderlist):
-        self.order_list[] = orderlist
+        self.order_list = orderlist
         orderManager()
 
     #wird direkt ausgfuehrt, werte initialisieren
