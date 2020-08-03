@@ -10,8 +10,9 @@ class App:
     order_list = []
     drink_list = []
 
-    def __init__(self, orderlist):
+    def __init__(self, orderlist, ordernumber):
         self.order_list = orderlist
+        self.ordernumber = ordernumber
         counter5 = 0
         t = len(self.order_list)
         for x in range(t):
