@@ -10,7 +10,8 @@ import pump
 import RPi.GPIO as GPIO
 import time
 from app import App
-global app = app.App(order_list)
+global app
+app = app.App(order_list)
 
 global zustand
 global hoehe
