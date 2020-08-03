@@ -136,7 +136,6 @@ def order():
             counter3 = counter3 + 1
 
         else:
-            return order_list
             break
 
     #loesche Array um neue Bestellung aufzunehmen
