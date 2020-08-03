@@ -16,7 +16,7 @@ class App:
         for x in range(self.order_list):
             x = self.order_list[counter5]
             print("class App: order list: {}".format(x))
-        orderManager()
+        self.process = True
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
@@ -117,7 +117,6 @@ class App:
                 print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
 
     def orderManager(self):
-        self.process = True
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
         #Bestellung in einem Array festhalten, immer
         #debug, ob ordernumber funktioniert
@@ -140,6 +139,7 @@ class App:
             start(self)
 
         self.order_list.pop(0)
+        self.process = False
 
     def start(self):
         #schreibe die Getraenke aus dem Array fuer neue Bestellung raus

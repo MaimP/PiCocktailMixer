@@ -145,7 +145,8 @@ def order():
 #    while True:
 #        #führe ordermanager aus mit Bestellungsarray
 #        if process == False:
-    app.App(order_list)
+    app = app.App(order_list)
+    app.orderManager()
 #            print("Dein Getraenk wird nun aufgefuellt")
 #            break
 #        else:
