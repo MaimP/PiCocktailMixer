@@ -10,9 +10,8 @@ class App:
     order_list = []
     drink_list = []
 
-    def __init__(self, orderlist, ordernumber):
+    def __init__(self, orderlist):
         self.order_list = orderlist
-        self.ordernumber = ordernumber
         counter5 = 0
         t = len(self.order_list)
         for x in range(t):
@@ -122,7 +121,7 @@ class App:
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
         #Bestellung in einem Array festhalten, immer
         #debug, ob ordernumber funktioniert
-        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
+#        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
         self.startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
         self.fuellHoehe = 5
         self.glasHoehe = (startHoehe - 5)
