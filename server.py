@@ -61,34 +61,42 @@ def order():
     #Variabel für Anzahl der getraenke pro Bestelleung
     number = 0
 
+    #geraenke auslesen und als int convertieren
+    drink_1 = int(request.forms.get('drink1'))
+    drink_2 = int(request.forms.get('drink2'))
+    drink_3 = int(request.forms.get('drink3'))
+    drink_4 = int(request.forms.get('drink4'))
+    drink_5 = int(request.forms.get('drink5'))
+    drink_6 = int(request.forms.get('drink6'))
+
     #muss auch noch in Array geschrieben werden
     id_mischv = request.forms.get('mischverhaeltnis')
-    if request.forms.get('drink1') != 6:
+    if drink_1 != 6:
         drink1 = request.forms.get('drink1')
         drink_list.append(drink1)
 #           mischv1 = request.forms.get('mischv1')
         number = number + 1
-        if request.forms.get('drink2') != 6:
+        if drink_2 != 6:
             drink2 = request.forms.get('drink2')
             drink_list.append(drink2)
 #           mischv2 = request.forms.get('mischv2')
             number = number + 1
-            if request.forms.get('drink3') != 6:
+            if drink_3 != 6:
                 drink3 = request.forms.get('drink3')
                 drink_list.append(drink3)
     #           mischv3 = request.forms.get('mischv3')
                 number = number + 1
-                if request.forms.get('drink4') != 6:
+                if drink_4 != 6:
                     drink4 = request.forms.get('drink4')
                     drink_list.append(drink4)
         #           mischv4 = request.forms.get('mischv4')
                     number = number + 1
-                    if request.forms.get('drink5') != 6:
+                    if drink_5 != 6:
                         drink5 = request.forms.get('drink5')
                         drink_list.append(drink5)
             #           mischv5 = request.forms.get('mischv5')
                         number = number + 1
-                        if request.forms.get('drink6') != 6:
+                        if drink_6 != 6:
                             drink6 = request.forms.get('drink6')
                             drink_list.append(drink6)
                 #           mischv6 = request.forms.get('mischv6')
