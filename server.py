@@ -147,6 +147,7 @@ def order():
 #        if process == False:
     app = app.App(order_list)
     app.orderManager()
+    print("nach app.app")
 #            print("Dein Getraenk wird nun aufgefuellt")
 #            break
 #        else:
