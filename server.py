@@ -16,7 +16,8 @@ global hoehe
 global entfernung
 global progress
 
-global order_list = []
+global order_list
+order_list = []
 
 @route('/static/:path#.+#', name='static')
 def static(path):
