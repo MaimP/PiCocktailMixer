@@ -138,6 +138,12 @@ def order():
         else:
             return order_list
             break
+
+    counter4 = 0
+    for x in range(drink_list):
+        index = drink_list[counter4]
+        print("drink list: {}".format(index))
+        counter4 = counter4 + 1
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
