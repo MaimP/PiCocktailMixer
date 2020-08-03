@@ -124,15 +124,15 @@ def order():
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
-    while True:
-        #führe ordermanager aus mit Bestellungsarray
-        if process == False:
-            orderManager(order_list)
-            print("Dein Getraenk wird nun aufgefuellt")
-            break
-        else:
-            time.sleep(3)
-            print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
+#    while True:
+#        #führe ordermanager aus mit Bestellungsarray
+#        if process == False:
+    orderManager(order_list)
+#            print("Dein Getraenk wird nun aufgefuellt")
+#            break
+#        else:
+#            time.sleep(3)
+#            print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
 
 
 def enter(alc, misch):
