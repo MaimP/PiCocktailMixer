@@ -124,7 +124,7 @@ def order():
     z = order_list[0]
     print("index 0: {}".format(z))
     while True:
-        if counter3 <= z:
+        if counter3 < z:
             drink = drink_list[counter3]
             #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
     #            drink = order_dict.values(counter3)
@@ -139,18 +139,13 @@ def order():
             return order_list
             break
 
-    counter4 = 0
-    for x in range(drink_list):
-        index = drink_list[counter4]
-        print("drink list: {}".format(index))
-        counter4 = counter4 + 1
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
 #    while True:
 #        #führe ordermanager aus mit Bestellungsarray
 #        if process == False:
-    orderManager(order_list)
+    app.App.orderManager(order_list)
 #            print("Dein Getraenk wird nun aufgefuellt")
 #            break
 #        else:
