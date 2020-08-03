@@ -123,19 +123,21 @@ def order():
     order_list.append(number)
     z = order_list[0]
     print("index 0: {}".format(z))
-    if counter3 <= z:
-        drink = drink_list[counter3]
-        #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
-#            drink = order_dict.values(counter3)
-        #macht eine Liste mit den Getraenkenummer
-        #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
-        order_list.append(drink)
-        #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
-        print("der counter ist bei: {}, hinzugefuegtes Getraenk in drink_lkist: {}".format(counter3, drink))
-        counter3 = counter3 + 1
+    while True:
+        if counter3 <= z:
+            drink = drink_list[counter3]
+            #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
+    #            drink = order_dict.values(counter3)
+            #macht eine Liste mit den Getraenkenummer
+            #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
+            order_list.append(drink)
+            #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
+            print("der counter ist bei: {}, hinzugefuegtes Getraenk in drink_lkist: {}".format(counter3, drink))
+            counter3 = counter3 + 1
 
-    else:
-        return order_list
+        else:
+            return order_list
+            break
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
