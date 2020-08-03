@@ -13,7 +13,8 @@ class App:
     def __init__(self, orderlist):
         self.order_list = orderlist
         counter5 = 0
-        for x in range(self.order_list):
+        t = len(drink_list)
+        for x in range(t):
             x = self.order_list[counter5]
             print("class App: order list: {}".format(x))
         self.process = True
