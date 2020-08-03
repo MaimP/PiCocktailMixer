@@ -122,6 +122,7 @@ def order():
     counter3 = 1
     order_list.append(number)
     z = order_list[0]
+    print("index 0: {}".format(z))
     if counter3 <= z:
         drink = drink_list[counter3]
         #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
