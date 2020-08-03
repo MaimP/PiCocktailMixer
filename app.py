@@ -11,6 +11,10 @@ class myClass:
     order_list = []
     drink_list = []
 
+    def __init__(self, orderlist):
+        self.order_list[] = orderlist
+        orderManager()
+
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
     def order():

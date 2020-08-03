@@ -9,13 +9,14 @@ import ultraschallsensor
 import pump
 import RPi.GPIO as GPIO
 import time
-from .app import myClass
-obj = app.myClass.order()
+from app import App
 
 global zustand
 global hoehe
 global entfernung
 global progress
+
+global order_list[]
 
 @route('/static/:path#.+#', name='static')
 def static(path):
@@ -32,8 +33,103 @@ def process():
 
 @post('/doform')
 def process():
-    app.order()
+    order()
     return "Dein Getraenk ist in Bearbeitung."
+
+def order():
+    #für warteschelife, zeigt an an welcher position deine Bestellung ist
+    ordernumber_raw = 0
+    #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
+    x = 0
+    if len(order_list) > 0:
+        x = order_list[0] + 1 #order_list[0] * 2, weil noc hmoischverhaeltnis reingeschrieben werden muss
+        ordernumber_raw = ordernumber_raw + 1
+        while True:
+            if x < len(order_list):
+                x = x + order_list[x] + 1
+                ordernumber_raw = ordernumber_raw + 1
+            else:
+                ordernumber = math.ceil(ordernumber_raw)
+                print("Deine Bestellung ist an Position: {}".format(ordernumber))
+                break
+    else:
+        print("Dein Bestellung ist an erster Position")
+
+
+    #Variabel für Anzahl der getraenke pro Bestelleung
+    number = 0
+
+    #muss auch noch in Array geschrieben werden
+    id_mischv = request.forms.get('mischverhaeltnis')
+    if request.forms.get('drink1') != 6:
+        drink1 = request.forms.get('drink1')
+        drink_list.append(drink1)
+#           mischv1 = request.forms.get('mischv1')
+        number = number + 1
+        if request.forms.get('drink2') != 6:
+            drink2 = request.forms.get('drink2')
+            drink_list.append(drink2)
+#           mischv2 = request.forms.get('mischv2')
+            number = number + 1
+            if request.forms.get('drink3') != 6:
+                drink3 = request.forms.get('drink3')
+                drink_list.append(drink3)
+    #           mischv3 = request.forms.get('mischv3')
+                number = number + 1
+                if request.forms.get('drink4') != 6:
+                    drink4 = request.forms.get('drink4')
+                    drink_list.append(drink4)
+        #           mischv4 = request.forms.get('mischv4')
+                    number = number + 1
+                    if request.forms.get('drink5') != 6:
+                        drink5 = request.forms.get('drink5')
+                        drink_list.append(drink5)
+            #           mischv5 = request.forms.get('mischv5')
+                        number = number + 1
+                        if request.forms.get('drink6') != 6:
+                            drink6 = request.forms.get('drink6')
+                            drink_list.append(drink6)
+                #           mischv6 = request.forms.get('mischv6')
+                            number = number + 1
+                        else:
+                            pass
+                    else:
+                        pass
+                else:
+                    pass
+            else:
+                pass
+        else:
+            pass
+    else:
+        pass
+
+
+    #schreibt bestellung in Array
+    counter3 = 0
+    order_list.append(number)
+    for x in range(number):
+        counter3 = counter3 + 1
+        drink = drink_list[counter3]
+        #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
+#            drink = order_dict.values(counter3)
+        #macht eine Liste mit den Getraenkenummer
+        #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
+        order_list.append(drink)
+        #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
+        print("der counter ist bei: {}, hinzugefuegtes Getraenk in drink_lkist: {}".format(counter3, drink))
+    #loesche Array um neue Bestellung aufzunehmen
+    del drink_list
+
+    while True:
+        #führe ordermanager aus mit Bestellungsarray
+        if process == False:
+            orderManager(order_list)
+            print("Dein Getraenk wird nun aufgefuellt")
+            break
+        else:
+            time.sleep(3)
+            print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
 
 
 def enter(alc, misch):
