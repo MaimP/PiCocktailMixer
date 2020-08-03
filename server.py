@@ -80,13 +80,13 @@ def order():
         if drink_2 != 6:
             drink2 = request.forms.get('drink2')
             drink_list.append(drink2)
-            print("drink_list: hinzugefügtes Getraenk: {}".format(drink2)
+            print("drink_list: hinzugefügtes Getraenk: {}".format(drink2))
 #           mischv2 = request.forms.get('mischv2')
             number = number + 1
             if drink_3 != 6:
                 drink3 = request.forms.get('drink3')
                 drink_list.append(drink3)
-                print("drink_list: hinzugefügtes Getraenk: {}".format(drink3)
+                print("drink_list: hinzugefügtes Getraenk: {}".format(drink3))
     #           mischv3 = request.forms.get('mischv3')
                 number = number + 1
                 if drink_4 != 6:
