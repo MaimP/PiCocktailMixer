@@ -42,6 +42,7 @@ def order():
     drink_list = []
     #für warteschelife, zeigt an an welcher position deine Bestellung ist
     ordernumber_raw = 0
+    global ordernumber
     #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
     x = 0
     if len(order_list) > 0:
