@@ -119,12 +119,12 @@ def order():
 
 
     #schreibt bestellung in Array
-    counter3 = 0
+    counter3 = 1
     order_list.append(number)
     z = order_list[0]
     if counter3 <= z:
-        counter3 = counter3 + 1
         drink = drink_list[counter3]
+        counter3 = counter3 + 1
         #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
 #            drink = order_dict.values(counter3)
         #macht eine Liste mit den Getraenkenummer
