@@ -16,11 +16,6 @@ global hoehe
 global entfernung
 global progress
 
-global order_list
-order_list = []
-global drink_list
-drink_list = []
-
 @route('/static/:path#.+#', name='static')
 def static(path):
     return static_file(path, root='static')
@@ -40,6 +35,10 @@ def process():
     return "Dein Getraenk ist in Bearbeitung."
 
 def order():
+    global order_list
+    order_list = []
+    global drink_list
+    drink_list = []
     #für warteschelife, zeigt an an welcher position deine Bestellung ist
     ordernumber_raw = 0
     #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
