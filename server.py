@@ -18,6 +18,8 @@ global progress
 
 global order_list
 order_list = []
+global drink_list
+drink_list = []
 
 @route('/static/:path#.+#', name='static')
 def static(path):
