@@ -2,6 +2,8 @@
 #-*- coding:utf-8 -*-#
 import time
 import math
+import ultraschallsensor
+import pump
 
 class App:
     import ultraschallsensor
@@ -12,6 +14,7 @@ class App:
 
     def __init__(self, orderlist):
         self.order_list = orderlist
+        self.ultraschall_real = ultraschallsensor.real_distance()
         counter5 = 0
         t = len(self.order_list)
         for x in range(t):
@@ -21,7 +24,7 @@ class App:
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
-    def order():
+    def order(self):
         self.name = name
         #für warteschelife, zeigt an an welcher position deine Bestellung ist
         ordernumber_raw = 0
@@ -122,7 +125,7 @@ class App:
         #Bestellung in einem Array festhalten, immer
         #debug, ob ordernumber funktioniert
 #        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
-        self.startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
+        self.startHoehe = self.ultraschall_real #starthoehe für Glasgrösse
         self.fuellHoehe = 5
         self.glasHoehe = (startHoehe - 5)
         #Mischverhaeltnisse muessen noch auf mehrere Getraenke angepasst werden,
