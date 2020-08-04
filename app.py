@@ -134,7 +134,7 @@ class App:
         #erstemal bei zwei lassen
         global unroundA
         global unroundB
-        unroundA = self.startHoehe - (self.lasHoehe * (int(self.id_mischv)) / 100)
+        unroundA = self.startHoehe - (self.glasHoehe * (int(self.id_mischv)) / 100)
         unroundB = self.fuellHoehe
         self.fillA = round(unroundA, 2)
         self.fillB = round(unroundB, 2)
