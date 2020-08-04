@@ -72,7 +72,7 @@ def order():
     drink_6 = int(request.forms.get('drink6'))
 
     #muss auch noch in Array geschrieben werden
-    id_mischv = int(request.forms.get('Mischverhaeltnis'))
+    id_mischv = int(request.forms.get('mischverhaeltnis'))
     print("server: id_mischv: {}".format(id_mischv))
     if drink_1 != 6:
         drink1 = request.forms.get('drink1')
