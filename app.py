@@ -15,6 +15,7 @@ class App:
     def __init__(self, orderlist, id_mischv):
         self.order_list = orderlist
         self.id_mischv = id_mischv
+        print("App: id mischv: {}".format(self.id_mischv))
         self.ultraschall_first = ultraschallsensor.first_realDistance()
         counter5 = 0
         t = len(self.order_list)
