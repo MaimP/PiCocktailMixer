@@ -73,6 +73,7 @@ def order():
 
     #muss auch noch in Array geschrieben werden
     id_mischv = request.forms.get('mischverhaeltnis')
+    print("server: id_mischv: {}".format(id_mischv))
     if drink_1 != 6:
         drink1 = request.forms.get('drink1')
         drink_list.append(drink1)
