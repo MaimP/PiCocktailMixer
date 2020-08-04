@@ -12,9 +12,11 @@ class App:
     order_list = []
     drink_list = []
 
-    def __init__(self, orderlist):
+    def __init__(self, orderlist, id_mischv):
         self.order_list = orderlist
+        self.id_mischv = id_mischv
         self.ultraschall_real = ultraschallsensor.real_distance()
+        self.ultraschall_first = ultraschallsensor.first_realDistance()
         counter5 = 0
         t = len(self.order_list)
         for x in range(t):
@@ -127,13 +129,13 @@ class App:
 #        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
         self.startHoehe = self.ultraschall_real #starthoehe für Glasgrösse
         self.fuellHoehe = 5
-        self.glasHoehe = (startHoehe - 5)
+        self.glasHoehe = (self.startHoehe - 5)
         #Mischverhaeltnisse muessen noch auf mehrere Getraenke angepasst werden,
         #erstemal bei zwei lassen
         global unroundA
         global unroundB
-        unroundA = startHoehe - (glasHoehe * (int(id_mischv)) / 100)
-        unroundB = fuellHoehe
+        unroundA = self.startHoehe - (self.lasHoehe * (int(self.id_mischv)) / 100)
+        unroundB = self.fuellHoehe
         self.fillA = round(unroundA, 2)
         self.fillB = round(unroundB, 2)
 
@@ -156,17 +158,17 @@ class App:
         self.order_list.pop(1)
 #        self.order_list.pop(2)
 
-        actually = ultraschallsensor.real_distance()
-        fillUp = actually - (glasHoehe * (mischv / 100))
+        actually = self.ultraschall_real
+        fillUp = actually - (self.glasHoehe * (mischv / 100))
 
         zaehler = 0
         while True:
             if zaehler == 0:
-                entfernung = ultraschallsensor.first_realDistance()
+                entfernung = self.ultraschall_first
                 return entfernung
 
             else:
-                entfernung = ultraschallsensor.real_distance()
+                entfernung = self.ultraschall_real
                 return entfernung
 
             zaehler = zaehler + 1
