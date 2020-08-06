@@ -187,7 +187,7 @@ class App:
                 elif zustand:
                     aufgefuellt = self.startHoehe - hoehe
                     print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
-                    auffuellen = self.fillUp - aufgefuellt
+                    auffuellen = fillUp - aufgefuellt
                     print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
                     time.sleep(0.1)
 
