@@ -179,7 +179,7 @@ class App:
             print("die aktuelle Entfernung betraegt: {}".format(entfernung))
             if entfernung > fillUp:
                 hoehe = entfernung
-                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
+                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(self.fuellHoehe))
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillUp))
                 if zaehler == 1:
                     pump.startPump(drink) #alc gibt an welche pumpe gestartet wird
