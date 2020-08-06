@@ -142,7 +142,7 @@ class App:
         y = self.order_list[0]
         #fuehre methode zum satrten aller pumpen aus
         for x in range(y):
-            self.start(self)
+            self.start()
 
         self.order_list.pop(0)
         self.process = False
