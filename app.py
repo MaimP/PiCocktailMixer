@@ -166,12 +166,10 @@ class App:
         zaehler = 0
         while True:
             if zaehler == 0:
-                entfernung = self.first_realDistance
-                return entfernung
+                entfernung = ultraschallsensor.real_distance()
 
             else:
                 entfernung = ultraschallsensor.real_distance()
-                return entfernung
 
             zaehler = zaehler + 1
 #            progress = (startHoehe - entfernung) / glasHoehe * 100
