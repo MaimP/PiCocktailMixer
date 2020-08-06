@@ -159,7 +159,7 @@ class App:
 #        self.order_list.pop(2)
 
         actually = self.ultraschall_first
-        fillUp = actually - (self.glasHoehe * (mischv / 100))
+        fillUp = int(actually) - (int(self.glasHoehe) * (int(mischv) / 100))
         #bei zaehler == 0, erste richtige hoehe
         self.first_distance = ultraschallsensor.first_realDistance()
 
