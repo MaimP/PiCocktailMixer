@@ -135,7 +135,7 @@ def order():
             #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
             order_list.append(drink)
             #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
-            print("der counter ist bei: {}, hinzugefuegtes Getraenk in drink_lkist: {}".format(counter3, drink))
+            print("der counter ist bei: {}, hinzugefuegtes Getraenk in order_list: {}".format(counter3, drink))
             counter3 = counter3 + 1
 
         else:
