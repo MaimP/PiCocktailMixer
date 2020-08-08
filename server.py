@@ -14,17 +14,14 @@ global hoehe
 global entfernung
 global progress
 
-@route('/static/nouislider.css')
-def server_static(filename):
-    return static_file(filename, root='/static/nouislider.css')
-
-@route('/static/nouislider.js')
-def server_static(filename):
-    return static_file(filename, root='/static/nouislider.js')
+@route('/static/:path#.+#', name='static')
+def static(path):
+    return static_file(path, root='static')
 
 @route('/')
-def server_static(filepath="mdb.html"):
-    return static_file(filepath, root='./')
+@view('mdb')
+def mdb():
+    return { 'get_url': get_url }
 
 @post('/doform')
 def process():
