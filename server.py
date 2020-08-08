@@ -18,11 +18,15 @@ global progress
 def static(path):
     return static_file(path, root='static')
 
-@route('/')
-@view('mdb')
-def mdb():
-    return { 'get_url': get_url }
+#@route('/')
+#@route('mdb')
+#def mdb():
+#    return { 'get_url': get_url }
 
+@route('/')
+def server_static(filepath="mdb.html"):
+    return static_file(filepath, root='./')
+    
 @post('/doform')
 def process():
     order()
