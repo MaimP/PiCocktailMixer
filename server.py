@@ -18,15 +18,10 @@ global progress
 def static(path):
     return static_file(path, root='static')
 
-#@route('/')
-#@route('mdb')
-#def mdb():
-#    return { 'get_url': get_url }
-
 @route('/')
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
-    
+
 @post('/doform')
 def process():
     order()
@@ -118,6 +113,7 @@ def order():
         pass
 
 
+    #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
     #schreibt bestellung in Array
     counter3 = 0
     order_list.append(number)
@@ -126,10 +122,6 @@ def order():
     while True:
         if counter3 < z:
             drink = drink_list[counter3]
-            #gibt in Value(Getraenkenummer) aus, mit dem "Index" von Counter3
-    #            drink = order_dict.values(counter3)
-            #macht eine Liste mit den Getraenkenummer
-            #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
             order_list.append(drink)
             #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
             print("der counter ist bei: {}, hinzugefuegtes Getraenk in order_list: {}".format(counter3, drink))
@@ -141,123 +133,32 @@ def order():
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
-#    while True:
-#        #führe ordermanager aus mit Bestellungsarray
-#        if process == False:
     ap = app.App(order_list, id_mischv)
     ap.orderManager()
     print("nach app.app")
-#            print("Dein Getraenk wird nun aufgefuellt")
-#            break
-#        else:
-#            time.sleep(3)
-#            print("ein anderes Getraenk wird noch aufgefuellt, warte noch einen Augenblick")
 
+from bottle import request, Bottle, abort
+app = Bottle()
 
-def enter(alc, misch):
-    try:
+@app.route('/websocket')
+def handle_websocket():
+    wsock = request.environ.get('wsgi.websocket')
+    if not wsock:
+        abort(400, 'Expected WebSocket request.')
 
-        print(alc)
-        print(misch)
-        print("Die Starthoehe betraegt: {}".format(startHoehe))
-        print("test round: {}".format(fillA))
-        zaehler = 0
-        zaehler2 = 0
-        #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
-        #erst Alkohol dann
-        while True:
-            if zaehler == 0:
-                entfernung = ultraschallsensor.first_realDistance()
-                return entfernung
+    while True:
+        try:
+            message = wsock.receive()
+            wsock.send("Your message was: %r" % message)
+        except WebSocketError:
+            break
 
-            else:
-                entfernung = ultraschallsensor.real_distance()
-                return entfernung
+from gevent.pywsgi import WSGIServer
+from geventwebsocket import WebSocketError
+from geventwebsocket.handler import WebSocketHandler
+server = WSGIServer(("0.0.0.0", 8080), app,
+                    handler_class=WebSocketHandler)
+server.serve_forever()
 
-            zaehler = zaehler + 1
-#            progress = (startHoehe - entfernung) / glasHoehe * 100
-#            prog = int(progress)
-#            progress(prog)
-            print("while schleife durchfuehrung nummer: {}".format(zaehler))
-            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-            if entfernung > fillA:
-                hoehe = entfernung
-                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                if zaehler == 1:
-                    pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
-                    zustand = True
-
-                elif zustand:
-                    #debugging
-                    print("while schleife alkohol einfüllen")
-                    aufgefuellt = startHoehe - hoehe
-                    print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
-                    auffuellen = fillA - aufgefuellt
-                    print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
-                    time.sleep(0.1)
-
-                else:
-                    print("Die while Schleife hat keine passende if Anweisung.")
-
-            elif entfernung <= fillA:
-                pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                zustand == False
-                break
-
-            else:
-                print("while schleife auffuellen schief gelaufen.")
-                break
-
-        print("Das Einfuellen des Alkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
-
-        while True:
-            entfernung = ultraschallsensor.real_distance()
-
-            zaehler = zaehler + 1
-            print("while schleife durchfuehrung nummer: {}".format(zaehler))
-            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-            if entfernung > fillB:
-                hoehe = entfernung
-                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                print("Das Glas wird bis zu .. mit dem Mischgetraenk aufgefuellt: {}".format(fillB))
-                if zaehler2 == 0:
-                    zaehler2 = zaehler2 + 1
-                    pump.startPump(misch) #misch gibt an welche pumpe gestartet wird
-                    zustand = True
-
-                elif zustand:
-                    #debugging
-                    print("while schleife Mischgetraenk einfüllen")
-                    aufgefuellt = startHoehe - hoehe
-                    print("die aufgefüllte Menge an Getraenk beträgt insgesamt:{} cm".format(aufgefuellt))
-                    auffuellen = fillB - aufgefuellt
-                    print("Es muss noch insgesamt aufgefuellt werden: {} cm".format(auffuellen))
-                    time.sleep(0.1)
-
-                else:
-                    print("Die while Schleife hat keine passende if Anweisung.")
-
-            elif entfernung <= fillB:
-                pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                zustand == False
-                break
-
-            else:
-                print("while schleife auffuellen schief gelaufen.")
-                break
-
-    # Beim Abbruch durch STRG+C resetten
-    except KeyboardInterrupt:
-        print("Messung vom User gestoppt")
-        pump.stopPump()
-
-
-def progress(progr):
-    #progressbar in html über abstand
-    y = int(progr)
-    x = x + y
 
 run(host='192.168.178.72', reloader=True, port=8080, debug=True)
