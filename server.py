@@ -19,7 +19,7 @@ def static(path):
     return static_file(path, root='static')
 
 @route('/')
-@view('mdb')
+@route('mdb')
 def mdb():
     return { 'get_url': get_url }
 
