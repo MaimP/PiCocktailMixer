@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 #-*- coding:utf-8 -*-#
-from bottle import route, run
-from bottle import template
-from bottle import get, post, request # or route
-from bottle import static_file
+from bottle import route, run, static_file, get, post, request, template, Bottle, abort
 
 import ultraschallsensor
 import pump
@@ -17,18 +14,17 @@ global hoehe
 global entfernung
 global progress
 
-@route('/static/:path#.+#', name='static')
-def static(path):
-    return static_file(path, root='static')
+@route('/static/nouislider.css')
+def server_static(filename):
+    return static_file(filename, root='/static/nouislider.css')
+
+@route('/static/nouislider.js')
+def server_static(filename):
+    return static_file(filename, root='/static/nouislider.js')
 
 @route('/')
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
-
-@post('/process')
-def process():
-    getData()
-    return "Dein Getraenk ist in Bearbeitung."
 
 @post('/doform')
 def process():
