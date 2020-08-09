@@ -7,6 +7,10 @@ from time import sleep
 
 app = Bottle()
 
+@route('/')
+def server_static(filepath="websocket.html"):
+    return static_file(filepath, root='./')
+
 @app.route('/websocket')
 def handle_websocket():
     wsock = request.environ.get('wsgi.websocket')
@@ -20,9 +24,6 @@ def handle_websocket():
             wsock.send("Your message was: %r" % message)
         except WebSocketError:
             break
-@route('/')
-def server_static(filepath="websocket.html"):
-    return static_file(filepath, root='./')
 
 
 from gevent.pywsgi import WSGIServer
