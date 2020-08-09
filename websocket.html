@@ -11,4 +11,32 @@
     };
   </script>
 </head>
+<body>
+  <form method="post" action="/doform">
+      <select id="select_1" name="drink1">
+          <option value="0">Korn</option>
+          <option value="1">Bacardi</option>
+          <option value="2">Vodka</option>
+          <option value="3">Fanta</option>
+          <option value="4">Cola</option>
+          <option value="5">Sprite</option>
+          <option value="6" selected="">keins</option>
+      </select><br>
+          <select id="select_2" name="drink2">
+          <option value="0">Korn</option>
+          <option value="1">Bacardi</option>
+          <option value="2">Vodka</option>
+          <option value="3">Fanta</option>
+          <option value="4">Cola</option>
+          <option value="5">Sprite</option>
+          <option value="6" selected="">keins</option>
+      </select><br>
+
+      <input type="range" id="mischverhaeltnis" name="mischverhaeltnis"
+          min="0" max="100"
+      <label for="Mischverhaeltnis">Mischverhaeltnis</label>
+
+      <button type="submit">Bestellen</button>
+  </form>
+</body>
 </html>
