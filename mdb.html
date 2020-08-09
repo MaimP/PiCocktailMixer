@@ -15,7 +15,7 @@
 		</style>
 
 		<script type="text/javascript">
-			var ws = new WebSocket("ws://example.com:8080/websocket");
+			var ws = new WebSocket("ws://localhost:8080/websocket");
 			ws.onopen = function() {
 					ws.send("Hello, world");
 			};
@@ -23,7 +23,7 @@
 					alert(evt.data);
 			};
 		</script>
-		
+
 	</head>
 	<body>
 		<form method="post" action="/doform">
@@ -278,15 +278,6 @@
 			// Beim Laden der Seite erstmal 3 Getränke hinzufügen
 	//		setGetraenke(3);
 
-		</script>
-		<script type="text/javascript">
-			var ws = new WebSocket("ws://example.com:8080/websocket");
-			ws.onopen = function() {
-					ws.send("Hello, world");
-			};
-			ws.onmessage = function (evt) {
-					alert(evt.data);
-			};
 		</script>
 
 	</body>
