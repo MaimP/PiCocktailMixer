@@ -2,7 +2,6 @@
 
 import json
 from bottle import route, run, request, abort, Bottle ,static_file
-from pymongo import Connection
 from gevent import monkey; monkey.patch_all()
 from time import sleep
 
