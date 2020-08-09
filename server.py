@@ -17,7 +17,6 @@ global progress
 #!/usr/bin/python
 
 import json
-from pymongo import Connection
 from gevent import monkey; monkey.patch_all()
 from time import sleep
 
