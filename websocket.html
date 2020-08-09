@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+<html>
 <head>
   <script type="text/javascript">
-    var ws = new WebSocket("ws://localhost:8080/websocket");
+    var ws = new WebSocket("ws://example.com:8080/websocket");
     ws.onopen = function() {
         ws.send("Hello, world");
     };
@@ -10,6 +11,4 @@
     };
   </script>
 </head>
-<body>
-</body>
 </html>
