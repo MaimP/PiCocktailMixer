@@ -230,6 +230,7 @@
 				// Jetzt den Slider updaten
 				makeSlider(slider, numGetr);
 			}
+			var handleValues
 
 			function makeSlider(select, numPoints) {
 				// Wenn der Slider bereits initialisiert ist, die Handles zerstören
@@ -279,9 +280,8 @@
 							$('#messages').append('<li>WebSocket connection closed.</li>');
 					}
 					$('#send').submit(function() {
-						var values = select.noUiSlider.get();
 						for (let i = 0; i <= drinks; i++) {
-							ws.send(values[i]);
+							ws.send(handleValues[i]);
 						}
 		//					$('input:first').val('').focus();
 							return false;
