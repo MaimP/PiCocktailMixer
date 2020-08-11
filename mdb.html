@@ -36,7 +36,7 @@
 						}
 						$('#send').submit(function() {
 							for (let i = 0; i <= drinks; i++) {
-								ws.send(mult(i));
+								ws.send(handleValues[i]);
 							}
 			//					$('input:first').val('').focus();
 								return false;
