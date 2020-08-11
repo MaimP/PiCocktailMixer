@@ -20,9 +20,13 @@ from bottle import get, run, template
 from bottle.ext.websocket import GeventWebSocketServer
 from bottle.ext.websocket import websocket
 
-@get('/')
-def index():
-    return template('mdb')
+@route('/static/:path#.+#', name='static')
+def static(path):
+    return static_file(path, root='static')
+
+@route('/')
+def server_static(filepath="mdb.html"):
+    return static_file(filepath, root='./')
 
 @get('/websocket', apply=[websocket])
 def echo(ws):
@@ -33,13 +37,6 @@ def echo(ws):
             print(msg)
         else: break
 
-@route('/static/:path#.+#', name='static')
-def static(path):
-    return static_file(path, root='static')
-
-@route('/')
-def server_static(filepath="mdb.html"):
-    return static_file(filepath, root='./')
 
 @post('/doform')
 def process():
