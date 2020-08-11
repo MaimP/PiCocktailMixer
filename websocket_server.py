@@ -1,39 +1,17 @@
-#!/usr/bin/python
+from bottle import get, run, template
+from bottle.ext.websocket import GeventWebSocketServer
+from bottle.ext.websocket import websocket
 
-import json
-from bottle import route, run, request, abort, Bottle ,static_file
-from gevent import monkey; monkey.patch_all()
-from time import sleep
+@get('/')
+def index():
+    return template('index')
 
-app = Bottle()
-
-@route('/')
-def server_static(filepath="websocket.html"):
-    return static_file(filepath, root='./')
-
-@app.route('/websocket')
-def handle_websocket():
-    wsock = request.environ.get('wsgi.websocket')
-    if not wsock:
-        abort(400, 'Expected WebSocket request.')
+@get('/websocket', apply=[websocket])
+def echo(ws):
     while True:
-        try:
-            message = wsock.receive()
-            wsock.send("Your message was: %r" % message)
-            sleep(3)
-            wsock.send("Your message was: %r" % message)
-        except WebSocketError:
-            break
+        msg = ws.receive()
+        if msg is not None:
+            ws.send(msg)
+        else: break
 
-
-from gevent.pywsgi import WSGIServer
-from geventwebsocket import WebSocketError
-from geventwebsocket.handler import WebSocketHandler
-
-host = "192.168.178.72"
-port = 8080
-
-server = WSGIServer((host, port), app, reloader=True,
-                    handler_class=WebSocketHandler)
-print "access @ http://%s:%s/websocket.html" % (host,port)
-server.serve_forever()
+run(host='192.168.178.72', port=8080, server=GeventWebSocketServer)

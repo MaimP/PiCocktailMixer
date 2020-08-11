@@ -27,7 +27,7 @@ def distanz():
     GPIO.setup(GPIO_ECHO, GPIO.IN)
 
     now = time.time()
-    future = now + 1
+    future = now + 0.5
     # setze Trigger auf HIGH
     GPIO.output(GPIO_TRIGGER, True)
     # debug
