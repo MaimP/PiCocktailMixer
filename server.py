@@ -41,15 +41,7 @@ def echo(ws):
             ws.send(msg)
             print(msg)
             print("länge array: {}".format(len(mischv)))
-        else:
-            y = len(mischv)
-            counter_len = 0
-            print("else schleife")
-            for x in range(y):
-                print("mischv: {}".format(mischv[counter_len]))
-                counter_len = counter_len + 1
-
-            break
+        else: break
 
 
 @post('/doform')

@@ -283,8 +283,7 @@
 						for (let i = 0; i <= drinks; i++) {
 							ws.send(window.handleValues[i]);
 						}
-		//					$('input:first').val('').focus();
-							return false;
+							ws.onclose();
 					});
 			});
 	//		function selected() {
