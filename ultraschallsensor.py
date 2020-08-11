@@ -117,7 +117,7 @@ def return_distance():
             break
         else:
             print("x ist kleiner als null {}".format(x))
-            return
+            pass
 
 
 if __name__ == '__main__':
