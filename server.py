@@ -40,13 +40,14 @@ def echo(ws):
         if msg is not None:
             ws.send(msg)
             print(msg)
+            print("länge array: {}".format(len(mischv)))
         else:
-            len = len(mischv)
+            y = len(mischv)
             counter_len = 0
-            for x in range(len):
+            for x in range(y):
                 print("mischv: {}".format(mischv[counter_len]))
                 counter_len = counter_len + 1
-                
+
             break
 
 
