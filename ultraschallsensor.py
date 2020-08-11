@@ -113,7 +113,7 @@ def return_distance():
         x = distanz()
         if x > 1 and x < 20:
             break
-            return x 
+            return x
         else:
             pass
 
@@ -121,7 +121,7 @@ def return_distance():
 if __name__ == '__main__':
     try:
         while True:
-            abstand = distanz()
+            abstand = return_distance()
             print ("Gemessene Entfernung = %.1f cm" % abstand)
             time.sleep(1)
 
