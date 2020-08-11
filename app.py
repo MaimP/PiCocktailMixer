@@ -194,7 +194,7 @@ class App:
                 else:
                     print("Die while Schleife hat keine passende if Anweisung.")
 
-            elif entfernung <= self.fillUp:
+            elif entfernung <= fillUp:
                 pump.stopPump()
                 print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
                 zustand == False
