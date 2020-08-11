@@ -43,12 +43,12 @@ def distanz():
     # speichere Startzeit
     while GPIO.input(GPIO_ECHO) == 0:
         StartZeit = time.time()
-        print("echo == 0")
+    #    print("echo == 0")
 
     # speichere Ankunftszeit
     while GPIO.input(GPIO_ECHO) == 1:
         StopZeit = time.time()
-        print("echo == 1")
+    #    print("echo == 1")
 
     # Zeit Differenz zwischen Start und Ankunft
     TimeElapsed = StopZeit - StartZeit
