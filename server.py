@@ -14,6 +14,8 @@ global hoehe
 global entfernung
 global progress
 
+global mischv
+
 #!/usr/bin/python
 
 from bottle import get, run, template
@@ -30,12 +32,22 @@ def server_static(filepath="mdb.html"):
 
 @get('/websocket', apply=[websocket])
 def echo(ws):
+    counter_i = 0
+    mischv = []
     while True:
         msg = ws.receive()
+        mischv.append(msg)
         if msg is not None:
             ws.send(msg)
             print(msg)
-        else: break
+        else:
+            len = len(mischv)
+            counter_len = 0
+            for x in range(len):
+                print("mischv: {}".format(mischv[counter_len]))
+                counter_len = counter_len + 1
+                
+            break
 
 
 @post('/doform')
