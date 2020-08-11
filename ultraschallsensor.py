@@ -113,8 +113,8 @@ def return_distance():
         x = distanz()
         if x > 1:
             print("x ist größer als null, break {}".format(x))
-            break
             return x
+            break
         else:
             print("x ist kleiner als null {}".format(x))
             return
