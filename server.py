@@ -16,25 +16,22 @@ global progress
 
 #!/usr/bin/python
 
-import json
-from gevent import monkey; monkey.patch_all()
-from time import sleep
+from bottle import get, run, template
+from bottle.ext.websocket import GeventWebSocketServer
+from bottle.ext.websocket import websocket
 
-app = Bottle()
+@get('/')
+def index():
+    return template('mdb')
 
-@app.route('/websocket')
-def handle_websocket():
-    wsock = request.environ.get('wsgi.websocket')
-    if not wsock:
-        abort(400, 'Expected WebSocket request.')
+@get('/websocket', apply=[websocket])
+def echo(ws):
     while True:
-        try:
-            message = wsock.receive()
-            wsock.send("Your message was: %r" % message)
-            sleep(3)
-            wsock.send("Your message was: %r" % message)
-        except WebSocketError:
-            break
+        msg = ws.receive()
+        if msg is not None:
+            ws.send(msg)
+            print(msg)
+        else: break
 
 @route('/static/:path#.+#', name='static')
 def static(path):
@@ -160,18 +157,8 @@ def order():
     print("nach app.app")
 
 
-from gevent.pywsgi import WSGIServer
-from geventwebsocket import WebSocketError
-from geventwebsocket.handler import WebSocketHandler
 
-host = "192.168.178.72"
-port = 8080
 
-server = WSGIServer((host, port), app,
-                    handler_class=WebSocketHandler)
-print "access @ http://%s:%s/websocket.html" % (host,port)
-server.serve_forever()
-run(host='192.168.178.72', port=8080, reloader=True, server=GeventWebSocketServer)
-
+run(host='192.168.178.72', port=8080, server=GeventWebSocketServer)
 
 #run(host='192.168.178.72', reloader=True, port=8080, debug=True)

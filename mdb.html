@@ -14,19 +14,39 @@
 			}
 		</style>
 
-		<script type="text/javascript">
-			var ws = new WebSocket("ws://localhost:8080/websocket");
-			ws.onopen = function() {
-					ws.send("Hello, world");
-			};
-			ws.onmessage = function (evt) {
-					alert(evt.data);
-			};
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script>
+				$(document).ready(function() {
+						if (!window.WebSocket) {
+								if (window.MozWebSocket) {
+										window.WebSocket = window.MozWebSocket;
+								} else {
+										$('#messages').append("<li>Your browser doesn't support WebSockets.</li>");
+								}
+						}
+						ws = new WebSocket('ws://192.168.178.72:8080/websocket');
+						ws.onopen = function(evt) {
+								$('#messages').append('<li>WebSocket connection opened.</li>');
+						}
+	//					ws.onmessage = function(evt) {
+		//						$('#messages').append('<li>' + evt.data + '</li>');
+			//			}
+						ws.onclose = function(evt) {
+								$('#messages').append('<li>WebSocket connection closed.</li>');
+						}
+						$('#send').submit(function() {
+							for (let i = 0; i <= drinks; i++) {
+								ws.send(mult(i));
+							}
+			//					$('input:first').val('').focus();
+								return false;
+						});
+				});
 		</script>
 
 	</head>
 	<body>
-		<form method="post" action="/doform">
+		<form id="send" method="post" action="/doform">
 				<select id="select_1" name="drink1" onchange="select1()">
 						<option value="0">Korn</option>
 						<option value="1">Bacardi</option>
@@ -86,7 +106,7 @@
 		        min="0" max="100"
 		    <label for="Mischverhaeltnis">Mischverhaeltnis</label>
 
-				<button type="submit">Bestellen</button>
+				<button type="submit" value="Send">Bestellen</button>
 		</form>
 		<p id="demo"></p>
 		<p id="demo_one"></p>
