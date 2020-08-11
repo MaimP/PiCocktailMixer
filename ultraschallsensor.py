@@ -111,11 +111,11 @@ def real_distance():
 def return_distance():
     while True:
         x = distanz()
-        if x > 1 and x < 20:
+        if x > 1:
             break
             return x
         else:
-            pass
+            return
 
 
 if __name__ == '__main__':
