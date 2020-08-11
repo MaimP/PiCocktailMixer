@@ -112,9 +112,11 @@ def return_distance():
     while True:
         x = distanz()
         if x > 1:
+            print("x ist größer als null, break")
             break
             return x
         else:
+            print("x ist kleiner als null")
             return
 
 
