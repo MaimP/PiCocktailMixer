@@ -12,6 +12,7 @@ def echo(ws):
         msg = ws.receive()
         if msg is not None:
             ws.send(msg)
+            print(msg)
         else: break
 
 run(host='192.168.178.72', port=8080, server=GeventWebSocketServer)
