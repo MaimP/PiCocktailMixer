@@ -152,11 +152,10 @@ class App:
         #nach ausfuehren aller die Bestellung aus Array loeschen,
         #neueBestellung auf True setzten
         drink = self.order_list[1]  #Getraenkenummer
-        mischv = self.id_mischv #mischverhaeltnis muss noch in Array geschrieben werden
-#        mischv = self.order_list[2] #Mischverhaeltnis
+        mischv = self.order_list[2] #mischverhaeltnis muss noch in Array geschrieben werden
         #loesche Eintraege in Array
         self.order_list.pop(1)
-#        self.order_list.pop(2)
+        self.order_list.pop(2)
 
         actually = self.ultraschall_first
         fillUp = int(actually) - (int(self.glasHoehe) * (int(mischv) / 100))
