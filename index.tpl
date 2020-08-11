@@ -36,7 +36,7 @@
     </script>
 </head>
 <body>
-    <h2>Bottle Websockets!</h2>
+    <h2>Bottle Weebsockets!</h2>
     <form id="send" action='.'>
         <input type="text" value="message" />
         <input type="submit" value="Send" />
