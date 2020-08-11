@@ -108,7 +108,14 @@ def real_distance():
     distance = new_distancelist[0]
     return distance
     # [(1, 4), (2, 4), (3, 2)]
-
+def return_distance():
+    while True:
+        x = distanz()
+        if x > 1 and x < 20:
+            break
+            return x 
+        else:
+            pass
 
 
 if __name__ == '__main__':

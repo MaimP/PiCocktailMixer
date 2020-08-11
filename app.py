@@ -16,7 +16,7 @@ class App:
         self.order_list = orderlist
         self.id_mischv = id_mischv
         print("App: id mischv: {}".format(self.id_mischv))
-        self.ultraschall_first = ultraschallsensor.first_realDistance()
+        self.ultraschall_first = ultraschallsensor.return_distance()
         counter5 = 0
         t = len(self.order_list)
         for x in range(t):
@@ -161,15 +161,15 @@ class App:
         actually = self.ultraschall_first
         fillUp = int(actually) - (int(self.glasHoehe) * (int(mischv) / 100))
         #bei zaehler == 0, erste richtige hoehe
-        self.first_distance = ultraschallsensor.first_realDistance()
+        self.first_distance = ultraschallsensor.return_distance()
 
         zaehler = 0
         while True:
             if zaehler == 0:
-                entfernung = ultraschallsensor.real_distance()
+                entfernung = ultraschallsensor.return_distance()
 
             else:
-                entfernung = ultraschallsensor.real_distance()
+                entfernung = ultraschallsensor.return_distance()
 
             zaehler = zaehler + 1
 #            progress = (startHoehe - entfernung) / glasHoehe * 100

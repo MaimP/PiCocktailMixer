@@ -171,6 +171,7 @@ server = WSGIServer((host, port), app,
                     handler_class=WebSocketHandler)
 print "access @ http://%s:%s/websocket.html" % (host,port)
 server.serve_forever()
+run(host='192.168.178.72', port=8080, reloader=True, server=GeventWebSocketServer)
 
 
 #run(host='192.168.178.72', reloader=True, port=8080, debug=True)
