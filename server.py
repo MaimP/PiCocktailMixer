@@ -37,7 +37,7 @@ def echo(ws):
     mischv = []
     while True:
         msg = ws.receive()
-        value_1 = int(msg)
+        value_1 = float(msg)
         mischv.append(value_1)
         if msg is not None:
             ws.send(msg)
