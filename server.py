@@ -60,7 +60,7 @@ def order():
     #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
     x = 0
     if len(order_list) > 0:
-        x = order_list[0] + 1 #order_list[0] * 2, weil noc hmoischverhaeltnis reingeschrieben werden muss
+        x = (order_list[0] * 2) + 1 #order_list[0] * 2, weil noc hmoischverhaeltnis reingeschrieben werden muss
         ordernumber_raw = ordernumber_raw + 1
         while True:
             if x < len(order_list):
@@ -85,15 +85,13 @@ def order():
     drink_5 = int(request.forms.get('drink5'))
     drink_6 = int(request.forms.get('drink6'))
 
-    #muss auch noch in Array geschrieben werden
-    id_mischv = request.forms.get('mischverhaeltnis')
-    print("server: id_mischv: {}".format(id_mischv))
+
     if drink_1 != 6:
         drink1 = request.forms.get('drink1')
         drink_list.append(drink1)
         drink_list.append(mischv[1])
         number = number + 1
-        print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}".format(drink1, number))
+        print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
         if drink_2 != 6:
             drink2 = request.forms.get('drink2')
             drink_list.append(drink2)
@@ -139,7 +137,7 @@ def order():
     #schreibt bestellung in Array
     counter3 = 0
     order_list.append(number)
-    z = order_list[0]
+    z = order_list[0] * 2
     print("index 0: {}".format(z))
     while True:
         if counter3 < z:
