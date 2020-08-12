@@ -14,7 +14,7 @@ global hoehe
 global entfernung
 global progress
 
-global mischv
+global mischv = []
 
 #!/usr/bin/python
 
@@ -41,6 +41,8 @@ def echo(ws):
             ws.send(msg)
             print(msg)
             print("länge array: {}".format(len(mischv)))
+            value = mischv[counter_i]
+            print("in Array mischv: {}".format(value))
         else: break
 
 
