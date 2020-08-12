@@ -41,6 +41,7 @@ def echo(ws):
         value_2 = json.dumps(msg)
         value_1 = type(value_2)
         print(value_1)
+        print(int(value_2))
 #        value_3 = int(value_2)
         mischv.append(value_2)
         if msg is not None:
