@@ -40,6 +40,7 @@ def echo(ws):
         msg = ws.receive()
         value_2 = json.dumps(msg)
         value_1 = type(value_2)
+        print(value_1)
 #        value_3 = int(value_2)
         mischv.append(value_2)
         if msg is not None:
