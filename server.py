@@ -14,7 +14,8 @@ global hoehe
 global entfernung
 global progress
 
-global mischv = []
+global mischv
+mischv = []
 
 #!/usr/bin/python
 
