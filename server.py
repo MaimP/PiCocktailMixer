@@ -38,7 +38,7 @@ def echo(ws):
     mischv = []
     while True:
         msg = ws.receive()
-        value_2 = json.dumps(msg)
+        value_2 = json.loads(msg)
         value_1 = type(value_2)
         print(value_1)
         print(int(value_2))
