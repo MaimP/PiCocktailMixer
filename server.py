@@ -39,6 +39,7 @@ def echo(ws):
     while True:
         msg = ws.receive()
         value_2 = json.loads(msg)
+        print(type(value_2))
         value_1 = int(value_2)
         mischv.append(value_1)
         if msg is not None:
