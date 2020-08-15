@@ -35,6 +35,7 @@ def server_static(filepath="mdb.html"):
 @get('/websocket', apply=[websocket])
 def echo(ws):
     counter_i = 0
+    counter_debug = 0
     mischv = []
     while True:
         msg = ws.receive()
@@ -43,6 +44,8 @@ def echo(ws):
         value_1 = int(value_2)
         print("int float: {}".format(type(value_1)))
         mischv.append(value_1)
+        print("array, mischv: {}".format(mischv[counter_debug]))
+        counter_debug = counter_debug + 1
         if msg is not None:
             ws.send(msg)
             print(msg)
