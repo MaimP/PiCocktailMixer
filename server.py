@@ -52,7 +52,13 @@ def echo(ws):
             value = mischv[counter_i]
             print("in Array mischv: {}".format(value))
             counter_i = counter_i + 1
-        else: break
+        else:
+            counter_debug1 = 0
+            for x in range(len(mischv)):
+                 value = mischv[counter_debug1]
+                 print("debug vor schkleifen break, liste: {} ".format(value))
+                 counter_debug1 = counter_debug1 + 1
+            break
 
 
 @post('/doform')
