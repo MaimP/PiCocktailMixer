@@ -178,7 +178,7 @@ def order():
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
-    ap = app.App(order_list, id_mischv)
+    ap = app.App(order_list)
     ap.orderManager()
     print("nach app.app")
 

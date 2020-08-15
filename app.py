@@ -12,10 +12,8 @@ class App:
     order_list = []
     drink_list = []
 
-    def __init__(self, orderlist, id_mischv):
+    def __init__(self, orderlist):
         self.order_list = orderlist
-        self.id_mischv = id_mischv
-        print("App: id mischv: {}".format(self.id_mischv))
         self.ultraschall_first = ultraschallsensor.return_distance()
         counter5 = 0
         t = len(self.order_list)
