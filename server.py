@@ -36,7 +36,6 @@ def server_static(filepath="mdb.html"):
 def echo(ws):
     counter_i = 0
     counter_debug = 0
-    mischv = []
     while True:
         msg = ws.receive()
         value_2 = json.loads(msg)
