@@ -41,6 +41,7 @@ def echo(ws):
         value_2 = json.loads(msg)
         print(type(value_2))
         value_1 = int(value_2)
+        print("int float: {}".format(type(value_1)))
         mischv.append(value_1)
         if msg is not None:
             ws.send(msg)
