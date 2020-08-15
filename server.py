@@ -118,7 +118,7 @@ def order():
             value = mischv[1]
             drink_list.append(value)
             number = number + 1
-            print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number), mischv[2])
+            print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
             if drink_3 != 6:
                 drink3 = request.forms.get('drink3')
                 drink_list.append(drink3)
