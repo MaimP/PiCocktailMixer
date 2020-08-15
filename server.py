@@ -40,7 +40,6 @@ def echo(ws):
         msg = ws.receive()
         value_2 = json.loads(msg)
         value_1 = int(value_2)
-#        value_3 = int(value_2)
         mischv.append(value_1)
         if msg is not None:
             ws.send(msg)
@@ -48,6 +47,7 @@ def echo(ws):
             print("länge array: {}".format(len(mischv)))
             value = mischv[counter_i]
             print("in Array mischv: {}".format(value))
+            counter_i = counter_i + 1
         else: break
 
 
