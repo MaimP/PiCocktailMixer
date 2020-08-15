@@ -102,35 +102,41 @@ def order():
     if drink_1 != 6:
         drink1 = request.forms.get('drink1')
         drink_list.append(drink1)
-        drink_list.append(mischv[1])
+        value = mischv[1]
+        drink_list.append(value)
         number = number + 1
         print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
         if drink_2 != 6:
             drink2 = request.forms.get('drink2')
             drink_list.append(drink2)
-            drink_list.append(mischv[2])
+            value = mischv[1]
+            drink_list.append(value)
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}".format(drink2, number))
             if drink_3 != 6:
                 drink3 = request.forms.get('drink3')
                 drink_list.append(drink3)
-                drink_list.append(mischv[3])
+                value = mischv[1]
+                drink_list.append(value)
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}".format(drink3, number))
                 if drink_4 != 6:
                     drink4 = request.forms.get('drink4')
                     drink_list.append(drink4)
-                    drink_list.append(mischv[4])
+                    value = mischv[1]
+                    drink_list.append(value)
                     number = number + 1
                     if drink_5 != 6:
                         drink5 = request.forms.get('drink5')
                         drink_list.append(drink5)
-                        drink_list.append(mischv[5])
+                        value = mischv[1]
+                        drink_list.append(value)
                         number = number + 1
                         if drink_6 != 6:
                             drink6 = request.forms.get('drink6')
                             drink_list.append(drink6)
-                            drink_list.append(mischv[6])
+                            value = mischv[1]
+                            drink_list.append(value)
                             number = number + 1
                         else:
                             pass
