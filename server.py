@@ -59,6 +59,7 @@ def echo(ws):
 @post('/doform')
 def process():
     time.sleep(1)
+    print("vor order() mischv: {}".format(mischv[1]))
     order()
     return "Dein Getraenk ist in Bearbeitung."
 
