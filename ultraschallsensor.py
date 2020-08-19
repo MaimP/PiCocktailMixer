@@ -61,12 +61,6 @@ def distanz():
 
     return distanz
 
-def entfernung():
-    while True:
-        abstand = distanz()
-        return abstand
-        time.sleep(0.1)
-
 def first_realDistance():
     import collections
     from collections import Counter

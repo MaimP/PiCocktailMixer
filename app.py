@@ -196,6 +196,3 @@ class App:
                 print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
                 zustand == False
                 break
-
-    def getMischV():
-        pass

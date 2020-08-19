@@ -39,11 +39,8 @@ def echo(ws):
     while True:
         msg = ws.receive()
         value_2 = json.loads(msg)
-        print(type(value_2))
         value_1 = int(value_2)
-        print("int float: {}".format(type(value_1)))
         mischv.append(value_1)
-        print("array, mischv: {}".format(mischv[counter_debug]))
         counter_debug = counter_debug + 1
         if msg is not None:
             ws.send(msg)
@@ -53,18 +50,12 @@ def echo(ws):
             print("in Array mischv: {}".format(value))
             counter_i = counter_i + 1
         else:
-            counter_debug1 = 0
-            for x in range(len(mischv)):
-                 value = mischv[counter_debug1]
-                 print("debug vor schkleifen break, liste: {} ".format(value))
-                 counter_debug1 = counter_debug1 + 1
             break
 
 
 @post('/doform')
 def process():
     time.sleep(1)
-    print("vor order() mischv: {}".format(mischv[1]))
     order()
     return "Dein Getraenk ist in Bearbeitung."
 
@@ -163,7 +154,6 @@ def order():
     counter3 = 0
     order_list.append(number)
     z = order_list[0] * 2
-    print("index 0: {}".format(z))
     while True:
         if counter3 < z:
             drink = drink_list[counter3]
