@@ -107,7 +107,6 @@ class App:
                 print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillUp))
                 if zaehler == 1:
                     pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
-                    zustand = True
                 elif zustand:
                     aufgefuellt = self.startHoehe - hoehe
                     print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
@@ -121,5 +120,4 @@ class App:
             elif entfernung <= fillUp:
                 pump.stopPump()
                 print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                zustand == False
                 break
