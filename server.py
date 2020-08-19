@@ -14,6 +14,8 @@ global zustand
 global hoehe
 global entfernung
 global progress
+global enter
+enter = False
 
 global mischv
 mischv = []
@@ -59,15 +61,20 @@ def echo(ws):
                  print("debug vor schkleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
             break
+    enter = True
 
 
 @post('/doform')
 def process():
-    time.sleep(3)
-    print("vor order() mischv: {}".format(mischv[1]))
-    order()
-    return "Dein Getraenk ist in Bearbeitung."
-
+    while True:
+        if enter == True:
+            print("vor order() mischv: {}".format(mischv[1]))
+            order()
+            break
+            return "Dein Getraenk ist in Bearbeitung."
+        else:
+            pass
+    
 def order():
     global order_list
     order_list = []
