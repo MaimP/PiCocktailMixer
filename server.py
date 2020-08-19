@@ -73,7 +73,7 @@ def process():
             break
             return "Dein Getraenk ist in Bearbeitung."
         else:
-            pass
+            print("warte mit /doform")
     
 def order():
     global order_list
