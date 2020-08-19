@@ -18,7 +18,7 @@ class App:
         self.order_list = orderlist
         self.ultraschall_first = ultraschallsensor.real_distance() #Glashoehe
         self.process = True
-        self.fillup_time = x #muss ermittelt werden, zeit wieviel pro sekunde aufgefüllt wird 
+        self.fillup_time = 0.2 #muss ermittelt werden, zeit wieviel pro sekunde aufgefüllt wird 
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
