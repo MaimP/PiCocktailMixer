@@ -61,13 +61,6 @@ def distanz():
 
     return distanz
 
-def entfernung():
-    while True:
-        abstand = distanz()
-        return abstand
-        time.sleep(0.1)
-
-
 #Fehlmessungensvermeidung
 def real_distance():
     import collections
@@ -111,7 +104,7 @@ def return_distance():
 if __name__ == '__main__':
     try:
         while True:
-            abstand = return_distance()
+            abstand = real_distance()
             print ("Gemessene Entfernung = %.1f cm" % abstand)
             time.sleep(1)
 

@@ -74,7 +74,10 @@ def process():
             return "Dein Getraenk ist in Bearbeitung."
         else:
             print("warte mit /doform")
-    
+
+@post('/readycocktail')
+
+
 def order():
     global order_list
     order_list = []
@@ -165,7 +168,7 @@ def order():
         pass
 
 
-    #im Format: Anzahl der Getraenke, getraenk1, getraenk2, ...
+    #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, getraenk2, ...
     #schreibt bestellung in Array
     counter3 = 0
     order_list.append(number)
