@@ -69,7 +69,7 @@ def real_distance():
     #prüft ob Messung nicht wegen Zeitueberschreitunbg abgebrochen worden ist distanz()
     counterc = 0
     while True:
-        if counterc <= 100:
+        if counterc <= 50:
             d = distanz()
             if d > 1:
                 distance_list.append(d)
