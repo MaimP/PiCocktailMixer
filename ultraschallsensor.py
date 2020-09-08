@@ -70,7 +70,7 @@ def realDistance():
     counterc = 0
     while True:
         if counterc <= 50:
-            d = returnDistanz()
+            d = returnDistance()
             if d > 1:
                 distance_list.append(d)
                 counterc = counterc + 1
