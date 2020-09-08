@@ -62,24 +62,17 @@ def echo(ws):
                  print("debug vor schleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
             break
-    print("nach websocket while schleife")
-    enter = True
-    print("Enter:{} ".format(enter))
 
 
 @post('/doform')
 def process():
-    while True:
-        if enter == True:
-            try:
-                print("führe Try block aus")
-                return "Dein Getraenk ist in Bearbeitung."
-            finally:
-                print("führe finally block aus")
-                order()
-        else:
-            time.sleep(0.5)
-            print("warte auf enter == True; enter =:{}".format(enter))
+    time.sleep(2)
+    try:
+        print("führe Try block aus")
+        return "Dein Getraenk ist in Bearbeitung."
+    finally:
+        print("führe finally block aus")
+        order()
 
 #@post('/readycocktail')
 
