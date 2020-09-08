@@ -60,8 +60,8 @@ def echo(ws):
                  value = mischv[counter_debug1]
                  print("debug vor schkleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
+            enter = True
             break
-    enter = True
 
 
 @post('/doform')
