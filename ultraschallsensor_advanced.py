@@ -62,7 +62,7 @@ def distanz():
     return distanz
 
 #Fehlmessungensvermeidung
-def realDistance():
+def real_distance():
     import collections
     from collections import Counter
     distance_list = []
@@ -70,7 +70,7 @@ def realDistance():
     counterc = 0
     while True:
         if counterc <= 50:
-            d = return_distanz()
+            d = distanz()
             if d > 1:
                 distance_list.append(d)
                 counterc = counterc + 1
@@ -89,8 +89,35 @@ def realDistance():
     distance = new_distancelist[0]
     return distance
 
+def real_distance(start_time):
+    import collections
+    from collections import Counter
+    distance_list = []
+    #prüft ob Messung nicht wegen Zeitueberschreitunbg abgebrochen worden ist distanz()
+    counterc = 0
+    first_time = time.time() #entfernung debug
+    while True:
+        if counterc <= 50:
+            d = distanz()
+            if d > 1:
+                distance_list.append(d)
+                counterc = counterc + 1
+            else:
+                pass
 
-def returnDistance():
+            time.sleep(0.02) #maximal 50 Messungen pro sekunde
+        else:
+            break
+
+    counter=collections.Counter(distance_list)
+    print(counter)
+    mostcommon = counter.most_common(1)
+    print("die häufigste entfernung ist:{}".format(mostcommon))
+    new_distancelist = [item for items, c in Counter(distance_list).most_common() for item in [items] * c]
+    distance = new_distancelist[0]
+    return distance
+
+def return_distance():
     while True:
         x = distanz()
         if x > 1:

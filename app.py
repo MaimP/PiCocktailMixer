@@ -62,62 +62,31 @@ class App:
         zaehler = 0
         while True:
             if zaehler == 0:
-                entfernung = ultraschallsensor.real_distance()
+                entfernung = ultraschallsensor.realDistance()
                 last_distance.append(entfernung)
+                pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
             else:
-                #filtert falsche Messwerte aus
-                self.start_time = time.time() #erfasse startzeit, um entfernung zu berechnen
-                loop_counter = 0 #Schleifenzaehler fuer zu viele falsche Messungen
-                while True:
-                    print("start: anfang entfernungsvorgang")
-                    entfernung = ultraschallsensor.return_distance() #messe entfernung, wird ueberprueft ob richtig
-                    new_time = time.time() #messe neue Zeit, um meogl. aufgefuellte Menge zu berechnen
-                    elapsed = new_time - self.start_time #Zeitdifferenz
-                    possible_distance = elapsed * self.fillup_time #berechne neue moegl. Entfernung
-                    distance_length = len(last_distance) #erfasse laenge des arrays, um letzten Wert aus Array zu nehmen fuer berechnung
-                    distance_before = last_distance[distance_length - 1] #speichere die alte Entfernung
-                    distance_difference = distance_before - entfernung #differenz zwischen beiden Entfernungen
-                    if distance_difference * 0.80 <= possible_distance >= 1.2 * distance_difference: #prueft ob gemessene entfernung im Intervall liegt, Abweichung max. 20%
-                        print("entfernung liegt im Intervall")
-                        last_distance.append(entfernung)
-                        self.start_time = time.time() #erfasse neue Startzeit für naechste Messung
-                        return entfernung #Messung war korrekt, entfernung wird benutzt
-                        break
-                    else:
-                        loop_counter = loop_counter + 1 #zaehle wie oft Messung nicht im Toleranzbereich lag
-                        if loop_counter <= 7: #wenn Messung nicht oefter als 7 mal falsch war neue Messung
-                            print("start: else Schleife <= 7")
-                        else:
-                            pump.stopPump() #zu viele falsche Messungen
-                            entfernung = ultraschallsensor.real_distance() #stoppe Pumpen um neuen Startwert zu erfassen
-                            last_distance.append(entfernung)
-                            self.start_time = time.time() #erfasse neue Startzeit fuer naechste Messung
-                            return entfernung
-                            break
-
-
-
-            zaehler = zaehler + 1
-            print("while schleife durchfuehrung nummer: {}".format(zaehler))
-            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-            if entfernung > fillUp:
-                hoehe = entfernung
-                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(self.fuellHoehe))
-                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillUp))
-                if zaehler == 1:
-                    pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
-                elif zustand:
+                entfernung = ultraschallsensor.returnDistance()
+                zaehler = zaehler + 1
+                print("while schleife durchfuehrung nummer: {}".format(zaehler))
+                print("die aktuelle Entfernung betraegt: {}".format(entfernung))
+                if entfernung > fillUp:
+                    hoehe = entfernung
+                    print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(self.fuellHoehe))
+                    print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillUp))
                     aufgefuellt = self.startHoehe - hoehe
                     print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
                     auffuellen = fillUp - aufgefuellt
                     print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
                     time.sleep(0.1)
 
-                else:
-                    print("Die while Schleife hat keine passende if Anweisung.")
 
-            elif entfernung <= fillUp:
-                pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                break
+                elif entfernung <= fillUp:
+                    pump.stopPump()
+                    print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
+                    break
+
+                else:
+                    print("Fehler!")
+                    break
