@@ -65,6 +65,7 @@ class App:
                 entfernung = ultraschallsensor.realDistance()
                 last_distance.append(entfernung)
                 pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
+                zaehler = zaehler + 1
 
             else:
                 entfernung = ultraschallsensor.returnDistance()
