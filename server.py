@@ -64,14 +64,14 @@ def echo(ws):
             break
 
 
-'''@post('/doform')
-def process():
-    print("vor order() mischv: {}".format(mischv[1]))
-    order()
-    break
-    return "Dein Getraenk ist in Bearbeitung."
-'''
-'''@post('/readycocktail')'''
+#@post('/doform')
+#def process():
+#print("vor order() mischv: {}".format(mischv[1]))
+#order()
+#break
+#return "Dein Getraenk ist in Bearbeitung."
+
+#@post('/readycocktail')
 
 
 def order():
