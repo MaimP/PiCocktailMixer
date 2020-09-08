@@ -61,6 +61,7 @@ def echo(ws):
                  print("debug vor schleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
                  enter = True
+                 print("enter : {}".format(enter))
             break
 
 

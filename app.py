@@ -16,7 +16,7 @@ class App:
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
     def __init__(self, orderlist):
         self.order_list = orderlist
-        self.ultraschall_first = ultraschallsensor.real_distance() #Glashoehe
+        self.ultraschall_first = ultraschallsensor.realDistance() #Glashoehe
         self.process = True
         self.fillup_time = 0.2 #muss ermittelt werden, zeit wieviel pro sekunde aufgefüllt wird
 
