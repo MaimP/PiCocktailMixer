@@ -62,9 +62,9 @@ def echo(ws):
                  print("debug vor schleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
             break
-            print("nach websocket while schleife")
-            enter = True
-            print("Enter:{} ".format(enter))
+    print("nach websocket while schleife")
+    enter = True
+    print("Enter:{} ".format(enter))
 
 
 @post('/doform')
