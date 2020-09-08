@@ -70,6 +70,7 @@ class App:
             else:
                 entfernung = ultraschallsensor.returnDistance()
                 zaehler = zaehler + 1
+                print("Das Glas wird bis zu: {} aufgefuellt.".format(fillUp))
                 print("while schleife durchfuehrung nummer: {}".format(zaehler))
                 print("die aktuelle Entfernung betraegt: {}".format(entfernung))
                 if entfernung > fillUp:
