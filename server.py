@@ -58,24 +58,20 @@ def echo(ws):
             counter_debug1 = 0
             for x in range(len(mischv)):
                  value = mischv[counter_debug1]
-                 print("debug vor schkleifen break, liste: {} ".format(value))
+                 print("debug vor schleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
-            enter = True
-            break
-
-
-@post('/doform')
-def process():
-    while True:
-        if enter == True:
-            print("vor order() mischv: {}".format(mischv[1]))
             order()
             break
-            return "Dein Getraenk ist in Bearbeitung."
-        else:
-            print("warte mit /doform")
 
-@post('/readycocktail')
+
+'''@post('/doform')
+def process():
+    print("vor order() mischv: {}".format(mischv[1]))
+    order()
+    break
+    return "Dein Getraenk ist in Bearbeitung."
+'''
+'''@post('/readycocktail')'''
 
 
 def order():
