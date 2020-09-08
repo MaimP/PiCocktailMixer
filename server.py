@@ -60,16 +60,24 @@ def echo(ws):
                  value = mischv[counter_debug1]
                  print("debug vor schleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
+                 enter = True
             break
 
 
 @post('/doform')
 def process():
-    try:
-        return "Dein Getraenk ist in Bearbeitung."
-    finally:
-        order()
-        
+    while True:
+        if enter == True:
+            try:
+                print("führe Try block aus")
+                return "Dein Getraenk ist in Bearbeitung."
+            finally:
+                print("führe finally block aus")
+                order()
+        else:
+            time.sleep(0.5)
+            print("warte auf enter == True; enter =:{}".format(enter))
+
 #@post('/readycocktail')
 
 
