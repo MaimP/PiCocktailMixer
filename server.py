@@ -57,7 +57,7 @@ def echo(ws):
         else:
             print("test else")
             enter = True
-            print(Enter: {}.format(enter))
+            print("Enter: {}".format(enter))
             counter_debug1 = 0
             for x in range(len(mischv)):
                  value = mischv[counter_debug1]
