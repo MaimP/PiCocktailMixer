@@ -14,7 +14,6 @@ global zustand
 global hoehe
 global entfernung
 global progress
-global enter
 
 global mischv
 mischv = []
@@ -35,6 +34,7 @@ def server_static(filepath="mdb.html"):
 
 @get('/websocket', apply=[websocket])
 def echo(ws):
+    global enter
     enter = False
     counter_i = 0
     counter_debug = 0
