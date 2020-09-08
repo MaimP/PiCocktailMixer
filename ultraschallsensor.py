@@ -70,7 +70,7 @@ def realDistance():
     counterc = 0
     while True:
         if counterc <= 50:
-            d = return_distanz()
+            d = returnDistanz()
             if d > 1:
                 distance_list.append(d)
                 counterc = counterc + 1
@@ -105,7 +105,7 @@ def returnDistance():
 if __name__ == '__main__':
     try:
         while True:
-            abstand = real_distance()
+            abstand = realDistance()
             print ("Gemessene Entfernung = %.1f cm" % abstand)
             time.sleep(1)
 
