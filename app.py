@@ -81,7 +81,7 @@ class App:
                     print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
                     auffuellen = fillUp - aufgefuellt
                     print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
-                    time.sleep(0.1)
+                    time.sleep(0.2)
 
 
                 elif entfernung <= fillUp:
