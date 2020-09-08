@@ -66,7 +66,7 @@ def echo(ws):
 
 @post('/doform')
 def process():
-    time.sleep(2)
+    time.sleep(7)
     try:
         print("führe Try block aus")
         return "Dein Getraenk ist in Bearbeitung."
