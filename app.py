@@ -53,7 +53,7 @@ class App:
         mischv = self.order_list[2] #mischverhaeltnis muss noch in Array geschrieben werden
         #loesche Eintraege in Array
         self.order_list.pop(1)
-        self.order_list.pop(2)
+        self.order_list.pop(1)
 
         actually = self.ultraschall_first
         fillUp = int(actually) - (int(self.glasHoehe) * (int(mischv) / 100))
