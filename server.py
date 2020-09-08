@@ -66,10 +66,10 @@ def echo(ws):
 @post('/doform')
 def process():
     try:
-        order()
-    finally:
         return "Dein Getraenk ist in Bearbeitung."
-
+    finally:
+        order()
+        
 #@post('/readycocktail')
 
 
