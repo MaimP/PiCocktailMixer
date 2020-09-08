@@ -60,16 +60,15 @@ def echo(ws):
                  value = mischv[counter_debug1]
                  print("debug vor schleifen break, liste: {} ".format(value))
                  counter_debug1 = counter_debug1 + 1
-            order()
             break
 
 
-#@post('/doform')
-#def process():
-#print("vor order() mischv: {}".format(mischv[1]))
-#order()
-#break
-#return "Dein Getraenk ist in Bearbeitung."
+@post('/doform')
+def process():
+    try:
+        order()
+    finally:
+        return "Dein Getraenk ist in Bearbeitung."
 
 #@post('/readycocktail')
 
