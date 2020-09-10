@@ -40,8 +40,9 @@ def echo(ws):
     counter_debug = 0
     while True:
         msg = ws.receive()
+        print("vor Formatierung, Format json ist: {}".format(type(msg)))
         value_2 = json.loads(msg)
-        print(type(value_2))
+        print("Nach formatierung: {}".format(type(value_2)))
         value_1 = int(value_2)
         print("int float: {}".format(type(value_1)))
         mischv.append(value_1)
