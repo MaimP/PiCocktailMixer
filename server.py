@@ -54,15 +54,15 @@ def echo(ws):
             print("**10")
             break
 
+global drink_1
+global drink_2
+global drink_3
+global drink_4
+global drink_5
+global drink_6
 
 @post('/doform')
 def process():
-    global drink_1
-    global drink_2
-    global drink_3
-    global drink_4
-    global drink_5
-    global drink_6
     #geraenke auslesen und als int convertieren
     drink_1 = int(request.forms.get('drink1'))
     drink_2 = int(request.forms.get('drink2'))
@@ -104,40 +104,40 @@ def order():
     number = 0
 
     if drink_1 != 6:
-        drink1 = drink_1
+        drink1 = int(drink_1)
         drink_list.append(drink1)
         value = mischv[1]
         drink_list.append(value)
         number = number + 1
         print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
         if drink_2 != 6:
-            drink2 = drink_2
+            drink2 = int(drink_2)
             drink_list.append(drink2)
             value = mischv[2]
             drink_list.append(value)
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
             if drink_3 != 6:
-                drink3 = drink_3
+                drink3 = int(drink_3)
                 drink_list.append(drink3)
                 value = mischv[3]
                 drink_list.append(value)
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
                 if drink_4 != 6:
-                    drink4 = drink_4
+                    drink4 = int(drink_4)
                     drink_list.append(drink4)
                     value = mischv[4]
                     drink_list.append(value)
                     number = number + 1
                     if drink_5 != 6:
-                        drink5 = drink_5
+                        drink5 = int(drink_5)
                         drink_list.append(drink5)
                         value = mischv[5]
                         drink_list.append(value)
                         number = number + 1
                         if drink_6 != 6:
-                            drink6 = drink_6
+                            drink6 = int(drink_6)
                             drink_list.append(drink6)
                             value = mischv[6]
                             drink_list.append(value)
