@@ -162,15 +162,15 @@ def order():
         pass
 
 
-    #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, getraenk2, ...
+    #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, Mischv. 1, getraenk2, ...
     #schreibt bestellung in Array
-    counter3 = 0
     order_list.append(number)
     z = order_list[0] * 2
     print("index 0: {}".format(z))
 
-    for i in drink_list:
-        order_list.append(drink_list[int(i)])
+    for i in range(z):
+        print("i ist: {}".format(i))
+        order_list.append(drink_list[int(i - 1)])
 
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
