@@ -64,7 +64,7 @@ def process():
     while True:
         difference = time.time() - start_time
         print("difference: {}".format(difference))
-        if enter == True or difference > 8:
+        if enter == True or difference > 30:
             try:
                 print("führe Try block aus")
                 return "Dein Getraenk ist in Bearbeitung."
