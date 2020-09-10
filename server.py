@@ -60,9 +60,12 @@ def echo(ws):
 def process():
     while True:
         if enter == True:
-            print("führe order() aus")
-            order()
-            break
+            try:
+                return("Deine bestellung ist in Bearbeitung.")
+            finally:
+                print("führe order() aus")
+                order()
+                break
         else:
             time.sleep(0.5)
 
@@ -146,17 +149,17 @@ def order():
                             drink_list.append(value)
                             number = number + 1
                         else:
-                            return drink_list
+                            pass
                     else:
-                        return drink_list
+                        pass
                 else:
-                    return drink_list
+                    pass
             else:
-                return drink_list
+                pass
         else:
-            return drink_list
+            pass
     else:
-        return drink_list
+        pass
 
 
     #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, getraenk2, ...
