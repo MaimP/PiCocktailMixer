@@ -47,7 +47,7 @@ def echo(ws):
             mischv.append(value_1)
             print("**9")
             if value_1 == 100:
-                enter == True
+                enter = True
                 print("Enter: {}".format(enter))
             else:
                 pass
