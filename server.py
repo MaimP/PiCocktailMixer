@@ -63,14 +63,16 @@ global drink_6
 
 @post('/doform')
 def process():
-    #geraenke auslesen und als int convertieren
-    drink_1 = int(request.forms.get('drink1'))
-    drink_2 = int(request.forms.get('drink2'))
-    drink_3 = int(request.forms.get('drink3'))
-    drink_4 = int(request.forms.get('drink4'))
-    drink_5 = int(request.forms.get('drink5'))
-    drink_6 = int(request.forms.get('drink6'))
-    return("Deine bestellung ist in Bearbeitung.")
+    try:
+        #geraenke auslesen und als int convertieren
+        drink_1 = int(request.forms.get('drink1'))
+        drink_2 = int(request.forms.get('drink2'))
+        drink_3 = int(request.forms.get('drink3'))
+        drink_4 = int(request.forms.get('drink4'))
+        drink_5 = int(request.forms.get('drink5'))
+        drink_6 = int(request.forms.get('drink6'))
+    finally:
+        return("Deine bestellung ist in Bearbeitung.")
 
 #@post('/readycocktail')
 
