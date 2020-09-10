@@ -78,6 +78,14 @@ def process():
 
 
 def order():
+    #Debug, ob mischverhaeltnis richtig aufgenommen wurde
+    counter_debug1 = 0
+    for x in range(len(mischv)):
+         value = mischv[counter_debug1]
+         print("Array von Mischverhaeltnisse: {} ".format(value))
+         counter_debug1 = counter_debug1 + 1
+
+
     global order_list
     order_list = []
     global drink_list
@@ -124,47 +132,47 @@ def order():
         if drink_2 != 6:
             drink2 = request.forms.get('drink2')
             drink_list.append(drink2)
-            value = mischv[1]
+            value = mischv[2]
             drink_list.append(value)
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
             if drink_3 != 6:
                 drink3 = request.forms.get('drink3')
                 drink_list.append(drink3)
-                value = mischv[1]
+                value = mischv[3]
                 drink_list.append(value)
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
                 if drink_4 != 6:
                     drink4 = request.forms.get('drink4')
                     drink_list.append(drink4)
-                    value = mischv[1]
+                    value = mischv[4]
                     drink_list.append(value)
                     number = number + 1
                     if drink_5 != 6:
                         drink5 = request.forms.get('drink5')
                         drink_list.append(drink5)
-                        value = mischv[1]
+                        value = mischv[5]
                         drink_list.append(value)
                         number = number + 1
                         if drink_6 != 6:
                             drink6 = request.forms.get('drink6')
                             drink_list.append(drink6)
-                            value = mischv[1]
+                            value = mischv[6]
                             drink_list.append(value)
                             number = number + 1
                         else:
-                            pass
+                            return drink_list
                     else:
-                        pass
+                        return drink_list
                 else:
-                    pass
+                    return drink_list
             else:
-                pass
+                return drink_list
         else:
-            pass
+            return drink_list
     else:
-        pass
+        return drink_list
 
 
     #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, getraenk2, ...
