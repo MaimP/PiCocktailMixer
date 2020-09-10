@@ -46,22 +46,24 @@ def echo(ws):
             print("int float: {}".format(value_1))
             mischv.append(value_1)
             print("**9")
+            if value_1 == 100:
+                enter == True
+            else:
+                pass
         else:
             print("**10")
-            if counter_enter == 0:
-                print("Enter: {}".format(enter))
-                counter_enter = counter_enter + 1
-                break
-            else:
-                enter = True
-                print("Enter: {}".format(enter))
-                break
+            break
 
 
 @post('/doform')
 def process():
-    time.sleep(5)
-    print("führe order() aus")
+    while True:
+        if enter == True:
+            print("führe order() aus")
+            order()
+            break
+        else:
+            time.sleep(0.5)
 
 #@post('/readycocktail')
 
