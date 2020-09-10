@@ -45,7 +45,9 @@ def echo(ws):
             value_1 = int(json.loads(msg))
             print("int float: {}".format(value_1))
             mischv.append(value_1)
+            print("**9")
         else:
+            print("**10")
             if counter_enter == 0:
                 print("Enter: {}".format(enter))
                 counter_enter = counter_enter + 1
