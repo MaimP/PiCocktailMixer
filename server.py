@@ -35,6 +35,7 @@ def server_static(filepath="mdb.html"):
 
 @get('/websocket', apply=[websocket])
 def echo(ws):
+    counter_enter = 0
     global enter
     enter = False
     while True:
@@ -45,9 +46,14 @@ def echo(ws):
             print("int float: {}".format(value_1))
             mischv.append(value_1)
         else:
-            enter = True
-            print("Enter: {}".format(enter))
-            break
+            if counter_enter == 0:
+                print("Enter: {}".format(enter))
+                counter_enter = counter_enter + 1
+                break
+            else:
+                enter = True
+                print("Enter: {}".format(enter))
+                break
 
 
 @post('/doform')
