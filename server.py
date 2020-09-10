@@ -60,8 +60,11 @@ def echo(ws):
 
 @post('/doform')
 def process():
+    start_time = time.time()
     while True:
-        if enter == True:
+        difference = time.time() - start_time
+        print("difference: {}".format(difference))
+        if enter == True or difference > 8:
             try:
                 print("führe Try block aus")
                 return "Dein Getraenk ist in Bearbeitung."
