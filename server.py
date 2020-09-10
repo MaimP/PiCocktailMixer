@@ -68,8 +68,8 @@ def process():
             try:
                 print("führe Try block aus")
                 return "Dein Getraenk ist in Bearbeitung."
-                time.sleep(5)
             finally:
+                time.sleep(5)
                 print("führe finally block aus")
                 order()
                 break
