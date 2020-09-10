@@ -170,7 +170,7 @@ def order():
     print("index 0: {}".format(z))
 
     for i in drink_list:
-        order_list.append(drink_list[i])
+        order_list.append(drink_list[int(i)])
 
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
