@@ -47,8 +47,7 @@ def echo(ws):
             mischv.append(value_1)
             print("**9")
             if value_1 == 100:
-                enter = True
-                print("Enter: {}".format(enter))
+                order()
             else:
                 pass
         else:
@@ -58,16 +57,7 @@ def echo(ws):
 
 @post('/doform')
 def process():
-    while True:
-        if enter == True:
-            try:
-                return("Deine bestellung ist in Bearbeitung.")
-            finally:
-                print("führe order() aus")
-                order()
-                break
-        else:
-            time.sleep(0.5)
+    return("Deine bestellung ist in Bearbeitung.")
 
 #@post('/readycocktail')
 
