@@ -48,6 +48,7 @@ def echo(ws):
             print("**9")
             if value_1 == 100:
                 enter == True
+                print("Enter: {}".format(enter))
             else:
                 pass
         else:
