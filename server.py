@@ -42,51 +42,32 @@ def echo(ws):
         msg = ws.receive()
         if msg is not None:
             ws.send(msg)
-            print("vor Formatierung, Format json ist: {}".format(type(msg)))
-            value_2 = json.loads(msg)
-            print("Nach formatierung: {}".format(type(value_2)))
-            value_1 = int(value_2)
+            value_1 = int(json.loads(msg))
             print("int float: {}".format(type(value_1)))
             mischv.append(value_1)
-            print("array, mischv: {}".format(mischv[counter_debug]))
-            counter_debug = counter_debug + 1
-            print(msg)
-            print("länge array: {}".format(len(mischv)))
-            value = mischv[counter_i]
-            print("in Array mischv: {}".format(value))
-            counter_i = counter_i + 1
         else:
+            enter = True
             print("Enter: {}".format(enter))
-            counter_debug1 = 0
-            for x in range(len(mischv)):
-                 value = mischv[counter_debug1]
-                 print("debug vor schleifen break, liste: {} ".format(value))
-                 counter_debug1 = counter_debug1 + 1
             break
 
 
 @post('/doform')
 def process():
-    time.sleep(7)
-    try:
-        print("führe Try block aus")
-        return "Dein Getraenk ist in Bearbeitung."
-    finally:
-        print("führe finally block aus")
-        order()
+    while True:
+        if enter == True:
+            try:
+                print("führe Try block aus")
+                return "Dein Getraenk ist in Bearbeitung."
+            finally:
+                print("führe finally block aus")
+                order()
+        else:
+            time.sleep(0.5)
 
 #@post('/readycocktail')
 
 
 def order():
-    #Debug, ob mischverhaeltnis richtig aufgenommen wurde
-    counter_debug1 = 0
-    for x in range(len(mischv)):
-         value = mischv[counter_debug1]
-         print("Array von Mischverhaeltnisse: {} ".format(value))
-         counter_debug1 = counter_debug1 + 1
-
-
     global order_list
     order_list = []
     global drink_list
@@ -182,16 +163,9 @@ def order():
     order_list.append(number)
     z = order_list[0] * 2
     print("index 0: {}".format(z))
-    while True:
-        if counter3 < z:
-            drink = drink_list[counter3]
-            order_list.append(drink)
-            #debug, wie range zaehlt, ob bei 0 oder 1 anfaengt und ob alles funkt.
-            print("der counter ist bei: {}, hinzugefuegtes Getraenk in order_list: {}".format(counter3, drink))
-            counter3 = counter3 + 1
-
-        else:
-            break
+    
+    for i in drink_list:
+        order_list.append(drink_list[i])
 
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
