@@ -36,14 +36,12 @@ def server_static(filepath="mdb.html"):
 def echo(ws):
     global enter
     enter = False
-    counter_i = 0
-    counter_debug = 0
     while True:
         msg = ws.receive()
         if msg is not None:
             ws.send(msg)
             value_1 = int(json.loads(msg))
-            print("int float: {}".format(type(value_1)))
+            print("int float: {}".format(value_1))
             mischv.append(value_1)
         else:
             enter = True
@@ -61,6 +59,7 @@ def process():
             finally:
                 print("führe finally block aus")
                 order()
+                break
         else:
             time.sleep(0.5)
 
@@ -163,7 +162,7 @@ def order():
     order_list.append(number)
     z = order_list[0] * 2
     print("index 0: {}".format(z))
-    
+
     for i in drink_list:
         order_list.append(drink_list[i])
 
