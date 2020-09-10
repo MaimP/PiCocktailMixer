@@ -8,6 +8,7 @@ import RPi.GPIO as GPIO
 import time
 import app
 import json
+import hanging_threads
 global ap
 
 global zustand
