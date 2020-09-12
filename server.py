@@ -72,28 +72,28 @@ def echo(ws):
 
 @post('/doform')
 def process():
-    print("**11")
-    try:
-        print("**12")
-        global drink_1
-        global drink_2
-        global drink_3
-        global drink_4
-        global drink_5
-        global drink_6
-        #geraenke auslesen und als int convertieren
-        drink_1 = int(request.forms.get('drink1'))
-        drink_2 = int(request.forms.get('drink2'))
-        drink_3 = int(request.forms.get('drink3'))
-        drink_4 = int(request.forms.get('drink4'))
-        drink_5 = int(request.forms.get('drink5'))
-        drink_6 = int(request.forms.get('drink6'))
-    finally:
-        print("**13")
-        #warte auf ausführung danach thread in websocket ausfuehren
-        result_available.set()
-        print("**14")
-        return("Deine bestellung ist in Bearbeitung.")
+#    print("**11")
+#    try:
+    print("**12")
+    global drink_1
+    global drink_2
+    global drink_3
+    global drink_4
+    global drink_5
+    global drink_6
+    #geraenke auslesen und als int convertieren
+    drink_1 = int(request.forms.get('drink1'))
+    drink_2 = int(request.forms.get('drink2'))
+    drink_3 = int(request.forms.get('drink3'))
+    drink_4 = int(request.forms.get('drink4'))
+    drink_5 = int(request.forms.get('drink5'))
+    drink_6 = int(request.forms.get('drink6'))
+#    finally:
+#        print("**13")
+#        #warte auf ausführung danach thread in websocket ausfuehren
+    result_available.set()
+#        print("**14")
+#        return("Deine bestellung ist in Bearbeitung.")
 #@post('/readycocktail')
 
 
