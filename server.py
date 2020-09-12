@@ -84,6 +84,7 @@ def process():
     drink_4 = int(request.forms.get('drink4'))
     drink_5 = int(request.forms.get('drink5'))
     drink_6 = int(request.forms.get('drink6'))
+    print("drink1: …{}".format(drink_1))
 #    finally:
 #        print("**13")
 #        #warte auf ausführung danach thread in websocket ausfuehren
