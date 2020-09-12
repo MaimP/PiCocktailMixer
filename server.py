@@ -9,6 +9,7 @@ import time
 import app
 import json
 import hanging_threads
+import threading
 global ap
 
 global zustand
@@ -33,6 +34,10 @@ def static(path):
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
 
+global enter
+enter = None #fuer Thread
+result_available = threading.Event() #fuer Thread
+
 @get('/websocket', apply=[websocket])
 def echo(ws):
     global enter
@@ -47,14 +52,13 @@ def echo(ws):
             mischv.append(value_1)
             print("**9")
             if value_1 == 100:
-                print("**13")
-                while True:
-                    if enter == True:
-                        print("**14")
-                        order()
-                        break
-                    else:
-                        time.sleep(0.5)
+                print("**15")
+                thread = threading.Thread(target=process)
+                thread.start()
+
+                result_available.wait()
+                print("**16")
+                order()
             else:
                 pass
         else:
@@ -79,10 +83,12 @@ def process():
         drink_4 = int(request.forms.get('drink4'))
         drink_5 = int(request.forms.get('drink5'))
         drink_6 = int(request.forms.get('drink6'))
-        enter = True
     finally:
+        print("13")
+        #warte auf ausführung danach thread in websocket ausfuehren
+        result_available.set()
+        print("14")
         return("Deine bestellung ist in Bearbeitung.")
-
 #@post('/readycocktail')
 
 
