@@ -47,8 +47,10 @@ def echo(ws):
             mischv.append(value_1)
             print("**9")
             if value_1 == 100:
+                print("**13")
                 while True:
                     if enter == True:
+                        print("**14")
                         order()
                         break
                     else:
@@ -67,7 +69,9 @@ def process():
     global drink_4
     global drink_5
     global drink_6
+    print("**11")
     try:
+        print("**12")
         #geraenke auslesen und als int convertieren
         drink_1 = int(request.forms.get('drink1'))
         drink_2 = int(request.forms.get('drink2'))
