@@ -48,7 +48,7 @@ result_available = threading.Event() #fuer Thread
 def process():
     print("**11")
     order = request.body
-    print(type(order))
+    print(order.read())
 #    print(order)
 #@post('/readycocktail')
 
