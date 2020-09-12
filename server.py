@@ -35,6 +35,8 @@ def server_static(filepath="mdb.html"):
 
 @get('/websocket', apply=[websocket])
 def echo(ws):
+    global enter
+    enter = False
     counter_enter = 0
     while True:
         msg = ws.receive()
@@ -59,8 +61,6 @@ def echo(ws):
 
 @post('/doform')
 def process():
-    global enter
-    enter = False
     global drink_1
     global drink_2
     global drink_3
