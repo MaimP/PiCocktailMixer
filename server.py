@@ -46,6 +46,7 @@ result_available = threading.Event() #fuer Thread
 
 @post('/doform')
 def process():
+    global order
     print("**11")
     order = json.load(request.body)
     print(order)
@@ -81,43 +82,43 @@ def order():
     #Variabel für Anzahl der getraenke pro Bestelleung
     number = 0
 
-    if drink_1 != 6:
-        drink1 = int(drink_1)
+    if order.getraenke[0] != 6:
+        drink1 = int(order.getraenke[0])
         drink_list.append(drink1)
-        value = mischv[1]
+        value = int(order.verhaeltnis[0])
         drink_list.append(value)
         number = number + 1
         print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
-        if drink_2 != 6:
-            drink2 = int(drink_2)
+        if order.getraenke[1] != 6:
+            drink2 = int(order.getraenke[1])
             drink_list.append(drink2)
-            value = mischv[2]
+            value = int(order.verhaeltnis[1])
             drink_list.append(value)
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
-            if drink_3 != 6:
-                drink3 = int(drink_3)
+            if order.getraenke[2] != 6:
+                drink3 = int(order.getraenke[2])
                 drink_list.append(drink3)
-                value = mischv[3]
+                value = int(order.verhaeltnis[2])
                 drink_list.append(value)
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
-                if drink_4 != 6:
-                    drink4 = int(drink_4)
+                if order.getraenke[3] != 6:
+                    drink4 = int(order.getraenke[3])
                     drink_list.append(drink4)
-                    value = mischv[4]
+                    value = int(order.verhaeltnis[3])
                     drink_list.append(value)
                     number = number + 1
-                    if drink_5 != 6:
-                        drink5 = int(drink_5)
+                    if order.getraenke[4] != 6:
+                        drink5 = int(order.getraenke[4])
                         drink_list.append(drink5)
-                        value = mischv[5]
+                        value = int(order.verhaeltnis[4])
                         drink_list.append(value)
                         number = number + 1
-                        if drink_6 != 6:
-                            drink6 = int(drink_6)
+                        if order.getraenke[5] != 6:
+                            drink6 = int(order.getraenke[5])
                             drink_list.append(drink6)
-                            value = mischv[6]
+                            value = int(order.verhaeltnis[5])
                             drink_list.append(value)
                             number = number + 1
                         else:
@@ -144,6 +145,7 @@ def order():
         print("i ist: {}".format(i))
         order_list.append(drink_list[int(i - 1)])
 
+    print("order_list Array: {}".format(order_list))
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
