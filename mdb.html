@@ -275,7 +275,8 @@
 					getraenke: [a, b, c, d, e, f],
 					verhaeltnis: window.handleValues
 				}
-				$.post('/doform', order)
+
+				$.post('/doform', JSON.stringify(order))
 			}
 
 			$(document).ready(function() {
