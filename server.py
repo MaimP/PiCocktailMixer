@@ -50,6 +50,7 @@ def process():
     print("**11")
     order = json.load(request.body)
     print(order)
+    order()
 #    print(order)
 #@post('/readycocktail')
 
