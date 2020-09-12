@@ -26,12 +26,12 @@ from bottle import get, run, template
 from bottle.ext.websocket import GeventWebSocketServer
 from bottle.ext.websocket import websocket
 
-drink_1
-drink_2
-drink_3
-drink_4
-drink_5
-drink_6
+drink_1 = None
+drink_2 = None
+drink_3 = None
+drink_4 = None
+drink_5 = None
+drink_6 = None
 
 @route('/static/:path#.+#', name='static')
 def static(path):
