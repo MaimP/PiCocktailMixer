@@ -36,8 +36,6 @@ def server_static(filepath="mdb.html"):
 @get('/websocket', apply=[websocket])
 def echo(ws):
     counter_enter = 0
-    global enter
-    enter = False
     while True:
         msg = ws.receive()
         if msg is not None:
@@ -47,22 +45,28 @@ def echo(ws):
             mischv.append(value_1)
             print("**9")
             if value_1 == 100:
-                order()
+                while True:
+                    if enter == True:
+                        order()
+                        break
+                    else:
+                        time.sleep(0.5)
             else:
                 pass
         else:
             print("**10")
             break
 
-global drink_1
-global drink_2
-global drink_3
-global drink_4
-global drink_5
-global drink_6
-
 @post('/doform')
 def process():
+    global enter
+    enter = False
+    global drink_1
+    global drink_2
+    global drink_3
+    global drink_4
+    global drink_5
+    global drink_6
     try:
         #geraenke auslesen und als int convertieren
         drink_1 = int(request.forms.get('drink1'))
@@ -71,6 +75,7 @@ def process():
         drink_4 = int(request.forms.get('drink4'))
         drink_5 = int(request.forms.get('drink5'))
         drink_6 = int(request.forms.get('drink6'))
+        enter = True
     finally:
         return("Deine bestellung ist in Bearbeitung.")
 
