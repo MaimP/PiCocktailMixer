@@ -43,7 +43,7 @@ def server_static(filepath="mdb.html"):
 
 result_available = threading.Event() #fuer Thread
 
-@get('/websocket', apply=[websocket])
+'''@get('/websocket', apply=[websocket])
 def echo(ws):
     global enter
     enter = False
@@ -70,7 +70,7 @@ def echo(ws):
                 pass
         else:
             print("**10")
-            break
+            break'''
 
 @post('/doform')
 def process():
