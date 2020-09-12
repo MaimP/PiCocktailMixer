@@ -43,39 +43,12 @@ def server_static(filepath="mdb.html"):
 
 result_available = threading.Event() #fuer Thread
 
-@get('/websocket', apply=[websocket])
-def echo(ws):
-    global enter
-    enter = False
-    counter_enter = 0
-    while True:
-        msg = ws.receive()
-        if msg is not None:
-            ws.send(msg)
-            value_1 = int(json.loads(msg))
-            print("int float: {}".format(value_1))
-            mischv.append(value_1)
-            print("**9")
-            if value_1 == 100:
-                print("**15")
-                thread = threading.Thread(target=process)
-                thread.start()
-
-                thread.join()
-
-#                result_available.wait()
-                print("**16")
-                order()
-            else:
-                pass
-        else:
-            print("**10")
-            break
 
 @post('/doform')
 def process():
     print("**11")
-    print(request.body)
+    order = json.load(request.body.read())
+    print(oprder)
 #@post('/readycocktail')
 
 
