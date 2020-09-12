@@ -48,7 +48,7 @@ result_available = threading.Event() #fuer Thread
 def process():
     print("**11")
     order = json.load(request.body
-    print(oprder)
+    print(order)
 #@post('/readycocktail')
 
 
