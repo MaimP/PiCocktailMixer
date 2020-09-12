@@ -26,6 +26,13 @@ from bottle import get, run, template
 from bottle.ext.websocket import GeventWebSocketServer
 from bottle.ext.websocket import websocket
 
+drink_1
+drink_2
+drink_3
+drink_4
+drink_5
+drink_6
+
 @route('/static/:path#.+#', name='static')
 def static(path):
     return static_file(path, root='static')
@@ -34,8 +41,6 @@ def static(path):
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
 
-global enter
-enter = None #fuer Thread
 result_available = threading.Event() #fuer Thread
 
 @get('/websocket', apply=[websocket])
@@ -67,15 +72,15 @@ def echo(ws):
 
 @post('/doform')
 def process():
-    global drink_1
-    global drink_2
-    global drink_3
-    global drink_4
-    global drink_5
-    global drink_6
     print("**11")
     try:
         print("**12")
+        global drink_1
+        global drink_2
+        global drink_3
+        global drink_4
+        global drink_5
+        global drink_6
         #geraenke auslesen und als int convertieren
         drink_1 = int(request.forms.get('drink1'))
         drink_2 = int(request.forms.get('drink2'))
@@ -84,10 +89,10 @@ def process():
         drink_5 = int(request.forms.get('drink5'))
         drink_6 = int(request.forms.get('drink6'))
     finally:
-        print("13")
+        print("**13")
         #warte auf ausführung danach thread in websocket ausfuehren
         result_available.set()
-        print("14")
+        print("**14")
         return("Deine bestellung ist in Bearbeitung.")
 #@post('/readycocktail')
 
