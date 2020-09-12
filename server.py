@@ -77,12 +77,6 @@ def process():
 #    print("**11")
 #    try:
     print("**12")
-    global drink_1
-    global drink_2
-    global drink_3
-    global drink_4
-    global drink_5
-    global drink_6
     #geraenke auslesen und als int convertieren
     drink_1 = int(request.forms.get('drink1'))
     drink_2 = int(request.forms.get('drink2'))
