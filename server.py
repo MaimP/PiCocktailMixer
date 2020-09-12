@@ -61,7 +61,9 @@ def echo(ws):
                 thread = threading.Thread(target=process)
                 thread.start()
 
-                result_available.wait()
+                thread.join()
+
+#                result_available.wait()
                 print("**16")
                 order()
             else:
@@ -91,7 +93,7 @@ def process():
 #    finally:
 #        print("**13")
 #        #warte auf ausführung danach thread in websocket ausfuehren
-    result_available.set()
+#    result_available.set()
 #        print("**14")
 #        return("Deine bestellung ist in Bearbeitung.")
 #@post('/readycocktail')
