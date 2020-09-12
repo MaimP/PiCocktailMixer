@@ -43,7 +43,7 @@ def server_static(filepath="mdb.html"):
 
 result_available = threading.Event() #fuer Thread
 
-'''@get('/websocket', apply=[websocket])
+@get('/websocket', apply=[websocket])
 def echo(ws):
     global enter
     enter = False
@@ -70,27 +70,12 @@ def echo(ws):
                 pass
         else:
             print("**10")
-            break'''
+            break
 
 @post('/doform')
 def process():
-#    print("**11")
-#    try:
-    print("**12")
-    #geraenke auslesen und als int convertieren
-    drink_1 = int(request.forms.get('drink1'))
-    drink_2 = int(request.forms.get('drink2'))
-    drink_3 = int(request.forms.get('drink3'))
-    drink_4 = int(request.forms.get('drink4'))
-    drink_5 = int(request.forms.get('drink5'))
-    drink_6 = int(request.forms.get('drink6'))
-    print("drink1: …{}".format(drink_1))
-#    finally:
-#        print("**13")
-#        #warte auf ausführung danach thread in websocket ausfuehren
-#    result_available.set()
-#        print("**14")
-#        return("Deine bestellung ist in Bearbeitung.")
+    print("**11")
+    print(request.body)
 #@post('/readycocktail')
 
 
