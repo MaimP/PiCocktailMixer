@@ -51,7 +51,7 @@ def process():
     global bestellung
     bestellung = json.load(request.body)
     print(bestellung)
-    print("test dictionary. getraenke: {}".format(bestellung.get(getraenke)))
+    print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
     order()
 #    print(order)
 #@post('/readycocktail')
