@@ -49,7 +49,7 @@ def process():
     global order
     print("**11")
     global bestellung
-    bestellung = json.load(request.body)
+    bestellung = json.loads(request.body)
     print(bestellung)
     order()
 #    print(order)
