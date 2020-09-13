@@ -50,6 +50,7 @@ def process():
     print("**11")
     order = json.load(request.body)
     print(order)
+    global order
     order()
 #    print(order)
 #@post('/readycocktail')
@@ -60,14 +61,17 @@ def order():
     order_list = []
     global drink_list
     drink_list = []
+    print("**drinklist")
     #für warteschelife, zeigt an an welcher position deine Bestellung ist
     ordernumber_raw = 0
     global ordernumber
     #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
     x = 0
+    print("**12")
     if len(order_list) > 0:
         x = (order_list[0] * 2) + 1 #order_list[0] * 2, weil noc hmoischverhaeltnis reingeschrieben werden muss
         ordernumber_raw = ordernumber_raw + 1
+        print("**13")
         while True:
             if x < len(order_list):
                 x = x + order_list[x] + 1
@@ -77,11 +81,13 @@ def order():
                 print("Deine Bestellung ist an Position: {}".format(ordernumber))
                 break
     else:
+        print("**14")
         print("Dein Bestellung ist an erster Position")
 
 
     #Variabel für Anzahl der getraenke pro Bestelleung
     number = 0
+    print("**15")
 
     if order.getraenke[0] != 6:
         drink1 = int(order.getraenke[0])
@@ -89,8 +95,10 @@ def order():
         value = int(order.verhaeltnis[0])
         drink_list.append(value)
         number = number + 1
+        print("**16")
         print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
         if order.getraenke[1] != 6:
+            print("**16")
             drink2 = int(order.getraenke[1])
             drink_list.append(drink2)
             value = int(order.verhaeltnis[1])
@@ -98,6 +106,7 @@ def order():
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
             if order.getraenke[2] != 6:
+                print("**16")
                 drink3 = int(order.getraenke[2])
                 drink_list.append(drink3)
                 value = int(order.verhaeltnis[2])
@@ -105,18 +114,21 @@ def order():
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
                 if order.getraenke[3] != 6:
+                    print("**16")
                     drink4 = int(order.getraenke[3])
                     drink_list.append(drink4)
                     value = int(order.verhaeltnis[3])
                     drink_list.append(value)
                     number = number + 1
                     if order.getraenke[4] != 6:
+                        print("**16")
                         drink5 = int(order.getraenke[4])
                         drink_list.append(drink5)
                         value = int(order.verhaeltnis[4])
                         drink_list.append(value)
                         number = number + 1
                         if order.getraenke[5] != 6:
+                            print("**16")
                             drink6 = int(order.getraenke[5])
                             drink_list.append(drink6)
                             value = int(order.verhaeltnis[5])
@@ -145,6 +157,7 @@ def order():
     for i in range(z):
         print("i ist: {}".format(i))
         order_list.append(drink_list[int(i - 1)])
+        print("**17")
 
     print("order_list Array: {}".format(order_list))
     #loesche Array um neue Bestellung aufzunehmen
@@ -152,6 +165,7 @@ def order():
 
     ap = app.App(order_list)
     ap.orderManager()
+    print("**18")
     print("nach app.app")
 
 

@@ -273,37 +273,12 @@
 
 				let order = {
 					getraenke: [a, b, c, d, e, f],
-					verhaeltnis: window.handleValues
+					verhaeltnis: window.handleValues.slice(1)
 				}
 
 				$.post('/doform', JSON.stringify(order))
 			}
 
-			$(document).ready(function() {
-					if (!window.WebSocket) {
-							if (window.MozWebSocket) {
-									window.WebSocket = window.MozWebSocket;
-							} else {
-									$('#messages').append("<li>Your browser doesn't support WebSockets.</li>");
-							}
-					}
-					ws = new WebSocket('ws://192.168.178.72:8080/websocket');
-					ws.onopen = function(evt) {
-							$('#messages').append('<li>WebSocket connection opened.</li>');
-					}
-//					ws.onmessage = function(evt) {
-	//						$('#messages').append('<li>' + evt.data + '</li>');
-		//			}
-					ws.onclose = function(evt) {
-							$('#messages').append('<li>WebSocket connection closed.</li>');
-					}
-					$('#send').submit(function() {
-						for (let i = 0; i <= drinks; i++) {
-							ws.send(window.handleValues[i]);
-						}
-		//					ws.onclose();
-					});
-			});
 	//		function selected() {
   //			var x = document.getElementById("select_1").value;
   //			document.getElementById("demo").innerHTML = "You selected: " + x;
