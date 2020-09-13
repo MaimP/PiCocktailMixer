@@ -48,9 +48,9 @@ result_available = threading.Event() #fuer Thread
 def process():
     global order
     print("**11")
-    global order
-    order = json.load(request.body)
-    print(order)
+    global bestellung
+    bestellung = json.load(request.body)
+    print(bestellung)
     order()
 #    print(order)
 #@post('/readycocktail')
@@ -89,49 +89,49 @@ def order():
     number = 0
     print("**15")
 
-    if order.getraenke[0] != 6:
-        drink1 = int(order.getraenke[0])
+    if bestellung.getraenke[0] != 6:
+        drink1 = int(bestellung.getraenke[0])
         drink_list.append(drink1)
-        value = int(order.verhaeltnis[0])
+        value = int(bestellung.verhaeltnis[0])
         drink_list.append(value)
         number = number + 1
         print("**16")
         print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
-        if order.getraenke[1] != 6:
+        if bestellung.getraenke[1] != 6:
             print("**16")
-            drink2 = int(order.getraenke[1])
+            drink2 = int(bestellung.getraenke[1])
             drink_list.append(drink2)
-            value = int(order.verhaeltnis[1])
+            value = int(bestellung.verhaeltnis[1])
             drink_list.append(value)
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
-            if order.getraenke[2] != 6:
+            if bestellung.getraenke[2] != 6:
                 print("**16")
-                drink3 = int(order.getraenke[2])
+                drink3 = int(bestellung.getraenke[2])
                 drink_list.append(drink3)
-                value = int(order.verhaeltnis[2])
+                value = int(bestellung.verhaeltnis[2])
                 drink_list.append(value)
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
-                if order.getraenke[3] != 6:
+                if bestellung.getraenke[3] != 6:
                     print("**16")
-                    drink4 = int(order.getraenke[3])
+                    drink4 = int(bestellung.getraenke[3])
                     drink_list.append(drink4)
-                    value = int(order.verhaeltnis[3])
+                    value = int(bestellung.verhaeltnis[3])
                     drink_list.append(value)
                     number = number + 1
-                    if order.getraenke[4] != 6:
+                    if bestellung.getraenke[4] != 6:
                         print("**16")
-                        drink5 = int(order.getraenke[4])
+                        drink5 = int(bestellung.getraenke[4])
                         drink_list.append(drink5)
-                        value = int(order.verhaeltnis[4])
+                        value = int(bestellung.verhaeltnis[4])
                         drink_list.append(value)
                         number = number + 1
-                        if order.getraenke[5] != 6:
+                        if bestellung.getraenke[5] != 6:
                             print("**16")
-                            drink6 = int(order.getraenke[5])
+                            drink6 = int(bestellung.getraenke[5])
                             drink_list.append(drink6)
-                            value = int(order.verhaeltnis[5])
+                            value = int(bestellung.verhaeltnis[5])
                             drink_list.append(value)
                             number = number + 1
                         else:
