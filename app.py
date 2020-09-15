@@ -39,10 +39,6 @@ class App:
 
         y = self.order_list[0]
 
-        #Debug ob Bestellung richtig ankommt
-        for i in self.order_list:
-            value = self.order_list[int(i)]
-            print("Array Bestellung in app, vor Ausfuehrung. Value: {}".format(value))
         #fuehre methode zum satrten aller pumpen aus
         for x in range(y):
             self.start()
