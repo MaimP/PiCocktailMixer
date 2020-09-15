@@ -144,6 +144,7 @@ def order(mischv, getraenke):
     else:
         pass
 
+    print("drink_list: {}".format(drink_list))
 
     #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, Mischv. 1, getraenk2, ...
     #schreibt bestellung in Array
