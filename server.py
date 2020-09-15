@@ -145,6 +145,7 @@ def order(mischv, getraenke):
         pass
 
     print("drink_list: {}".format(drink_list))
+    print("drink_list index 0:{} ".format(drink_list[0]))
 
     #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, Mischv. 1, getraenk2, ...
     #schreibt bestellung in Array
@@ -154,6 +155,7 @@ def order(mischv, getraenke):
 
     for i in range(z):
         print("i ist: {}".format(i))
+        print("drink_list[i] ist: {}".format(drink_list[i]))
         order_list.append(drink_list[int(i)])
         print("**16")
 
