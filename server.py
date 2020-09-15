@@ -22,9 +22,10 @@ def server_static(filepath="mdb.html"):
 @post('/doform')
 def process():
     print("**11")
-    bestellung = json.loads(request.body)
+    bestellung = json.load(request.body)
     print(bestellung)
     print("Der Typ des empfangener request: {}".format(type(bestellung)))
+    print("Der Typ der Values: {}".format(type(bestellung.values())))
     print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
     order(bestellung)
 
