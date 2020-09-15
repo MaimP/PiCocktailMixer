@@ -47,9 +47,9 @@ def process():
     order(mischv, getraenke)
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
-def order(getraenke, mischv):
+def order(mischv, getraenke):
     #raw Dict
-    getraenke_1 = getraenke
+    getraenke = getraenke
     #vorläufiges Array für Bestellung
     order_list = []
     #Entgültige Bestellungsarray für Ausfuehrung in App
