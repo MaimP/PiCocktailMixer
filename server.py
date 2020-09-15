@@ -93,7 +93,7 @@ def order(mischv, getraenke):
         drink_list.append(value)
         number = number + 1
         print("**15")
-        print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
+        print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[0]))
         if getraenke[1] != 6:
             print("**15")
             drink2 = int(getraenke[1])
@@ -101,7 +101,7 @@ def order(mischv, getraenke):
             value = int(mischv[1])
             drink_list.append(value)
             number = number + 1
-            print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
+            print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[1]))
             if getraenke[2] != 6:
                 print("**15")
                 drink3 = int(getraenke[2])
@@ -109,7 +109,7 @@ def order(mischv, getraenke):
                 value = int(mischv[2])
                 drink_list.append(value)
                 number = number + 1
-                print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
+                print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[2]))
                 if getraenke[3] != 6:
                     print("**15")
                     drink4 = int(getraenke[3])
