@@ -25,7 +25,7 @@ def process():
     bestellung = json.load(request.body)
     print(bestellung)
     print("Der Typ des empfangener request: {}".format(type(bestellung)))
-    print("Der Typ der Values: {}".format(type(bestellung.values())))
+    print("Der Typ der Values: {}".format(type(bestellung.get('verhaeltnis'))))
     print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
     order(bestellung)
 
