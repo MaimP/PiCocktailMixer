@@ -35,17 +35,16 @@ def process():
         x = float(d[counter_m])
         counter_m = counter_m + 1
         mischv.append(x)
-        print("debug mischv. :{}".format(x))
+        print("debug mischv :{}".format(x))
 
     counter_g = 0
     for i in e:
-        print("counter in getraenke: {}".format(counter_g))
         x = float(e[counter_g])
         counter_g = counter_g + 1
         getraenke.append(x)
         print("debug getraenke :{}".format(x))
 
-    order(bestellung)
+    order(mischv, getraenke)
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
 def order(getraenke, mischv):
@@ -87,49 +86,49 @@ def order(getraenke, mischv):
     print("**14")
 
     #Hier wird die Bestellung gefiltert, in vorlaeufigen Array geschrieben
-    if bestellung.getraenke[0] != 6:
-        drink1 = int(bestellung.getraenke[0])
+    if getraenke[0] != 6:
+        drink1 = int(getraenke[0])
         drink_list.append(drink1)
-        value = int(bestellung.verhaeltnis[0])
+        value = int(mischv[0])
         drink_list.append(value)
         number = number + 1
         print("**15")
         print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
-        if bestellung.getraenke[1] != 6:
+        if getraenke[1] != 6:
             print("**15")
-            drink2 = int(bestellung.getraenke[1])
+            drink2 = int(getraenke[1])
             drink_list.append(drink2)
-            value = int(bestellung.verhaeltnis[1])
+            value = int(mischv[1])
             drink_list.append(value)
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
-            if bestellung.getraenke[2] != 6:
+            if getraenke[2] != 6:
                 print("**15")
-                drink3 = int(bestellung.getraenke[2])
+                drink3 = int(getraenke[2])
                 drink_list.append(drink3)
-                value = int(bestellung.verhaeltnis[2])
+                value = int(mischv[2])
                 drink_list.append(value)
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
-                if bestellung.getraenke[3] != 6:
+                if getraenke[3] != 6:
                     print("**15")
-                    drink4 = int(bestellung.getraenke[3])
+                    drink4 = int(getraenke[3])
                     drink_list.append(drink4)
-                    value = int(bestellung.verhaeltnis[3])
+                    value = int(mischv[3])
                     drink_list.append(value)
                     number = number + 1
-                    if bestellung.getraenke[4] != 6:
+                    if getraenke[4] != 6:
                         print("**15")
-                        drink5 = int(bestellung.getraenke[4])
+                        drink5 = int(getraenke[4])
                         drink_list.append(drink5)
-                        value = int(bestellung.verhaeltnis[4])
+                        value = int(mischv[4])
                         drink_list.append(value)
                         number = number + 1
-                        if bestellung.getraenke[5] != 6:
+                        if getraenke[5] != 6:
                             print("**15")
-                            drink6 = int(bestellung.getraenke[5])
+                            drink6 = int(getraenke[5])
                             drink_list.append(drink6)
-                            value = int(bestellung.verhaeltnis[5])
+                            value = int(mischv[5])
                             drink_list.append(value)
                             number = number + 1
                         else:
