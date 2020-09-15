@@ -1,71 +1,48 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
 #-*- coding:utf-8 -*-#
 from bottle import route, run, static_file, get, post, request, template, Bottle, abort
-
-import ultraschallsensor
-import pump
-import RPi.GPIO as GPIO
-import time
-import app
-import json
-import hanging_threads
-import threading
-global ap
-
-global zustand
-global hoehe
-global entfernung
-global progress
-
-global mischv
-mischv = []
-
-#!/usr/bin/python
-
-from bottle import get, run, template
 from bottle.ext.websocket import GeventWebSocketServer
 from bottle.ext.websocket import websocket
 
-drink_1 = None
-drink_2 = None
-drink_3 = None
-drink_4 = None
-drink_5 = None
-drink_6 = None
+import time
+import json
+import app
 
+#Verzeichnis für multislider in mdb.html
 @route('/static/:path#.+#', name='static')
 def static(path):
     return static_file(path, root='static')
 
+#Routing mainsite
 @route('/')
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
 
-result_available = threading.Event() #fuer Thread
-
-
+#reequest, rest API
 @post('/doform')
 def process():
-    global order
     print("**11")
-    global bestellung
     bestellung = json.load(request.body)
     print(bestellung)
+    print("Der Typ des empfangener request: {}".format(type(bestellung)))
     print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
-    order()
-#    print(order)
-#@post('/readycocktail')
+    order(bestellung)
 
-
-def order():
-    global order_list
+#Daten fuer Bestellung auswerten und Bestellung in App.py starten
+def order(bestellung):
+    #raw Dict
+    order_1 = bestellung
+    #vorläufiges Array für Bestellung
     order_list = []
-    global drink_list
+    #Entgültige Bestellungsarray für Ausfuehrung in App
     drink_list = []
+    #Array für Mischv
+    mischv = []
+
     print("**drinklist")
     #für warteschelife, zeigt an an welcher position deine Bestellung ist
     ordernumber_raw = 0
-    global ordernumber
+    ordernumber = 0
     #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
     x = 0
     print("**12")
@@ -90,6 +67,7 @@ def order():
     number = 0
     print("**15")
 
+    #Hier wird die Bestellung gefiltert, in vorlaeufigen Array geschrieben
     if bestellung.getraenke[0] != 6:
         drink1 = int(bestellung.getraenke[0])
         drink_list.append(drink1)
@@ -173,5 +151,3 @@ def order():
 
 
 run(host='192.168.178.72', port=8080, server=GeventWebSocketServer)
-
-#run(host='192.168.178.72', reloader=True, port=8080, debug=True)
