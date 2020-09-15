@@ -29,7 +29,7 @@ def process():
     print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
     b = bestellung.get('verhaeltnis')
     c = list(b)
-    print("test Array in float: {}".format(float(c)))
+    print("test Array in float: {}".format(float(c[0, 1])))
     order(bestellung)
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
