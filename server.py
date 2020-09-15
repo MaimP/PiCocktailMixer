@@ -22,7 +22,7 @@ def server_static(filepath="mdb.html"):
 @post('/doform')
 def process():
     print("**11")
-    bestellung = json.load(request.body)
+    bestellung = json.loads(request.body)
     print(bestellung)
     print("Der Typ des empfangener request: {}".format(type(bestellung)))
     print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
@@ -59,13 +59,13 @@ def order(bestellung):
                 print("Deine Bestellung ist an Position: {}".format(ordernumber))
                 break
     else:
-        print("**14")
+        print("**13")
         print("Dein Bestellung ist an erster Position")
 
 
     #Variabel für Anzahl der getraenke pro Bestelleung
     number = 0
-    print("**15")
+    print("**14")
 
     #Hier wird die Bestellung gefiltert, in vorlaeufigen Array geschrieben
     if bestellung.getraenke[0] != 6:
@@ -74,10 +74,10 @@ def order(bestellung):
         value = int(bestellung.verhaeltnis[0])
         drink_list.append(value)
         number = number + 1
-        print("**16")
+        print("**15")
         print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[1]))
         if bestellung.getraenke[1] != 6:
-            print("**16")
+            print("**15")
             drink2 = int(bestellung.getraenke[1])
             drink_list.append(drink2)
             value = int(bestellung.verhaeltnis[1])
@@ -85,7 +85,7 @@ def order(bestellung):
             number = number + 1
             print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[2]))
             if bestellung.getraenke[2] != 6:
-                print("**16")
+                print("**15")
                 drink3 = int(bestellung.getraenke[2])
                 drink_list.append(drink3)
                 value = int(bestellung.verhaeltnis[2])
@@ -93,21 +93,21 @@ def order(bestellung):
                 number = number + 1
                 print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[3]))
                 if bestellung.getraenke[3] != 6:
-                    print("**16")
+                    print("**15")
                     drink4 = int(bestellung.getraenke[3])
                     drink_list.append(drink4)
                     value = int(bestellung.verhaeltnis[3])
                     drink_list.append(value)
                     number = number + 1
                     if bestellung.getraenke[4] != 6:
-                        print("**16")
+                        print("**15")
                         drink5 = int(bestellung.getraenke[4])
                         drink_list.append(drink5)
                         value = int(bestellung.verhaeltnis[4])
                         drink_list.append(value)
                         number = number + 1
                         if bestellung.getraenke[5] != 6:
-                            print("**16")
+                            print("**15")
                             drink6 = int(bestellung.getraenke[5])
                             drink_list.append(drink6)
                             value = int(bestellung.verhaeltnis[5])
@@ -136,18 +136,14 @@ def order(bestellung):
     for i in range(z):
         print("i ist: {}".format(i))
         order_list.append(drink_list[int(i - 1)])
-        print("**17")
+        print("**16")
 
     print("order_list Array: {}".format(order_list))
     #loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
+    print("**17")
     ap = app.App(order_list)
     ap.orderManager()
-    print("**18")
-    print("nach app.app")
-
-
-
 
 run(host='192.168.178.72', port=8080, server=GeventWebSocketServer)
