@@ -153,7 +153,7 @@ def order(mischv, getraenke):
 
     for i in range(z):
         print("i ist: {}".format(i))
-        order_list.append(drink_list[int(i - 1)])
+        order_list.append(drink_list[int(i)])
         print("**16")
 
     print("order_list Array: {}".format(order_list))
