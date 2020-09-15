@@ -27,6 +27,9 @@ def process():
     print("Der Typ des empfangener request: {}".format(type(bestellung)))
     print("Der Typ der Values: {}".format(type(bestellung.get('verhaeltnis'))))
     print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
+    b = bestellung.get('verhaeltnis')
+    c = list(b)
+    print("test Array in float: {}".format(float(c)))
     order(bestellung)
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
