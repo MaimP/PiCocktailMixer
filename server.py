@@ -30,20 +30,21 @@ def process():
     e = list(c)
     mischv = []
     getraenke = []
-    counter = 0
+    counter_m = 0
     for i in d:
-        x = float(d[counter])
-        counter = counter + 1
+        x = float(d[counter_m])
+        counter_m = counter_m + 1
         mischv.append(x)
         print("debug mischv. :{}".format(x))
 
+    counter_g = 0
     for i in e:
-        print("counter in getraenke: {}".format(counter))
-        x = float(e[counter])
-        counter = counter + 1
+        print("counter in getraenke: {}".format(counter_g))
+        x = float(e[counter_g])
+        counter_g = counter_g + 1
         getraenke.append(x)
         print("debug getraenke :{}".format(x))
-        
+
     order(bestellung)
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
