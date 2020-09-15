@@ -24,24 +24,38 @@ def process():
     print("**11")
     bestellung = json.load(request.body)
     print(bestellung)
-    print("Der Typ des empfangener request: {}".format(type(bestellung)))
-    print("Der Typ der Values: {}".format(type(bestellung.get('verhaeltnis'))))
-    print("test dictionary. getraenke: {}".format(bestellung.get('getraenke')))
     b = bestellung.get('verhaeltnis')
-    c = list(b)
-    print("test Array in float: {}".format(float(c[0])))
+    c = bestellung.get('getraenke')
+    d = list(b)
+    e = list(c)
+    mischv = []
+    getraenke = []
+    counter = 0
+    for i in d:
+        x = float(d[counter])
+        counter = counter + 1
+        mischv.append(x)
+        print("debug mischv. :{}".format(x))
+
+    for i in e:
+        print("counter in getraenke: {}".format(counter))
+        x = float(e[counter])
+        counter = counter + 1
+        getraenke.append(x)
+        print("debug getraenke :{}".format(x))
+        
     order(bestellung)
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
-def order(bestellung):
+def order(getraenke, mischv):
     #raw Dict
-    order_1 = bestellung
+    getraenke_1 = getraenke
     #vorläufiges Array für Bestellung
     order_list = []
     #Entgültige Bestellungsarray für Ausfuehrung in App
     drink_list = []
     #Array für Mischv
-    mischv = []
+    mischv = mischv
 
     print("**drinklist")
     #für warteschelife, zeigt an an welcher position deine Bestellung ist
