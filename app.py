@@ -26,16 +26,8 @@ class App:
         #debug, ob ordernumber funktioniert
 #        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
         self.startHoehe = self.ultraschall_first #starthoehe für Glasgrösse
-        self.fuellHoehe = 5
-        self.glasHoehe = (self.startHoehe - 5)
-        #Mischverhaeltnisse muessen noch auf mehrere Getraenke angepasst werden,
-        #erstemal bei zwei lassen
-        global unroundA
-        global unroundB
-#        unroundA = self.startHoehe - (self.glasHoehe * (int(self.id_mischv)) / 100)
-#        unroundB = self.fuellHoehe
-#        self.fillA = round(unroundA, 2)
-#        self.fillB = round(unroundB, 2)
+        self.fuellHoehe = 3
+        self.glasHoehe = (self.startHoehe - 3)
 
         y = self.order_list[0]
 
@@ -59,37 +51,35 @@ class App:
         actually = self.ultraschall_first
         fillUp = int(actually) - (int(self.glasHoehe) * (int(mischv) / 100))
 
-        last_distance = []
+        entfernung = ultraschallsensor.realDistance()
+        print("starte Pumpe, Starthoehe: {}".format(entfernung))
+        pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
+        print("wird jetzt aufgefuellt bis: {}".format(fillUp))
+
         zaehler = 0
         while True:
-            if zaehler == 0:
-                entfernung = ultraschallsensor.realDistance()
-                last_distance.append(entfernung)
-                pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
-                zaehler = zaehler + 1
+            entfernung = ultraschallsensor.returnDistance()
+            zaehler = zaehler + 1
+            #Debug
+            print("while schleife durchfuehrung nummer: {}".format(zaehler))
+            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
+            hoehe = entfernung
+            aufgefuellt = self.startHoehe - hoehe
+            print("insgesamt wurden aufgefuellt::{}".format(aufgefuellt))
+            auffuellen = fillUp - aufgefuellt
+            print("muss jetzt noch auffuellen: {}".format(auffuellen))
+            if entfernung > fillUp:
+                time.sleep(0.2)
+
+
+            elif entfernung <= fillUp:
+                pump.stopPump()
+                #Debug
+                print("Die pumpe wurde ausgeschaltet. aktuelle entfernung: {} cm".format(entfernung))
+                print("das Glas sollte jetzt aufgefuellt werden bis: {}".format(fillUp))
+                break
 
             else:
-                entfernung = ultraschallsensor.returnDistance()
-                zaehler = zaehler + 1
-                print("Das Glas wird bis zu: {} aufgefuellt.".format(fillUp))
-                print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-                if entfernung > fillUp:
-                    hoehe = entfernung
-                    print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(self.fuellHoehe))
-                    print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillUp))
-                    aufgefuellt = self.startHoehe - hoehe
-                    print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
-                    auffuellen = fillUp - aufgefuellt
-                    print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
-                    time.sleep(0.2)
-
-
-                elif entfernung <= fillUp:
-                    pump.stopPump()
-                    print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                    break
-
-                else:
-                    print("Fehler!")
-                    break
+                print("Fehler!")
+                pump.stopPump()
+                break
