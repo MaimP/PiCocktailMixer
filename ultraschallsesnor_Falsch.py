@@ -73,7 +73,7 @@ def writing():
 
         writer = csv.writer(csv_file)
         for i in distance_list:
-            writer.writerows(distance_list[int(i)])
+            writer.writerows(distance_list[int(i - 1)])
 
 if __name__ == '__main__':
     try:
