@@ -74,3 +74,12 @@ def writing():
         writer = csv.writer(f)
         for i in range(distance_list):
             writer.writerows(distance_list[i])
+
+if __name__ == '__main__':
+    try:
+        writing()
+
+        # Beim Abbruch durch STRG+C resetten
+    except KeyboardInterrupt:
+        print("Messung vom User gestoppt")
+        GPIO.cleanup()
