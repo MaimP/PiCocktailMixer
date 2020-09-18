@@ -71,7 +71,7 @@ def writing():
 
     with open("distance.csv", "wb") as csv_file:
 
-        writer = csv.writer(f)
+        writer = csv.writer(csv_writer)
         for i in range(distance_list):
             writer.writerows(distance_list[i])
 
