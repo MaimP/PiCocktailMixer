@@ -278,7 +278,7 @@
 				<div class="card-body">Test hallo 1 23 hallo Test hallo.</div>
 
 				<script>
-					const recipes =  {
+					const recipes_old =  {
 					    "name": "Aam Panna",
 					    "description": "Aam panna is an Indian drink renowned for its heat-resistant properties. It is made from raw mangoes, is yellow to very light green in color, and is consumed as a tasty and healthy beverage to fight against the intense Indian summer heat. In most instances, mint leaves are added which enhances the green color.",
 					    "github": "connectnitish",
@@ -332,6 +332,7 @@
 					}; //json obj recipes
 					var recipes_recipes = 1;
 					$.post('/dorecipes', recipes_recipes)
+					const recipes = recipes_recipes
 	//				const recipes = JSON.parse(recipes_object)
 					var name = recipes.name;
 					var description = recipes.description;
