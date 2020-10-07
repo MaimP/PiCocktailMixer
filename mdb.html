@@ -330,10 +330,11 @@
 					        "mango"
 					    ]
 					}; //json obj recipes
-					var recipes_recipes = 1;
 					let recipes;
 					$.get('/dorecipes', function(data){
+
 						recipes = data
+						alert(data)
 					})
 					alert(recipes);
 	//				const recipes = JSON.parse(recipes_object)
