@@ -7,7 +7,7 @@ from bottle.ext.websocket import websocket
 import time
 import json
 import app
-import recipes
+import recipes as re
 #Verzeichnis für multislider in mdb.html
 @route('/static/:path#.+#', name='static')
 def static(path):
@@ -21,7 +21,7 @@ def server_static(filepath="mdb.html"):
 
 @get('/dorecipes')
 def recipes():
-    recipes.getRecipes()
+    re.getRecipes()
     print("recipes: {}".format(recipes))
     recipes_send = recipes
     return recipes_send
