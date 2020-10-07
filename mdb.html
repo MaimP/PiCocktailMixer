@@ -272,14 +272,14 @@
 
 				<script>
 					$.get('/dorecipes', function(recipes){
-						for (var i in recipes) {
+						for (var b in recipes) {
 
 
-							var name = recipes.name;
-							var description = recipes.description;
+							var name = recipes[b].name;
+							var description = recipes[b].description;
 							var keyword_array = [];
-							for (var i in recipes.keywords) {
-								var key_wrd = recipes.keywords[i];
+							for (var i in recipes[b].keywords) {
+								var key_wrd = recipes[b].keywords[i];
 								keyword_array.push(key_wrd);
 							}
 
