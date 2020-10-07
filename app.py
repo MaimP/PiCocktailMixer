@@ -51,35 +51,45 @@ class App:
         actually = self.ultraschall_first
         fillUp = int(actually) - (int(self.glasHoehe) * (int(mischv) / 100))
 
+        distance_list = []
         entfernung = ultraschallsensor.realDistance()
+        distance_list.append(entfernung)
         print("starte Pumpe, Starthoehe: {}".format(entfernung))
         pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
+        start_time = time.time()
         print("wird jetzt aufgefuellt bis: {}".format(fillUp))
 
         zaehler = 0
         while True:
             entfernung = ultraschallsensor.returnDistance()
-            zaehler = zaehler + 1
-            #Debug
-            print("while schleife durchfuehrung nummer: {}".format(zaehler))
-            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-            hoehe = entfernung
-            aufgefuellt = self.startHoehe - hoehe
-            print("insgesamt wurden aufgefuellt::{}".format(aufgefuellt))
-            auffuellen = fillUp - aufgefuellt
-            print("muss jetzt noch auffuellen: {}".format(auffuellen))
-            if entfernung > fillUp:
-                time.sleep(0.2)
+            next_time = time.time()
+            if (start_time - next_time) * entfernung * 0.95 < distance_list[0] < entfernung * 1.1:
+                distance_list.append(entfernung)
+                distance_list.pop(0)
 
-
-            elif entfernung <= fillUp:
-                pump.stopPump()
+                zaehler = zaehler + 1
                 #Debug
-                print("Die pumpe wurde ausgeschaltet. aktuelle entfernung: {} cm".format(entfernung))
-                print("das Glas sollte jetzt aufgefuellt werden bis: {}".format(fillUp))
-                break
+                print("while schleife durchfuehrung nummer: {}".format(zaehler))
+                print("die aktuelle Entfernung betraegt: {}".format(entfernung))
+                hoehe = entfernung
+                aufgefuellt = self.startHoehe - hoehe
+                print("insgesamt wurden aufgefuellt::{}".format(aufgefuellt))
+                auffuellen = hoehe - fillUp
+                print("muss jetzt noch auffuellen: {}".format(auffuellen))
+                if entfernung > fillUp:
+                    time.sleep(0.2)
 
+
+                elif entfernung <= fillUp:
+                    pump.stopPump()
+                    #Debug
+                    print("Die pumpe wurde ausgeschaltet. aktuelle entfernung: {} cm".format(entfernung))
+                    print("das Glas sollte jetzt aufgefuellt werden bis: {}".format(fillUp))
+                    break
+
+                else:
+                    print("Fehler!")
+                    pump.stopPump()
+                    break
             else:
-                print("Fehler!")
-                pump.stopPump()
-                break
+                pass
