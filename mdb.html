@@ -271,7 +271,8 @@
 		</div>
 
 				<script>
-					$.get('/dorecipes', function(JSON.parse(recipes)){
+					$.get('/dorecipes', function(recipes){
+						JSON.parse(recipes)
 						alert(recipes)
 						for (var b in recipes) {
 
