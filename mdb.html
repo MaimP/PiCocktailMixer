@@ -266,118 +266,63 @@
 			<div class="centered" id="bodyBox">
 				<p>suche nach einem Rezept</p>
 				<input type="search" id="name" name="name">
-				<p id="recipes"></p>
-				<div class="card-body">
-					<div class="card-header">Bacardi</div>
-					<div class="card-description">mix some Bacardi with Water</div>
-					<div class="card-keyword">Bacardi</div>
-					<div class="card-keyword">water</div>
-					<div class="card-keyword">mix</div>
-				</div>
-				<div class="card-body">Test hallo 1 23 hallo Test hallo.</div>
-				<div class="card-body">Test hallo 1 23 hallo Test hallo.</div>
+
+			</div>
+		</div>
 
 				<script>
-					const recipes_old =  {
-					    "name": "Aam Panna",
-					    "description": "Aam panna is an Indian drink renowned for its heat-resistant properties. It is made from raw mangoes, is yellow to very light green in color, and is consumed as a tasty and healthy beverage to fight against the intense Indian summer heat. In most instances, mint leaves are added which enhances the green color.",
-					    "github": "connectnitish",
-					    "ingredients": [
-					        {
-					            "quantity": "1",
-					            "measure": "",
-					            "ingredient": "Sugar"
-					        },
-					        {
-					            "quantity": "2",
-					            "measure": "",
-					            "ingredient": "Unripe Green Mango"
-					        },
-					        {
-					            "quantity": "3",
-					            "measure": "",
-					            "ingredient": "Cardamom"
-					        },
-					        {
-					            "quantity": "4",
-					            "measure": "",
-					            "ingredient": "Fresh Mint"
-					        },
-					        {
-					            "quantity": "5",
-					            "measure": "",
-					            "ingredient": "Black Salt"
-					        }
-					    ],
-					    "directions": [
-					        "Choose the raw mangoes which are tart.",
-					        "You can keep the skin on before boiling the mangoes. It gives a very distinct flavour to the Panna.",
-					        "Peeling the skin before boiling makes the process very easy.",
-					        "If the Panna is not very tangy, you can add some lemon juice to it.",
-					        "Boil Mango with mild heat in 1 cup of water.",
-					        "You can also roast mango before boiling if needed for crispy taste.",
-					        "The subtly smoky flavour in this drink will take it to the next level.",
-					        "Strain into the prepared glass.",
-					        "Garnish with a parsley sprig, 2 speared green olives and a lime wedge and a celery stalk (optional)."
-					    ],
-					    "image": "aam-panna.jpg",
-					    "keywords": [
-					        "fruit",
-					        "juice",
-					        "mocktail",
-					        "non-alcoholic",
-					        "vegan",
-					        "mango"
-					    ]
-					}; //json obj recipes
 					$.get('/dorecipes', function(recipes){
-		//				const recipes = JSON.parse(recipes_object)
-						var name = recipes.name;
-						var description = recipes.description;
-						var keyword_array = [];
-						for (var i in recipes.keywords) {
-							var key_wrd = recipes.keywords[i];
-							keyword_array.push(key_wrd);
-						}
+						for (var i in recipes) {
 
 
-						//erstelle body-box
-						var body = document.createElement('div');
-						body.className = "card-body";
-						body.id = 'name';
-						//erstelle header-box
-						var header = document.createElement('div');
-						header.className = "card-header";
-						//fuege Text hinzu
-						var name_text = document.createTextNode(name);
-						header.appendChild(name_text);
-						//erstelle description-box
-						var descript = document.createElement('div');
-						descript.className = "card-description"
-						//fuege Text hinzu
-						var description_text = document.createTextNode(description);
-						descript.appendChild(description_text);
-						//fuege header-box zu body-box hinzu
-						body.appendChild(header);
-						body.appendChild(descript);
-						//ertselle keyword-box
-						var keyword = document.createElement('div');
-						keyword.className = "card-keyword";
-						//fuege Text hinzu
-						for (var i in keyword_array){
+							var name = recipes.name;
+							var description = recipes.description;
+							var keyword_array = [];
+							for (var i in recipes.keywords) {
+								var key_wrd = recipes.keywords[i];
+								keyword_array.push(key_wrd);
+							}
+
+
+							//erstelle body-box
+							var body = document.createElement('div');
+							body.className = "card-body";
+							body.id = 'name';
+							//erstelle header-box
+							var header = document.createElement('div');
+							header.className = "card-header";
+							//fuege Text hinzu
+							var name_text = document.createTextNode(name);
+							header.appendChild(name_text);
+							//erstelle description-box
+							var descript = document.createElement('div');
+							descript.className = "card-description"
+							//fuege Text hinzu
+							var description_text = document.createTextNode(description);
+							descript.appendChild(description_text);
+							//fuege header-box zu body-box hinzu
+							body.appendChild(header);
+							body.appendChild(descript);
 							//ertselle keyword-box
 							var keyword = document.createElement('div');
 							keyword.className = "card-keyword";
+							//fuege Text hinzu
+							for (var i in keyword_array){
+								//ertselle keyword-box
+								var keyword = document.createElement('div');
+								keyword.className = "card-keyword";
 
-							var keyword_for = keyword_array[i];
-							var keyword_text = document.createTextNode(keyword_for)
-							keyword.appendChild(keyword_text);
-							body.appendChild(keyword);
-						}
+								var keyword_for = keyword_array[i];
+								var keyword_text = document.createTextNode(keyword_for)
+								keyword.appendChild(keyword_text);
+								body.appendChild(keyword);
+							}
 
-						var element = document.getElementById("bodyBox")
-						//fuege body zu element hinzu
-						element.appendChild(body);
+							var element = document.getElementById("bodyBox")
+							//fuege body zu element hinzu
+							element.appendChild(body);
+
+					}
 
 
 					})
