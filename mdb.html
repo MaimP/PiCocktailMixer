@@ -273,6 +273,8 @@
 				<script>
 					$.get('/dorecipes', function(recipes){
 						alert(recipes)
+						JSON.parse(recipes)
+						alert(recipes)
 						for (let b = 0; b <= 2; b++) {
 							let array = recipes[b];
 							alert(recipes[b])
