@@ -18,7 +18,7 @@ def server_static(filepath="mdb.html"):
 
     return static_file(filepath, root='./')
 
-@post('/dorecipes')
+@get('/dorecipes')
 def recipes():
     recipe_get = request.body
     recipes_send = {
