@@ -23,6 +23,7 @@ def server_static(filepath="mdb.html"):
 def recipes():
     re.getRecipes()
     print("recipes: {}".format(recipes))
+    time.sleep(2)
     recipes_send = recipes
     return recipes_send
 
