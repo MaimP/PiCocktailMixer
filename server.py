@@ -73,7 +73,7 @@ def recipes():
             "mango"
         ]
     }
-    return json.parse(recipes)
+    return recipes
 
 
 @get('/list_recipes')
