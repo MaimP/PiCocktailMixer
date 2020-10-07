@@ -22,10 +22,8 @@ def server_static(filepath="mdb.html"):
 @get('/dorecipes')
 def recipes():
     re.getRecipes()
-    time.sleep(7)
     from recipes import recipes
-    recipes_send = recipes
-    return recipes_send
+    return recipes
 
 
 @get('/list_recipes')
