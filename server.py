@@ -20,7 +20,7 @@ def server_static(filepath="mdb.html"):
 
 @post('/dorecipes')
 def recipes():
-    recipe_get = json.load(request.body)
+    recipe_get = request.body
     recipes = {
         "name": "Aam Panna",
         "description": "Aam panna is an Indian drink renowned for its heat-resistant properties. It is made from raw mangoes, is yellow to very light green in color, and is consumed as a tasty and healthy beverage to fight against the intense Indian summer heat. In most instances, mint leaves are added which enhances the green color.",
@@ -74,7 +74,7 @@ def recipes():
         ]
     }
     return recipes
-    
+
 
 @get('/list_recipes')
 def list_recipes():
