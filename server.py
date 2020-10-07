@@ -20,7 +20,6 @@ def server_static(filepath="mdb.html"):
 
 @get('/dorecipes')
 def recipes():
-    recipe_get = request.body
     recipes_send = {
         "name": "Aam Panna",
         "description": "Aam panna is an Indian drink renowned for its heat-resistant properties. It is made from raw mangoes, is yellow to very light green in color, and is consumed as a tasty and healthy beverage to fight against the intense Indian summer heat. In most instances, mint leaves are added which enhances the green color.",
@@ -73,7 +72,7 @@ def recipes():
             "mango"
         ]
     }
-    return recipes
+    return recipes_send
 
 
 @get('/list_recipes')
