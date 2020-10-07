@@ -23,8 +23,8 @@ def server_static(filepath="mdb.html"):
 def recipes():
     re.getRecipes()
     from recipes import recipes
-    print(recipes)
-    return recipes
+    recipes_send = json.dumps(recipes)
+    return recipes_send
 
 
 @get('/list_recipes')
