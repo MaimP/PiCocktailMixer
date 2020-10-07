@@ -330,8 +330,8 @@
 					        "mango"
 					    ]
 					}; //json obj recipes
-					var rescipes_recipes = get_recipes;
-					$.post('/dorecipes', JSON.stringify(get_recipes))
+					var rescipes_recipes = null;
+					$.post('/dorecipes', JSON.stringify(recipes_recipes))
 	//				const recipes = JSON.parse(recipes_object)
 					var name = recipes.name;
 					var description = recipes.description;
