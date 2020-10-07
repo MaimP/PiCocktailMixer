@@ -7,7 +7,6 @@ from bottle.ext.websocket import websocket
 import time
 import json
 import app
-
 #Verzeichnis für multislider in mdb.html
 @route('/static/:path#.+#', name='static')
 def static(path):
@@ -16,7 +15,72 @@ def static(path):
 #Routing mainsite
 @route('/')
 def server_static(filepath="mdb.html"):
+
     return static_file(filepath, root='./')
+
+@post('/dorecipes')
+def recipes():
+    recipe_get = json.load(request.body)
+    recipes = {
+        "name": "Aam Panna",
+        "description": "Aam panna is an Indian drink renowned for its heat-resistant properties. It is made from raw mangoes, is yellow to very light green in color, and is consumed as a tasty and healthy beverage to fight against the intense Indian summer heat. In most instances, mint leaves are added which enhances the green color.",
+        "github": "connectnitish",
+        "ingredients": [
+            {
+                "quantity": "1",
+                "measure": "",
+                "ingredient": "Sugar"
+            },
+            {
+                "quantity": "2",
+                "measure": "",
+                "ingredient": "Unripe Green Mango"
+            },
+            {
+                "quantity": "3",
+                "measure": "",
+                "ingredient": "Cardamom"
+            },
+            {
+                "quantity": "4",
+                "measure": "",
+                "ingredient": "Fresh Mint"
+            },
+            {
+                "quantity": "5",
+                "measure": "",
+                "ingredient": "Black Salt"
+            }
+        ],
+        "directions": [
+            "Choose the raw mangoes which are tart.",
+            "You can keep the skin on before boiling the mangoes. It gives a very distinct flavour to the Panna.",
+            "Peeling the skin before boiling makes the process very easy.",
+            "If the Panna is not very tangy, you can add some lemon juice to it.",
+            "Boil Mango with mild heat in 1 cup of water.",
+            "You can also roast mango before boiling if needed for crispy taste.",
+            "The subtly smoky flavour in this drink will take it to the next level.",
+            "Strain into the prepared glass.",
+            "Garnish with a parsley sprig, 2 speared green olives and a lime wedge and a celery stalk (optional)."
+        ],
+        "image": "aam-panna.jpg",
+        "keywords": [
+            "fruit",
+            "juice",
+            "mocktail",
+            "non-alcoholic",
+            "vegan",
+            "mango"
+        ]
+    }
+    return recipes
+    
+
+@get('/list_recipes')
+def list_recipes():
+    name = request.body
+
+
 
 #reequest, rest API
 @post('/doform')
@@ -45,6 +109,39 @@ def process():
         print("debug getraenke :{}".format(x))
 
     order(mischv, getraenke)
+
+def recipesGet():
+    from glob import glob
+    import json
+
+    global recipes
+    recipes = []
+
+    files = []
+
+    pth ="/Users/mikauthmann/Documents/Github/PiCocktailMixer/recipes/" #rasp. : /home/pi/Pi...
+    for i in glob(pth+"*.json"):
+        files.append(i)
+    print("**2")
+
+    counter = 0
+
+    for i in files:
+        # Opening JSON file
+        f = open(files[counter])
+        # returns JSON object as
+        # a dictionary
+        data = json.load(f)
+        # Iterating through the json
+        # list
+        for i in data['ingredients']:
+            print(i)
+            recipes.append(i)
+        # Closing file
+        f.close()
+        counter = counter + 1
+
+    print("**3")
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
 def order(mischv, getraenke):
@@ -144,18 +241,13 @@ def order(mischv, getraenke):
     else:
         pass
 
-    print("drink_list: {}".format(drink_list))
-    print("drink_list index 0:{} ".format(drink_list[0]))
 
     #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, Mischv. 1, getraenk2, ...
     #schreibt bestellung in Array
     order_list.append(number)
     z = order_list[0] * 2
-    print("index 0: {}".format(z))
 
     for i in range(z):
-        print("i ist: {}".format(i))
-        print("drink_list[i] ist: {}".format(drink_list[i]))
         order_list.append(drink_list[int(i)])
         print("**16")
 
