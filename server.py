@@ -23,6 +23,7 @@ def server_static(filepath="mdb.html"):
 def recipes():
     re.getRecipes()
     from recipes import recipes
+    print(recipes)
     return recipes
 
 
