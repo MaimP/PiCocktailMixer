@@ -29,4 +29,5 @@ def getRecipes():
         # Closing file
         f.close()
 
+    print("**3")
     return recipes
