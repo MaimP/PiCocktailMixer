@@ -331,8 +331,8 @@
 					    ]
 					}; //json obj recipes
 					var recipes_recipes = 1;
-					$.post('/dorecipes', recipes_recipes)
-					const recipes = request.response;
+					$.get('/dorecipes')
+					const recipes = document.body;
 					alert(recipes);
 	//				const recipes = JSON.parse(recipes_object)
 					var name = recipes.name;
