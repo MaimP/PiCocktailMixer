@@ -272,18 +272,15 @@
 
 				<script>
 					$.get('/dorecipes', function(recipes){
-						alert(recipes)
-						for (var b in recipes) {
-
+						for (let b = 0; b <= 20; b++) {
 							var name = recipes[b].name;
+							alert(recipes[b].name)
 							var description = recipes[b].description;
 							var keyword_array = [];
 							for (var i in recipes[b].keywords) {
 								var key_wrd = recipes[b].keywords[i];
 								keyword_array.push(key_wrd);
 							}
-
-
 							//erstelle body-box
 							var body = document.createElement('div');
 							body.className = "card-body";
