@@ -331,57 +331,56 @@
 					    ]
 					}; //json obj recipes
 					$.get('/dorecipes', function(recipes){
-						alert(recipes.name)
-
-					})
-	//				const recipes = JSON.parse(recipes_object)
-					var name = recipes.name;
-					var description = recipes.description;
-					var keyword_array = [];
-					for (var i in recipes.keywords) {
-						var key_wrd = recipes.keywords[i];
-						keyword_array.push(key_wrd);
-					}
+		//				const recipes = JSON.parse(recipes_object)
+						var name = recipes.name;
+						var description = recipes.description;
+						var keyword_array = [];
+						for (var i in recipes.keywords) {
+							var key_wrd = recipes.keywords[i];
+							keyword_array.push(key_wrd);
+						}
 
 
-					//erstelle body-box
-					var body = document.createElement('div');
-					body.className = "card-body";
-					body.id = 'name';
-					//erstelle header-box
-					var header = document.createElement('div');
-					header.className = "card-header";
-					//fuege Text hinzu
-					var name_text = document.createTextNode(name);
-					header.appendChild(name_text);
-					//erstelle description-box
-					var descript = document.createElement('div');
-					descript.className = "card-description"
-					//fuege Text hinzu
-					var description_text = document.createTextNode(description);
-					descript.appendChild(description_text);
-					//fuege header-box zu body-box hinzu
-					body.appendChild(header);
-					body.appendChild(descript);
-					//ertselle keyword-box
-					var keyword = document.createElement('div');
-					keyword.className = "card-keyword";
-					//fuege Text hinzu
-					for (var i in keyword_array){
+						//erstelle body-box
+						var body = document.createElement('div');
+						body.className = "card-body";
+						body.id = 'name';
+						//erstelle header-box
+						var header = document.createElement('div');
+						header.className = "card-header";
+						//fuege Text hinzu
+						var name_text = document.createTextNode(name);
+						header.appendChild(name_text);
+						//erstelle description-box
+						var descript = document.createElement('div');
+						descript.className = "card-description"
+						//fuege Text hinzu
+						var description_text = document.createTextNode(description);
+						descript.appendChild(description_text);
+						//fuege header-box zu body-box hinzu
+						body.appendChild(header);
+						body.appendChild(descript);
 						//ertselle keyword-box
 						var keyword = document.createElement('div');
 						keyword.className = "card-keyword";
+						//fuege Text hinzu
+						for (var i in keyword_array){
+							//ertselle keyword-box
+							var keyword = document.createElement('div');
+							keyword.className = "card-keyword";
 
-						var keyword_for = keyword_array[i];
-						var keyword_text = document.createTextNode(keyword_for)
-						keyword.appendChild(keyword_text);
-						body.appendChild(keyword);
-					}
+							var keyword_for = keyword_array[i];
+							var keyword_text = document.createTextNode(keyword_for)
+							keyword.appendChild(keyword_text);
+							body.appendChild(keyword);
+						}
 
-					var element = document.getElementById("bodyBox")
-					//fuege body zu element hinzu
-					element.appendChild(body);
+						var element = document.getElementById("bodyBox")
+						//fuege body zu element hinzu
+						element.appendChild(body);
 
+
+					})
 
 				</script>
 
