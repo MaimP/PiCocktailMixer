@@ -293,10 +293,11 @@
 							var header = document.createElement('div');
 							header.className = "card-header";
 							var btn = document.createElement('BUTTON')
+							btn.className = 'card-header';
 							//fuege Text hinzu
 							var name_text = document.createTextNode(name);
 							header.appendChild(name_text);
-							btn.appendChild(header)
+							btn.appendChild(header);
 							//erstelle description-box
 							var descript = document.createElement('div');
 							descript.className = "card-description"
