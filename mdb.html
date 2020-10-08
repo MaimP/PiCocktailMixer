@@ -289,7 +289,7 @@
 							//erstelle body-box
 							var body = document.createElement('div');
 							body.className = "card-body";
-							body.id = name;
+							body.id = b;
 							//erstelle header-box
 							var header = document.createElement('div');
 							var btn = document.createElement('BUTTON')
@@ -325,13 +325,17 @@
 							var element = document.getElementById("bodyBox")
 							//fuege body zu element hinzu
 							element.appendChild(body);
-							document.getElementById(name).addEventListener("click", displayDate());
+							var click = document.getElementById(name);
+							click.onclick = function(event) {
+							  alert(name)
+							}
+				//			document.getElementById(b).addEventListener("click", displayDate);
 					}
 					})
 
-					function displayDate() {
-						alert(name);
-					}
+				//	function displayDate() {
+				//		alert(name);
+				//	}
 
 
 				</script>
