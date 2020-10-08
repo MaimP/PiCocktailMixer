@@ -181,6 +181,18 @@
 				padding-left: 2%;
 				padding-right: 2%;
 			}
+			.ingredients {
+				padding: 0 18px;
+				display: none;
+				overflow: hidden;
+				background-color: #f1f1f1;
+			}
+			.direction {
+				padding: 0 18px;
+				display: none;
+				overflow: auto;
+				background-color: #f1f1f1;
+			}
 			.noUi-connect {
 			    background: cyan;
 			}
@@ -281,11 +293,15 @@
 						for (let b in recipes) {
 							let array = recipes[b];
 							var name = array.name;
-							var description = recipes[b].description;
+							var description = array.description;
+							var ingredients_array = [];
+							for (var i in array.ingredients) {
+								ingredients_array.push(array.ingredients[i])
+							}
+							var direction = array.directions;
 							var keyword_array = [];
-							for (var i in recipes[b].keywords) {
-								var key_wrd = recipes[b].keywords[i];
-								keyword_array.push(key_wrd);
+							for (var i in array.keywords) {
+								keyword_array.push(array.keywords[i]);
 							}
 							//erstelle body-box
 							var body = document.createElement('div');
@@ -305,6 +321,21 @@
 							//fuege Text hinzu
 							var description_text = document.createTextNode(description);
 							descript.appendChild(description_text);
+							//erstelle ingriedient-bodx
+							var ingredient = document.createElement('div');
+							ingredient.className = "ingredients";
+							//fuege Text hinzu
+							for (var i in ingredients_array) {
+								var ingredient_text = document.createTextNode(ingredients_array[i]);
+								ingredient.appendChild(ingredient_text);
+								body.appendChild(ingredient);
+							}
+							//erstelle direction-box
+							var direction = document.createElement('div');
+							direction.className = "direction";
+							//fuege Text hinzu
+							var direction_text = document.createTextNode(direction);
+							direction.appendChild(direction_text);
 							//fuege header-box zu body-box hinzu
 							body.appendChild(btn);
 							body.appendChild(descript);
@@ -336,19 +367,17 @@
 					}
 					})
 					function searchObj(x) {
-						console.log("log");
-						console.log(recipes);
+						let search_item;
 						for (let i in recipes) {
 							let recipes_search = recipes[i];
-							console.log("for schleife")
 							if (recipes_search.name == x) {
-								console.log(recipes_search);
+								search_item = recipes_search;
 							}
 						}
+
 					}
 
 				</script>
-
 
 			</div>
 		</div>
