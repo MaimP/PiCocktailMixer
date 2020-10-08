@@ -336,11 +336,10 @@
 					}
 					})
 					function searchObj(x) {
-
 						console.log("log");
-						for (var i in recipes) {
-							console.log("for schleife")
+						for (let i in recipes) {
 							let recipes_search = recipes[i];
+							console.log("for schleife")
 							if (recipes_search.name == x) {
 								console.log("if")
 								alert(recipes_search);
