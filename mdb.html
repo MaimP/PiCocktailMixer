@@ -366,16 +366,21 @@
 							);
 					}
 					})
-					function searchObj(x) {
+					function searchObj(id) {
 						let search_item;
 						for (let i in recipes) {
 							let recipes_search = recipes[i];
-							if (recipes_search.name == x) {
+							if (recipes_search.name == id) {
 								search_item = recipes_search;
 							}
 						}
-
-					}
+						var content = document.getElementById(id);
+						if (content.style.display === "block") {
+						content.style.display = "none";
+						} else {
+							content.style.display = "block";
+							}
+						}
 
 				</script>
 
