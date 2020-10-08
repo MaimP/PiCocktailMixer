@@ -14,7 +14,6 @@ def getRecipes():
     pth ="/home/pi/PiMixer/PiCocktailMixer/recipes/"
     for i in glob(pth+"*.json"):
         files.append(i)
-        print("**2")
 
 
     counter = 0
@@ -26,7 +25,6 @@ def getRecipes():
         data = json.load(f) #type dict
         recipes.append(data)
         counter += 1
-        print("**3")
 
         # Closing file
         f.close()

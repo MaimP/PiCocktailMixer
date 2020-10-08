@@ -259,6 +259,7 @@
 
 				<button onclick="order()">Bestellen</button>
 				<div id="demo"></div>
+				<div id="demo_one"></div>
 				<div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
 				<div id="getraenke"></div>  <!-- Und für die Liste -->
 			</div>
@@ -291,9 +292,11 @@
 							//erstelle header-box
 							var header = document.createElement('div');
 							header.className = "card-header";
+							var btn = document.createElement('BUTTON')
 							//fuege Text hinzu
 							var name_text = document.createTextNode(name);
 							header.appendChild(name_text);
+							btn.appendChild(header)
 							//erstelle description-box
 							var descript = document.createElement('div');
 							descript.className = "card-description"
@@ -301,7 +304,7 @@
 							var description_text = document.createTextNode(description);
 							descript.appendChild(description_text);
 							//fuege header-box zu body-box hinzu
-							body.appendChild(header);
+							body.appendChild(btn);
 							body.appendChild(descript);
 							//ertselle keyword-box
 							var keyword = document.createElement('div');
@@ -321,11 +324,14 @@
 							var element = document.getElementById("bodyBox")
 							//fuege body zu element hinzu
 							element.appendChild(body);
+							document.getElementById('name').addEventListener("click", displayDate);
 
+							function displayDate() {
+								alert(Date());
+							}
 					}
-
-
 					})
+
 
 				</script>
 
