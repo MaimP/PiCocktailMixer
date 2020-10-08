@@ -278,7 +278,7 @@
 					$.get('/dorecipes', function(recipes_parse){
 						let recipes = JSON.parse(recipes_parse)
 						for (let b in recipes) {
-							let array = recipes[b];
+							const array = recipes[b];
 							var name = array.name;
 							var description = recipes[b].description;
 							var keyword_array = [];
@@ -325,38 +325,28 @@
 							var element = document.getElementById("bodyBox")
 							//fuege body zu element hinzu
 							element.appendChild(body);
-							var clicker = document.getElementById(name);
-							clicker.addEventListener (
+							document.getElementById(name).addEventListener (
 							   'click',
 							   function() {           // anonyme Funktion
-							      test(this.id);
+							      searchObj(this.id);
 							   },
 							   false
 							);
-//							click.onclick = test(name);
-				//			document.getElementById(b).addEventListener("click", displayDate);
 					}
 					})
-					function test(x) {
-						alert(x);
+					function searchObj(x) {
+						for (var i in array) {
+							if array.name == x {
+								alert(array[i]);
+							}
+						}
 					}
-
-				//	function displayDate() {
-				//		alert(name);
-				//	}
-
 
 				</script>
 
 
 			</div>
 		</div>
-
-		<script>
-			// alle rezepte in array schreiben und nach index gehen
-
-
-		</script>
 
 		<script>
 	// muss in Form geschriben werden	<div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
