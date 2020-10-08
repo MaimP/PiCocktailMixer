@@ -325,11 +325,11 @@
 							var element = document.getElementById("bodyBox")
 							//fuege body zu element hinzu
 							element.appendChild(body);
-							document.getElementById(name).addEventListener("click", displayDate);
+							document.getElementById(name).addEventListener("click", displayDate(name));
 					}
 					})
-					function displayDate() {
-						alert(Date());
+					function displayDate(name) {
+						alert(name;
 					}
 
 
