@@ -271,11 +271,9 @@
 		</div>
 
 				<script>
-					$.get('/dorecipes', function(recipes){
-						alert(recipes)
-						let recipes_parse = JSON.parse(recipes)
-						alert(recipes_parse)
-						for (let b = 0; b <= 2; b++) {
+					$.get('/dorecipes', function(recipes_parse){
+						let recipes = JSON.parse(recipes_parse)
+						for (let b = 0; b <= 3; b++) {
 							let array = recipes[b];
 							alert(recipes[b])
 							var name = array.name;
