@@ -325,8 +325,9 @@
 							var element = document.getElementById("bodyBox")
 							//fuege body zu element hinzu
 							element.appendChild(body);
-							var click = document.getElementById(name);
-							click.onclick = test(name);
+							var clicker = document.getElementById(name);
+							clicker.addEventListener(click, test(name));
+//							click.onclick = test(name);
 				//			document.getElementById(b).addEventListener("click", displayDate);
 					}
 					})
