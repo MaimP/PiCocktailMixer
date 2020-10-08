@@ -275,10 +275,11 @@
 		</div>
 
 				<script>
+					var array;
 					$.get('/dorecipes', function(recipes_parse){
 						let recipes = JSON.parse(recipes_parse)
 						for (let b in recipes) {
-							const array = recipes[b];
+							var array = recipes[b];
 							var name = array.name;
 							var description = recipes[b].description;
 							var keyword_array = [];
