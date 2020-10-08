@@ -86,7 +86,7 @@
 				position: relative;
 				text-align: left;
 				width: 31%;
-				height: 230px;
+				min-height: 230px;
 				float: left;
 				overflow: hidden;
 				display: block;
@@ -375,7 +375,8 @@
 								search_item = recipes_search;
 							}
 						}
-						var content = document.getElementById(id);
+						var ingredients_style = document.getElementbyId(id).getElementsByClassName("ingredients")[0];
+						var direction_sytle = document.getElementbyId(id).getElementsByClassName("direction")[0];
 						if (content.style.display === "block") {
 						content.style.display = "none";
 						} else {
