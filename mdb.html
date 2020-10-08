@@ -275,11 +275,11 @@
 		</div>
 
 				<script>
-					var array;
+					var recipes;
 					$.get('/dorecipes', function(recipes_parse){
-						let recipes = JSON.parse(recipes_parse)
+						var recipes = JSON.parse(recipes_parse)
 						for (let b in recipes) {
-							var array = recipes[b];
+							let array = recipes[b];
 							var name = array.name;
 							var description = recipes[b].description;
 							var keyword_array = [];
@@ -337,9 +337,10 @@
 					})
 					function searchObj(x) {
 						alert("alert")
-						for (var i in array) {
-							if (array.name == x) {
-								alert(array[i]);
+						for (var i in recipes) {
+							let recipes_search = recipes[i];
+							if (recipes_search.name == x) {
+								alert(recipes_search);
 							}
 						}
 					}
