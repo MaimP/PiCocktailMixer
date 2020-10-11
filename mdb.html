@@ -205,6 +205,19 @@
 				overflow: auto;
 				background-color: #f1f1f1;
 			}
+			.cups-image {
+			  width: 80%;
+			  background-color: white;
+			  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			  margin-bottom: 25px;
+			}
+
+			.text-image {
+			  text-align: center;
+			  padding: 10px 20px;
+			}
+
+			}
 			.noUi-connect {
 			    background: cyan;
 			}
@@ -281,6 +294,7 @@
 				<br>
 				<p> wähle die Anzahl an Getraenken aus, die du gemischt haben möchtest </p>
 				<input type="number" id="quantity" name="quantity" min="1">
+				<div id="imagesLeft"></div>
 
 				<button onclick="order()">Bestellen</button>
 				<div id="demo"></div>
@@ -297,6 +311,35 @@
 
 			</div>
 		</div>
+
+				<script>
+					var volume_obj;
+					$.get('/volume', function(volume_parse) {
+						volume_obj = JSON.parse(volume_parse);
+						for (let i in volume_obj) {
+							let array_volume = volume_obj[i];
+							var name = array_volume.name;
+							var volume = array_volume.volume;
+							var image = array_volume.image;
+
+							var body = document.createElement('div');
+							body.className = "cups-image";
+							var image_dom = document.createElement("IMG");
+  						image_dom.setAttribute("src", image);
+							image_dom.setAttribute("alt", image);
+							body.appendChild(image_dom)
+							var text = document.createElement('div');
+							text.className = "text-image";
+							var text_name = document.createTextNode(name);
+							var text_volume = document.createTextNode(volume);
+							text.appendChild(text_name);
+							text.appendChild(text_volume);
+							body.appendChild(text)
+							var body_main = document.getElementById("iamgesLeft");
+
+						}
+					})
+				</script>
 
 				<script>
 					var recipes;

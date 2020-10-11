@@ -1,107 +1,58 @@
-#!/usr/bin/env python
-#DEBUG = True
-DEBUG = True
-import time, sys
+#!/usr/bin/python
+
 import RPi.GPIO as GPIO
-from datetime import datetime
+import time, sys
 
-# argument pin is required
-import argparse
-parser = argparse.ArgumentParser(description='YF-S201 measurement application for Raspberry Pi')
-requiredNamed = parser.add_argument_group('required named arguments')
-requiredNamed.add_argument('-p', '--pin', help='Data Raspberry Pin. Look at GPIO PINOUT', required=True)
-args = parser.parse_args()
-print("Port:",args.pin)
+FLOW_SENSOR = 22
 
-if not args.pin:
-    parser.parse_args(['-h'])
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+global count
+count = 0
 
-try:
-    int(args.pin)
-except ValueError:
-    print('Error pin must be a integer')
-    sys.exit()
+def measure(self):
+    def countPulse(self):
 
-if args.pin != '8' and args.pin != '10':
-    print("Error pin must be 8 or 10. If you need another pin change this condition...")
-    sys.exit()
+        global count
+        if start_counter == 1:
+            count = count+1
+    #      print count
+            flow = count / (60 * 7.5)
+    #      print(flow)
 
-# configurations
-pin_input = int(args.pin)
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(pin_input, GPIO.IN)
+    GPIO.add_event_detect(FLOW_SENSOR, GPIO.FALLING, callback=countPulse)
+    flow_array = []
+    flow_all = 0
+    while True:
+        if fillup > flow_all:
+            start_counter = 1
+            time.sleep(1)
+            start_counter = 0
+            flow = (count * 2.25 / 1000)
+            flow_array.append(flow)
+            print "The flow is: %.3f Liter/sec" % (flow)
+            count = 0
+            flow_all = sum(flow_array)
+        else:
+            print("break flow_meter")
+            break
 
-# variables
-total_liters = 0
-secondes = 0
 
-# Sampling
-sample_rate = 10  # Sampling each 10 secondes
-time_start = 0
-time_end = 0
-period = 0;
-hz = []       # Frequency !important!
-m = 0.0021    # See linear.pdf
-
-# data
-db_good_sample = 0
-db_hz = 0
-db_liter_by_min = 0
-
-print("Water Flow - YF-S201 measurment")
+'''GPIO.add_event_detect(FLOW_SENSOR, GPIO.FALLING, callback=countPulse)
 
 while True:
-    # start / end
-    time_start = time.time();
-    init_time_start = time_start # undetect last edge
-    time_end = time_start + sample_rate
-    hz = []
-    sample_total_time = 0
-
-    # Edge
-    current = GPIO.input(pin_input)
-    edge = current # Rising edge / Falling edge
-
     try:
-        while time.time() <= time_end:
-            t = time.time();
-            v = GPIO.input(pin_input)
-            if current != v and current == edge:
-                period = t - time_start # Impulsion period
-                new_hz = 1/period
-                hz.append(new_hz)               # Period = 1/period
-                sample_total_time += t - time_start
-                time_start = t;
-
-                if DEBUG:
-                    print(round(new_hz, 4))     # Print hz
-                    sys.stdout.flush()
-            current = v;
-
-        # Sums
-        print('-------------------------------------')
-        print('Current Time:',time.asctime(time.localtime()))
-
-        secondes += sample_rate
-        nb_samples = len(hz);
-        if nb_samples >0:
-            average = sum(hz) / float(len(hz));
-            # Calcul % of good sample in time range
-            good_sample = sample_total_time/sample_rate
-            print("\t", round(sample_total_time,4),'(sec) good sample')
-            db_good_sample = round(good_sample*100,4)
-            print("\t", db_good_sample,'(%) good sample')
-            average = average * good_sample
-        else:
-            average = 0
-        average_liters = average*m*sample_rate;
-        total_liters += average_liters
-        db_hz = round(average,4);
-        db_liter_by_min= round(average_liters*(60/sample_rate),4)
-        print("\t", db_hz,'(hz) average')
-        print('\t', db_liter_by_min,'(L/min)') # Display L/min instead of L/sec
-        print(round(total_liters,4),'(L) total')
-        print(round(secondes/60,4), '(min) total')
+        start_counter = 1
+        time.sleep(1)
+        start_counter = 0
+        flow = (count * 60 * 2.25 / 1000)
+        print "The flow is: %.3f Liter/min" % (flow)
+        count = 0
+        time.sleep(5)
     except KeyboardInterrupt:
+        print '\ncaught keyboard interrupt!, bye'
         GPIO.cleanup()
-        break
+        sys.exit()'''
+
+if __name__ == '__main__':
+    measure(50)
