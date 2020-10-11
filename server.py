@@ -8,6 +8,7 @@ import time
 import json
 import app
 import recipes as re
+import volume_cup as vo_cup
 #Verzeichnis für multislider in mdb.html
 @route('/static/:path#.+#', name='static')
 def static(path):
@@ -31,6 +32,13 @@ def recipes():
 def list_recipes():
     name = request.body
 
+@get('/volume')
+def volume():
+    vo_cup.cupArray()
+    from volume_cup import volume
+    volume_send = json.dumps(volume)
+    return volume_send
+
 
 
 #reequest, rest API
@@ -43,6 +51,8 @@ def process():
     c = bestellung.get('getraenke')
     d = list(b)
     e = list(c)
+    menge = bestellung.get('menge') #gibt die Menge an bestellten Getraenken an
+    glas = bestellung.get('glas') #gibt an welches Glas genutzt wird(Volumen)
     mischv = []
     getraenke = []
     counter_m = 0
@@ -59,7 +69,7 @@ def process():
         getraenke.append(x)
         print("debug getraenke :{}".format(x))
 
-    order(mischv, getraenke)
+    order(mischv, getraenke, menge, glas)
 
 def recipesGet():
     from glob import glob
@@ -95,15 +105,15 @@ def recipesGet():
     print("**3")
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
-def order(mischv, getraenke):
-    #raw Dict
+def order(mischv, getraenke, menge, glas):
+    mischv = mischv
     getraenke = getraenke
+    menge = menge
+    glas = glas
     #vorläufiges Array für Bestellung
     order_list = []
     #Entgültige Bestellungsarray für Ausfuehrung in App
     drink_list = []
-    #Array für Mischv
-    mischv = mischv
 
     print("**drinklist")
     #für warteschelife, zeigt an an welcher position deine Bestellung ist
@@ -113,7 +123,7 @@ def order(mischv, getraenke):
     x = 0
     print("**12")
     if len(order_list) > 0:
-        x = (order_list[0] * 2) + 1 #order_list[0] * 2, weil noc hmoischverhaeltnis reingeschrieben werden muss
+        x = (order_list[0] * 2) + 3 #order_list[0] * 2, weil noch mischverhaeltnis reingeschrieben werden muss, +3 für glas, menge, Anazhl an mischgetraenken
         ordernumber_raw = ordernumber_raw + 1
         print("**13")
         while True:
@@ -129,7 +139,7 @@ def order(mischv, getraenke):
         print("Dein Bestellung ist an erster Position")
 
 
-    #Variabel für Anzahl der getraenke pro Bestelleung
+    #Variabel für menge der getraenke pro Bestelleung
     number = 0
     print("**14")
 
@@ -193,9 +203,11 @@ def order(mischv, getraenke):
         pass
 
 
-    #im Format: Anzahl der Getraenke pro Bestellung, getraenk1, Mischv. 1, getraenk2, ...
+    #im Format: menge der Getraenke pro Bestellung, getraenk1, Mischv. 1, getraenk2, ...
     #schreibt bestellung in Array
     order_list.append(number)
+    order_list.append(menge)
+    order_list.append(glas)
     z = order_list[0] * 2
 
     for i in range(z):
@@ -210,4 +222,4 @@ def order(mischv, getraenke):
     ap = app.App(order_list)
     ap.orderManager()
 
-run(host='192.168.178.72', port=8080, server=GeventWebSocketServer)
+run(host='192.168.178.72', port=8080)
