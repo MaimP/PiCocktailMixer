@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #DEBUG = True
-DEBUG = False
+DEBUG = True
 import time, sys
 import RPi.GPIO as GPIO
 from datetime import datetime
