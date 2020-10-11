@@ -102,3 +102,6 @@ while True:
         print('\t', db_liter_by_min,'(L/min)') # Display L/min instead of L/sec
         print(round(total_liters,4),'(L) total')
         print(round(secondes/60,4), '(min) total')
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        break
