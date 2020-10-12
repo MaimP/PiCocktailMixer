@@ -397,8 +397,9 @@
 							var name = array.name;
 							var description = array.description;
 							var ingredients_array = [];
-							for (var i in array.ingredients) {
-								ingredients_array.push(array.ingredients[i])
+							for (let c in array.ingredients) {
+								ingredients_array.push(array.ingredients[i]);
+								console.log(array.ingredients[i]);
 							}
 							var direction_a = array.directions;
 							var keyword_array = [];
@@ -432,12 +433,13 @@
 							body_overflow.className = "body-overflow";
 
 							//ingredients
-							for (var i in ingredients_array) {
+							for (let d in ingredients_array) {
 								//erstelle ingriedient-bodx
 								var ingredient = document.createElement('div');
 								ingredient.className = "ingredients";
 								//fuege Text hinzu
-								var ingredient_text = document.createTextNode(ingredients_array[i]);
+								var ingredient_text = document.createTextNode(ingredients_array[d]);
+								console.log(ingredients_array[d])
 								ingredient.appendChild(ingredient_text);
 								body_overflow.appendChild(ingredient);
 							}
@@ -474,7 +476,7 @@
 							var element = document.getElementById("bodyBox")
 							//fuege body zu element hinzu
 							element.appendChild(body);
-							document.getElementById(name).addEventListener (
+							document.getElementById(name).getElementsByClassName("card-header")[0].addEventListener (
 							   'click',
 							   function() {           // anonyme Funktion
 							      searchObj(this.id);
