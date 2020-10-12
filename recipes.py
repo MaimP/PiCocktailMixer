@@ -11,7 +11,7 @@ def getRecipes():
 
     files = []
 
-    pth ="/home/pi/PiMixer/PiCocktailMixer/recipes/"
+    pth ="/home/pi/picocktailmixer/recipes/"
     for i in glob(pth+"*.json"):
         files.append(i)
 

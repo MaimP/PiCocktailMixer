@@ -71,39 +71,6 @@ def process():
 
     order(mischv, getraenke, menge, glas)
 
-def recipesGet():
-    from glob import glob
-    import json
-
-    global recipes
-    recipes = []
-
-    files = []
-
-    pth ="/Users/mikauthmann/Documents/Github/PiCocktailMixer/recipes/" #rasp. : /home/pi/Pi...
-    for i in glob(pth+"*.json"):
-        files.append(i)
-    print("**2")
-
-    counter = 0
-
-    for i in files:
-        # Opening JSON file
-        f = open(files[counter])
-        # returns JSON object as
-        # a dictionary
-        data = json.load(f)
-        # Iterating through the json
-        # list
-        for i in data['ingredients']:
-            print(i)
-            recipes.append(i)
-        # Closing file
-        f.close()
-        counter = counter + 1
-
-    print("**3")
-
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
 def order(mischv, getraenke, menge, glas):
     mischv = mischv
