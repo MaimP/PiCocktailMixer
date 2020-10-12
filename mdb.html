@@ -175,7 +175,6 @@
 				color: rgb(255, 255, 255);
 				padding: 0 18px;
 				display: none;
-				overflow: hidden;
 				background-color: #f1f1f1;
 			}
 			.direction {
@@ -201,9 +200,31 @@
 				float: left;
 				color: rgb(255, 255, 255);
 				padding: 0 18px;
-				display: none;
-				overflow: auto;
 				background-color: #f1f1f1;
+				width: 90%;
+			}
+			.body-overflow {
+				border-bottom-color: rgba(0, 0, 0, 0.125);
+				border-bottom-left-radius: 4px;
+				border-bottom-right-radius: 4px;
+				border-bottom-style: solid;
+				border-bottom-width: 1px;
+				border-left-color: rgba(0, 0, 0, 0.125);
+				border-left-style: solid;
+				border-left-width: 1px;
+				border-right-color: rgba(0, 0, 0, 0.125);
+				border-right-style: solid;
+				border-right-width: 1px;
+				border-top-color: rgba(0, 0, 0, 0.125);
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+				border-top-style: solid;
+				border-top-width: 1px;
+				width: 90%;
+				max-height: 65%;
+				margin-top: 2%;
+				margin-left: 5%;
+				display: none;
 			}
 			.cups-image {
 			  width: 80%;
@@ -353,7 +374,7 @@
 							for (var i in array.ingredients) {
 								ingredients_array.push(array.ingredients[i])
 							}
-							var direction = array.directions;
+							var direction_a = array.directions;
 							var keyword_array = [];
 							for (var i in array.keywords) {
 								keyword_array.push(array.keywords[i]);
@@ -378,6 +399,13 @@
 							//fuege Text hinzu
 							var description_text = document.createTextNode(description);
 							descript.appendChild(description_text);
+
+							//body-overflow display: none
+							var body_overflow = document.createElement('div');
+							body_overflow.id = name;
+							body_overflow.className = body-overflow;
+
+							//ingredients
 							for (var i in ingredients_array) {
 								//erstelle ingriedient-bodx
 								var ingredient = document.createElement('div');
@@ -385,19 +413,23 @@
 								//fuege Text hinzu
 								var ingredient_text = document.createTextNode(ingredients_array[i]);
 								ingredient.appendChild(ingredient_text);
+								body_overflow.appendChild(ingredient);
 							}
-							//erstelle direction-box
+							//direction
 							var direction = document.createElement('div');
 							direction.className = "direction";
 							direction.id = name;
 							//fuege Text hinzu
-							var direction_text = document.createTextNode(direction);
+							var direction_text = document.createTextNode(direction_a);
 							direction.appendChild(direction_text);
+							body_overflow.appendChild(direction);
+
 							//fuege header-box zu body-box hinzu
 							body.appendChild(btn);
+							//fuege description-box zu body hinzu
 							body.appendChild(descript);
-							body.appendChild(ingredient);
-							body.appendChild(direction);
+							//fuege body_ovwerflow zu body hinzu
+							body.appendChild(body_overflow);
 							//ertselle keyword-box
 							var keyword = document.createElement('div');
 							keyword.className = "card-keyword";
@@ -433,17 +465,14 @@
 								search_item = recipes_search;
 							}
 						}
-						var ingredients_style = document.getElementById(id).getElementsByClassName("ingredients")[0];
-						var direction_style = document.getElementById(id).getElementsByClassName("direction")[0];
+						var body_overf = document.getElementById(id).getElementsByClassName("body-overflow")[0];
 						var body_style = document.getElementById(id).getElementsByClassName("card-body")[0];
 
-						if (ingredients_style.style.display === "block") {
-						ingredients_style.style.display = "none";
-						direction_style.style.display = "none";
+						if (body_overf.style.display === "block") {
+						body_overf.style.display = "none"
 						body_style.style.height = "auto";
 						} else {
-							ingredients_style.style.display = "block";
-							direction_style.style.display = "block";
+							body_overf.style.display = "block"
 							body_style.style.height = "230px";
 							}
 						}
