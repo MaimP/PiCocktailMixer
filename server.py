@@ -1,8 +1,6 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-#
 from bottle import route, run, static_file, get, post, request, template, Bottle, abort
-from bottle.ext.websocket import GeventWebSocketServer
-from bottle.ext.websocket import websocket
 
 import time
 import json
