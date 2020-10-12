@@ -231,6 +231,7 @@
 			  background-color: white;
 			  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			  margin-bottom: 25px;
+				border: 3px solid black;
 			}
 
 			.text-image {
@@ -345,6 +346,7 @@
 
 							var body = document.createElement('div');
 							body.className = "cups-image";
+							body.id = name;
 							var image_dom = document.createElement("IMG");
   						image_dom.setAttribute("src", image);
 							image_dom.setAttribute("alt", image);
@@ -357,9 +359,38 @@
 							text.appendChild(text_volume);
 							body.appendChild(text)
 							var body_main = document.getElementById("iamgesLeft");
-
+							body_main.appendChild(body)
+							document.getElementById(name).addEventListener (
+								 'click',
+								 function() {           // anonyme Funktion
+										imageSelected(this.id);
+								 },
+								 false
+							);
 						}
 					})
+					//trage in array id des ausgewaehlten volumes aus, wird an server geschickt
+					const volume_order = [];
+					function imageSlected(id) {
+						if (len(volume_order) == 0) {
+							// fuege neues Volumen zu Array hinzu
+							volume_order.push(id);
+							// aendere Design von Box, dass man erkennt, dass ausgewaehlt
+							var body = document.getElementById(id);
+							body.style.border = "3px solid blue";
+						} else {
+							var last_id = volume_order[0];
+							volume_order.pop();
+							//setzte alle Aenderungen von ausgewaehlten Boxen wieder um
+							var old_body = document.getElementById(last_id);
+							old_body.style.border = "3px solid black";
+							// anschließen waehle neue Box
+							volume_order.push(id);
+							//setzte Aenderung der Box, sehen das asugewaehlt...
+							var body = document.getElementById(id);
+							body.style.border = "3px solid blue";
+						}
+					}
 				</script>
 
 				<script>
