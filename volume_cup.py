@@ -2,7 +2,10 @@
 #-*- coding:utf-8 -*-
 import os
 
+global volume
+
 def cupArray():
+    global volume
     volume = [
     {
         'name': 'Ikea Pokal groß',
