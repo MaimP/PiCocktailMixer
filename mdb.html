@@ -437,7 +437,9 @@
 								var ingredient = document.createElement('div');
 								ingredient.className = "ingredients";
 								//fuege Text hinzu
-								var ingredient_text = document.createTextNode(ingredients_array[d].ingredient);
+								var ingre = ingredients_array[d].ingredient;
+								console.log(ingre);
+								var ingredient_text = document.createTextNode(ingre);
 								ingredient.appendChild(ingredient_text);
 								body_overflow.appendChild(ingredient);
 							}
