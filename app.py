@@ -26,7 +26,7 @@ class App:
 
         anzahl = self.order_list[0]
 
-        for x < self.menge:
+        for x in range(self.menge):
             if not self.process:
                 self.process = True
                 for x in range(anzahl):
