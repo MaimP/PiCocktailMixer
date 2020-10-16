@@ -421,7 +421,7 @@
 							var btn = document.createElement('BUTTON')
 							btn.className = 'card-header';
 							btn.id = name + 'button'
-							var test_addevent = document.getElementById(name + 'button');
+							var test_addevent = document.getElementById(name + 'button').getElementsByClassName('card-header')[0];
 							test_addevent.addEventListener (
 								 'click',
 								 function() {           // anonyme Funktion
