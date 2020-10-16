@@ -33,6 +33,7 @@ class App:
                     self.start()
             else:
                 #thread oder sowas wartet auf False von website
+                pass
 
         self.order_list.pop(0)
         self.order_list.pop(0)
