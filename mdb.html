@@ -421,7 +421,13 @@
 							var btn = document.createElement('BUTTON')
 							btn.className = 'card-header';
 							btn.id = name + 'button'
-							var test_addevent = document.getElementById(name + 'button').getElementsByClassName('card-header')[0];
+
+							header.id = name + 'header';
+							//fuege Text hinzu
+							var name_text = document.createTextNode(name);
+							header.appendChild(name_text);
+							btn.appendChild(header);
+							var test_addevent = document.getElementById(name + 'button');
 							test_addevent.addEventListener (
 								 'click',
 								 function() {           // anonyme Funktion
@@ -429,12 +435,6 @@
 								 },
 								 false
 							);
-
-							header.id = name + 'header';
-							//fuege Text hinzu
-							var name_text = document.createTextNode(name);
-							header.appendChild(name_text);
-							btn.appendChild(header);
 							//erstelle description-box
 							var descript = document.createElement('div');
 							descript.className = "card-description"
