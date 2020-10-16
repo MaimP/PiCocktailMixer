@@ -415,12 +415,12 @@
 							//erstelle body-box
 							var body = document.createElement('div');
 							body.className = "card-body";
-							body.id = name;
+							body.id = name + 'body';
 							//erstelle header-box
 							var header = document.createElement('div');
 							var btn = document.createElement('BUTTON')
 							btn.className = 'card-header';
-							header.id = name;
+							header.id = name + 'header';
 							//fuege Text hinzu
 							var name_text = document.createTextNode(name);
 							header.appendChild(name_text);
@@ -428,14 +428,14 @@
 							//erstelle description-box
 							var descript = document.createElement('div');
 							descript.className = "card-description"
-							description.id = name;
+							description.id = name + 'description';
 							//fuege Text hinzu
 							var description_text = document.createTextNode(description);
 							descript.appendChild(description_text);
 
 							//body-overflow display: none
 							var body_overflow = document.createElement('div');
-							body_overflow.id = name;
+							body_overflow.id = name + 'bodyoverflow';
 							body_overflow.className = "body-overflow";
 
 							//ingredients
@@ -453,7 +453,7 @@
 							//direction
 							var direction = document.createElement('div');
 							direction.className = "direction";
-							direction.id = name;
+							direction.id = name + 'direction';
 							//fuege Text hinzu
 							var direction_text = document.createTextNode(direction_a);
 							direction.appendChild(direction_text);
@@ -501,7 +501,7 @@
 								search_item = recipes_search;
 							}
 						}
-						var body_style = document.getElementById(id);
+						var body_style = document.getElementById(id + 'body')getElementsByClassName('card-body')[0];
 
 						if (body_style.style.display == "block") {
 						body_style.style.display = "none"
@@ -707,8 +707,8 @@
 				let order = {
 					getraenke: [a, b, c, d, e, f],
 					verhaeltnis: window.handleValues.slice(1),
-					anzahl: g
-					volume: volume_order;
+					anzahl: g,
+					volume: volume_order
 				}
 
 				$.post('/doform', JSON.stringify(order))
