@@ -1,95 +1,81 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-#
-import time
-import math
-import ultraschallsensor
-import pump
-
 class App:
-    import ultraschallsensor
+    import time
+    import math
     import pump
-
-    order_list = []
-    drink_list = []
+    import flow_sensor
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
     def __init__(self, orderlist):
         self.order_list = orderlist
-        self.ultraschall_first = ultraschallsensor.realDistance() #Glashoehe
-        self.process = True
-        self.fillup_time = 0.2 #muss ermittelt werden, zeit wieviel pro sekunde aufgefüllt wird
+
+    def messure(self):
+        '''Die Funktion misst das Volumen des Glases um dann zu berechnen wieviel
+        hineingefuellt werden soll, von dem Getraenk. (Vll noch vorgegebene Glaseser
+        zur Auswahl stellen) Flüssigkeit wird gemessen durch flowmeter.py'''
+        pass
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
         #Bestellung in einem Array festhalten, immer
         #debug, ob ordernumber funktioniert
-#        print("deine Bestelleung ist an stelle: {}".format(self.ordernumber))
-        self.startHoehe = self.ultraschall_first #starthoehe für Glasgrösse
-        self.fuellHoehe = 3
-        self.glasHoehe = (self.startHoehe - 3)
+        self.volume = self.order_list[2]
+        self.menge = self.order_list[1]
 
-        y = self.order_list[0]
+        anzahl = self.order_list[0]
 
-        #fuehre methode zum satrten aller pumpen aus
-        for x in range(y):
-            self.start()
+        for x < self.menge:
+            if not self.process:
+                self.process = True
+                for x in range(anzahl):
+                    self.start()
+            else:
+                #thread oder sowas wartet auf False von website
 
         self.order_list.pop(0)
+        self.order_list.pop(0)
+        self.order_list.pop(0)
         self.process = False
+
+    def start_next_cup():
+        '''falls fehler beim starten von befuellen des naechsten
+        Bechers, starte manuell über website'''
+        process = True
 
     def start(self):
         #schreibe die Getraenke aus dem Array fuer neue Bestellung raus
         #nach ausfuehren aller die Bestellung aus Array loeschen,
         #neueBestellung auf True setzten
-        drink = self.order_list[1]  #Getraenkenummer
-        mischv = self.order_list[2] #mischverhaeltnis muss noch in Array geschrieben werden
-        #loesche Eintraege in Array
+        drink = self.order_list[3]  #Getraenkenummer
+        mischv = self.order_list[4] #mischverhaeltnis muss noch in Array geschrieben werden
+        #loesche genutzte Werte in Array
         self.order_list.pop(1)
         self.order_list.pop(1)
 
-        actually = self.ultraschall_first
-        fillUp = int(actually) - (int(self.glasHoehe) * (int(mischv) / 100))
+        fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
 
-        distance_list = []
-        entfernung = ultraschallsensor.realDistance()
-        distance_list.append(entfernung)
-        print("starte Pumpe, Starthoehe: {}".format(entfernung))
         pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
-        start_time = time.time()
-        print("wird jetzt aufgefuellt bis: {}".format(fillUp))
+        print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
+
+        flow_sensor.measure() #muss dauerhaft Menge übermitteln
 
         zaehler = 0
         while True:
-            entfernung = ultraschallsensor.returnDistance()
-            next_time = time.time()
-            if (start_time - next_time) * entfernung * 0.95 < distance_list[0] < entfernung * 1.1:
-                distance_list.append(entfernung)
-                distance_list.pop(0)
-
+            from flow_sensor import flow_all
+            flow = flow_all
+            if flow < fillUp:
                 zaehler = zaehler + 1
                 #Debug
                 print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-                hoehe = entfernung
-                aufgefuellt = self.startHoehe - hoehe
-                print("insgesamt wurden aufgefuellt::{}".format(aufgefuellt))
-                auffuellen = hoehe - fillUp
-                print("muss jetzt noch auffuellen: {}".format(auffuellen))
-                if entfernung > fillUp:
-                    time.sleep(0.2)
+                print("es wurde aufgefuellt: {} ml".format(flow))
 
+            else if flow >= fillUp:
+                pump.stopPump()
+                flow_sensor.process()
+                print("flow ist größer oder gleich fillUp")
+                print("es wurde aufgefuellt:{} ml".format(flow))
 
-                elif entfernung <= fillUp:
-                    pump.stopPump()
-                    #Debug
-                    print("Die pumpe wurde ausgeschaltet. aktuelle entfernung: {} cm".format(entfernung))
-                    print("das Glas sollte jetzt aufgefuellt werden bis: {}".format(fillUp))
-                    break
-
-                else:
-                    print("Fehler!")
-                    pump.stopPump()
-                    break
             else:
-                pass
+                print("FEHLER!")

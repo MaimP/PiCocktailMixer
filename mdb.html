@@ -314,6 +314,8 @@
 				<div id="imagesLeft"></div>
 
 				<button onclick="order()">Bestellen</button>
+				<p> Wenn ein Glas/ Becher bereitsteht starten Sie den Vorgang </p>
+				<button onclick="cupReady()">Starten</button>
 				<div id="demo"></div>
 				<div id="demo_one"></div>
 				<div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
@@ -385,6 +387,11 @@
 							var body = document.getElementById(id);
 							body.style.border = "3px solid blue";
 						}
+					}
+					//funktion die dem Server bescheid gibt, dass das naechste Glas befuellt werden kann.
+					function cupReady() {
+						var ready = true
+						$.post('/cupReady', ready)
 					}
 				</script>
 
@@ -700,7 +707,8 @@
 				let order = {
 					getraenke: [a, b, c, d, e, f],
 					verhaeltnis: window.handleValues.slice(1),
-					anzahl: [g]
+					anzahl: g
+					volume: volume_order;
 				}
 
 				$.post('/doform', JSON.stringify(order))

@@ -26,9 +26,13 @@ def recipes():
     return recipes_send
 
 
-@get('/list_recipes')
-def list_recipes():
-    name = request.body
+global ready
+ready = False
+@get('/readyCup')
+def cup():
+    global ready
+    ready = True
+    return ready
 
 @get('/volume')
 def volume():
@@ -37,9 +41,6 @@ def volume():
     volume_send = json.dumps(volume)
     return volume_send
 
-
-
-#reequest, rest API
 @post('/doform')
 def process():
     print("**11")
@@ -49,8 +50,8 @@ def process():
     c = bestellung.get('getraenke')
     d = list(b)
     e = list(c)
-    menge = bestellung.get('menge') #gibt die Menge an bestellten Getraenken an
-    glas = bestellung.get('glas') #gibt an welches Glas genutzt wird(Volumen)
+    menge = bestellung.get('anzahl') #gibt die Menge an bestellten Getraenken an
+    glas = bestellung.get('volume') #gibt an welches Glas genutzt wird(Volumen)
     mischv = []
     getraenke = []
     counter_m = 0
@@ -70,11 +71,11 @@ def process():
     order(mischv, getraenke, menge, glas)
 
 #Daten fuer Bestellung auswerten und Bestellung in App.py starten
-def order(mischv, getraenke, menge, glas):
+def order(mischv, getraenke, anzahl, volume):
     mischv = mischv
     getraenke = getraenke
-    menge = menge
-    glas = glas
+    menge = anzahl
+    glas = volume
     #vorläufiges Array für Bestellung
     order_list = []
     #Entgültige Bestellungsarray für Ausfuehrung in App
@@ -168,7 +169,8 @@ def order(mischv, getraenke, menge, glas):
         pass
 
 
-    #im Format: menge der Getraenke pro Bestellung, getraenk1, Mischv. 1, getraenk2, ...
+    #im Format: menge der Getraenke pro Bestellung, wiviele von diesen, welches Glas genutzt wird
+    #getraenk1, Mischv. 1, getraenk2, ...
     #schreibt bestellung in Array
     order_list.append(number)
     order_list.append(menge)
