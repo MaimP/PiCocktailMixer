@@ -72,7 +72,7 @@ class App:
                 print("while schleife durchfuehrung nummer: {}".format(zaehler))
                 print("es wurde aufgefuellt: {} ml".format(flow))
 
-            else if flow >= fillUp:
+            elif flow >= fillUp:
                 pump.stopPump()
                 flow_sensor.process()
                 print("flow ist größer oder gleich fillUp")
