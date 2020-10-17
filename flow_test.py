@@ -57,6 +57,12 @@ GPIO.add_event_detect(FLOW_SENSOR_GPIO, GPIO.FALLING, callback=countPulse)
 
 flow_all = []
 
+#debug
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM) # GPIO Nummern statt Board Nummern
+GPIO.setup(17, GPIO.OUT)
+
 while True:
     try:
         start_counter = 1
@@ -71,5 +77,6 @@ while True:
 #        time.sleep(5)
     except KeyboardInterrupt:
         print('\nkeyboard interrupt!')
+        GPIO.setup(17, GPIO.IN)
         GPIO.cleanup()
         sys.exit()
