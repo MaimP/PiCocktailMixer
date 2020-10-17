@@ -489,7 +489,9 @@
 							document.addEventListener('readystatechange', function() {
 						    if (document.readyState === "complete") {
 						      searchObj(this.id);
-						    }
+						    } else {
+									console.log("else addevent")
+								}
 						  });
 					}
 					})
