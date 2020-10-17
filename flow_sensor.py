@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 import RPi.GPIO as GPIO
 import time, sys
 
@@ -31,17 +30,25 @@ def measure():
 
     GPIO.add_event_detect(FLOW_SENSOR, GPIO.FALLING, callback=countPulse)
     flow_array = []
+    #debug
+    start_time = time.time()
+    counter = 0
     while True:
         if process_flow:
             start_counter = 1
             time.sleep(1)
             start_counter = 0
-            flow = (count * 2.25 / 1000)
+            flow = ((count / 7.5) * 1000 * 60) #ml/sec
             flow_array.append(flow)
-            print "The flow is: %.3f Liter/sec" % (flow)
+            print "The flow is: %.3f ml/sec" % (flow)
             count = 0
             flow_all = sum(flow_array)
             print("Insgesamt: {}".format(flow_all))
+            #debug
+            stop_time = time.time()
+            counter += 1
+            time_intervall = (stop_time - start_time) / counter
+            print("zeit pro durchlauf im durchschnitt: {}".format(time_intervall))
         else:
             break
 
