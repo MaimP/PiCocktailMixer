@@ -316,7 +316,12 @@
 				<button onclick="order()">Bestellen</button>
 				<p> Wenn ein Glas/ Becher bereitsteht starten Sie den Vorgang </p>
 				<button onclick="cupReady()">Starten</button>
-				<div id="demo"></div>
+				<div id="demo 1"></div>
+				<div id="demo 2"></div>
+				<div id="demo 3"></div>
+				<div id="demo 4"></div>
+				<div id="demo 5"></div>
+				<div id="demo 6"></div>
 				<div id="demo_one"></div>
 				<div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
 				<div id="getraenke"></div>  <!-- Und für die Liste -->
@@ -487,9 +492,10 @@
 							element.appendChild(body);
 							var test_addevent = document.getElementById(name + 'button');
 							test_addevent.addEventListener('readystatechange', function() {
+								alert("laeuft")
 						    if (document.readyState === "complete") {
-						      searchObj(this.id);
 									console.log("if addevent")
+						      searchObj(body.id);
 						    } else {
 									console.log("else addevent")
 								}
@@ -529,7 +535,7 @@
 	// muss in Form geschriben werden	<div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
 
 		var drinks = 0;
-		var counter1 = 0;
+		var drink1 = 6;
 		var counter2 = 0;
 		var counter3 = 0;
 		var counter4 = 0;
@@ -537,20 +543,25 @@
 		var counter6 = 0;
 
 		function select1() {
-			if (document.getElementById("select_1").value != 6 && counter1 == 0) {
-				counter1 = counter1 + 1;
-				drinks = drinks + 1;
-				var x = document.getElementById("select_1").value;
-				document.getElementById("demo").innerHTML = "You selected: " + x;
-				setGetraenke(drinks)
-			}
-			else {
-				counter1 = counter1 - 1;
-				var number = 0;
-				number = slider.nouiSlider.get();
-				document.getElementById("demo_one").innerHTML = "you selected keins, wert: " + number;
-				drinks = drinks - 1;
-				setGetraenke(drinks)
+			let x = document.getElementById("select_1").value;
+			if (x != 6) {
+				// wenn select 1 vorher auf 6 steht setze neuen slider
+				if (drink1 == 6) {
+					drinks = drinks + 1;
+					document.getElementById("demo 1").innerHTML = "You selected: " + x;
+					setGetraenke(drinks)
+					drink1 = x;
+				} else {
+					//wenn drink 1 schon einen anderen wert als 6 hat, setze keinen neuen slider
+					document.getElementById("demo 1").innerHTML = "You selected: " + x;
+					drink1 = x
+				}
+				else {
+					drinks = drinks - 1;
+					setGetraenke(drinks);
+					document.getElementById("demo 1").innerHTML = "";
+					drink1 = x;
+				}
 			}
 		}
 		function select2() {
