@@ -486,7 +486,7 @@
 							//fuege body zu element hinzu
 							element.appendChild(body);
 							var test_addevent = document.getElementById(name + 'button');
-							document.addEventListener('readystatechange', function() {
+							test_addevent.addEventListener('readystatechange', function() {
 						    if (document.readyState === "complete") {
 						      searchObj(this.id);
 									console.log("if addevent")
