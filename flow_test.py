@@ -39,7 +39,7 @@ import RPi.GPIO as GPIO
 import time, sys
 #import paho.mqtt.publish as publish
 
-FLOW_SENSOR_GPIO = 13
+FLOW_SENSOR_GPIO = 20
 #MQTT_SERVER = "192.168.1.220"
 
 GPIO.setmode(GPIO.BCM)
