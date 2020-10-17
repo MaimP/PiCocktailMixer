@@ -38,7 +38,7 @@ def measure():
             start_counter = 1
             time.sleep(1)
             start_counter = 0
-            flow = ((count / 7.5) 16.6666) #ml/sec
+            flow = ((count / 7.5) * 16.6666) #ml/sec
             flow_array.append(flow)
             print "The flow is: %.3f ml/sec" % (flow)
             count = 0
