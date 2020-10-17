@@ -68,7 +68,7 @@ while True:
         print("gesamt durchfluss: {}".format(sum(flow_all)))
         #publish.single("/Garden.Pi/WaterFlow", flow, hostname=MQTT_SERVER)
         count = 0
-        time.sleep(5)
+#        time.sleep(5)
     except KeyboardInterrupt:
         print('\nkeyboard interrupt!')
         GPIO.cleanup()
