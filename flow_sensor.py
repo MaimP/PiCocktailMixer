@@ -26,7 +26,6 @@ def measure():
         global count
         if start_counter == 1:
             count = count+1
-            flow = count / (60 * 7.5)
 
     GPIO.add_event_detect(FLOW_SENSOR, GPIO.FALLING, callback=countPulse)
     flow_array = []
@@ -42,7 +41,7 @@ def measure():
             flow_array.append(flow)
             print "The flow is: %.3f ml/sec" % (flow)
             count = 0
-            flow_all = sum(flow_array)
+            flow_all = sum(flow_array) * 1.6
             print("Insgesamt: {}".format(flow_all))
             #debug
             stop_time = time.time()
