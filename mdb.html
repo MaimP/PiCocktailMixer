@@ -416,6 +416,7 @@
 							var body = document.createElement('div');
 							body.className = "card-body";
 							body.id = name + 'body';
+							alert(body.id);
 							//erstelle header-box
 							var header = document.createElement('div');
 							var btn = document.createElement('BUTTON')
@@ -504,7 +505,7 @@
 							}
 						}
 						var body_style = document.getElementById(id + 'body');
-
+						alert(body_style)
 						if (body_style.style.display == "block") {
 						body_style.style.display = "none"
 						body_style.style.height = "230px";
