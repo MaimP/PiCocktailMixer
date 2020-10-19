@@ -336,7 +336,7 @@
 		</div>
 
 				<script>
-					var volume_obj;
+					const volume_obj;
 					$.get('/volume', function(volume_parse) {
 						volume_obj = JSON.parse(volume_parse);
 						for (let i in volume_obj) {
@@ -373,9 +373,10 @@
 					//trage in array id des ausgewaehlten volumes aus, wird an server geschickt
 					const volume_order = [];
 					function imageSelected(id) {
+						var vol = volume_obj.volume;
 						if (volume_order.length == 0) {
 							// fuege neues Volumen zu Array hinzu
-							volume_order.push(id);
+							volume_order.push(vol);
 							// aendere Design von Box, dass man erkennt, dass ausgewaehlt
 							var body = document.getElementById(id);
 							body.style.border = "3px solid blue";
@@ -386,7 +387,7 @@
 							var old_body = document.getElementById(last_id);
 							old_body.style.border = "3px solid black";
 							// anschließen waehle neue Box
-							volume_order.push(id);
+							volume_order.push(vol);
 							//setzte Aenderung der Box, sehen das asugewaehlt...
 							var body = document.getElementById(id);
 							body.style.border = "3px solid blue";
