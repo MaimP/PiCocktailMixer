@@ -336,7 +336,7 @@
 		</div>
 
 				<script>
-					const volume_obj;
+					var volume_obj;
 					$.get('/volume', function(volume_parse) {
 						volume_obj = JSON.parse(volume_parse);
 						for (let i in volume_obj) {
