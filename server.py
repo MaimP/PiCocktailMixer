@@ -28,7 +28,7 @@ def recipes():
 
 global ready
 ready = False
-@get('/readyCup')
+@get('/cupReady')
 def cup():
     global ready
     ready = True
@@ -51,10 +51,11 @@ def process():
     d = list(b)
     e = list(c)
     menge = bestellung.get('anzahl') #gibt die Menge an bestellten Getraenken an
-    glas = bestellung.get('volume') #gibt an welches Glas genutzt wird(Volumen)
+    glas_dict = bestellung.get('volume') #gibt an welches Glas genutzt wird(Volumen)
     mischv = []
     getraenke = []
     counter_m = 0
+    glas = 350
     for i in d:
         x = float(d[counter_m])
         counter_m = counter_m + 1
