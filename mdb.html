@@ -2,22 +2,25 @@
 	<head>
 		<meta charset="UTF-8">
   		<link href="static/nouislider.css" rel="stylesheet">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 		<script src="static/nouislider.js"></script>
 		<script requests.get(url, params={key: value}, args)></script>
   		<style>
 			.split {
 			  height: 100%;
 			  width: 50%;
+				position: fixed;
 			  z-index: 1;
 			  top: 0;
 			  overflow-x: scroll;
 			  padding-top: 10%;
 				padding-bottom: 10%;
+				display: hide;
 			}
 
 			.left {
 			  left: 0;
-				overflow-x: scroll;
 			}
 
 			.right {
@@ -250,8 +253,6 @@
 	<h1 style="text-align:center;">PiCocktailMixer</h1>
 	<h3 style="font-size:160%; text-align:center">Mixe dir deinen eigenen Cocktail oder wähle einen aus.</h3>
 	<body>
-		<div class="split left">
-			<div class="centered">
 
 				<select id="select_1" name="drink1" onchange="select1()">
 						<option value="0">Korn</option>
