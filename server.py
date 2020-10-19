@@ -50,7 +50,11 @@ def process():
     c = bestellung.get('getraenke')
     d = list(b)
     e = list(c)
-    menge = bestellung.get('anzahl') #gibt die Menge an bestellten Getraenken an
+    menge_uni = bestellung.get('anzahl') #gibt die Menge an bestellten Getraenken an
+    if menge_uni == none:
+        menge = 1
+    else:
+        menge = menge_uni
     glas_dict = bestellung.get('volume') #gibt an welches Glas genutzt wird(Volumen)
     mischv = []
     getraenke = []
