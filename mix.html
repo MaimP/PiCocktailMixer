@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="static/nouislider.css" rel="stylesheet">
+  <script src="static/nouislider.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <script requests.get(url, params={key: value}, args)></script>
+</head>
+
+<body>
+  <section class="hero is-fullheight is-dark">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div id="navbarMenuHeroA" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" href="mdb.html">
+                Home
+              </a>
+              <a class="navbar-item is-active" href="#">
+                Mischen
+              </a>
+              <a class="navbar-item" href="recipes.html">
+                Rezepte
+              </a>
+              <a class="navbar-item" href="admin.html">
+                Admin
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container has-text-centered">
+        <h1 class="title">
+          PiCocktailMixer
+        </h1>
+      </div>
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <div class="content mb-3">
+              <p> Wähle aus welche Getränke du in deinem Cocktail haben möchtest.
+              </p>
+            </div>
+            <div class="select">
+              <select id="select_1" name="drink1" onchange="select1()">
+                  <option value="0">Korn</option>
+                  <option value="1">Bacardi</option>
+                  <option value="2">Vodka</option>
+                  <option value="3">Fanta</option>
+                  <option value="4">Cola</option>
+                  <option value="5">Sprite</option>
+                  <option value="6" selected="">keins</option>
+              </select><br>
+            </div>
+            <div class="select">
+                  <select id="select_2" name="drink2" onchange="select2()">
+                  <option value="0">Korn</option>
+                  <option value="1">Bacardi</option>
+                  <option value="2">Vodka</option>
+                  <option value="3">Fanta</option>
+                  <option value="4">Cola</option>
+                  <option value="5">Sprite</option>
+                  <option value="6" selected="">keins</option>
+              </select><br>
+            </div>
+            <div class="select">
+                  <select id="select_3" name="drink3" onchange="select3()">
+                  <option value="0">Korn</option>
+                  <option value="1">Bacardi</option>
+                  <option value="2">Vodka</option>
+                  <option value="3">Fanta</option>
+                  <option value="4">Cola</option>
+                  <option value="5">Sprite</option>
+                  <option value="6" selected="">keins</option>
+              </select><br>
+              </div>
+              <div class="select">
+                  <select id="select_4" name="drink4" onchange="select4()">
+                  <option value="0">Korn</option>
+                  <option value="1">Bacardi</option>
+                  <option value="2">Vodka</option>
+                  <option value="3">Fanta</option>
+                  <option value="4">Cola</option>
+                  <option value="5">Sprite</option>
+                  <option value="6" selected="">keins</option>
+              </select><br>
+              </div>
+              <div class="select">
+                  <select id="select_5" name="drink5" onchange="select5()">
+                  <option value="0">Korn</option>
+                  <option value="1">Bacardi</option>
+                  <option value="2">Vodka</option>
+                  <option value="3">Fanta</option>
+                  <option value="4">Cola</option>
+                  <option value="5">Sprite</option>
+                  <option value="6" selected="">keins</option>
+              </select><br>
+              </div>
+              <div class="select">
+                  <select id="select_6" name="drink6" onchange="select6()">
+                  <option value="0">Korn</option>
+                  <option value="1">Bacardi</option>
+                  <option value="2">Vodka</option>
+                  <option value="3">Fanta</option>
+                  <option value="4">Cola</option>
+                  <option value="5">Sprite</option>
+                  <option value="6" selected="">keins</option>
+                </select><br>
+            </div>
+            <div class="container mb-5 mt-4">
+              <div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
+            </div>
+            <div class="content my-3">
+              <p> wähle die Anzahl an Getränken aus, die du gemischt haben möchtest </p>
+            </div>
+            <input class="input is-small" type="number" id="quantity" name="quantity" min="1">
+            <div id="imagesLeft"></div>
+            <div class="button is-danger my-3" onclick="order()">
+              <a>Bestellen</a>
+            </div>
+            <div class="content">
+              <p> Wenn ein Glas/ Becher bereitsteht starten Sie den Vorgang </p>
+            </div>
+            <button onclick="cupReady()">Starten</button>
+            <div id="demo 1"></div>
+            <div id="demo 2"></div>
+            <div id="demo 3"></div>
+            <div id="demo 4"></div>
+            <div id="demo 5"></div>
+            <div id="demo 6"></div>
+            <div id="demo_one"></div>
+            <div id="getraenke"></div>  <!-- Und für die Liste -->
+          </div>
+        </div>
+      </section>
+
+      <script>
+        var drinks = 0;
+    		var drink1 = 6;
+    		var drink2 = 6;
+    		var drink3 = 6;
+    		var drink4 = 6;
+    		var drink5 = 6;
+    		var drink6 = 6;
+
+    		function select1() {
+    			var x = document.getElementById("select_1").value;
+    			if (x != 6) {
+    				// wenn select 1 vorher auf 6 steht setze neuen slider
+    				if (drink1 == 6) {
+    					drinks = drinks + 1;
+    					document.getElementById("demo 1").innerHTML = "You selected: " + x;
+    					setGetraenke(drinks)
+    					drink1 = x;
+    				} else {
+    					//wenn drink 1 schon einen anderen wert als 6 hat, setze keinen neuen slider
+    					document.getElementById("demo 1").innerHTML = "You selected: " + x;
+    					drink1 = x
+    				}
+    			} else {
+    					drinks = drinks - 1;
+    					setGetraenke(drinks);
+    					document.getElementById("demo 1").innerHTML = "";
+    					drink1 = x;
+    			}
+    		}
+    		function select2() {
+    			var x = document.getElementById("select_2").value;
+    			if (x != 6) {
+    				// wenn select 1 vorher auf 6 steht setze neuen slider
+    				if (drink2 == 6) {
+    					drinks = drinks + 1;
+    					document.getElementById("demo 2").innerHTML = "You selected: " + x;
+    					setGetraenke(drinks)
+    					drink2 = x;
+    				} else {
+    					//wenn drink 1 schon einen anderen wert als 6 hat, setze keinen neuen slider
+    					document.getElementById("demo 2").innerHTML = "You selected: " + x;
+    					drink2 = x
+    				}
+    			} else {
+    					drinks = drinks - 1;
+    					setGetraenke(drinks);
+    					document.getElementById("demo 2").innerHTML = "";
+    					drink2 = x;
+    			}
+    		}
+    		function select3() {
+    			var x = document.getElementById("select_3").value;
+    			if (x != 6) {
+    				// wenn select 1 vorher auf 6 steht setze neuen slider
+    				if (drink3 == 6) {
+    					drinks = drinks + 1;
+    					document.getElementById("demo 3").innerHTML = "You selected: " + x;
+    					setGetraenke(drinks)
+    					drink3 = x;
+    				} else {
+    					//wenn drink 1 schon einen anderen wert als 6 hat, setze keinen neuen slider
+    					document.getElementById("demo 3").innerHTML = "You selected: " + x;
+    					drink3 = x
+    				}
+    			} else {
+    					drinks = drinks - 1;
+    					setGetraenke(drinks);
+    					document.getElementById("demo 3").innerHTML = "";
+    					drink3 = x;
+    			}
+    		}
+    		function select4() {
+    			var x = document.getElementById("select_4").value;
+    			if (x != 6) {
+    				// wenn select 1 vorher auf 6 steht setze neuen slider
+    				if (drink4 == 6) {
+    					drinks = drinks + 1;
+    					document.getElementById("demo 4").innerHTML = "You selected: " + x;
+    					setGetraenke(drinks)
+    					drink4 = x;
+    				} else {
+    					//wenn drink 1 schon einen anderen wert als 6 hat, setze keinen neuen slider
+    					document.getElementById("demo 4").innerHTML = "You selected: " + x;
+    					drink4 = x
+    				}
+    			} else {
+    					drinks = drinks - 1;
+    					setGetraenke(drinks);
+    					document.getElementById("demo 4").innerHTML = "";
+    					drink4 = x;
+    			}
+    		}
+    		function select5() {
+    			var x = document.getElementById("select_5").value;
+    			if (x != 6) {
+    				// wenn select 1 vorher auf 6 steht setze neuen slider
+    				if (drink5 == 6) {
+    					drinks = drinks + 1;
+    					document.getElementById("demo 5").innerHTML = "You selected: " + x;
+    					setGetraenke(drinks)
+    					drink5 = x;
+    				} else {
+    					//wenn drink 1 schon einen anderen wert als 6 hat, setze keinen neuen slider
+    					document.getElementById("demo 5").innerHTML = "You selected: " + x;
+    					drink5 = x
+    				}
+    			} else {
+    					drinks = drinks - 1;
+    					setGetraenke(drinks);
+    					document.getElementById("demo 5").innerHTML = "";
+    					drink5 = x;
+    			}
+    		}
+    		function select6() {
+    			var x = document.getElementById("select_6").value;
+    			if (x != 6) {
+    				// wenn select 1 vorher auf 6 steht setze neuen slider
+    				if (drink6 == 6) {
+    					drinks = drinks + 1;
+    					document.getElementById("demo 6").innerHTML = "You selected: " + x;
+    					setGetraenke(drinks)
+    					drink6 = x;
+    				} else {
+    					//wenn drink 1 schon einen anderen wert als 6 hat, setze keinen neuen slider
+    					document.getElementById("demo 6").innerHTML = "You selected: " + x;
+    					drink6 = x
+    				}
+    			} else {
+    					drinks = drinks - 1;
+    					setGetraenke(drinks);
+    					document.getElementById("demo 6").innerHTML = "";
+    					drink6 = x;
+    			}
+    		}
+    		</script>
+
+
+    		<script>
+    			// Das Element für den Slider suchen
+    			var slider = document.getElementById('slider');
+
+    			const min = 0 // Konstante für Minimum und
+    			const max = 100 // Maximum
+
+    			// Basis für die Optionen des Sliders
+    			sliderOptions = {
+    				connect: true,
+    		   		range: {
+    		        	'min': min,
+    		        	'max': max
+    		    	},
+    		    	margin: 5, // Mindestentfernung zwischen einzelnen Handles
+
+    		    	// Beschriftung für den Slider
+    		    	pips: {
+    		    	    mode: 'steps',
+    		    	    stepped: true,
+    		    	    density: 4
+    		    	},
+    			}
+
+    			function setGetraenke(numGetr) {
+    				liste = document.getElementById('getraenke')
+
+    				str = "<h1>Liste der Getränke</h1>"
+
+    				// Für jedes Getränk einen Text hinzufügen
+    				for (let i = 1; i <= numGetr; i++) {
+    					str += `<h2>Getränk ${i}: <a id="getraenk-${i}">x</a>%</h2>`
+    				}
+
+    				// Die Getränkeliste updaten
+    				liste.innerHTML = str;
+
+    				// Jetzt den Slider updaten
+    				makeSlider(slider, numGetr);
+    			}
+
+    			function makeSlider(select, numPoints) {
+    				// Wenn der Slider bereits initialisiert ist, die Handles zerstören
+    				if (select.noUiSlider != undefined)
+    					select.noUiSlider.destroy();
+
+    				// Lambda Funktion für die Position der Handles
+    				mult = (x) => x * ((max - min) / numPoints + min);
+
+    				sliderOptions.start = []; // Handles initialisieren
+    				for (let i = 0; i <= numPoints; i++) {
+    					sliderOptions.start.push(mult(i)); // Handles einzeln hinzufügen (mit dem Lambda)
+    				}
+
+    				// Den Slider updaten
+    				noUiSlider.create(select, sliderOptions);
+
+    				// Einen Event Listener erstellen
+    				select.noUiSlider.on('update', function() {
+    					// Diese Funktion wird ausgeführt, wenn die Position eines Handles sich ändert
+
+    					// Alle Werte sammeln
+    					window.handleValues = select.noUiSlider.get();
+
+    					// Einzeln in die Getränkeliste eintragen
+    					for (let i = 1; i <= numPoints; i++) { // numPoints Equivalent to numGetr
+    						document.getElementById(`getraenk-${i}`).innerHTML = (window.handleValues[i] - window.handleValues[i-1]).toFixed(2);
+    					}
+    				})
+    			}
+
+
+    			function order() {
+    				a = document.getElementById("select_1").value
+    				b = document.getElementById("select_2").value
+    				c = document.getElementById("select_3").value
+    				d = document.getElementById("select_4").value
+    				e = document.getElementById("select_5").value
+    				f = document.getElementById("select_6").value
+    				g = document.getElementById("quantity").value
+
+    				let order = {
+    					getraenke: [a, b, c, d, e, f],
+    					verhaeltnis: window.handleValues.slice(1),
+    					anzahl: g,
+    					volume: volume_order
+    				}
+
+    				$.post('/doform', JSON.stringify(order))
+    			}
+        </script>
+
+        <script>>
+          var volume_obj;
+    			$.get('/volume', function(volume_parse) {
+    				volume_obj = JSON.parse(volume_parse);
+    				for (let i in volume_obj) {
+    					let array_volume = volume_obj[i];
+    					var name = array_volume.name;
+    					var volume = array_volume.volume;
+    					var image = array_volume.image;
+
+    					var ancestor = document.createElement('div');
+    					ancestor.className = "tile is-ancestor";
+              ancestor.id = name;
+              var parent = document.createElement('div');
+              parent.className = "tile is-parent";
+              var child = document.createElement("ARTICLE")
+              child.className = "tile is-child is-notification is-info";
+              var p = document.createElement("P");
+              p.className = "title";
+              var title = document.createTextNode(name);
+              p.appendChild(title);
+              var descr = document.createElement("P");
+              descr.className = "subtitle";
+              var descr_text = document.createTextNode(volume);
+              descr.appendChild(descr_text);
+              var img_fig = document.createElement("FIGURE");
+              img_fig.className = "image is-4by3"
+              var img = document.createElement("IMG");
+              img.setAttribute("src", image);
+              img_fig.appendChild(img);
+              child.appendChild(p);
+              child.appendChild(descr);
+              child.appendChild(img_fig);
+              parent.appendChild(child);
+              ancestor.appendChild(parent);
+
+              var body = document.getElementById("imagesLeft");
+              body.innerHTML(ancestor);
+
+    					document.getElementById(name).addEventListener (
+    						 'click',
+    						 function() {           // anonyme Funktion
+    								imageSelected(this.id);
+    						 },
+    						 false
+    					);
+    				}
+    			})
+    			//trage in array id des ausgewaehlten volumes aus, wird an server geschickt
+    			const volume_order = [];
+    			function imageSelected(id) {
+    				if (volume_order.length == 0) {
+    					// fuege neues Volumen zu Array hinzu
+    					volume_order.push(id);
+    					// aendere Design von Box, dass man erkennt, dass ausgewaehlt
+    					var body = document.getElementById(id);
+    					body.style.border = "3px solid blue";
+    				} else {
+    					var last_id = volume_order[0];
+    					volume_order.pop();
+    					//setzte alle Aenderungen von ausgewaehlten Boxen wieder um
+    					var old_body = document.getElementById(last_id);
+    					old_body.style.border = "3px solid black";
+    					// anschließen waehle neue Box
+    					volume_order.push(id);
+    					//setzte Aenderung der Box, sehen das asugewaehlt...
+    					var body = document.getElementById(id);
+    					body.style.border = "3px solid blue";
+    				}
+    			}
+        </script>
+</body>
+
+</html>
