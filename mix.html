@@ -142,7 +142,7 @@
       </section>
       <script>
         var volume_obj;
-        get('/volume', function(volume_parse) {
+        $.get('/volume', function(volume_parse) {
           volume_obj = JSON.parse(volume_parse);
           for (let i in volume_obj) {
             let array_volume = volume_obj[i];
