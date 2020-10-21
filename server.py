@@ -32,10 +32,6 @@ def server_static(filepath="admin.html"):
 
 @get('/mix.html')
 def mix():
-    return static_file("/", root='./mix.html')
-
-@get('/mix.html')
-def mix():
     return static_file("/mix.html", root='./')
 
 @get('/dorecipes')
