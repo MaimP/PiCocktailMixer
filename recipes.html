@@ -28,7 +28,7 @@
 
     <script>
       var recipes;
-      var elements = [Name, Beschreibung, Zutaten, Ausfuehrung, Stichwörter];
+      var elements = ["Name", "Beschreibung", "Zutaten", "Ausfuehrung", "Stichwörter"];
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
