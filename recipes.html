@@ -23,5 +23,44 @@
       </div>
     </div>
 
+    <div id="recipes_id"></div>
+
+    <script>
+      var recipes;
+      var elements = [Name, Beschreibung, Zutaten, Ausfuehrung, Stichwörter];
+      $.get('/dorecipes', function(recipes_parse){
+        recipes = JSON.parse(recipes_parse)
+				for (let b in recipes) {
+					let array = recipes[b];
+					var name = array.name;
+					var description = array.description;
+					var ingredients_array = [];
+					for (let c in array.ingredients) {
+						ingredients_array.push(array.ingredients[c]);
+					}
+					var direction_a = array.directions;
+					var keyword_array = [];
+					for (var i in array.keywords) {
+						keyword_array.push(array.keywords[i]);
+					}
+          //erstelle leeres Panel
+          var panel = document.createElement("nav");
+          panel.className = "panel";
+          //erstelle panel fuer ueberschrift
+          var panel_heading = document.createElement("p");
+          panel_heading.className = "panel-heading";
+          //fuege ueberschrift hinzu
+          panel_heading.appendChild(document.createTextNode(name));
+          var navi = docuemnt.createElement("p");
+          navi.className = "panel-tabs";
+          for (let d in elements) {
+            var nav_element = document.createElement("a");
+            var nav_text = document.createTextNode(elements[d]);
+            nav_element.appendChild(nav_text);
+          }
+          
+
+      }
+    </script>
   </body>
 </html>
