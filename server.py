@@ -21,7 +21,8 @@ def server_static(filepath="mdb.html"):
 @route('/mix.html')
 def serve_static_file(staticFile):
     filePath = '/mix/'
-    return static_file(staticFile, filePath)
+    root=os.path.join(os.path.dirname(mix.html), 'static')
+    return static_file(staticFile, root)
 
 @route('/recipes.html')
 def server_static(filepath="recipes.html"):
