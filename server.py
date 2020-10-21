@@ -16,6 +16,15 @@ def static(path):
 @route('/')
 def server_static(filepath="mdb.html"):
 
+@route('/mix.html')
+def server_static(filepath="mix.html"):
+
+@route('/recipes.html')
+def server_static(filepath="recipes.html"):
+
+@route('/admin')
+def server_static(filepath="admin.html"):
+
     return static_file(filepath, root='./')
 
 @get('/dorecipes')
