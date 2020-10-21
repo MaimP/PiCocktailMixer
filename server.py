@@ -8,9 +8,9 @@ import app
 import recipes as re
 import volume_cup as vo_cup
 #Verzeichnis für multislider in mdb.html
-@route('/static/:path#.+#', name='static')
-def static(path):
-    return static_file(path, root='static')
+##@route('/static/:path#.+#', name='static')
+#def static(path):
+#    return static_file(path, root='static')
 
 #Routing mainsite
 @route('/')
