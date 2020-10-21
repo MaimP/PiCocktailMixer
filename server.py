@@ -24,6 +24,10 @@ def help():
 def help():
     return static_file('mix.html', root='/')
 
+@route('/:mix.html#.*#')
+def send_static(filename):
+    return static_file(filename, root='./')
+
 #@route('/mix.html')
 #def server_static(filepath="mix.html"):
 #    return static_file(filepath, root='./mix')
