@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   </head>
   <body>
     <div id="navbarMenuHeroA" class="navbar-menu">
@@ -28,7 +29,7 @@
     <script>
       var recipes;
       var elements = [Name, Beschreibung, Zutaten, Ausfuehrung, Stichwörter];
-      $.get('/dorecipes', function(recipes_parse){
+      $.get('/dorecipes', function(recipes_parse)) {
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
 					let array = recipes[b];
