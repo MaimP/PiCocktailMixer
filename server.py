@@ -30,6 +30,13 @@ def server_static(filepath="recipes.html"):
 def server_static(filepath="admin.html"):
     return static_file(filepath, root='./admin')
 
+@get('/mix.html')
+def mix():
+    return static_file("/", root='./mix.html')
+
+@get('/mix.html')
+def mix():
+    return static_file("/mix.html", root='./')
 
 @get('/dorecipes')
 def recipes():
