@@ -46,6 +46,8 @@
 					for (var i in array.keywords) {
 						keyword_array.push(array.keywords[i]);
 					}
+          var tile = document.createElement("div");
+          tile.class = "tile is-3";
           //erstelle leeres Panel
           var panel = document.createElement("nav");
           panel.className = "panel is-inline";
@@ -64,8 +66,9 @@
             navi.appendChild(nav_element)
           }
           panel.appendChild(navi)
+          tile.appendChild(panel)
           var id_main = document.getElementById("recipes_id");
-          id_main.appendChild(panel)
+          id_main.appendChild(tile)
         }
       })
     </script>
