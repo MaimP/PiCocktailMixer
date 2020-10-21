@@ -37,7 +37,7 @@ def mix():
 def mix():
     return static_file("/change_drinks.html", root='./')
 
-@get('//pic_vol/pokal-glas-klarglas__0896474_PE609414_S5.JPG')
+@get('/pic_vol/pokal-glas-klarglas__0896474_PE609414_S5.JPG')
 def image():
     return static_file("/pokal-glas-klarglas__0896474_PE609414_S5.JPG", root='./pic_vol')
 
