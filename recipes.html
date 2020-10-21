@@ -29,7 +29,7 @@
     <script>
       var recipes;
       var elements = [Name, Beschreibung, Zutaten, Ausfuehrung, Stichwörter];
-      $.get('/dorecipes', function(recipes_parse)) {
+      $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
 					let array = recipes[b];
@@ -65,7 +65,7 @@
           var id_main = document.getElementById("recipes_id");
           id_main.appendChild(panel)
         }
-      }
+      })
     </script>
   </body>
 </html>
