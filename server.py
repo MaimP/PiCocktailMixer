@@ -41,6 +41,18 @@ def mix():
 def image():
     return static_file("/pokal-glas-klarglas__0896474_PE609414_S5.JPG", root='./pic_vol')
 
+@get('/pic_vol/pokal-glas-klarglas__0908826_PE609409_S5.JPG')
+def image():
+    return static_file("/pokal-glas-klarglas__0908826_PE609409_S5.JPG", root='./pic_vol')
+
+@get('/pic_vol/vardagen-glas-klarglas__0896318_PE609373_S5.JPG')
+def image():
+    return static_file("/vardagen-glas-klarglas__0896318_PE609373_S5.JPG", root='./pic_vol')
+
+@get('/pic_vol/plastikbecher-rot-360ml-50-einheiten.jpg')
+def image():
+    return static_file("/plastikbecher-rot-360ml-50-einheiten.jpg", root='./pic_vol')
+
 @get('/dorecipes')
 def recipes():
     re.getRecipes()
