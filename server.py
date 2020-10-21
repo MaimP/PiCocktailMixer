@@ -16,21 +16,12 @@ import volume_cup as vo_cup
 @route('/')
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
-@get('/mix')
-def help():
-    return static_file('mix.html', root='/')
 
-@get('/mix.html')
-def help():
-    return static_file('mix.html', root='/')
-
-@route('/:mix.html#.*#')
-def send_static(filename):
-    return static_file(filename, root='./')
-
-#@route('/mix.html')
-#def server_static(filepath="mix.html"):
-#    return static_file(filepath, root='./mix')
+#Hosts html file which will be invoked from browser.
+@route('/mix.html')
+def serve_static_file(staticFile):
+    filePath = '/mix/'
+    return static_file(staticFile, filePath)
 
 @route('/recipes.html')
 def server_static(filepath="recipes.html"):
