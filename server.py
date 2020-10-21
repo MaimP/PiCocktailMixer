@@ -16,17 +16,17 @@ import volume_cup as vo_cup
 @route('/')
 def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
-@route('/mix')
+@get('/mix')
 def help():
     return static_file('mix.html', root='/')
 
-@route('/mix.html')
+@get('/mix.html')
 def help():
     return static_file('mix.html', root='/')
 
-@route('/mix.html')
-def server_static(filepath="mix.html"):
-    return static_file(filepath, root='./mix')
+#@route('/mix.html')
+#def server_static(filepath="mix.html"):
+#    return static_file(filepath, root='./mix')
 
 @route('/recipes.html')
 def server_static(filepath="recipes.html"):
