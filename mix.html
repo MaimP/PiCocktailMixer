@@ -139,6 +139,77 @@
           </div>
         </div>
       </section>
+      <script>
+        var volume_obj;
+        $.get('/volume', function(volume_parse) {
+          volume_obj = JSON.parse(volume_parse);
+          for (let i in volume_obj) {
+            let array_volume = volume_obj[i];
+            var name = array_volume.name;
+            var volume = array_volume.volume;
+            var image = array_volume.image;
+
+            var ancestor = document.createElement('div');
+            ancestor.className = "tile is-ancestor is-primary";
+            ancestor.id = name;
+            var parent = document.createElement('div');
+            parent.className = "tile is-parent";
+            var child = document.createElement("ARTICLE")
+            child.className = "tile is-child is-notification is-info";
+            var p = document.createElement("P");
+            p.className = "title";
+            var title = document.createTextNode(name);
+            p.appendChild(title);
+            var descr = document.createElement("P");
+            descr.className = "subtitle";
+            var descr_text = document.createTextNode(volume);
+            descr.appendChild(descr_text);
+            var img_fig = document.createElement("FIGURE");
+            img_fig.className = "image is-4by3"
+            var img = document.createElement("IMG");
+            img.setAttribute("src", image);
+            img_fig.appendChild(img);
+            child.appendChild(p);
+            child.appendChild(descr);
+            child.appendChild(img_fig);
+            parent.appendChild(child);
+            ancestor.appendChild(parent);
+
+            var body = document.getElementById("imagesLeft");
+            body.innerHTML(ancestor);
+
+            document.getElementById(name).addEventListener (
+               'click',
+               function() {           // anonyme Funktion
+                  imageSelected(this.id);
+               },
+               false
+            );
+          }
+        })
+        //trage in array id des ausgewaehlten volumes aus, wird an server geschickt
+        const volume_order = [];
+        function imageSelected(id) {
+          if (volume_order.length == 0) {
+            // fuege neues Volumen zu Array hinzu
+            volume_order.push(id);
+            // aendere Design von Box, dass man erkennt, dass ausgewaehlt
+            var body = document.getElementById(id);
+            body.className = "is-link tile is-ancestor"
+          } else {
+            var last_id = volume_order[0];
+            volume_order.pop();
+            //setzte alle Aenderungen von ausgewaehlten Boxen wieder um
+            var old_body = document.getElementById(last_id);
+            body.className = "is-primary tile is-ancestor"
+            // anschließen waehle neue Box
+            volume_order.push(id);
+            //setzte Aenderung der Box, sehen das asugewaehlt...
+            var body = document.getElementById(id);
+            body.className = "is-link tile is-ancestor"
+          }
+        }
+      </script>
 
       <script>
         var drinks = 0;
@@ -367,78 +438,6 @@
     				}
 
     				$.post('/doform', JSON.stringify(order))
-    			}
-        </script>
-
-        <script>
-          var volume_obj;
-    			$.get('/volume', function(volume_parse) {
-    				volume_obj = JSON.parse(volume_parse);
-    				for (let i in volume_obj) {
-    					let array_volume = volume_obj[i];
-    					var name = array_volume.name;
-    					var volume = array_volume.volume;
-    					var image = array_volume.image;
-
-    					var ancestor = document.createElement('div');
-    					ancestor.className = "tile is-ancestor is-primary";
-              ancestor.id = name;
-              var parent = document.createElement('div');
-              parent.className = "tile is-parent";
-              var child = document.createElement("ARTICLE")
-              child.className = "tile is-child is-notification is-info";
-              var p = document.createElement("P");
-              p.className = "title";
-              var title = document.createTextNode(name);
-              p.appendChild(title);
-              var descr = document.createElement("P");
-              descr.className = "subtitle";
-              var descr_text = document.createTextNode(volume);
-              descr.appendChild(descr_text);
-              var img_fig = document.createElement("FIGURE");
-              img_fig.className = "image is-4by3"
-              var img = document.createElement("IMG");
-              img.setAttribute("src", image);
-              img_fig.appendChild(img);
-              child.appendChild(p);
-              child.appendChild(descr);
-              child.appendChild(img_fig);
-              parent.appendChild(child);
-              ancestor.appendChild(parent);
-
-              var body = document.getElementById("imagesLeft");
-              body.innerHTML(ancestor);
-
-    					document.getElementById(name).addEventListener (
-    						 'click',
-    						 function() {           // anonyme Funktion
-    								imageSelected(this.id);
-    						 },
-    						 false
-    					);
-    				}
-    			})
-    			//trage in array id des ausgewaehlten volumes aus, wird an server geschickt
-    			const volume_order = [];
-    			function imageSelected(id) {
-    				if (volume_order.length == 0) {
-    					// fuege neues Volumen zu Array hinzu
-    					volume_order.push(id);
-    					// aendere Design von Box, dass man erkennt, dass ausgewaehlt
-    					var body = document.getElementById(id);
-              body.className = "is-link tile is-ancestor"
-    				} else {
-    					var last_id = volume_order[0];
-    					volume_order.pop();
-    					//setzte alle Aenderungen von ausgewaehlten Boxen wieder um
-    					var old_body = document.getElementById(last_id);
-              body.className = "is-primary tile is-ancestor"
-    					// anschließen waehle neue Box
-    					volume_order.push(id);
-    					//setzte Aenderung der Box, sehen das asugewaehlt...
-    					var body = document.getElementById(id);
-              body.className = "is-link tile is-ancestor"
-    				}
     			}
         </script>
 </body>
