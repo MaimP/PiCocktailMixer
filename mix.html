@@ -121,7 +121,9 @@
                 <input class="input is-small" type="number" id="quantity" name="quantity" min="1">
               </div>
             </div>
-            <div id="imagesLeft"></div>
+            <div class="tile is-ancestor is-3 is-primary">
+              <div id="imagesLeft"></div>
+            </div>
             <div class="button is-danger my-3" onclick="order()">
               <a>Bestellen</a>
             </div>
@@ -150,9 +152,6 @@
             var volume = array_volume.volume;
             var image = array_volume.image;
 
-            var ancestor = document.createElement('div');
-            ancestor.className = "tile is-3 is-ancestor is-primary";
-            ancestor.id = name;
             var parent = document.createElement('div');
             parent.className = "tile is-parent";
             var child = document.createElement("ARTICLE")
@@ -174,10 +173,9 @@
             child.appendChild(descr);
             child.appendChild(img_fig);
             parent.appendChild(child);
-            ancestor.appendChild(parent);
 
             var body = document.getElementById("imagesLeft");
-            body.appendChild(ancestor);
+            body.appendChild(parent);
 
             document.getElementById(name).addEventListener (
                'click',
