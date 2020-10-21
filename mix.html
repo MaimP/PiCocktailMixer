@@ -195,18 +195,18 @@
             volume_order.push(id);
             // aendere Design von Box, dass man erkennt, dass ausgewaehlt
             var body = document.getElementById(id);
-            body.className = "is-link tile is-ancestor is-3"
+            body.className = "tile is-parent is-primary"
           } else {
             var last_id = volume_order[0];
             volume_order.pop();
             //setzte alle Aenderungen von ausgewaehlten Boxen wieder um
             var old_body = document.getElementById(last_id);
-            body.className = "is-primary tile is-ancestor is-3"
+            body.className = "tile is-parent"
             // anschließen waehle neue Box
             volume_order.push(id);
             //setzte Aenderung der Box, sehen das asugewaehlt...
             var body = document.getElementById(id);
-            body.className = "is-link tile is-ancestor is-3"
+            body.className = "tile is-parent is-primary"
           }
         }
       </script>
