@@ -51,15 +51,18 @@
           panel_heading.className = "panel-heading";
           //fuege ueberschrift hinzu
           panel_heading.appendChild(document.createTextNode(name));
+          panel.appendChild(panel_heading);
           var navi = docuemnt.createElement("p");
           navi.className = "panel-tabs";
           for (let d in elements) {
             var nav_element = document.createElement("a");
             var nav_text = document.createTextNode(elements[d]);
             nav_element.appendChild(nav_text);
+            navi.appendChild(nav_element)
           }
-          
-
+          panel.appendChild(navi)
+          var id_main = document.getElementById("recipes_id");
+          id_main.appendChild(panel)
       }
     </script>
   </body>
