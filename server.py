@@ -15,17 +15,20 @@ def static(path):
 #Routing mainsite
 @route('/')
 def server_static(filepath="mdb.html"):
+    return static_file(filepath, root='./')
 
 @route('/mix.html')
 def server_static(filepath="mix.html"):
+    return static_file(filepath, root='./mix')
 
 @route('/recipes.html')
 def server_static(filepath="recipes.html"):
+    return static_file(filepath, root='./recipes')
 
 @route('/admin')
 def server_static(filepath="admin.html"):
+    return static_file(filepath, root='./admin')
 
-    return static_file(filepath, root='./')
 
 @get('/dorecipes')
 def recipes():
