@@ -115,7 +115,11 @@
             <div class="content my-3">
               <p> wähle die Anzahl an Getränken aus, die du gemischt haben möchtest </p>
             </div>
-            <input class="input is-small" type="number" id="quantity" name="quantity" min="1">
+            <div class="columns is-centered">
+              <div class="column is-one-fifth">
+                <input class="input is-small" type="number" id="quantity" name="quantity" min="1">
+              </div>
+            </div>
             <div id="imagesLeft"></div>
             <div class="button is-danger my-3" onclick="order()">
               <a>Bestellen</a>
@@ -354,6 +358,7 @@
     				e = document.getElementById("select_5").value
     				f = document.getElementById("select_6").value
     				g = document.getElementById("quantity").value
+            alert(g)
 
     				let order = {
     					getraenke: [a, b, c, d, e, f],
@@ -377,7 +382,7 @@
     					var image = array_volume.image;
 
     					var ancestor = document.createElement('div');
-    					ancestor.className = "tile is-ancestor";
+    					ancestor.className = "tile is-ancestor is-primary";
               ancestor.id = name;
               var parent = document.createElement('div');
               parent.className = "tile is-parent";
@@ -422,18 +427,18 @@
     					volume_order.push(id);
     					// aendere Design von Box, dass man erkennt, dass ausgewaehlt
     					var body = document.getElementById(id);
-    					body.style.border = "3px solid blue";
+              body.className = "is-link tile is-ancestor"
     				} else {
     					var last_id = volume_order[0];
     					volume_order.pop();
     					//setzte alle Aenderungen von ausgewaehlten Boxen wieder um
     					var old_body = document.getElementById(last_id);
-    					old_body.style.border = "3px solid black";
+              body.className = "is-primary tile is-ancestor"
     					// anschließen waehle neue Box
     					volume_order.push(id);
     					//setzte Aenderung der Box, sehen das asugewaehlt...
     					var body = document.getElementById(id);
-    					body.style.border = "3px solid blue";
+              body.className = "is-link tile is-ancestor"
     				}
     			}
         </script>
