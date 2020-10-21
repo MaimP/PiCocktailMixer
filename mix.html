@@ -166,7 +166,7 @@
             var descr_text = document.createTextNode(volume);
             descr.appendChild(descr_text);
             var img_fig = document.createElement("FIGURE");
-            img_fig.className = "image is-4by3"
+            img_fig.className = "image is-128x128"
             var img = document.createElement("IMG");
             img.setAttribute("src", image);
             img_fig.appendChild(img);
@@ -196,18 +196,18 @@
             volume_order.push(id);
             // aendere Design von Box, dass man erkennt, dass ausgewaehlt
             var body = document.getElementById(id);
-            body.className = "is-link tile is-ancestor"
+            body.className = "is-link tile is-ancestor is-3"
           } else {
             var last_id = volume_order[0];
             volume_order.pop();
             //setzte alle Aenderungen von ausgewaehlten Boxen wieder um
             var old_body = document.getElementById(last_id);
-            body.className = "is-primary tile is-ancestor"
+            body.className = "is-primary tile is-ancestor is-3"
             // anschließen waehle neue Box
             volume_order.push(id);
             //setzte Aenderung der Box, sehen das asugewaehlt...
             var body = document.getElementById(id);
-            body.className = "is-link tile is-ancestor"
+            body.className = "is-link tile is-ancestor is-3"
           }
         }
       </script>
