@@ -20,7 +20,7 @@ def server_static(filepath="mdb.html"):
 #Hosts html file which will be invoked from browser.
 @route('/mix.html')
 def server_static(filepath="mdb.html"):
-    return static_file(filepath, root=os.path.join(os.path.dirname(mix.html), 'static'))
+    return static_file(filepath, root=os.path.join(os.path.dirname("mix.html"), 'static'))
 
 @route('/recipes.html')
 def server_static(filepath="recipes.html"):
