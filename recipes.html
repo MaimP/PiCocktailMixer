@@ -31,7 +31,7 @@
 
     <script>
       var recipes;
-      var elements = ["Name", "Beschreibung", "Zutaten", "Ausfuehrung", "Stichwörter"];
+      var elements = ["Beschreibung", "Zutaten", "Ausfuehrung", "Stichwörter"];
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
@@ -76,7 +76,9 @@
           navi.className = "panel-tabs";
           for (let d in elements) {
             var nav_element = document.createElement("a");
-            nav_element.id = name + elements[d];
+            if (d == 0){
+              nav_element.className = "is-active"
+            }
             var nav_text = document.createTextNode(elements[d]);
             nav_element.appendChild(nav_text);
             navi.appendChild(nav_element)
@@ -88,7 +90,17 @@
                false
             );
           }
+
           panel.appendChild(navi)
+
+          // body, weil erste selected ist direkt erstes anzeigen andere auch generieren,
+          // aber noch nicht anzeigen
+          var bodyDes = document.createElement("a");
+          bodyDes.className  = "panel-block";
+          bodyDes.id = name + "Des";
+          bodyDes.createTextNode(description);
+          panel.appendChild(bodyDes);
+
           tile.appendChild(panel)
           til.appendChild(tile);
           vert.appendChild(til);
