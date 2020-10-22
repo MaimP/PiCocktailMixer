@@ -36,6 +36,7 @@
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
+          //immer checken ob durch drei teilbar ist dann zu tile parent hinzufuegen und zum gesamten hinzufuegen
 					let array = recipes[b];
 					var name = array.name;
 					var description = array.description;
@@ -48,8 +49,20 @@
 					for (var i in array.keywords) {
 						keyword_array.push(array.keywords[i]);
 					}
+
+          if (b % 3 = 0) {
+            var vert = document.createElement("div");
+            vert.className = "tile is-vertical";
+            var til = document.createElement("div");
+            til.className = "tile";
+          }
           var tile = document.createElement("div");
-          tile.className = "tile is-parent is-3 is-inline";
+          tile.className = "tile is-parent is-vertical";
+          for (let e = 0; e == 3; e++) {
+            var artic = document.createElement("ARTICEL");
+            artic.className = "tile is-child";
+
+          }
           //erstelle leeres Panel
           var panel = document.createElement("nav");
           panel.className = "panel";
@@ -69,8 +82,12 @@
           }
           panel.appendChild(navi)
           tile.appendChild(panel)
-          var id_main = document.getElementById("recipes_id");
-          id_main.appendChild(tile)
+          if (b % 3 = 0) {
+            til.appendChild(tile);
+            vert.appendChild(til);
+            var id_main = document.getElementById("recipes_id");
+            id_main.appendChild(vert);
+          }
         }
       })
     </script>
