@@ -76,6 +76,7 @@
           navi.className = "panel-tabs";
           for (let d in elements) {
             var nav_element = document.createElement("a");
+            nav_element.id = name + elemts[d];
             if (d == 0){
               nav_element.className = "is-active"
             }
@@ -85,7 +86,7 @@
             nav_element.addEventListener (
                'click',
                function() {           // anonyme Funktion
-                  test(name, elements[d]);
+                  test(this.id, elements[d]);
                },
                false
             );
