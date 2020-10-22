@@ -82,7 +82,7 @@
             navi.appendChild(nav_element)
             nav_element.addEventListener (
                'click',
-               function() {           // anonyme Funktion
+               function(name, elements[d]) {           // anonyme Funktion
                   test();
                },
                false
@@ -100,8 +100,9 @@
         }
       })
 
-      function test() {
-        console.log("test function")
+      function test(id, nav) {
+        console.log(id)
+        console.log(nav)
       }
     </script>
   </body>
