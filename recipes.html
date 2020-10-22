@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container is-mt-3">
       <div id="recipes_id">
       </div>
     </div>
@@ -62,7 +62,6 @@
           for (let e = 0; e == 3; e++) {
             var artic = document.createElement("ARTICEL");
             artic.className = "tile is-child";
-
           }
           //erstelle leeres Panel
           var panel = document.createElement("nav");
@@ -77,11 +76,12 @@
           navi.className = "panel-tabs";
           for (let d in elements) {
             var nav_element = document.createElement("a");
+            nav_element.id = name + elements[d];
             var nav_text = document.createTextNode(elements[d]);
             nav_element.appendChild(nav_text);
             navi.appendChild(nav_element)
+            nav_element.addEventListener("click", test());
           }
-          var br = document.createElement("BR");
           panel.appendChild(navi)
           tile.appendChild(panel)
           til.appendChild(tile);
@@ -93,6 +93,10 @@
           }
         }
       })
+
+      function test() {
+        console.log("test function")
+      }
     </script>
   </body>
 </html>
