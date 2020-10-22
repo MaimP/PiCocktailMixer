@@ -31,7 +31,7 @@
 
     <script>
       var recipes;
-      var elements = ["Beschreibung", "Zutaten", "Ausfuehrung", "Stichwörter"];
+      var elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
@@ -76,7 +76,7 @@
           navi.className = "panel-tabs";
           for (let d in elements) {
             var nav_element = document.createElement("a");
-            nav_element.id = name + elements[d];
+            nav_element.id = name
             if (d == 0){
               nav_element.className = "is-active"
             }
@@ -98,10 +98,32 @@
           // aber noch nicht anzeigen
           var bodyDes = document.createElement("a");
           bodyDes.className  = "panel-block";
-          bodyDes.id = name + "Des";
+          bodyDes.id = name + "Beschreibung"
           var desText = document.createTextNode(description);
           bodyDes.appendChild(desText);
           panel.appendChild(bodyDes);
+
+          var bodyIng = document.createElement("a");
+          bodyIng.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyIng.id = name + "Zutaten"
+          var ingText = document.createTextNode(ingredients_array[0]);
+          bodyIng.appendChild(ingText);
+          panel.appendChild(bodyIng);
+
+          var bodyAusf = document.createElement("a");
+          bodyAusf.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyAusf.id = name + "Ausführen"
+          var ausfText = document.createTextNode(description);
+          bodyAusf.appendChild(ausfText);
+          panel.appendChild(bodyAusf);
+
+          var bodyStich = document.createElement("a");
+          bodyStich.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyStich.id = name + "Stichwörter"
+          var stichText = document.createTextNode(keyword_array[0]);
+          bodyDes.appendChild(stichText);
+          panel.appendChild(bodyStich);
+
 
           tile.appendChild(panel)
           til.appendChild(tile);
@@ -115,8 +137,8 @@
       })
 
       function test(id, nav) {
-        console.log(id)
-        console.log(nav)
+        var elem = document.getElementById(id + nav);
+;        console.log(elem);
       }
     </script>
   </body>
