@@ -138,9 +138,13 @@
 
       function test(id, nav) {
         var elem = document.getElementById(id + nav);
-        var lastElem = document.getElementsByClassName("panel-block")
-        console.log(lastElem);
-        lastElem.className = "panel-block is-hidden-touch is-hidden-desktop";
+        for (let i in elements){
+          if (document.getElementById(id + elements[i]) != null) {
+            var lastElem = doucoment.getElementById(id + elements[i]).getElementsByClassName("panel-block");
+            console.log(lastElem);
+            lastElem.className = "panel-block is-hidden-touch is-hidden-desktop";
+          }
+        }
         elem.className = "panel-block";
         console.log(elem);
           }
