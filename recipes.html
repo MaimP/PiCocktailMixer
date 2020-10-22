@@ -31,7 +31,7 @@
 
     <script>
       var recipes;
-      var elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
+      const elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
@@ -76,7 +76,7 @@
           navi.className = "panel-tabs";
           for (let d in elements) {
             var nav_element = document.createElement("a");
-            nav_element.id = name
+            nav_element.id = name + elements[d]
             if (d == 0){
               nav_element.className = "is-active"
             }
@@ -98,28 +98,28 @@
           // aber noch nicht anzeigen
           var bodyDes = document.createElement("a");
           bodyDes.className  = "panel-block";
-          bodyDes.id = name + "Beschreibung"
+          bodyDes.id = name + "Beschreibung" + "Beschreibung"
           var desText = document.createTextNode(description);
           bodyDes.appendChild(desText);
           panel.appendChild(bodyDes);
 
           var bodyIng = document.createElement("a");
           bodyIng.className  = "panel-block is-hidden-touch is-hidden-desktop";
-          bodyIng.id = name + "Zutaten"
+          bodyIng.id = name + "Zutaten" + "Zutaten"
           var ingText = document.createTextNode(ingredients_array[0]);
           bodyIng.appendChild(ingText);
           panel.appendChild(bodyIng);
 
           var bodyAusf = document.createElement("a");
           bodyAusf.className  = "panel-block is-hidden-touch is-hidden-desktop";
-          bodyAusf.id = name + "Ausführen"
+          bodyAusf.id = name + "Ausführen" + "Ausführen"
           var ausfText = document.createTextNode(description);
           bodyAusf.appendChild(ausfText);
           panel.appendChild(bodyAusf);
 
           var bodyStich = document.createElement("a");
           bodyStich.className  = "panel-block is-hidden-touch is-hidden-desktop";
-          bodyStich.id = name + "Stichwörter"
+          bodyStich.id = name + "Stichwörter" + "Stichwörter"
           var stichText = document.createTextNode(keyword_array[0]);
           bodyDes.appendChild(stichText);
           panel.appendChild(bodyStich);
@@ -138,7 +138,14 @@
 
       function test(id, nav) {
         var elem = document.getElementById(id + nav);
-;        console.log(elem);
+        for (let i in elements) {
+          if (document.getElementById(id + elements[i]).className == "panel-block"){
+            var chang_elem = document.getElementById(id + element[i]);
+            chang_elem.className = "panel-block is-hidden-touch is-hidden-desktop";
+            elem.className = "panel-block";
+          }
+        }
+        console.log(elem);
       }
     </script>
   </body>
