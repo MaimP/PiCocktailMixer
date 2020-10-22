@@ -98,7 +98,8 @@
           var bodyDes = document.createElement("a");
           bodyDes.className  = "panel-block";
           bodyDes.id = name + "Des";
-          bodyDes.createTextNode(description);
+          var desText = createTextNode(description);
+          bodyDes.appendChild(desText);
           panel.appendChild(bodyDes);
 
           tile.appendChild(panel)
