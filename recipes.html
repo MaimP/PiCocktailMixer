@@ -140,7 +140,7 @@
         var elem = document.getElementById(id + nav);
         for (let i in elements) {
           console.log(id + elements[i])
-          if (document.getElementById(id + elements[i]).className == "panel-block"){
+          if (document.getElementById(id + elements[i]) != null && document.getElementById(id + elements[i]).className == "panel-block"){
             var chang_elem = document.getElementById(id + element[i]);
             chang_elem.className = "panel-block is-hidden-touch is-hidden-desktop";
             elem.className = "panel-block";
