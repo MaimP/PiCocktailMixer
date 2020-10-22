@@ -25,7 +25,7 @@
     </div>
 
     <div class="container">
-      <div id="recipes_id" class="tile is-ancestor">
+      <div id="recipes_id">
       </div>
     </div>
 
@@ -50,6 +50,8 @@
 					}
 
           if (b % 3 == 0) {
+            var anc = document.createElement("div");
+            anc.className = "tile is-ancestor";
             var vert = document.createElement("div");
             vert.className = "tile is-vertical is-12";
             var til = document.createElement("div");
@@ -84,11 +86,10 @@
           tile.appendChild(panel)
           til.appendChild(tile);
           vert.appendChild(til);
+          anc.appendChild(vert)
           if (b % 3 == 0) {
             var id_main = document.getElementById("recipes_id");
             id_main.appendChild(vert);
-            id_main.appendChild(br);
-
           }
         }
       })
