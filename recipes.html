@@ -136,11 +136,12 @@
         }
       })
 
-      function test(id, nav) {
+      function test(id, nav, name) {
+        var ids = [name + "Beschreibung" + "Beschreibung", name + "Zutaten" + "Zutaten", name + "Ausführung" + "Ausführung", name + "Stichwörter" + "Stichwörter"]
         var elem = document.getElementById(id + nav);
-        for (let i in elements){
-          if (document.getElementById(id + elements[i]) != null) {
-            var lastElem = document.getElementById(id + elements[i]).document.getElementsByClassName("panel-block");
+        for (let i in ids){
+          if (document.getElementById(id + ids[i]) != null) {
+            var lastElem = document.getElementById(id + ids[i]).getElementsByClassName("panel-block");
             console.log(lastElem);
             lastElem.className = "panel-block is-hidden-touch is-hidden-desktop";
           }
