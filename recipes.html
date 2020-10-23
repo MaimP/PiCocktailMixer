@@ -32,12 +32,15 @@
     <script>
       var recipes;
       const elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
+      var names = [];
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
 				for (let b in recipes) {
           //immer checken ob durch drei teilbar ist dann zu tile parent hinzufuegen und zum gesamten hinzufuegen
 					let array = recipes[b];
 					var name = array.name;
+          names.psuh(name);
+
 					var description = array.description;
 					var ingredients_array = [];
 					for (let c in array.ingredients) {
@@ -86,7 +89,7 @@
             nav_element.addEventListener (
                'click',
                function() {           // anonyme Funktion
-                  test(this.id, elements[d]);
+                  test(this.id, elements[d], names[b]);
                },
                false
             );
