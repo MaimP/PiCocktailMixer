@@ -85,7 +85,7 @@ def process():
     c = bestellung.get('getraenke')
     d = list(b)
     e = list(c)
-    menge = bestellung.get('anzahl') #gibt die Menge an bestellten Getraenken an
+    menge = bestellung.get('anzahl') #gbt die Menge an bestellten Getraenken an
     glas = bestellung.get('volume') #gibt an welches Glas genutzt wird(Volumen)
     mischv = []
     getraenke = []
