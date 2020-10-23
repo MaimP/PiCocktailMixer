@@ -22,7 +22,7 @@ class App:
         #Bestellung in einem Array festhalten, immer
         #debug, ob ordernumber funktioniert
         self.volume = self.order_list[2]
-        self.menge = self.order_list[1]
+        self.menge = int(self.order_list[1])
 
         anzahl = self.order_list[0]
 
