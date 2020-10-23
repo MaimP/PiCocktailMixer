@@ -115,7 +115,7 @@
 
           var bodyAusf = document.createElement("a");
           bodyAusf.className  = "panel-block is-hidden-touch is-hidden-desktop";
-          bodyAusf.id = name + "Ausführen" + "Ausführen"
+          bodyAusf.id = name + "Ausführung" + "Ausführung"
           var ausfText = document.createTextNode(description);
           bodyAusf.appendChild(ausfText);
           panel.appendChild(bodyAusf);
@@ -141,6 +141,7 @@
 
       function test(id, nav, name) {
         var ids = [name + "Beschreibung" + "Beschreibung", name + "Zutaten" + "Zutaten", name + "Ausführung" + "Ausführung", name + "Stichwörter" + "Stichwörter"]
+        console.log(name)
         var elem = document.getElementById(id + nav);
         for (let i in ids){
           if (document.getElementById(id + ids[i]) != null) {
