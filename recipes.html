@@ -144,7 +144,9 @@
         console.log(name)
         var elem = document.getElementById(id + nav);
         for (let i in ids){
+          console.log("for")
           if (document.getElementById(id + ids[i]) != null) {
+            console.log("if")
             var lastElem = document.getElementById(id + ids[i]).getElementsByClassName("panel-block");
             console.log(lastElem);
             lastElem.className = "panel-block is-hidden-touch is-hidden-desktop";
