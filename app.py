@@ -4,8 +4,12 @@ class App:
     import time
     import math
     import pump
-    import flowSensor
-    from thread import start_new_thread
+
+    self.FLOW_SENSOR = 20
+
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(self.FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+    self.count = 0
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
@@ -61,27 +65,37 @@ class App:
 
             fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
-            thread_fillup = (fillUp)
-
-            self.start_new_thread(self.flowSensor.measure, (thread_fillup, )) #muss dauerhaft Menge übermitteln
 
             self.pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
             zaehler = 0
+            def countPulse(channel):
+                if start_counter == 1:
+                    self.count = self.count + 1
+
+            GPIO.add_event_detect(FLOW_SENSOR, GPIO.FALLING, callback=countPulse)
+            flow_array = []
+            self.counter = 0
             while True:
-                from flowSensor import flow_all
-                flow = self.flow_all
-                if flow < fillUp:
+                start_counter = 1
+                time.sleep(1)
+                start_counter = 0
+                flow = ((count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
+                print("The flow is: %.3f ml/sek" % (flow))
+                flow_array.append(flow)
+                flow_all = sum(flow_array)
+                print("gesamt durchfluss: {}".format(flow_all))
+                self.count = 0
+                if flow_all < fillUp:
                     zaehler = zaehler + 1
                     #Debug
                     print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                    print("es wurde aufgefuellt: {} ml".format(flow))
+                    print("es wurde aufgefuellt: {} ml".format(flow_all))
 
-                elif flow >= fillUp:
+                elif flow_all >= fillUp:
                     self.pump.stopPump()
-                    self.flowSensor.proces()
                     print("flow ist größer oder gleich fillUp")
-                    print("es wurde aufgefuellt:{} ml".format(flow))
+                    print("es wurde aufgefuellt:{} ml".format(flow_all))
                     break
                 else:
                     self.pump.stopPump()
