@@ -20,9 +20,10 @@ def proces():
     process_flow = False
     return process_flow
 
-def measure():
+def measure(x):
     global process_flow
     process_flow = True
+    x = fillup
     global count
     def countPulse(channel):
 
@@ -36,7 +37,9 @@ def measure():
     start_time = time.time()
     counter = 0
     while True:
-        if process_flow:
+        if flow_all > x:
+            proces = False
+        else if process_flow:
             start_counter = 1
             time.sleep(1)
             start_counter = 0
