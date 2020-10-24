@@ -43,8 +43,8 @@ def measure(x):
             flow = ((count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
             print("The flow is: %.3f ml/sek" % (flow))
             flow_array.append(flow)
-            print("gesamt durchfluss: {}".format(sum(flow_all)))
             flow_all = sum(flow_array)
+            print("gesamt durchfluss: {}".format(flow_all)
             count = 0
         else:
             GPIO.cleanup()
