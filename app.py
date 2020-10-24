@@ -16,6 +16,7 @@ class App:
         #Bestellung in einem Array festhalten, immer
         #debug, ob ordernumber funktioniert
         self.volume = self.order_list[2] #welches Volumen das Glas hat
+        print("volume: {}".format(self.volume))
         self.menge = int(self.order_list[1]) #wieviele von diesem Cocktail
         anzahl = self.order_list[0] #wiviele Getraenke pro Glas
 
@@ -23,7 +24,7 @@ class App:
         for x in range(self.menge):
             if counter_menge == 0:
                 self.process = False
-                
+
             while True:
                 if not self.process:
                     self.process = True
