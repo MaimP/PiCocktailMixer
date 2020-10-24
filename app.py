@@ -10,7 +10,7 @@ class App:
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
     def __init__(self, orderlist):
         self.order_list = orderlist
-        flowSensor.test()
+        self.flowSensor.test()
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
