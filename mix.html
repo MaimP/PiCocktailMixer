@@ -143,6 +143,10 @@
         </div>
       </section>
       <script>
+        function cupReady() {
+          $.post('/cupReady', True)
+        }
+
         var volume_obj;
         $.get('/volume', function(volume_parse) {
           volume_obj = JSON.parse(volume_parse);
@@ -419,10 +423,6 @@
     					}
     				})
     			}
-
-          function cupReady() {
-            $.post('/cupReady', True)
-          }
 
 
     			function order() {
