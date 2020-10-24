@@ -4,7 +4,7 @@ class App:
     import time
     import math
     import pump as pm
-    import flow_sensor as fs
+    import flowSensor as fs
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
@@ -48,39 +48,45 @@ class App:
         self.process = True
 
     def start(self):
-        #schreibe die Getraenke aus dem Array fuer neue Bestellung raus
-        #nach ausfuehren aller die Bestellung aus Array loeschen,
-        #neueBestellung auf True setzten
-        drink = self.order_list[3]  #Getraenkenummer
-        mischv = self.order_list[4] #mischverhaeltnis muss noch in Array geschrieben werden
-        #loesche genutzte Werte in Array
-        self.order_list.pop(1)
-        self.order_list.pop(1)
+        try:
+            #schreibe die Getraenke aus dem Array fuer neue Bestellung raus
+            #nach ausfuehren aller die Bestellung aus Array loeschen,
+            #neueBestellung auf True setzten
+            drink = self.order_list[3]  #Getraenkenummer
+            mischv = self.order_list[4] #mischverhaeltnis muss noch in Array geschrieben werden
+            #loesche genutzte Werte in Array
+            self.order_list.pop(1)
+            self.order_list.pop(1)
 
-        fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
-        print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
+            fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
+            print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
-        fs.measure() #muss dauerhaft Menge übermitteln
+            fs.measure() #muss dauerhaft Menge übermitteln
 
-        pm.startPump(drink) #drink gibt an welche pumpe gestartet wird
+            pm.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
-        zaehler = 0
-        while True:
-            from flow_sensor import flow_all
-            flow = flow_all
-            if flow < fillUp:
-                zaehler = zaehler + 1
-                #Debug
-                print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                print("es wurde aufgefuellt: {} ml".format(flow))
+            zaehler = 0
+            while True:
+                from flow_sensor import flow_all
+                flow = flow_all
+                if flow < fillUp:
+                    zaehler = zaehler + 1
+                    #Debug
+                    print("while schleife durchfuehrung nummer: {}".format(zaehler))
+                    print("es wurde aufgefuellt: {} ml".format(flow))
 
-            elif flow >= fillUp:
-                pm.stopPump()
-                fs.process()
-                print("flow ist größer oder gleich fillUp")
-                print("es wurde aufgefuellt:{} ml".format(flow))
-                break
-            else:
-                pm.stopPump()
-                print("FEHLER!")
-                break
+                elif flow >= fillUp:
+                    pm.stopPump()
+                    fs.process()
+                    print("flow ist größer oder gleich fillUp")
+                    print("es wurde aufgefuellt:{} ml".format(flow))
+                    break
+                else:
+                    pm.stopPump()
+                    print("FEHLER!")
+                    break
+
+        except KeyboardInterrupt:
+            print('\nkeyboard interrupt!')
+            fs.process()
+            GPIO.cleanup()

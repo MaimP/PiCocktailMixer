@@ -44,6 +44,7 @@ def measure():
             flow_all = sum(flow_array)
             count = 0
         else:
+            GPIO.cleanup()
             break
 
 if __name__ == '__main__':
