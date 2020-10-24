@@ -13,7 +13,6 @@ class App:
         self.FLOW_SENSOR = 20
         self.count = 0
         self.GPIO.setmode(self.GPIO.BCM)
-        self.GPIO.setup(self.FLOW_SENSOR, self.GPIO.IN, pull_up_down = self.GPIO.PUD_UP)
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
@@ -65,9 +64,10 @@ class App:
             fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
-            self.pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
-
             zaehler = 0
+
+            self.GPIO.setup(self.FLOW_SENSOR, self.GPIO.IN, pull_up_down = self.GPIO.PUD_UP)
+
             def countPulse(channel):
                 if start_counter == 1:
                     self.count = self.count + 1
@@ -75,6 +75,7 @@ class App:
             self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
             flow_array = []
             self.counter = 0
+            self.pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
             while True:
                 start_counter = 1
                 self.time.sleep(1)
@@ -103,5 +104,4 @@ class App:
 
         except KeyboardInterrupt:
             print('\nkeyboard interrupt!')
-            self.flowSensor.proces()
             self.GPIO.cleanup()
