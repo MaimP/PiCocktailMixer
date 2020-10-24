@@ -12,6 +12,9 @@ count = 0
 global process_flow
 process_flow = False
 
+def test():
+    print("debug")
+
 def proces():
     global process_flow
     process_flow = False

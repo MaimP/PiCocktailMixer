@@ -4,8 +4,8 @@ class App:
     import time
     import math
     import pump as pm
-    from flowSensor import measure
-    from flowSensor import proces
+    import flowSensor
+    flowSensor.test()
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
