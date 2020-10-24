@@ -26,7 +26,7 @@ class App:
         anzahl = self.order_list[0] #wiviele Getraenke pro Glas
 
         counter_menge = 0
-        drinks_misch = []
+        self.drinks_misch = []
         for x in range(self.menge):
             if counter_menge == 0:
                 self.process = False
@@ -35,8 +35,8 @@ class App:
                 if not self.process:
                     self.process = True
                     for x in range(anzahl):
-                        drinks_misch.append(self.order_list[3])
-                        drinks_misch.append(self.order_list[4])
+                        self.drinks_misch.append(self.order_list[3])
+                        self.drinks_misch.append(self.order_list[4])
                         self.order_list.pop(3)
                         self.order_list.pop(4)
                         self.start()
@@ -60,9 +60,9 @@ class App:
 
     def start(self):
         try:
-            self.drink = drinks_misch[self.counter_array]
+            self.drink = self.drinks_misch[self.counter_array]
             self.counter_array += 1
-            self.mischv = drinks_misch[self.counter_array]
+            self.mischv = self.drinks_misch[self.counter_array]
             fillUp = (self.volume / 100) * self.mischv #berechnet wieviel aufgefuellt werden muss in ml
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
