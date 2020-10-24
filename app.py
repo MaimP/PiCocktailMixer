@@ -25,20 +25,28 @@ class App:
         anzahl = self.order_list[0] #wiviele Getraenke pro Glas
 
         counter_menge = 0
+        drinks_misch = []
         for x in range(self.menge):
             if counter_menge == 0:
                 self.process = False
-
+                counter_menge += 1
             while True:
                 if not self.process:
                     self.process = True
                     for x in range(anzahl):
+                        drinks_misch.append(self.order_list[3])
+                        drinks_misch.append(self.order_list[4])
+                        self.order_list.pop(3)
+                        self.order_list.pop(4)
                         self.start()
+                    self.counter_array = 0
                     break
                 else:
                     #thread oder sowas wartet auf False von website
                     self.time.sleep(5)
 
+        self.order_list.pop(0) #loesche
+        self.order_list.pop(0)
         self.order_list.pop(0)
         self.order_list.pop(0)
         self.order_list.pop(0)
@@ -49,18 +57,13 @@ class App:
         Bechers, starte manuell über website'''
         self.process = True
 
+    self.counter_array = 0
     def start(self):
         try:
-            #schreibe die Getraenke aus dem Array fuer neue Bestellung raus
-            #nach ausfuehren aller die Bestellung aus Array loeschen,
-            #neueBestellung auf True setzten
-            drink = self.order_list[3]  #Getraenkenummer
-            mischv = self.order_list[4] #mischverhaeltnis muss noch in Array geschrieben werden
-            #loesche genutzte Werte in Array
-            self.order_list.pop(1)
-            self.order_list.pop(1)
-
-            fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
+            self.drink = drinks_misch[self.counter_array]
+            self.counter_array += 1
+            self.mischv = drinks_misch[self.counter_array]
+            fillUp = (self.volume / 100) * self.mischv #berechnet wieviel aufgefuellt werden muss in ml
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
             zaehler = 0
@@ -75,7 +78,7 @@ class App:
             self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
             flow_array = []
             self.counter = 0
-            self.pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
+            self.pump.startPump(self.drink) #self.drink gibt an welche pumpe gestartet wird
             while True:
                 start_counter = 1
                 self.time.sleep(1)
