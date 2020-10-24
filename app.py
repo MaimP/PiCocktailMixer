@@ -72,7 +72,7 @@ class App:
             self.GPIO.setup(self.FLOW_SENSOR, self.GPIO.IN, pull_up_down = self.GPIO.PUD_UP)
 
             def countPulse(channel):
-                if start_counter == 1:
+                if self.start_counter == 1:
                     self.count = self.count + 1
 
             self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
@@ -80,9 +80,9 @@ class App:
             self.counter = 0
             self.pump.startPump(self.drink) #self.drink gibt an welche pumpe gestartet wird
             while True:
-                start_counter = 1
+                self.start_counter = 1
                 self.time.sleep(1)
-                start_counter = 0
+                self.start_counter = 0
                 flow = ((self.count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
                 print("The flow is: %.3f ml/sek" % (flow))
                 flow_array.append(flow)
