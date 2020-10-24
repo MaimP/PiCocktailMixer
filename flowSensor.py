@@ -17,7 +17,7 @@ def proces():
     process_flow = False
     return process_flow
 
-def measure():
+def measure(x):
     global process_flow
     process_flow = True
     global count
