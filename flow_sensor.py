@@ -37,17 +37,12 @@ def measure():
             start_counter = 1
             time.sleep(1)
             start_counter = 0
-            flow = ((count / 7.5) * 16.6666) #ml/sec
+            flow = ((count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
+            print("The flow is: %.3f ml/sek" % (flow))
             flow_array.append(flow)
-            print "The flow is: %.3f ml/sec" % (flow)
+            print("gesamt durchfluss: {}".format(sum(flow_all)))
+            flow_all = sum(flow_array)
             count = 0
-            flow_all = sum(flow_array) * 1.6
-            print("Insgesamt: {}".format(flow_all))
-            #debug
-            stop_time = time.time()
-            counter += 1
-            time_intervall = (stop_time - start_time) / counter
-            print("zeit pro durchlauf im durchschnitt: {}".format(time_intervall))
         else:
             break
 
