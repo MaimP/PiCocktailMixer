@@ -69,7 +69,7 @@ class App:
 
             zaehler = 0
             while True:
-                from flow_sensor import flow_all
+                from flowSensor import flow_all
                 flow = self.flow_all
                 if flow < fillUp:
                     zaehler = zaehler + 1
