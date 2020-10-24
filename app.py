@@ -62,7 +62,7 @@ class App:
             fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
-            flowSensor.measure(2) #muss dauerhaft Menge übermitteln
+            self.flowSensor.measure(2) #muss dauerhaft Menge übermitteln
 
             pm.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
