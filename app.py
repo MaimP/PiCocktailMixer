@@ -12,6 +12,7 @@ class App:
         self.order_list = orderlist
         self.FLOW_SENSOR = 20
         self.count = 0
+        self.counter_array = 0
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
@@ -52,12 +53,11 @@ class App:
         self.order_list.pop(0)
         self.process = False
 
-    def start_next_cup():
+    def start_next_cup(self):
         '''falls fehler beim starten von befuellen des naechsten
         Bechers, starte manuell über website'''
         self.process = True
 
-    self.counter_array = 0
     def start(self):
         try:
             self.drink = drinks_misch[self.counter_array]
