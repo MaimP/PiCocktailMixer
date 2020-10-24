@@ -38,8 +38,8 @@ def measure(x):
     counter = 0
     while True:
         if flow_all > x:
-            proces = False
-        else if process_flow:
+            proces_flow = False
+        elif process_flow:
             start_counter = 1
             time.sleep(1)
             start_counter = 0
