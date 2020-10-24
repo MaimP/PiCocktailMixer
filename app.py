@@ -12,7 +12,6 @@ class App:
         self.order_list = orderlist
         self.FLOW_SENSOR = 20
         self.count = 0
-        self.GPIO.setmode(self.GPIO.BCM)
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
@@ -66,6 +65,7 @@ class App:
 
             zaehler = 0
 
+            self.GPIO.setmode(self.GPIO.BCM)
             self.GPIO.setup(self.FLOW_SENSOR, self.GPIO.IN, pull_up_down = self.GPIO.PUD_UP)
 
             def countPulse(channel):
