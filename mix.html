@@ -130,7 +130,7 @@
             <div class="content">
               <p> Wenn ein Glas/ Becher bereitsteht starten Sie den Vorgang </p>
             </div>
-            <button onclick="cupReady()">Starten</button>
+            <button id="start_id">Starten</button>
             <div id="demo 1"></div>
             <div id="demo 2"></div>
             <div id="demo 3"></div>
@@ -143,9 +143,14 @@
         </div>
       </section>
       <script>
-        function cupReady() {
-          $.post('/cupReady', True)
-        }
+        var id_start = document.getElementById("start_id");
+        id_start.addEventListener (
+           'click',
+           function() {           // anonyme Funktion
+              $.post('/cupReady', True)
+           },
+           false
+        );
 
         var volume_obj;
         $.get('/volume', function(volume_parse) {
