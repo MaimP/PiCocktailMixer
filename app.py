@@ -6,15 +6,14 @@ class App:
     import pump
     import RPi.GPIO as GPIO
 
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(self.FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
     def __init__(self, orderlist):
         self.order_list = orderlist
         self.FLOW_SENSOR = 20
         self.count = 0
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
