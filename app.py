@@ -39,7 +39,7 @@ class App:
                     break
                 else:
                     #thread oder sowas wartet auf False von website
-                    time.sleep(5)
+                    self.time.sleep(5)
 
         self.order_list.pop(0)
         self.order_list.pop(0)
@@ -77,7 +77,7 @@ class App:
             self.counter = 0
             while True:
                 start_counter = 1
-                time.sleep(1)
+                self.time.sleep(1)
                 start_counter = 0
                 flow = ((count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
                 print("The flow is: %.3f ml/sek" % (flow))
