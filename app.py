@@ -5,16 +5,15 @@ class App:
     import math
     import pump
 
-    self.FLOW_SENSOR = 20
-
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(self.FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-    self.count = 0
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
     def __init__(self, orderlist):
         self.order_list = orderlist
+        self.FLOW_SENSOR = 20
+        self.count = 0
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
