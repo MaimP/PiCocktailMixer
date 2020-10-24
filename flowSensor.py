@@ -44,7 +44,7 @@ def measure(x):
             print("The flow is: %.3f ml/sek" % (flow))
             flow_array.append(flow)
             flow_all = sum(flow_array)
-            print("gesamt durchfluss: {}".format(flow_all)
+            print("gesamt durchfluss: {}".format(flow_all))
             count = 0
         else:
             GPIO.cleanup()
