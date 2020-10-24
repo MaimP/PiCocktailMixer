@@ -101,7 +101,7 @@ class App:
                     self.pump.stopPump()
                     print("flow ist größer oder gleich fillUp")
                     print("es wurde aufgefuellt:{} ml".format(flow_all))
-                    break
+                    return False
                 else:
                     self.pump.stopPump()
                     print("FEHLER!")
