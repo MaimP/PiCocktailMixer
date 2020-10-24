@@ -3,14 +3,13 @@
 class App:
     import time
     import math
-    import pump as pm
+    import pump
     import flowSensor
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
     def __init__(self, orderlist):
         self.order_list = orderlist
-        self.flowSensor.test()
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
@@ -64,7 +63,7 @@ class App:
 
             self.flowSensor.measure(2) #muss dauerhaft Menge übermitteln
 
-            pm.startPump(drink) #drink gibt an welche pumpe gestartet wird
+            self.pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
             zaehler = 0
             while True:
@@ -77,17 +76,17 @@ class App:
                     print("es wurde aufgefuellt: {} ml".format(flow))
 
                 elif flow >= fillUp:
-                    pm.stopPump()
-                    flowSensor.process()
+                    self.pump.stopPump()
+                    self.flowSensor.process()
                     print("flow ist größer oder gleich fillUp")
                     print("es wurde aufgefuellt:{} ml".format(flow))
                     break
                 else:
-                    pm.stopPump()
+                    self.pump.stopPump()
                     print("FEHLER!")
                     break
 
         except KeyboardInterrupt:
             print('\nkeyboard interrupt!')
-            flowSensor.process()
+            self.flowSensor.process()
             GPIO.cleanup()
