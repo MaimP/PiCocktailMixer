@@ -5,7 +5,7 @@ class App:
     import math
     import pump as pm
     from flowSensor import measure
-    from flowSensor import process
+    from flowSensor import proces
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
