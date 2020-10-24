@@ -51,6 +51,7 @@ class App:
         self.order_list.pop(0)
         self.order_list.pop(0)
         self.order_list.pop(0)
+        self.counter_array = 0
         self.process = False
 
     def start_next_cup(self):
@@ -63,6 +64,7 @@ class App:
             self.drink = self.drinks_misch[self.counter_array]
             self.counter_array += 1
             self.mischv = self.drinks_misch[self.counter_array]
+            self.counter_array += 1
             fillUp = (self.volume / 100) * self.mischv #berechnet wieviel aufgefuellt werden muss in ml
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
