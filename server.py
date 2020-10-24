@@ -61,13 +61,10 @@ def recipes():
     return recipes_send
 
 
-global ready
-ready = False
-@get('/readyCup')
+@get('/cupReady')
 def cup():
-    global ready
-    ready = True
-    return ready
+    from app import start_next_cup
+    app.start_next_cup()
 
 @get('/volume')
 def volume():
@@ -110,7 +107,6 @@ def order(mischv, getraenke, anzahl, volume):
     mischv = mischv
     getraenke = getraenke
     menge = anzahl
-    glas = volume
     #vorläufiges Array für Bestellung
     order_list = []
     #Entgültige Bestellungsarray für Ausfuehrung in App
@@ -209,7 +205,7 @@ def order(mischv, getraenke, anzahl, volume):
     #schreibt bestellung in Array
     order_list.append(number)
     order_list.append(menge)
-    order_list.append(glas)
+    order_list.append(volume)
     z = order_list[0] * 2
 
     for i in range(z):
