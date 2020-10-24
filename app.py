@@ -38,7 +38,7 @@ class App:
                         self.drinks_misch.append(self.order_list[3])
                         self.drinks_misch.append(self.order_list[4])
                         self.order_list.pop(3)
-                        self.order_list.pop(4)
+                        self.order_list.pop(3)
                         self.start()
                     self.counter_array = 0
                     break
