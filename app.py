@@ -4,7 +4,7 @@ class App:
     import time
     import math
     import pump as pm
-    import flow_sensor
+    import flow_sensor as fs
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
@@ -60,7 +60,7 @@ class App:
         fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
         print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
-        flow_sensor.measure() #muss dauerhaft Menge übermitteln
+        fs.measure() #muss dauerhaft Menge übermitteln
 
         pm.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
@@ -76,7 +76,7 @@ class App:
 
             elif flow >= fillUp:
                 pm.stopPump()
-                flow_sensor.process()
+                fs.process()
                 print("flow ist größer oder gleich fillUp")
                 print("es wurde aufgefuellt:{} ml".format(flow))
                 break
