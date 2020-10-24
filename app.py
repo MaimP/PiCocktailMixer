@@ -49,8 +49,6 @@ class App:
         self.order_list.pop(0) #loesche
         self.order_list.pop(0)
         self.order_list.pop(0)
-        self.order_list.pop(0)
-        self.order_list.pop(0)
         self.counter_array = 0
         self.process = False
 
