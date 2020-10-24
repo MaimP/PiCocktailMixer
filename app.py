@@ -17,6 +17,8 @@ class App:
         #debug, ob ordernumber funktioniert
         self.volume = self.order_list[2] #welches Volumen das Glas hat
         print("volume: {}".format(self.volume))
+        self.volume = int(self.volume) #welches Volumen das Glas hat
+        print("volume: {}".format(self.volume))
         self.menge = int(self.order_list[1]) #wieviele von diesem Cocktail
         anzahl = self.order_list[0] #wiviele Getraenke pro Glas
 
