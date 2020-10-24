@@ -63,7 +63,7 @@ class App:
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
             thread_fillup = (fillUp)
 
-            self.start_new_thread(self.flowSensor.measure, (thread_fillUp, )) #muss dauerhaft Menge übermitteln
+            self.start_new_thread(self.flowSensor.measure, (thread_fillup, )) #muss dauerhaft Menge übermitteln
 
             self.pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
