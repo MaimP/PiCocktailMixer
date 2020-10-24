@@ -79,7 +79,7 @@ class App:
                 start_counter = 1
                 self.time.sleep(1)
                 start_counter = 0
-                flow = ((count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
+                flow = ((self.count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
                 print("The flow is: %.3f ml/sek" % (flow))
                 flow_array.append(flow)
                 flow_all = sum(flow_array)
