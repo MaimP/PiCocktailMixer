@@ -5,6 +5,7 @@ class App:
     import math
     import pump
     import flowSensor
+    from thread import start_new_thread
 
     #wird direkt ausgfuehrt, werte initialisieren
     #Noch ausweiten auf mehrere Getraenke pro Bestellung
@@ -61,7 +62,7 @@ class App:
             fillUp = (self.volume / 100) * mischv #berechnet wieviel aufgefuellt werden muss in ml
             print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
-            self.flowSensor.measure(2) #muss dauerhaft Menge übermitteln
+            start_new_thread(self.flowSensor.measure) #muss dauerhaft Menge übermitteln
 
             self.pump.startPump(drink) #drink gibt an welche pumpe gestartet wird
 
@@ -77,7 +78,7 @@ class App:
 
                 elif flow >= fillUp:
                     self.pump.stopPump()
-                    self.flowSensor.process()
+                    self.flowSensor.proces()
                     print("flow ist größer oder gleich fillUp")
                     print("es wurde aufgefuellt:{} ml".format(flow))
                     break
@@ -88,5 +89,5 @@ class App:
 
         except KeyboardInterrupt:
             print('\nkeyboard interrupt!')
-            self.flowSensor.process()
+            self.flowSensor.proces()
             GPIO.cleanup()
