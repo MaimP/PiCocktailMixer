@@ -72,7 +72,7 @@ class App:
                 if start_counter == 1:
                     self.count = self.count + 1
 
-            GPIO.add_event_detect(FLOW_SENSOR, GPIO.FALLING, callback=countPulse)
+            self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
             flow_array = []
             self.counter = 0
             while True:
@@ -104,4 +104,4 @@ class App:
         except KeyboardInterrupt:
             print('\nkeyboard interrupt!')
             self.flowSensor.proces()
-            GPIO.cleanup()
+            self.GPIO.cleanup()
