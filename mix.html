@@ -181,7 +181,7 @@
             document.getElementById(name).addEventListener (
                'click',
                function() {           // anonyme Funktion
-                  imageSelected(this.id);
+                  imageSelected(this.id, volume);
                },
                false
             );
@@ -189,10 +189,10 @@
         })
         //trage in array id des ausgewaehlten volumes aus, wird an server geschickt
         const volume_order = [];
-        function imageSelected(id) {
+        function imageSelected(id, vol) {
           if (volume_order.length == 0) {
             // fuege neues Volumen zu Array hinzu
-            volume_order.push(id);
+            volume_order.push(vol);
             // aendere Design von Box, dass man erkennt, dass ausgewaehlt
             var body = document.getElementById(id);
             body.className = "tile is-parent is-primary"

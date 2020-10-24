@@ -11,29 +11,28 @@ class App:
     def __init__(self, orderlist):
         self.order_list = orderlist
 
-    def messure(self):
-        '''Die Funktion misst das Volumen des Glases um dann zu berechnen wieviel
-        hineingefuellt werden soll, von dem Getraenk. (Vll noch vorgegebene Glaseser
-        zur Auswahl stellen) Flüssigkeit wird gemessen durch flowmeter.py'''
-        pass
-
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
         #Bestellung in einem Array festhalten, immer
         #debug, ob ordernumber funktioniert
-        self.volume = self.order_list[2]
-        self.menge = int(self.order_list[1])
+        self.volume = self.order_list[2] #welches Volumen das Glas hat
+        self.menge = int(self.order_list[1]) #wieviele von diesem Cocktail
+        anzahl = self.order_list[0] #wiviele Getraenke pro Glas
 
-        anzahl = self.order_list[0]
-
+        counter_menge = 0
         for x in range(self.menge):
-            if not self.process:
-                self.process = True
-                for x in range(anzahl):
-                    self.start()
-            else:
-                #thread oder sowas wartet auf False von website
-                pass
+            if counter_menge == 0:
+                self.process = False
+                
+            while True:
+                if not self.process:
+                    self.process = True
+                    for x in range(anzahl):
+                        self.start()
+                    break
+                else:
+                    #thread oder sowas wartet auf False von website
+                    time.sleep(5)
 
         self.order_list.pop(0)
         self.order_list.pop(0)
@@ -43,7 +42,7 @@ class App:
     def start_next_cup():
         '''falls fehler beim starten von befuellen des naechsten
         Bechers, starte manuell über website'''
-        process = True
+        self.process = True
 
     def start(self):
         #schreibe die Getraenke aus dem Array fuer neue Bestellung raus
@@ -77,6 +76,8 @@ class App:
                 flow_sensor.process()
                 print("flow ist größer oder gleich fillUp")
                 print("es wurde aufgefuellt:{} ml".format(flow))
-
+                break
             else:
+                pump.stopPump()
                 print("FEHLER!")
+                break
