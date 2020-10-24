@@ -105,3 +105,4 @@ class App:
         except KeyboardInterrupt:
             print('\nkeyboard interrupt!')
             self.GPIO.cleanup()
+            self.pump.stopPump()
