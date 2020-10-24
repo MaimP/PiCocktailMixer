@@ -429,12 +429,13 @@
     				e = document.getElementById("select_5").value
     				f = document.getElementById("select_6").value
     				g = document.getElementById("quantity").value
+            glas_vol = volume_order[0]
 
     				let order = {
     					getraenke: [a, b, c, d, e, f],
     					verhaeltnis: window.handleValues.slice(1),
     					anzahl: g,
-    					volume: volume_order
+    					volume: glas_vol
     				}
 
     				$.post('/doform', JSON.stringify(order))
