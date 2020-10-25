@@ -7,7 +7,7 @@ import json
 import app
 import recipes as re
 import volume_cup as vo_cup
-import drinks
+from drinks import Drinks
 #Verzeichnis für multislider in mdb.html
 @route('/static/:path#.+#', name='static')
 def static(path):
@@ -76,9 +76,9 @@ def volume():
 
 @get('/getChoice')
 def choice():
-    from drinks import Drinks
-    choice = drinks.Drinks.__init__.newchoice
-    return json.dumps(choice)
+    obj = Drinks()
+    obj.__init_()
+    return json.dumps(obj.newchoice)
 
 @post('/doform')
 def process():
