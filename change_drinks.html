@@ -64,7 +64,8 @@
   </section>
   <script>
     $.get('/getOldChoice', function(choice) {
-      console.log(choice)
+      console.log(choice_parse)
+      var choice = JSON.parse(choice_parse);
       for (let i in choice) {
         var name = choice[i];
         var option = document.createElement("OPTION")
