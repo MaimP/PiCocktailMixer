@@ -86,6 +86,15 @@ def choiceOption():
     obj.readDrinks()
     return json.dumps(obj.drinklist)
 
+@post('/newDrink')
+def newDrink():
+    selection = json.load(request.body)
+    addDrink = selection.get('addDrink')
+    old_drink = selection.get('oldDrink')
+    obj = Drinks()
+    obj.newDrinks(addDrink)
+    obg.newChoice(old_drink, addDrink)
+
 @post('/doform')
 def process():
     print("**11")
