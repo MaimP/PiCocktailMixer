@@ -91,6 +91,8 @@ def newDrink():
     selection = json.load(request.body)
     addDrink = selection.get('addDrink')
     old_drink = selection.get('oldDrink')
+    print("new drink: {}".format(addDrink))
+    print("oldDrink: {}".format(old_drink))
     obj = Drinks()
     obj.newDrinks(addDrink)
     obj.newChoice(old_drink, addDrink)
