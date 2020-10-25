@@ -82,6 +82,7 @@ class Drinks:
         self.newchoice[old_index] = new
         self.writeChoice()
         return self.newchoice
+    newchoice = self.newchoice
 
 if __name__ == '__main__':
     test_var = Drinks()
