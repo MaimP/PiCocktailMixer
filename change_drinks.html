@@ -63,7 +63,7 @@
     </div>
   </section>
   <script>
-    $.get('/getOldChoice', function(choice) {
+    $.get('/getOldChoice', function(choice_parse) {
       console.log(choice_parse)
       var choice = JSON.parse(choice_parse);
       for (let i in choice) {
