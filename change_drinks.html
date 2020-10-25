@@ -59,7 +59,7 @@
           Falls dein neues Getränk nicht dabei ist, füge es hier hinzu.
         </p>
         <input class="input is-small mt-4" type="text" id="newDrink">
-        <div class="button is-primary mt-4">Bestätigen</div>
+        <div onclick="submit()" class="button is-primary mt-4">Bestätigen</div>
       </div>
     </div>
   </section>
@@ -90,6 +90,11 @@
         body.appendChild(option);
       }
     })
+
+    function submit(){
+      var input = document.getElementById("newDrink").value;
+      console.log(input)
+    }
   </script>
 </body>
 
