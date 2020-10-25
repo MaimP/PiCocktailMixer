@@ -84,7 +84,8 @@ def choice():
 def choiceOption():
     obj = Drinks()
     obj.readDrinks()
-    return json.dumps(obj.drinklist)
+    sorted_choice = sort(obj.drinklist)
+    return json.dumps(sorted_choice)
 
 @post('/newDrink')
 def newDrink():
