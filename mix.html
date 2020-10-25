@@ -122,8 +122,12 @@
               </div>
             </div>
             <div class="container is-mt-3">
-              <div class="tile">
-                <div id="imagesLeft"></div>
+              <div class="tile is-ancestor">
+                <div class="tile is-vertical is-12">
+                  <div class="tile">
+                    <div id="imagesLeft"></div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="button is-danger my-3" onclick="order()">
@@ -164,7 +168,7 @@
             var image = array_volume.image;
 
             var parent = document.createElement('div');
-            parent.className = "tile is-parent";
+            parent.className = "tile is-parent is-vertical";
             parent.id = name;
             var child = document.createElement("ARTICLE")
             child.className = "tile is-child is-notification is-info";
