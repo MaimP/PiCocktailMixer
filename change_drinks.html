@@ -29,13 +29,39 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <div class="content">
-      <p>
-        wechsel die Getränke.
-      </p>
+  <section class="section">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-6 is-parent">
+          <div class="content">
+            <p>
+              Wähle hier das Getränk aus, dass du ersetzt habne möchtest.
+            </p>
+            <div id="selectOldDrink" class="select"></div>
+          </div>
+        </div>
+        <div class="tile is-parent is-6">
+          <div class="content">
+            <p>
+              Wähle hier das neue Getränk aus, dass du ersetzen möchtest.
+            </p>
+            <div id="selectNewDrink" class="select"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container has-text-centered">
+        <p class="mt-4">
+          Falls dein neues Getränk nicht dabei ist, füge es hier hinzu.
+        </p>
+        <input class="input is-small mt-4" type="text" id="newDrink">
+        <div class="button is-primary mt-4">Bestätigen</div>
+      </div>
     </div>
-  </div>
+  </section>
+  <script>
+    $.get('/getChoice', function(choice) {
+      console.log(choice)
+    }
 </body>
 
 </html>
