@@ -48,7 +48,9 @@
             <p>
               Wähle hier das neue Getränk aus, dass du ersetzen möchtest.
             </p>
-            <div id="selectNewDrink" class="select"></div>
+            <div class="select">
+              <select id="selectNewDrink"></select>
+            </div>
           </div>
         </div>
       </div>
@@ -63,7 +65,7 @@
   </section>
   <script>
     $.get('/getOldChoice', function(choice_parse) {
-      console.log(choice_parse)
+      console.log(choice)
       var choice = JSON.parse(choice_parse);
       for (let i in choice) {
         var name = choice[i];
@@ -78,6 +80,15 @@
     $.get('/getChoiceOption', function(choice_option_parse) {
       var choice_option = JSON.parse(choice_option_parse)
       console.log(choice_option)
+      for (let i in choice_option) {
+        var name = choice_option[i];
+        var option = document.createElement("OPTION");
+        option.setAttribute("value", i);
+        var name_option = docuemnt.createTextNode(name);
+        option.appendChild(name_option);
+        var body = document.getElementById("selectNewDrink");
+        body.appendChild(option);
+      }
     })
   </script>
 </body>
