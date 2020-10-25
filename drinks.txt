@@ -1,5 +1,2 @@
-Bacardi
-Vodka
-Fanta
-Gin
-Cola
+Sprite
+Tonic Water

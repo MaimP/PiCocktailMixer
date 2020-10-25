@@ -80,6 +80,12 @@ def choice():
     obj.__init__()
     return json.dumps(obj.newchoice)
 
+@get('/getChoiceOption')
+def choiceOption():
+    obj = Drinks()
+    obj.readDrinks()
+    return json.dumps(obj.drinklist)
+
 @post('/doform')
 def process():
     print("**11")
