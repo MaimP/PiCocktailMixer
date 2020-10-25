@@ -97,6 +97,14 @@ def newDrink():
     obj.newDrinks(addDrink)
     obj.newChoice(old_drink, addDrink)
 
+@post('/newChoice')
+def newChoice():
+    selection = json.load(request.body)
+    new_drink = selection.get('newDrink')
+    old_drink = selection.get('oldDrink')
+    obj = Drinks()
+    obj.newChoice(olds_drink, new_drink)
+
 @post('/doform')
 def process():
     print("**11")

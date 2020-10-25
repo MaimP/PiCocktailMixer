@@ -105,8 +105,13 @@
           "addDrink": input,
           "oldDrink": old_drink
         }
-
-        $.post('/newDrink', JSON.stringify(drinks))
+          $.post('/newDrink', JSON.stringify(drinks))
+        } else {
+          drinks = {
+            "oldDrink": old_drink,
+            "new_drink": new_drink
+          }
+          $.post('/newChoice', JSON.stringify(drinks))
       }
 
     }
