@@ -65,8 +65,8 @@
   </section>
   <script>
     $.get('/getOldChoice', function(choice_parse) {
-      console.log(choice)
       var choice = JSON.parse(choice_parse);
+      console.log(choice)
       for (let i in choice) {
         var name = choice[i];
         var option = document.createElement("OPTION")
@@ -84,7 +84,7 @@
         var name = choice_option[i];
         var option = document.createElement("OPTION");
         option.setAttribute("value", i);
-        var name_option = docuemnt.createTextNode(name);
+        var name_option = document.createTextNode(name);
         option.appendChild(name_option);
         var body = document.getElementById("selectNewDrink");
         body.appendChild(option);
