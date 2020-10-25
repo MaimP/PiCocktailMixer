@@ -5,6 +5,7 @@ class Drinks:
         self.mainchoice = ["Korn", "Bacardi", "Vodka", "Fanta", "Cola", "Sprite"]
         self.readChoice()
         self.newchoice = self.old_new_choice
+        newchoice = self.newchoice
 
     def readDrinks(self):
         with open("drinks.txt") as file:
@@ -82,7 +83,6 @@ class Drinks:
         self.newchoice[old_index] = new
         self.writeChoice()
         return self.newchoice
-    newchoice = self.newchoice
 
 if __name__ == '__main__':
     test_var = Drinks()
