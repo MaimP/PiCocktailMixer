@@ -77,7 +77,7 @@ def volume():
 @get('/getChoice')
 def choice():
     from drinks import Drinks
-    choice = drinks.Drinks.newchoice
+    choice = drinks.Drinks.__init__.newchoice
     return json.dumps(choice)
 
 @post('/doform')
