@@ -76,7 +76,7 @@ class Drinks:
         self.readChoice()
         counter_index = 0
         for line in self.old_new_choice:
-            if old in line:
+            if old in self.old_new_choice[counter_index]:
                 old_index = counter_index
             counter_index += 1
 
