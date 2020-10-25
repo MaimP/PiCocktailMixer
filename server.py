@@ -77,7 +77,7 @@ def volume():
 @get('/getChoice')
 def choice():
     obj = Drinks()
-    obj.__init_()
+    obj.__init__()
     return json.dumps(obj.newchoice)
 
 @post('/doform')
