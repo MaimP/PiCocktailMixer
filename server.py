@@ -74,7 +74,7 @@ def volume():
     volume_send = json.dumps(volume)
     return volume_send
 
-@get('/getChoice')
+@get('/getOldChoice')
 def choice():
     obj = Drinks()
     obj.__init__()
