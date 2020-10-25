@@ -26,6 +26,7 @@ class Drinks:
 
     def newDrinks(self, drink):
         if not self.checkDrink(drink):
+            print("debug new drink: {}".format(drink))
             file = open("drinks.txt", "a")
             file.write(drink + "\n")
             file.close()
@@ -81,6 +82,7 @@ class Drinks:
             counter_index += 1
 
         self.newchoice[old_index] = new
+        print("new choice: {}".format(self.newchoice))
         self.writeChoice()
         return self.newchoice
 
