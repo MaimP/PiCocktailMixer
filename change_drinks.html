@@ -100,7 +100,7 @@
 
       if (new_drink == 999) {
         drinks = {
-          "addDrink": new_drink
+          "addDrink": new_drink,
           "oldDrink": old_drink
         }
         $.post('/newDrink', JSON.stringify(drinks))
