@@ -39,8 +39,7 @@
               Wähle hier das Getränk aus, dass du ersetzt habne möchtest.
             </p>
             <div class="select">
-              <select id="slectOldDrink"
-              </select>
+              <select id="slectOldDrink"></select>
             </div>
           </div>
         </div>
@@ -75,6 +74,10 @@
         var body = document.getElementById("slectOldDrink")
         body.appendChild(option);
       }
+    })
+    $.get('/getChoiceOption', function(choice_option_parse) {
+      var choice_option = JSON.parse(choice_option_parse)
+      console.log(choice_option)
     })
   </script>
 </body>
