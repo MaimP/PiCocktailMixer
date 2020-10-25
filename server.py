@@ -93,7 +93,7 @@ def newDrink():
     old_drink = selection.get('oldDrink')
     obj = Drinks()
     obj.newDrinks(addDrink)
-    obg.newChoice(old_drink, addDrink)
+    obj.newChoice(old_drink, addDrink)
 
 @post('/doform')
 def process():
