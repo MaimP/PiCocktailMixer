@@ -150,8 +150,9 @@
       </section>
       <script>
         //script for select the drinks
+        var choice
         $.get('/getOldChoice', function(choice_parse){
-          var choice = JSON.parse(choice_parse);
+          choice = JSON.parse(choice_parse);
         })
         for (let x = 0; x <= 6; x++) {
           for (let a in choice) {
