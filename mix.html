@@ -181,17 +181,14 @@
         var counter_id = 0;
         for (let x = 0; x <= 5; x++) {
           console.log("test loop 1")
-          for (let y in choice) {
-            console.log("test loop")
-            var name = choice[y];
-            console.log(name)
-            var option = document.createElement("OPTION");
-            option.setAttribute("value", y);
-            var name_option = document.createTextNode(name);
+          for (let i in choice) {
+            var name = choice[i];
+            var option = document.createElement("OPTION")
+            option.setAttribute("value", i);
+            var name_option = document.createTextNode(name)
             option.appendChild(name_option);
-            var body = document.getElementById("selectDom" + counter_id);
+            var body = document.getElementById("slectDom" + counter_id)
             body.appendChild(option);
-            console.log("selectDom" + counter_id);
           }
           counter_id += 1;
         }
