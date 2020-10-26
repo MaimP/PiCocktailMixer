@@ -153,7 +153,7 @@
         $.get('/getOldChoice', function(choice_parse){
           var choice = JSON.parse(choice_parse);
         })
-        for (let x = 0, i < 6, i++) {
+        for (let x = 0, i <= 6, i++) {
           for (let a in choice) {
             var name = choice[x];
             var select = document.createElement("div")
