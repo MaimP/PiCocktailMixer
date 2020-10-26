@@ -176,17 +176,21 @@
         var choice
         $.get('/getOldChoice', function(choice_parse){
           choice = JSON.parse(choice_parse);
-          console.log(choice)
+          console.log(choice);
         })
-        var counter_id = 0
-        for (let y in choice) {
-          var name = choice[y];
-          var option = document.createElement("OPTION")
-          option.setAttribute("value", name);
-          var name_option = document.createTextNode(name)
-          option.appendChild(name_option);
-          var body = document.getElementById("selectDom" + counter_id)
-          body.appendChild(option);
+        var counter_id = 0;
+        for (let x; y <= 6; y++) {
+          for (let y in choice) {
+            var name = choice[y];
+            console.log()
+            var option = document.createElement("OPTION");
+            option.setAttribute("value", name);
+            var name_option = document.createTextNode(name);
+            option.appendChild(name_option);
+            var body = document.getElementById("selectDom" + counter_id);
+            body.appendChild(option);
+            console.log("selectDom" + counter_id);
+          }
           counter_id += 1;
         }
 
