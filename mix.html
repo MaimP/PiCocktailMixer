@@ -153,6 +153,7 @@
         var choice
         $.get('/getOldChoice', function(choice_parse){
           choice = JSON.parse(choice_parse);
+          console.log(choice)
         })
         for (let x = 0; x <= 6; x++) {
           for (let i in choice) {
