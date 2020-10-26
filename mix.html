@@ -178,11 +178,14 @@
           choice = JSON.parse(choice_parse);
           console.log(choice);
         })
+
         var counter_id = 0;
         for (let x; x <= 6; x++) {
+          console.log("test loop 1")
           for (let y in choice) {
+            comnsole.log("test loop")
             var name = choice[y];
-            console.log()
+            console.log(name)
             var option = document.createElement("OPTION");
             option.setAttribute("value", name);
             var name_option = document.createTextNode(name);
