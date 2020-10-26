@@ -44,6 +44,7 @@
               <p> Wähle aus welche Getränke du in deinem Cocktail haben möchtest.
               </p>
             </div>
+            <div id="selectDOM"></div>
             <div class="select">
               <select id="select_1" name="drink1" onchange="select1()">
                   <option value="0">Korn</option>
@@ -148,6 +149,26 @@
         </div>
       </section>
       <script>
+        //script for select the drinks
+        $.get('/getOldChoice', function(choice_parse){
+          var choice = JSON.parse(choice_parse);
+        })
+        for (let i = 0, i < 6, i++) {
+          for (let a in choice) {
+            var name = choice[i];
+            var select = document.createElement("div")
+            select.class = "select";
+            var option = document.createElement("OPTION")
+            option.setAttribute("value", i);
+            var text = document.createTextNode(name);
+            option.appendChild(text);
+            select.appendChild(option);
+          }
+          var body = document.getElementById("selectDOM")
+          body.appendChild(select)
+        }
+
+        //script for Eventlistener next cup
         var id_start = document.getElementById("start_id");
         id_start.addEventListener (
            'click',
