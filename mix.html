@@ -44,17 +44,29 @@
               <p> Wähle aus welche Getränke du in deinem Cocktail haben möchtest.
               </p>
             </div>
-            <div id="selectDOM0" class="select">
+            <div class="select">
+              <select id="selectDom0">
+              </select>
             </div>
-            <div id="selectDOM1" class="select">
+            <div class="select">
+              <select id="selectDom1">
+              </select>
             </div>
-            <div id="selectDOM2" class="select">
+            <div class="select">
+              <select id="selectDom2">
+              </select>
             </div>
-            <div id="selectDOM3" class="select">
+            <div class="select">
+              <select id="selectDom3">
+              </select>
             </div>
-            <div id="selectDOM4" class="select">
+            <div class="select">
+              <select id="selectDom4">
+              </select>
             </div>
-            <div id="selectDOM5" class="select">
+            <div class="select">
+              <select id="selectDom5">
+              </select>
             </div>
             <div class="select">
               <select id="select_1" name="drink1" onchange="select1()">
@@ -169,15 +181,12 @@
         var counter_id = 0
         for (let y in choice) {
           var name = choice[y];
-          var select = document.createElement("SELECT");
-          var div = document.createElement("OPTION")
+          var option = document.createElement("OPTION")
           option.setAttribute("value", name);
           var name_option = document.createTextNode(name)
           option.appendChild(name_option);
-          div.appendChild(option)
-          select.appendChild(div)
           var body = document.getElementById("selectDOM" + counter_id)
-          body.appendChild(select);
+          body.appendChild(option);
           counter_id += 1;
         }
 
