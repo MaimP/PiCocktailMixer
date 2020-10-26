@@ -153,13 +153,13 @@
         $.get('/getOldChoice', function(choice_parse){
           var choice = JSON.parse(choice_parse);
         })
-        for (let x = 0, i <= 6, i++) {
+        for (let x = 0, x <= 6, x++) {
           for (let a in choice) {
-            var name = choice[x];
+            var name = choice[a];
             var select = document.createElement("div")
             select.class = "select";
             var option = document.createElement("OPTION")
-            option.setAttribute("value", x);
+            option.setAttribute("value", a);
             var text = document.createTextNode(name);
             option.appendChild(text);
             select.appendChild(option);
