@@ -45,31 +45,31 @@
               </p>
             </div>
             <div class="select">
-              <select id="selectDom0"></select>
+              <select id="selectDom0" onchange="select1()"></select>
                 <option value="6" selected="">keins</option>
             </div>
             <div class="select">
-              <select id="selectDom1">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="selectDom2">
+              <select id="selectDom1" onchange="select2()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
             <div class="select">
-              <select id="selectDom3">
+              <select id="selectDom2" onchange="select3()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
             <div class="select">
-              <select id="selectDom4">
+              <select id="selectDom3" onchange="select4()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
             <div class="select">
-              <select id="selectDom5">
+              <select id="selectDom4" onchange="select5()">
+                <option value="6" selected="">keins</option>
+              </select>
+            </div>
+            <div class="select">
+              <select id="selectDom5" onchange="select6()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
@@ -126,8 +126,6 @@
               option.appendChild(name_option);
               var body = document.getElementById("selectDom" + counter_id);
               body.appendChild(option);
-              var func = "select" + counter_id + 1
-              document.getElementById("selectDom" + counter_id).onchange = function() {func()}
             }
             counter_id += 1;
           }
