@@ -45,31 +45,31 @@
               </p>
             </div>
             <div class="select">
-              <select id="selectDom0" onchange="select1()"></select>
+              <select id="select_1" onchange="select1()"></select>
                 <option value="6" selected="">keins</option>
             </div>
             <div class="select">
-              <select id="selectDom1" onchange="select2()">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="selectDom2" onchange="select3()">
+              <select id="select_2" onchange="select2()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
             <div class="select">
-              <select id="selectDom3" onchange="select4()">
+              <select id="select_3" onchange="select3()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
             <div class="select">
-              <select id="selectDom4" onchange="select5()">
+              <select id="select_4" onchange="select4()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
             <div class="select">
-              <select id="selectDom5" onchange="select6()">
+              <select id="select_5" onchange="select5()">
+                <option value="6" selected="">keins</option>
+              </select>
+            </div>
+            <div class="select">
+              <select id="select_6" onchange="select6()">
                 <option value="6" selected="">keins</option>
               </select>
             </div>
@@ -116,7 +116,7 @@
         $.get('/getOldChoice', function(choice_parse){
           choice = JSON.parse(choice_parse);
           console.log(choice);
-          var counter_id = 0;
+          var counter_id = 1;
           for (let x = 0; x <= 5; x++) {
             for (let i in choice) {
               var name = choice[i];
@@ -124,7 +124,7 @@
               option.setAttribute("value", i);
               var name_option = document.createTextNode(name)
               option.appendChild(name_option);
-              var body = document.getElementById("selectDom" + counter_id);
+              var body = document.getElementById("select_" + counter_id);
               body.appendChild(option);
             }
             counter_id += 1;
