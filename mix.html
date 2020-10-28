@@ -176,23 +176,22 @@
         $.get('/getOldChoice', function(choice_parse){
           choice = JSON.parse(choice_parse);
           console.log(choice);
-        })
-
-        var counter_id = 0;
-        for (let x = 0; x <= 5; x++) {
-          console.log("test loop 1")
-          for (let i in choice) {
-            console.log("loop")
-            var name = choice[i];
-            var option = document.createElement("OPTION")
-            option.setAttribute("value", i);
-            var name_option = document.createTextNode(name)
-            option.appendChild(name_option);
-            var body = document.getElementById("slectDom" + counter_id)
-            body.appendChild(option);
+          var counter_id = 0;
+          for (let x = 0; x <= 5; x++) {
+            console.log("test loop 1")
+            for (let i in choice) {
+              console.log("loop")
+              var name = choice[i];
+              var option = document.createElement("OPTION")
+              option.setAttribute("value", i);
+              var name_option = document.createTextNode(name)
+              option.appendChild(name_option);
+              var body = document.getElementById("slectDom" + counter_id)
+              body.appendChild(option);
+            }
+            counter_id += 1;
           }
-          counter_id += 1;
-        }
+        })
 
         //script for Eventlistener next cup
         var id_start = document.getElementById("start_id");

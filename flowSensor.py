@@ -54,4 +54,4 @@ def measure(x):
             break
 
 if __name__ == '__main__':
-    measure()
+    measure(300)

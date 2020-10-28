@@ -81,7 +81,7 @@ class Drinks:
                 old_index = counter_index
             counter_index += 1
 
-        self.newchoice[old_index] = new
+
         print("new choice: {}".format(self.newchoice))
         self.writeChoice()
         return self.newchoice
