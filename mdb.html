@@ -227,7 +227,7 @@
 	<section class="hero is-info is-fullheight">
 	  <!-- Hero head: will stick at the top -->
 	  <div class="hero-head">
-	    <nav class="navbar">
+	    <nav class="navbar" role="navigation" aria-label="main navigation">
 	      <div class="container">
 	        <div class="navbar-brand">
 	          <a class="navbar-item">
@@ -258,6 +258,19 @@
 	      </div>
 	    </nav>
 	  </div>
+		<script>
+			$(document).ready(function() {
+
+				// Check for click events on the navbar burger icon
+				$(".navbar-burger").click(function() {
+
+						// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+						$(".navbar-burger").toggleClass("is-active");
+						$(".navbar-menu").toggleClass("is-active");
+
+				});
+				});
+		</script>
 
 	  <!-- Hero content: will be in the middle -->
 	  <div class="hero-body is-mobile">
