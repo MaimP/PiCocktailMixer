@@ -48,6 +48,7 @@
               <select id="selectDom0"></select>
             </div>
             <div class="select">
+              <select id="slectOldDrink"></select>
               <select id="selectDom1">
               </select>
             </div>
@@ -186,7 +187,7 @@
               option.setAttribute("value", i);
               var name_option = document.createTextNode(name)
               option.appendChild(name_option);
-              var body = document.getElementById("slectDom0");
+              var body = document.getElementById("selectDom" + counter_id);
               console.log("selectDom" + counter_id)
               console.log(body)
               body.appendChild(option);
