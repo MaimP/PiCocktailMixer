@@ -126,6 +126,8 @@
               option.appendChild(name_option);
               var body = document.getElementById("selectDom" + counter_id);
               body.appendChild(option);
+              var func = "select" + counter_id + 1
+              document.getElementById("selectDom" + counter_id).onchange = function() {func()}
             }
             counter_id += 1;
           }
