@@ -10,11 +10,51 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+  <section class="hero is-info is-fullheight">
+    <!-- Hero head: will stick at the top -->
+    <div class="hero-head">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item">
+              PiMixer
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item">
+                Home
+              </a>
+              <a class="navbar-item" href="mix.html">
+                Mischen
+              </a>
+                <div class="navbar-dropdown is-active">
+                  <a class="navbar-item" href="recipes.html">
+                    Rezepte
+                  </a>
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-primary" type="text" placeholder="search">
+                  </div>
+                </div>
+              </div>
+              <a class="navbar-item" href="admin.html">
+                Admin
+              </a>
+            </div>
+          </div>
+=======
   <nav class="navbar">
     <div class="container">
       <div id="navbarMenuHeroA" class="navbar-menu">
         <div class="navbar-end">
-          <a class="navbar-item" href="mdb.html">
+          <a class="navbar-item" href="index.html">
             Home
           </a>
           <a class="navbar-item" href="mix.html">
@@ -26,10 +66,24 @@
           <a class="navbar-item" href="admin.html">
             Admin
           </a>
+>>>>>>> 4a25fef38c58ce1c855f9bb882d056db95a380bc
         </div>
-      </div>
+      </nav>
     </div>
-  </nav>
+  </section>
+  <script>
+    $(document).ready(function() {
+
+      // Check for click events on the navbar burger icon
+      $(".navbar-burger").click(function() {
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          $(".navbar-burger").toggleClass("is-active");
+          $(".navbar-menu").toggleClass("is-active");
+
+      });
+      });
+  </script>
   <section class="section">
     <div class="container">
       <div class="tile is-ancestor">

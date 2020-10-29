@@ -7,26 +7,39 @@
 
 <body>
   <section class="hero is-danger is-fullheight is-mobile">
+    <!-- Hero head: will stick at the top -->
     <div class="hero-head">
-      <nav class="navbar">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="container">
           <div class="navbar-brand">
             <a class="navbar-item">
               PiMixer
             </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
           </div>
-          <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-menu">
             <div class="navbar-end">
-              <a class="navbar-item" href="mdb.html">
+              <a class="navbar-item">
                 Home
               </a>
               <a class="navbar-item" href="mix.html">
                 Mischen
               </a>
-              <a class="navbar-item" href="recipes.html">
-                Rezepte
-              </a>
-              <a class="navbar-item is-active" href="admin.html">
+                <div class="navbar-dropdown is-active">
+                  <a class="navbar-item" href="recipes.html">
+                    Rezepte
+                  </a>
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-primary" type="text" placeholder="search">
+                  </div>
+                </div>
+              </div>
+              <a class="navbar-item" href="admin.html">
                 Admin
               </a>
             </div>
@@ -34,45 +47,63 @@
         </div>
       </nav>
     </div>
-    <!-- Hero content: will be in the middle -->
-    <div class="hero-body is-mobile">
-      <div class="container mt-5">
-        <div class="columns is-centered">
-          <div class="column is-one-fifth">
-            <div class="content">
-              <p>
-                melde dich an
-              </p>
-            <div class="field">
-              <p class="control has-icons-left has-icons-right">
-                <input class="input" type="email" placeholder="username" id="userlog">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" type="password" placeholder="Password" id="passlog">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control">
-                <button onclick=login() class="button is-success">
-                  Login
-                </button>
-              </p>
+  </section>
+  <script>
+    $(document).ready(function() {
+
+      // Check for click events on the navbar burger icon
+      $(".navbar-burger").click(function() {
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          $(".navbar-burger").toggleClass("is-active");
+          $(".navbar-menu").toggleClass("is-active");
+
+      });
+      });
+  </script>
+  <section class="section">
+    <div class="container">
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body is-mobile">
+        <div class="container mt-5">
+          <div class="columns is-centered">
+            <div class="column is-one-fifth">
+              <div class="content">
+                <p>
+                  melde dich an
+                </p>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="email" placeholder="username" id="userlog">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="password" placeholder="Password" id="passlog">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control">
+                  <button onclick=login() class="button is-success">
+                    Login
+                  </button>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </section>
   <script>
     function login() {
