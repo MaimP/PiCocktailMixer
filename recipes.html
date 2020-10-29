@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="navbarMenuHeroA" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="mdb.html">
+          Home
+        </a>
+        <a class="navbar-item" href="mix.html">
+          Mischen
+        </a>
+        <a class="navbar-item is-activer" href="#">
+          Rezepte
+        </a>
+        <a class="navbar-item" href="admin.html">
+          Admin
+        </a>
+      </div>
+    </div>
+
+    <div class="container is-mt-3">
+      <div id="recipes_id">
+      </div>
+    </div>
+
+    <script>
+      var recipes;
+      const elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
+      var names = [];
+      $.get('/dorecipes', function(recipes_parse){
+        recipes = JSON.parse(recipes_parse)
+				for (let b in recipes) {
+          //immer checken ob durch drei teilbar ist dann zu tile parent hinzufuegen und zum gesamten hinzufuegen
+					let array = recipes[b];
+					var name = array.name;
+          names.push(name);
+
+					var description = array.description;
+					var ingredients_array = [];
+					for (let c in array.ingredients) {
+						ingredients_array.push(array.ingredients[c]);
+					}
+					var direction_a = array.directions;
+					var keyword_array = [];
+					for (var i in array.keywords) {
+						keyword_array.push(array.keywords[i]);
+					}
+
+          if (b % 3 == 0) {
+            var anc = document.createElement("div");
+            anc.className = "tile is-ancestor";
+            var vert = document.createElement("div");
+            vert.className = "tile is-vertical is-12";
+            var til = document.createElement("div");
+            til.className = "tile";
+          }
+          var tile = document.createElement("div");
+          tile.className = "tile is-parent is-vertical";
+          for (let e = 0; e == 3; e++) {
+            var artic = document.createElement("ARTICEL");
+            artic.className = "tile is-child";
+          }
+          //erstelle leeres Panel
+          var panel = document.createElement("nav");
+          panel.className = "panel";
+          //erstelle panel fuer ueberschrift
+          var panel_heading = document.createElement("p");
+          panel_heading.className = "panel-heading";
+          //fuege ueberschrift hinzu
+          panel_heading.appendChild(document.createTextNode(name));
+          panel.appendChild(panel_heading);
+          var navi = document.createElement("p");
+          navi.className = "panel-tabs";
+          for (let d in elements) {
+            var nav_element = document.createElement("a");
+            nav_element.id = name + elements[d]
+            if (d == 0){
+              nav_element.className = "is-active"
+            }
+            var nav_text = document.createTextNode(elements[d]);
+            nav_element.appendChild(nav_text);
+            navi.appendChild(nav_element)
+            nav_element.addEventListener (
+               'click',
+               function() {           // anonyme Funktion
+                  test(this.id, elements[d], names[b]);
+               },
+               false
+            );
+          }
+
+          panel.appendChild(navi)
+
+          // body, weil erste selected ist direkt erstes anzeigen andere auch generieren,
+          // aber noch nicht anzeigen
+          var bodyDes = document.createElement("a");
+          bodyDes.className  = "panel-block";
+          bodyDes.id = name + "Beschreibung" + "Beschreibung"
+          var desText = document.createTextNode(description);
+          bodyDes.appendChild(desText);
+          panel.appendChild(bodyDes);
+
+          var bodyIng = document.createElement("a");
+          bodyIng.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyIng.id = name + "Zutaten" + "Zutaten"
+          var ingText = document.createTextNode(ingredients_array[0]);
+          bodyIng.appendChild(ingText);
+          panel.appendChild(bodyIng);
+
+          var bodyAusf = document.createElement("a");
+          bodyAusf.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyAusf.id = name + "Ausführung" + "Ausführung"
+          var ausfText = document.createTextNode(description);
+          bodyAusf.appendChild(ausfText);
+          panel.appendChild(bodyAusf);
+
+          var bodyStich = document.createElement("a");
+          bodyStich.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyStich.id = name + "Stichwörter" + "Stichwörter"
+          var stichText = document.createTextNode(keyword_array[0]);
+          bodyDes.appendChild(stichText);
+          panel.appendChild(bodyStich);
+
+
+          tile.appendChild(panel)
+          til.appendChild(tile);
+          vert.appendChild(til);
+          anc.appendChild(vert)
+          if (b % 3 == 0) {
+            var id_main = document.getElementById("recipes_id");
+            id_main.appendChild(anc);
+          }
+        }
+      })
+
+      function test(id, nav, name) {
+        var ids = [name + "Beschreibung" + "Beschreibung", name + "Zutaten" + "Zutaten", name + "Ausführung" + "Ausführung", name + "Stichwörter" + "Stichwörter"]
+        console.log(name)
+        var elem = document.getElementById(id + nav);
+        for (let i in ids){
+          console.log("for")
+          if (document.getElementById(ids[i]) != null) {
+            console.log("if")
+            var lastElem = document.getElementById(ids[i]).getElementsByClassName('panel-block');
+            console.log(lastElem);
+            lastElem.className = "panel-block is-hidden-touch is-hidden-desktop";
+          }
+        }
+        elem.className = "panel-block";
+        console.log(elem);
+          }
+    </script>
+  </body>
+</html>

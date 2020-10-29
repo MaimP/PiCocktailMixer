@@ -21,28 +21,36 @@ def distanz():
 
     #GPIO Pins zuweisen
     GPIO_TRIGGER = 18
-    GPIO_ECHO = 24
+    GPIO_ECHO = 23
 
     GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
     GPIO.setup(GPIO_ECHO, GPIO.IN)
 
+    now = time.time()
+    future = now + 0.1
     # setze Trigger auf HIGH
     GPIO.output(GPIO_TRIGGER, True)
+    # debug
+    #print("setze trigger auf high")
 
     # setze Trigger nach 0.01ms aus LOW
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, False)
+    # debug
+    #print("setze trigger auf low")
 
     StartZeit = time.time()
     StopZeit = time.time()
 
     # speichere Startzeit
-    while GPIO.input(GPIO_ECHO) == 0:
+    while GPIO.input(GPIO_ECHO) == 0 and time.time() < future:
         StartZeit = time.time()
+    #    print("echo == 0")
 
     # speichere Ankunftszeit
     while GPIO.input(GPIO_ECHO) == 1:
         StopZeit = time.time()
+    #    print("echo == 1")
 
     # Zeit Differenz zwischen Start und Ankunft
     TimeElapsed = StopZeit - StartZeit
@@ -53,44 +61,25 @@ def distanz():
 
     return distanz
 
-def entfernung():
-    while True:
-        abstand = distanz()
-        return abstand
-        time.sleep(0.1)
-
-def first_realDistance():
-    import collections
-    from collections import Counter
-    distance_list = []
-    counterc = 0
-    for x in range(200):
-        d = distanz()
-        distance_list.append(d)
-        counterc = counterc + 1
-#        print("test real_distance liste erstellen: {}".format(counterc))
-        time.sleep(0.021) #maximal 50 Messungen pro sekunde
-
-    counter=collections.Counter(distance_list)
-    print(counter)
-    mostcommon = counter.most_common(1)
-    print("die häufigste entfernung ist:{}".format(mostcommon))
-    new_distancelist = [item for items, c in Counter(distance_list).most_common() for item in [items] * c]
-    distance = new_distancelist[0]
-    return distance
-
 #Fehlmessungensvermeidung
-def real_distance():
+def realDistance():
     import collections
     from collections import Counter
     distance_list = []
+    #prüft ob Messung nicht wegen Zeitueberschreitunbg abgebrochen worden ist distanz()
     counterc = 0
-    for x in range(100):
-        d = distanz()
-        distance_list.append(d)
-        counterc = counterc + 1
-#        print("test real_distance liste erstellen: {}".format(counterc))
-        time.sleep(0.02) #maximal 50 Messungen pro sekunde
+    while True:
+        if counterc <= 50:
+            d = returnDistance()
+            if d > 1:
+                distance_list.append(d)
+                counterc = counterc + 1
+            else:
+                pass
+
+            time.sleep(0.02) #maximal 50 Messungen pro sekunde
+        else:
+            break
 
     counter=collections.Counter(distance_list)
     print(counter)
@@ -99,14 +88,24 @@ def real_distance():
     new_distancelist = [item for items, c in Counter(distance_list).most_common() for item in [items] * c]
     distance = new_distancelist[0]
     return distance
-    # [(1, 4), (2, 4), (3, 2)]
 
+
+def returnDistance():
+    while True:
+        x = distanz()
+        if x > 1:
+            print("x ist größer als null, break {}".format(x))
+            return x
+            break
+        else:
+            print("x ist kleiner als null {}".format(x))
+            pass
 
 
 if __name__ == '__main__':
     try:
         while True:
-            abstand = distanz()
+            abstand = realDistance()
             print ("Gemessene Entfernung = %.1f cm" % abstand)
             time.sleep(1)
 

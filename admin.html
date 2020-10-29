@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
+
+<body>
+  <section class="hero is-danger is-fullheight is-mobile">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item">
+              PiMixer
+            </a>
+          </div>
+          <div id="navbarMenuHeroA" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" href="index.html">
+                Home
+              </a>
+              <a class="navbar-item" href="mix.html">
+                Mischen
+              </a>
+              <a class="navbar-item" href="recipes.html">
+                Rezepte
+              </a>
+              <a class="navbar-item is-active" href="admin.html">
+                Admin
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- Hero content: will be in the middle -->
+    <div class="hero-body is-mobile">
+      <div class="container mt-5">
+        <div class="columns is-centered">
+          <div class="column is-one-fifth">
+            <div class="content">
+              <p>
+                melde dich an
+              </p>
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input class="input" type="email" placeholder="username" id="userlog">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" placeholder="Password" id="passlog">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button onclick=login() class="button is-success">
+                  Login
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    function login() {
+      const username = "";
+      const password = "";
+      user_log = document.getElementById("userlog").value
+      pass_log = document.getElementById("passlog").value
+      if (user_log == username) {
+        if (pass_log == password){
+          //do some stuff
+          console.log("correct")
+          location.href = "change_drinks.html"
+        } else {
+          alert("password incorrect")
+        }
+      } else {
+        alert("username incorrect")
+      }
+    }
+  </script>
+</body>
+
+</html>

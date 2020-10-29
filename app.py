@@ -1,43 +1,111 @@
 #!/usr/bin/python
 #-*- coding:utf-8 -*-#
-import ultraschallsensor
-import getData
-import pump
+class App:
+    import time
+    import math
+    import pump
+    import RPi.GPIO as GPIO
 
-def dataImport():
-    startHoehe = ultraschallsensor.distanz() #starthoehe für Glasgrösse
-    fuellHoehe = startHoehe * 0.9
-    alcnumber = server.request.forms.get('drinks')
-    id_mischv = server.request.forms.get('mischverhaeltnis')
-    drinknumber = server.request.forms.get('AlkoholAuswahl_1')
-    fillA = fuellHoehe * (mischV / 100)
-    fillB = fuellHoehe
+    #wird direkt ausgfuehrt, werte initialisieren
+    #Noch ausweiten auf mehrere Getraenke pro Bestellung
+    def __init__(self, orderlist):
+        self.order_list = orderlist
+        self.FLOW_SENSOR = 20
+        self.count = 0
+        self.counter_array = 0
 
-def enter(alc, misch):
-#    dataImport()
-    #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
-    #erst Alkohol dann
-    while ultraschallsensor.entfernung() <= fillA:
-        pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
+    def orderManager(self):
+        #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
+        #Bestellung in einem Array festhalten, immer
+        #debug, ob ordernumber funktioniert
+        self.volume = self.order_list[2] #welches Volumen das Glas hat
+        print("volume: {}".format(self.volume))
+        self.volume = int(self.volume) #welches Volumen das Glas hat
+        print("volume: {}".format(self.volume))
+        self.menge = int(self.order_list[1]) #wieviele von diesem Cocktail
+        anzahl = self.order_list[0] #wiviele Getraenke pro Glas
 
-        print("die aufgefüllte Menge an Alkohol beträgt:") #debugging
-        print(ultraschallsensor.distand())
-        alcM = ultraschallsensor.distanz() #debugging: Menge an aufgefülltem alc
+        counter_menge = 0
+        self.drinks_misch = []
+        for x in range(self.menge):
+            if counter_menge == 0:
+                self.process = False
+                counter_menge += 1
+            while True:
+                if not self.process:
+                    self.process = True
+                    for x in range(anzahl):
+                        self.drinks_misch.append(self.order_list[3])
+                        self.drinks_misch.append(self.order_list[4])
+                        self.order_list.pop(3)
+                        self.order_list.pop(3)
+                        self.start()
+                    self.counter_array = 0
+                    break
+                else:
+                    #thread oder sowas wartet auf False von website
+                    self.time.sleep(5)
 
-    pump.stopPump()
+        self.order_list.pop(0) #loesche
+        self.order_list.pop(0)
+        self.order_list.pop(0)
+        self.counter_array = 0
+        self.process = False
 
-    if (fillA * 0.85) <= ultraschallsensor.entfernung() <= (fillA * 1.15):
-        while ultraschallsensor.entfernung() <= fillB:
-            pump.startPump(misch) #misch gibt an welche Pumpe gestartet wird
+    def start_next_cup(self):
+        '''falls fehler beim starten von befuellen des naechsten
+        Bechers, starte manuell über website'''
+        self.process = True
 
-            print("in dem getränk sind nun insgesamt: ")
-            print(ultraschallsensor.distanz())
-            mischM = ultraschallsensor.distanz()
+    def start(self):
+        try:
+            self.drink = self.drinks_misch[self.counter_array]
+            self.counter_array += 1
+            self.mischv = self.drinks_misch[self.counter_array]
+            self.counter_array += 1
+            fillUp = (self.volume / 100) * self.mischv #berechnet wieviel aufgefuellt werden muss in ml
+            print("wird jetzt aufgefuellt bis: {} ml".format(fillUp))
 
-            verhaeltnisEcht = (mischM / alcM) * 100
-#            print("es sind", "% lakohol im Glas" sep=verhaeltnisEcht)
+            zaehler = 0
 
-        pump.stopPump()
+            self.GPIO.setmode(self.GPIO.BCM)
+            self.GPIO.setup(self.FLOW_SENSOR, self.GPIO.IN, pull_up_down = self.GPIO.PUD_UP)
 
-    else:
-        print("Es konnte kein Mischgetränk eingefüllt werden, suche nach fehlern.")
+            def countPulse(channel):
+                if self.start_counter == 1:
+                    self.count = self.count + 1
+
+            self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
+            flow_array = []
+            self.counter = 0
+            self.pump.startPump(self.drink) #self.drink gibt an welche pumpe gestartet wird
+            while True:
+                self.start_counter = 1
+                self.time.sleep(1)
+                self.start_counter = 0
+                flow = ((self.count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
+                print("The flow is: %.3f ml/sek" % (flow))
+                flow_array.append(flow)
+                flow_all = sum(flow_array)
+                print("gesamt durchfluss: {}".format(flow_all))
+                self.count = 0
+                if flow_all < fillUp:
+                    zaehler = zaehler + 1
+                    #Debug
+                    print("while schleife durchfuehrung nummer: {}".format(zaehler))
+                    print("es wurde aufgefuellt: {} ml".format(flow_all))
+
+                elif flow_all >= fillUp:
+                    self.pump.stopPump()
+                    print("flow ist größer oder gleich fillUp")
+                    print("es wurde aufgefuellt:{} ml".format(flow_all))
+                    return False
+                else:
+                    self.pump.stopPump()
+                    print("FEHLER!")
+                    break
+
+        except KeyboardInterrupt:
+            print('\nkeyboard interrupt!')
+            self.GPIO.cleanup()
+            self.pump.stopPump()

@@ -1,162 +1,259 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
 #-*- coding:utf-8 -*-#
-from bottle import route, run
-from bottle import template
-from bottle import get, post, request # or route
-from bottle import static_file
+from bottle import route, run, static_file, get, post, request, template, Bottle, abort
 
-import ultraschallsensor
-import pump
-import RPi.GPIO as GPIO
-import time
+import time, os
+import json
+import app
+import recipes as re
+import volume_cup as vo_cup
+from drinks import Drinks
+#Verzeichnis für multislider in mdb.html
+@route('/static/:path#.+#', name='static')
+def static(path):
+    return static_file(path, root='static')
 
-global zustand
-global hoehe
-global entfernung
-global progress
-
+#Routing mainsite
 @route('/')
-def server_static(filepath="index.html"):
+def server_static(filepath="mdb.html"):
     return static_file(filepath, root='./')
 
-@post('/process')
-def process():
-    getData()
-    return "Dein Getraenk ist in Bearbeitung."
+@get('/mix.html')
+def mix():
+    return static_file("/mix.html", root='./')
+
+@get('/recipes.html')
+def mix():
+    return static_file("/recipes.html", root='./')
+
+@get('/admin.html')
+def mix():
+    return static_file("/admin.html", root='./')
+
+@get('/mdb.html')
+def mix():
+    return static_file("/mdb.html", root='./')
+
+@get('/change_drinks.html')
+def mix():
+    return static_file("/change_drinks.html", root='./')
+
+@get('/pic_vol/pokal-glas-klarglas__0896474_PE609414_S5.JPG')
+def image():
+    return static_file("/pokal-glas-klarglas__0896474_PE609414_S5.JPG", root='./pic_vol')
+
+@get('/pic_vol/pokal-glas-klarglas__0908826_PE609409_S5.JPG')
+def image():
+    return static_file("/pokal-glas-klarglas__0908826_PE609409_S5.JPG", root='./pic_vol')
+
+@get('/pic_vol/vardagen-glas-klarglas__0896318_PE609373_S5.JPG')
+def image():
+    return static_file("/vardagen-glas-klarglas__0896318_PE609373_S5.JPG", root='./pic_vol')
+
+@get('/pic_vol/plastikbecher-rot-360ml-50-einheiten.jpg')
+def image():
+    return static_file("/plastikbecher-rot-360ml-50-einheiten.jpg", root='./pic_vol')
+
+@get('/dorecipes')
+def recipes():
+    re.getRecipes()
+    from recipes import recipes
+    recipes_send = json.dumps(recipes)
+    return recipes_send
+
+
+@get('/cupReady')
+def cup():
+    from app import start_next_cup
+    app.start_next_cup()
+
+@get('/volume')
+def volume():
+    vo_cup.cupArray()
+    from volume_cup import volume
+    volume_send = json.dumps(volume)
+    return volume_send
+
+@get('/getOldChoice')
+def choice():
+    obj = Drinks()
+    obj.__init__()
+    return json.dumps(obj.newchoice)
+
+@get('/getChoiceOption')
+def choiceOption():
+    obj = Drinks()
+    obj.readDrinks()
+    unsorted_choice = obj.drinklist
+    unsorted_choice.sort()
+    return json.dumps(unsorted_choice)
+
+@post('/newDrink')
+def newDrink():
+    selection = json.load(request.body)
+    addDrink = selection.get('addDrink')
+    old_drink = selection.get('oldDrink')
+    print("new drink: {}".format(addDrink))
+    print("oldDrink: {}".format(old_drink))
+    obj = Drinks()
+    obj.newDrinks(addDrink)
+    obj.newChoice(old_drink, addDrink)
+
+@post('/newChoice')
+def newChoice():
+    selection = json.load(request.body)
+    new_drink = selection.get('newDrink')
+    old_drink = selection.get('oldDrink')
+    print("new drink: {}".format(new_drink))
+    print("old drink: {}".format(old_drink))
+    obj = Drinks()
+    obj.newChoice(old_drink, new_drink)
 
 @post('/doform')
 def process():
-    getData()
-    return "Dein Getraenk ist in Bearbeitung."
+    print("**11")
+    bestellung = json.load(request.body)
+    print(bestellung)
+    b = bestellung.get('verhaeltnis')
+    c = bestellung.get('getraenke')
+    d = list(b)
+    e = list(c)
+    menge = bestellung.get('anzahl') #gbt die Menge an bestellten Getraenken an
+    glas = bestellung.get('volume') #gibt an welches Glas genutzt wird(Volumen)
+    mischv = []
+    getraenke = []
+    counter_m = 0
+    for i in d:
+        x = float(d[counter_m])
+        counter_m = counter_m + 1
+        mischv.append(x)
+        print("debug mischv :{}".format(x))
 
-def enter(alc, misch):
-    try:
-        @route('/process')
-        def process():
-            return "Dein Getraenk ist in Bearbeitung."
+    counter_g = 0
+    for i in e:
+        x = float(e[counter_g])
+        counter_g = counter_g + 1
+        getraenke.append(x)
+        print("debug getraenke :{}".format(x))
 
-        print(alc)
-        print(misch)
-        print("Die Starthoehe betraegt: {}".format(startHoehe))
-        print("test round: {}".format(fillA))
-        zaehler = 0
-        zaehler2 = 0
-        #für mischverhaeltnis Höhe berechnen wieviel eingefüllt werden soll
-        #erst Alkohol dann
+    order(mischv, getraenke, menge, glas)
+
+#Daten fuer Bestellung auswerten und Bestellung in App.py starten
+def order(mischv, getraenke, anzahl, volume):
+    mischv = mischv
+    getraenke = getraenke
+    menge = anzahl
+    #vorläufiges Array für Bestellung
+    order_list = []
+    #Entgültige Bestellungsarray für Ausfuehrung in App
+    drink_list = []
+
+    print("**drinklist")
+    #für warteschelife, zeigt an an welcher position deine Bestellung ist
+    ordernumber_raw = 0
+    ordernumber = 0
+    #für ordernumber, um im Array postion zu finden, wo als naechstes fortgefahren werden soll
+    x = 0
+    print("**12")
+    if len(order_list) > 0:
+        x = (order_list[0] * 2) + 3 #order_list[0] * 2, weil noch mischverhaeltnis reingeschrieben werden muss, +3 für glas, menge, Anazhl an mischgetraenken
+        ordernumber_raw = ordernumber_raw + 1
+        print("**13")
         while True:
-            if zaehler == 0:
-                entfernung = ultraschallsensor.first_realDistance()
-
+            if x < len(order_list):
+                x = x + order_list[x] + 1
+                ordernumber_raw = ordernumber_raw + 1
             else:
-                entfernung = ultraschallsensor.real_distance()
+                ordernumber = math.ceil(ordernumber_raw)
+                print("Deine Bestellung ist an Position: {}".format(ordernumber))
+                break
+    else:
+        print("**13")
+        print("Dein Bestellung ist an erster Position")
 
-            zaehler = zaehler + 1
-#            progress = (startHoehe - entfernung) / glasHoehe * 100
-#            prog = int(progress)
-#            progress(prog)
-            print("while schleife durchfuehrung nummer: {}".format(zaehler))
-            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-            if entfernung > fillA:
-                hoehe = entfernung
-                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                print("Das Glas wird bis zu .. mit Alkohol aufgefuellt: {}".format(fillA))
-                if zaehler == 1:
-                    pump.startPump(alc) #alc gibt an welche pumpe gestartet wird
-                    zustand = True
 
-                elif zustand:
-                    #debugging
-                    print("while schleife alkohol einfüllen")
-                    aufgefuellt = startHoehe - hoehe
-                    print("die aufgefüllte Menge an Alkohol beträgt:{}".format(aufgefuellt))
-                    auffuellen = fillA - aufgefuellt
-                    print("fillA: es muss noch aufgefuellt werden: {} cm Alkohol".format(auffuellen))
-                    time.sleep(0.1)
+    #Variabel für menge der getraenke pro Bestelleung
+    number = 0
+    print("**14")
 
+    #Hier wird die Bestellung gefiltert, in vorlaeufigen Array geschrieben
+    if getraenke[0] != 6:
+        drink1 = int(getraenke[0])
+        drink_list.append(drink1)
+        value = int(mischv[0])
+        drink_list.append(value)
+        number = number + 1
+        print("**15")
+        print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink1, number, mischv[0]))
+        if getraenke[1] != 6:
+            print("**15")
+            drink2 = int(getraenke[1])
+            drink_list.append(drink2)
+            value = int(mischv[1])
+            drink_list.append(value)
+            number = number + 1
+            print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink2, number, mischv[1]))
+            if getraenke[2] != 6:
+                print("**15")
+                drink3 = int(getraenke[2])
+                drink_list.append(drink3)
+                value = int(mischv[2])
+                drink_list.append(value)
+                number = number + 1
+                print("drink_list: hinzugefügtes Getraenk: {}, number bei: {}, mischverhaeltnis: {}".format(drink3, number, mischv[2]))
+                if getraenke[3] != 6:
+                    print("**15")
+                    drink4 = int(getraenke[3])
+                    drink_list.append(drink4)
+                    value = int(mischv[3])
+                    drink_list.append(value)
+                    number = number + 1
+                    if getraenke[4] != 6:
+                        print("**15")
+                        drink5 = int(getraenke[4])
+                        drink_list.append(drink5)
+                        value = int(mischv[4])
+                        drink_list.append(value)
+                        number = number + 1
+                        if getraenke[5] != 6:
+                            print("**15")
+                            drink6 = int(getraenke[5])
+                            drink_list.append(drink6)
+                            value = int(mischv[5])
+                            drink_list.append(value)
+                            number = number + 1
+                        else:
+                            pass
+                    else:
+                        pass
                 else:
-                    print("Die while Schleife hat keine passende if Anweisung.")
-
-            elif entfernung <= fillA:
-                pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                zustand == False
-                break
-
+                    pass
             else:
-                print("while schleife auffuellen schief gelaufen.")
-                break
+                pass
+        else:
+            pass
+    else:
+        pass
 
-        print("Das Einfuellen des Alkohols ist abgeschlossen, es wird mit dem Mischgetraenk fortgefahren.")
 
-        while True:
-            entfernung = ultraschallsensor.real_distance()
+    #im Format: menge der Getraenke pro Bestellung, wiviele von diesen, welches Glas genutzt wird
+    #getraenk1, Mischv. 1, getraenk2, ...
+    #schreibt bestellung in Array
+    order_list.append(number)
+    order_list.append(menge)
+    order_list.append(volume)
+    z = order_list[0] * 2
 
-            zaehler = zaehler + 1
-            print("while schleife durchfuehrung nummer: {}".format(zaehler))
-            print("die aktuelle Entfernung betraegt: {}".format(entfernung))
-            if entfernung > fillB:
-                hoehe = entfernung
-                print("Das Glas wird bis zur Hoehe aufgefuellt: {}".format(fuellHoehe))
-                print("Das Glas wird bis zu .. mit dem Mischgetraenk aufgefuellt: {}".format(fillB))
-                if zaehler2 == 0:
-                    zaehler2 = zaehler2 + 1
-                    pump.startPump(misch) #misch gibt an welche pumpe gestartet wird
-                    zustand = True
+    for i in range(z):
+        order_list.append(drink_list[int(i)])
+        print("**16")
 
-                elif zustand:
-                    #debugging
-                    print("while schleife Mischgetraenk einfüllen")
-                    aufgefuellt = startHoehe - hoehe
-                    print("die aufgefüllte Menge an Getraenk beträgt insgesamt:{} cm".format(aufgefuellt))
-                    auffuellen = fillB - aufgefuellt
-                    print("Es muss noch insgesamt aufgefuellt werden: {} cm".format(auffuellen))
-                    time.sleep(0.1)
+    print("order_list Array: {}".format(order_list))
+    #loesche Array um neue Bestellung aufzunehmen
+    del drink_list
 
-                else:
-                    print("Die while Schleife hat keine passende if Anweisung.")
+    print("**17")
+    ap = app.App(order_list)
+    ap.orderManager()
 
-            elif entfernung <= fillB:
-                pump.stopPump()
-                print("Die pumpe wurde ausgeschaltet. Im Glas sind: {} cm".format(entfernung))
-                zustand == False
-                break
-
-            else:
-                print("while schleife auffuellen schief gelaufen.")
-                break
-
-    # Beim Abbruch durch STRG+C resetten
-    except KeyboardInterrupt:
-        print("Messung vom User gestoppt")
-        pump.stopPump()
-
-def getData():
-    global fuellHoehe
-    global alcnumber
-    global id_mischv
-    global drinknumber
-    global startHoehe
-    global glasHoehe
-    startHoehe = ultraschallsensor.real_distance() #starthoehe für Glasgrösse
-    fuellHoehe = 5
-    glasHoehe = (startHoehe - 5)
-    alcnumber = request.forms.get('drinks')
-    id_mischv = request.forms.get('mischverhaeltnis')
-    drinknumber = request.forms.get('AlkoholAuswahl_1')
-    int(drinknumber)
-    global fillA
-    global fillB
-    global unroundA
-    global unroundB
-    unroundA = startHoehe - (glasHoehe * (int(id_mischv)) / 100)
-    unroundB = fuellHoehe
-    fillA = round(unroundA, 2)
-    fillB = round(unroundB, 2)
-    enter(drinknumber, alcnumber)
-
-def progress(progr):
-    #progressbar in html über abstand
-    y = int(progr)
-    x = x + y
-
-run(host='192.168.178.72', reloader=True, port=8080, debug=True)
+run(host='192.168.178.72', port=8080)
