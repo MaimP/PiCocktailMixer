@@ -23,57 +23,67 @@
 	<section class="hero is-info is-fullheight">
 	  <!-- Hero head: will stick at the top -->
 	  <div class="hero-head">
-	    <nav class="navbar" role="navigation" aria-label="main navigation">
-	      <div class="container">
-	        <div class="navbar-brand">
-	          <a class="navbar-item">
-	            PiMixer
-	          </a>
-						<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-						  <span aria-hidden="true"></span>
-						  <span aria-hidden="true"></span>
-						  <span aria-hidden="true"></span>
+			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="mdb.html">
+						<div class="content">
+							<p>
+								PiCocktailMixer
+							</p>
+						</div>
+					</a>
+
+					<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
+				</div>
+
+				<div class="navbar-menu is-active">
+					<div class="navbar-end">
+						<a class="navbar-item" href="mdb.html">
+							Home
 						</a>
-	        </div>
-	        <div class="navbar-menu">
-	          <div class="navbar-end">
-	            <a class="navbar-item">
-	              Home
-	            </a>
-							<a class="navbar-item" href="mix.html">
-								Mischen
+
+						<a class="navbar-item" href="mix.html">
+							Mixen
+						</a>
+
+						<div class="navbar-item has-dropdown is-hoverable">
+							<a class="navbar-link">
+								Rezepte
 							</a>
-							  <div class="navbar-dropdown is-active">
-									<a class="navbar-item" href="recipes.html">
-										Rezepte
-									</a>
-								<div class="field">
-								  <div class="control">
-								    <input class="input is-primary" type="text" placeholder="search">
-								  </div>
+
+							<div class="navbar-dropdown">
+								<a class="navbar-item" href="recipes.html">
+									Rezepte
+								</a>
+								<div class="navbar-item">
+									<div class="field">
+										<div class="control">
+											<input class="input is-primary" type="text" placeholder="search">
+										</div>
+									</div>
 								</div>
 							</div>
-							<a class="navbar-item" href="admin.html">
-								Admin
-							</a>
-	          </div>
-	        </div>
-	      </div>
-	    </nav>
-	  </div>
-	<script>
-		$(document).ready(function() {
+						</div>
+					</div>
+				</div>
+			</nav>
+			<script>
+				$(document).ready(function() {
 
-			// Check for click events on the navbar burger icon
-			$(".navbar-burger").click(function() {
+					// Check for click events on the navbar burger icon
+					$(".navbar-burger").click(function() {
 
-					// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-					$(".navbar-burger").toggleClass("is-active");
-					$(".navbar-menu").toggleClass("is-active");
+							// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+							$(".navbar-burger").toggleClass("is-active");
+							$(".navbar-menu").toggleClass("is-active");
 
-			});
-			});
-	</script>
+					});
+				});
+			</script>
 		<div class="container">
 	  <!-- Hero content: will be in the middle -->
 		  <div class="hero-body">
