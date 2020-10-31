@@ -160,21 +160,21 @@
           shown_recipes.push(bodyDes.id)
 
           var bodyIng = document.createElement("a");
-          bodyIng.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyIng.className  = "panel-block";
           bodyIng.id = name + "Zutaten" + "1"
           var ingText = document.createTextNode(ingredients_array[0]);
           bodyIng.appendChild(ingText);
           panel.appendChild(bodyIng);
 
           var bodyAusf = document.createElement("a");
-          bodyAusf.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyAusf.className  = "panel-block";
           bodyAusf.id = name + "Ausführung" + "1"
           var ausfText = document.createTextNode(description);
           bodyAusf.appendChild(ausfText);
           panel.appendChild(bodyAusf);
 
           var bodyStich = document.createElement("a");
-          bodyStich.className  = "panel-block is-hidden-touch is-hidden-desktop";
+          bodyStich.className  = "panel-block";
           bodyStich.id = name + "Stichwörter" + "1"
           var stichText = document.createTextNode(keyword_array[0]);
           bodyDes.appendChild(stichText);
