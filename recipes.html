@@ -42,7 +42,7 @@
   								Rezepte
   							</a>
 
-  							<div class="navbar-dropdown is-info">
+  							<div class="navbar-dropdown">
   								<a class="navbar-item" href="recipes.html">
   									Rezepte
   								</a>
@@ -71,7 +71,7 @@
   					});
   				});
   			</script>
-        <div class="container">
+        <div class="container mt-3">
           <div class="container is-mt-3">
             <div id="recipes_id"></div>
           </div>
@@ -79,7 +79,7 @@
       </section>
     <script>
       var recipes;
-      const elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
+      var shown_recipes = [];
       var names = [];
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
@@ -125,9 +125,12 @@
           panel.appendChild(panel_heading);
           var navi = document.createElement("p");
           navi.className = "panel-tabs";
+          //erstelle nav Elemente
           for (let d in elements) {
             var nav_element = document.createElement("a");
+            //id ist name des getraenks und welcher nav
             nav_element.id = name + elements[d]
+            //erstes Element ist geoeffnet
             if (d == 0){
               nav_element.className = "is-active"
             }
@@ -149,28 +152,29 @@
           // aber noch nicht anzeigen
           var bodyDes = document.createElement("a");
           bodyDes.className  = "panel-block";
-          bodyDes.id = name + "Beschreibung" + "Beschreibung"
+          bodyDes.id = name + "Beschreibung" + "1"
           var desText = document.createTextNode(description);
           bodyDes.appendChild(desText);
           panel.appendChild(bodyDes);
+          shown_recipes.push(bodyDes.id)
 
           var bodyIng = document.createElement("a");
           bodyIng.className  = "panel-block is-hidden-touch is-hidden-desktop";
-          bodyIng.id = name + "Zutaten" + "Zutaten"
+          bodyIng.id = name + "Zutaten" + "1"
           var ingText = document.createTextNode(ingredients_array[0]);
           bodyIng.appendChild(ingText);
           panel.appendChild(bodyIng);
 
           var bodyAusf = document.createElement("a");
           bodyAusf.className  = "panel-block is-hidden-touch is-hidden-desktop";
-          bodyAusf.id = name + "Ausführung" + "Ausführung"
+          bodyAusf.id = name + "Ausführung" + "1"
           var ausfText = document.createTextNode(description);
           bodyAusf.appendChild(ausfText);
           panel.appendChild(bodyAusf);
 
           var bodyStich = document.createElement("a");
           bodyStich.className  = "panel-block is-hidden-touch is-hidden-desktop";
-          bodyStich.id = name + "Stichwörter" + "Stichwörter"
+          bodyStich.id = name + "Stichwörter" + "1"
           var stichText = document.createTextNode(keyword_array[0]);
           bodyDes.appendChild(stichText);
           panel.appendChild(bodyStich);
@@ -188,20 +192,19 @@
       })
 
       function test(id, nav, name) {
-        var ids = [name + "Beschreibung" + "Beschreibung", name + "Zutaten" + "Zutaten", name + "Ausführung" + "Ausführung", name + "Stichwörter" + "Stichwörter"]
-        console.log(name)
-        var elem = document.getElementById(id + nav);
-        for (let i in ids){
-          console.log("for")
-          if (document.getElementById(ids[i]) != null) {
-            console.log("if")
-            var lastElem = document.getElementById(ids[i]).getElementsByClassName('panel-block');
-            console.log(lastElem);
-            lastElem.className = "panel-block is-hidden-touch is-hidden-desktop";
-          }
-        }
-        elem.className = "panel-block";
-        console.log(elem);
+        console.log("id: " + id)
+        console.log("nav: " + nav)
+        console.log("name: " + name)
+        var change_elem = document.getElementById(id + "1")
+        change_elem.className = "panel-block";
+
+        var last_elem_id = shown_recipes[0]
+        var last_elem = document.getElementById(last_elem_id)
+        last_elem.className = "panel-block is-hidden-touch is-hidden-desktop"
+        shown_recipes.pop()
+        shown_recipes.push(id + "1")
+        console.log(change_elem);
+        console.log(last_elem)
           }
     </script>
   </body>
