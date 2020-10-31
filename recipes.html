@@ -80,6 +80,7 @@
     <script>
       var recipes;
       var shown_recipes = [];
+      const elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
       var names = [];
       $.get('/dorecipes', function(recipes_parse){
         recipes = JSON.parse(recipes_parse)
