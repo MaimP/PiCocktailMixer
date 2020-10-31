@@ -155,7 +155,7 @@
           // body, weil erste selected ist direkt erstes anzeigen andere auch generieren,
           // aber noch nicht anzeigen
           var bodyDes = document.createElement("a");
-          bodyDes.className  = "panel-block";
+          bodyDes.className  = "panel-block has-background-dark";
           bodyDes.id = name + "Beschreibung" + "1"
           var desText = document.createTextNode(description);
           bodyDes.appendChild(desText);
@@ -163,21 +163,21 @@
           shown_recipes.push(bodyDes.id)
 
           var bodyIng = document.createElement("a");
-          bodyIng.className  = "panel-block";
+          bodyIng.className  = "panel-block has-background-dark";
           bodyIng.id = name + "Zutaten" + "1"
           var ingText = document.createTextNode(ingredients_array[0]);
           bodyIng.appendChild(ingText);
           panel.appendChild(bodyIng);
 
           var bodyAusf = document.createElement("a");
-          bodyAusf.className  = "panel-block";
+          bodyAusf.className  = "panel-block has-background-dark";
           bodyAusf.id = name + "Ausführung" + "1"
           var ausfText = document.createTextNode(description);
           bodyAusf.appendChild(ausfText);
           panel.appendChild(bodyAusf);
 
           var bodyStich = document.createElement("a");
-          bodyStich.className  = "panel-block";
+          bodyStich.className  = "panel-block has-background-dark";
           bodyStich.id = name + "Stichwörter" + "1"
           var stichText = document.createTextNode(keyword_array[0]);
           bodyDes.appendChild(stichText);
