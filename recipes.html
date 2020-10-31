@@ -7,28 +7,76 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   </head>
   <body>
-    <div id="navbarMenuHeroA" class="navbar-menu">
-      <div class="navbar-end">
-        <a class="navbar-item" href="mdb.html">
-          Home
-        </a>
-        <a class="navbar-item" href="mix.html">
-          Mischen
-        </a>
-        <a class="navbar-item is-activer" href="#">
-          Rezepte
-        </a>
-        <a class="navbar-item" href="admin.html">
-          Admin
-        </a>
-      </div>
-    </div>
+    <section class="hero is-info is-fullheight">
+      <!-- Hero head: will stick at the top -->
+  	  <div class="hero-head">
+  			<nav class="navbar" role="navigation" aria-label="main navigation">
+  				<div class="navbar-brand">
+  					<a class="navbar-item" href="mdb.html">
+  						<div class="content">
+  							<p>
+  								PiCocktailMixer
+  							</p>
+  						</div>
+  					</a>
 
-    <div class="container is-mt-3">
-      <div id="recipes_id">
-      </div>
-    </div>
+  					<a role="button" class="navbar-burger burger is-acitve" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+  						<span aria-hidden="true"></span>
+  						<span aria-hidden="true"></span>
+  						<span aria-hidden="true"></span>
+  					</a>
+  				</div>
 
+  				<div class="navbar-menu">
+  					<div class="navbar-end">
+  						<a class="navbar-item" href="mdb.html">
+  							Home
+  						</a>
+
+  						<a class="navbar-item" href="mix.html">
+  							Mixen
+  						</a>
+
+  						<div class="navbar-item has-dropdown is-hoverable">
+  							<a class="navbar-link">
+  								Rezepte
+  							</a>
+
+  							<div class="navbar-dropdown">
+  								<a class="navbar-item" href="recipes.html">
+  									Rezepte
+  								</a>
+  								<div class="navbar-item">
+  									<div class="field">
+  										<div class="control">
+  											<input class="input is-primary" type="text" placeholder="search">
+  										</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  			</nav>
+  			<script>
+  				$(document).ready(function() {
+
+  					// Check for click events on the navbar burger icon
+  					$(".navbar-burger").click(function() {
+
+  							// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+  							$(".navbar-burger").toggleClass("is-active");
+  							$(".navbar-menu").toggleClass("is-active");
+
+  					});
+  				});
+  			</script>
+        <div class="container">
+          <div class="container is-mt-3">
+            <div id="recipes_id"></div>
+          </div>
+        </div>
+      </section>
     <script>
       var recipes;
       const elements = ["Beschreibung", "Zutaten", "Ausführung", "Stichwörter"];
