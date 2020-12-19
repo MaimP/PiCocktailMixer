@@ -16,7 +16,7 @@ def startPump(drink):
     x = GPIOs[y]
     RELAIS_1_GPIO = x #In 1
 
-    GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus zuweisen
+    GPIO.setup(RELAIS_1_GPIO, GPIO.OUT)  # GPIO Modus zuweisen
     print("Die gestartete Pumpe ist:")
     print(RELAIS_1_GPIO)
     GPIO.output(RELAIS_1_GPIO, GPIO.LOW)
@@ -32,6 +32,7 @@ def stopPump():
 
     print("alle Pumpen wurden ausgeschaltet.")
     return False
+
 
 if __name__ == '__main__':
     try:

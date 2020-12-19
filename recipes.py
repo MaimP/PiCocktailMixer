@@ -5,16 +5,16 @@ import json
 
 global recipes
 
+
 def getRecipes():
     global recipes
     recipes = []
 
     files = []
 
-    pth ="/home/pi/picocktailmixer/recipes/"
+    pth = "./recipes/"
     for i in glob(pth+"*.json"):
         files.append(i)
-
 
     counter = 0
     for i in files:
@@ -22,7 +22,7 @@ def getRecipes():
         f = open(files[counter])
         # returns JSON object as
         # a dictionary
-        data = json.load(f) #type dict
+        data = json.load(f)  # type dict
         recipes.append(data)
         counter += 1
 

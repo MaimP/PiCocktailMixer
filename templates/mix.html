@@ -5,19 +5,21 @@
   <link href="static/nouislider.css" rel="stylesheet">
   <script src="static/nouislider.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  <link href="bulma/css/bulma.min.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <script requests.get(url, params={key: value}, args)></script>
 </head>
 
 <body>
-  <section class="hero is-fullheight has-background-info has-text-light">
+  <section class="hero is-fullheight has-background-info-dark has-text-light">
     <!-- Hero head: will stick at the top -->
-	  <div class="hero-head has-background-dark">
+	  <div class="hero-head has-text-light m-3">
 			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="container">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="mdb.html">
-						<div class="content has-tetxt-light">
+						<div class="content has-text-weight-semibold is-size-3 has-text-warning">
 							<p>
 								PiCocktailMixer
 							</p>
@@ -37,7 +39,7 @@
 							Home
 						</a>
 
-						<a class="navbar-item" href="mix.html">
+						<a class="navbar-item" href="/mix.html">
 							Mixen
 						</a>
 
@@ -59,94 +61,118 @@
 								</div>
 							</div>
 						</div>
+						<a class="navbar-item" href="admin.html">
+							Admin
+						</a>
 					</div>
 				</div>
 			</nav>
-    </div>
-		<script>
-			$(document).ready(function() {
+		</div>
+	</div>
+	<figure class="image is-3by1 mt-100">
+		<img src="pic_vol/csm_start-banner_80a23bf260.jpg">
+	</figure>
+			<script>
+				$(document).ready(function() {
 
-				// Check for click events on the navbar burger icon
-				$(".navbar-burger").click(function() {
+					// Check for click events on the navbar burger icon
+					$(".navbar-burger").click(function() {
 
-						// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-						$(".navbar-burger").toggleClass("is-active");
-						$(".navbar-menu").toggleClass("is-active");
+							// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+							$(".navbar-burger").toggleClass("is-active");
+							$(".navbar-menu").toggleClass("is-active");
 
+					});
 				});
-			});
-		</script>
+			</script>
       <div class="container">
-        <div class="hero-body has-background-info">
+        <div class="hero-body has-background-info-dark">
           <div class="container has-text-centered has-text-light">
             <div class="content mb-3">
               <p> Wähle aus welche Getränke du in deinem Cocktail haben möchtest.
               </p>
             </div>
-            <div class="select">
-              <select id="select_1" onchange="select1()">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="select_2" onchange="select2()">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="select_3" onchange="select3()">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="select_4" onchange="select4()">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="select_5" onchange="select5()">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="select_6" onchange="select6()">
-                <option value="6" selected="">keins</option>
-              </select>
-            </div>
-            <div class="container mb-5 mt-4">
-              <div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
-            </div>
-            <div class="content my-3">
-              <p> wähle die Anzahl an Getränken aus, die du gemischt haben möchtest </p>
-            </div>
-            <div class="columns is-centered">
-              <div class="column is-one-fifth">
-                <input class="input is-small" type="number" id="quantity" name="quantity" min="1">
+            <ul class="steps">
+              <li class="steps-segment">
+                <a href="#" class="steps-marker"></a>
+              </li>
+              <li class="steps-segment">
+                <a href="#" class="steps-marker"></a>
+              </li>
+              <li class="steps-segment is-active">
+                <span class="steps-marker"></span>
+              </li>
+              <li class="steps-segment">
+                <span class="steps-marker"></span>
+              </li>
+              <li class="steps-segment">
+                <span class="steps-marker"></span>
+              </li>
+            </ul>
+              <div class="select">
+                <select id="select_1" onchange="select1()">
+                  <option value="6" selected="">keins</option>
+                </select>
               </div>
-            </div>
-            <div class="container is-mt-3">
-              <div class="tile is-ancestor">
-                <div class="tile is-vertical is-12">
-                  <div id="imagesLeft" class="tile">
+              <div class="select">
+                <select id="select_2" onchange="select2()">
+                  <option value="6" selected="">keins</option>
+                </select>
+              </div>
+              <div class="select">
+                <select id="select_3" onchange="select3()">
+                  <option value="6" selected="">keins</option>
+                </select>
+              </div>
+              <div class="select">
+                <select id="select_4" onchange="select4()">
+                  <option value="6" selected="">keins</option>
+                </select>
+              </div>
+              <div class="select">
+                <select id="select_5" onchange="select5()">
+                  <option value="6" selected="">keins</option>
+                </select>
+              </div>
+              <div class="select">
+                <select id="select_6" onchange="select6()">
+                  <option value="6" selected="">keins</option>
+                </select>
+              </div>
+              <div class="container mb-5 mt-4">
+                <div id="slider"></div> <!-- Wir erstellen ein leeres Element für den Slider -->
+              </div>
+              <div class="content my-3">
+                <p> wähle die Anzahl an Getränken aus, die du gemischt haben möchtest </p>
+              </div>
+              <div class="columns is-centered">
+                <div class="column is-one-fifth">
+                  <input class="input is-small" type="number" id="quantity" name="quantity" min="1">
+                </div>
+              </div>
+              <div class="container is-mt-3">
+                <div class="tile is-ancestor">
+                  <div class="tile is-vertical is-12">
+                    <div id="imagesLeft" class="tile">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="button is-danger my-3" onclick="order()">
-              <a>Bestellen</a>
-            </div>
-            <div class="content">
-              <p> Wenn ein Glas/ Becher bereitsteht starten Sie den Vorgang </p>
-            </div>
-            <button id="start_id">Starten</button>
-            <div id="demo 1"></div>
-            <div id="demo 2"></div>
-            <div id="demo 3"></div>
-            <div id="demo 4"></div>
-            <div id="demo 5"></div>
-            <div id="demo 6"></div>
-            <div id="demo_one"></div>
-            <div id="getraenke"></div>  <!-- Und für die Liste -->
+              <div class="button is-danger my-3" onclick="order()">
+                <a>Bestellen</a>
+              </div>
+              <div class="content">
+                <p> Wenn ein Glas/ Becher bereitsteht starten Sie den Vorgang </p>
+              </div>
+              <button id="start_id">Starten</button>
+              <div id="demo 1"></div>
+              <div id="demo 2"></div>
+              <div id="demo 3"></div>
+              <div id="demo 4"></div>
+              <div id="demo 5"></div>
+              <div id="demo 6"></div>
+              <div id="demo_one"></div>
+              <div id="getraenke"></div>  <!-- Und für die Liste -->
           </div>
         </div>
       </div>

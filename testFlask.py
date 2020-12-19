@@ -1,135 +1,93 @@
-#!/usr/bin/python
-#-*- coding:utf-8 -*-#
-from bottle import route, run, static_file, get, post, request
+from flask import Flask, render_template, send_file, request
 import json
-import app
-import math
-import recipes as re
 import volume_cup as vo_cup
 from drinks import Drinks
+import math
 
 
-# Verzeichnis für multislider in mdb.html
-@route('/static/:path#.+#', name='static')
-def static(path):
-    return static_file(path, root='static')
+app = Flask(__name__)
 
 
-# Routing mainsite
-@route('/')
-def server_static(filepath="mdb.html"):
-    return static_file(filepath, root='./')
+@app.route('/bulma/css/bulma.min.css')
+def getBulma():
+    return send_file('./static/bulma/css/bulma.min.css')
 
 
-@get('/mix.html')
-def mix():
-    return static_file("/mix.html", root='./')
+@app.route('/bulma/css/mystyles.scss')
+def getmystyle():
+    return send_file('./static/bulma/css/mystyles.scss')
 
 
-@get('/recipes.html')
-def recipesPage():
-    return static_file("/recipes.html", root='./')
+@app.route('/bulma/sass/utilities/initial-variables.sass')
+def getmyinitial():
+    return send_file('./static/bulma/sass/utilities/initial-variables.sass')
 
 
-@get('/admin.html')
-def admin():
-    return static_file("/admin.html", root='./')
+@app.route('/bulma/sass/utilities/functions.sass')
+def gettest():
+    return send_file('./static/bulma/sass/utilities/functions.sass')
 
 
-@get('/mdb.html')
-def mdb():
-    return static_file("/mdb.html", root='./')
+@app.route('/bulma/<file>')
+def testmystyle(file):
+    print("test bulma")
+    return send_file('./static/'+file)
 
 
-@get('/change_drinks.html')
-def changeDrinks():
-    return static_file("/change_drinks.html", root='./')
+@app.route('/')
+@app.route('/mdb.html')
+def home():
+    return render_template('/mdb.html')
 
 
-@get('/pic_vol/pokal-glas-klarglas__0896474_PE609414_S5.JPG')
-def imagePokal():
-    return static_file("/pokal-glas-klarglas__0896474_PE609414_S5.JPG", root='./pic_vol')
-
-
-@get('/pic_vol/pokal-glas-klarglas__0908826_PE609409_S5.JPG')
-def imagePokalAny():
-    return static_file("/pokal-glas-klarglas__0908826_PE609409_S5.JPG", root='./pic_vol')
-
-
-@get('/pic_vol/vardagen-glas-klarglas__0896318_PE609373_S5.JPG')
-def imageVardagen():
-    return static_file("/vardagen-glas-klarglas__0896318_PE609373_S5.JPG", root='./pic_vol')
-
-
-@get('/pic_vol/plastikbecher-rot-360ml-50-einheiten.jpg')
-def imageCup():
-    return static_file("/plastikbecher-rot-360ml-50-einheiten.jpg", root='./pic_vol')
-
-
-@get('/dorecipes')
+@app.route('/recipes.html')
 def recipes():
-    re.getRecipes()
-    from recipes import recipes
-    recipes_send = json.dumps(recipes)
-    return recipes_send
+    return render_template('/recipes.html')
 
 
-@get('/cupReady')
-def cup():
-    from app import start_next_cup
-    app.start_next_cup()
+@app.route('/mix.html')
+def mix():
+    return render_template('/mix.html')
 
 
-@get('/volume')
+@app.route('/change_drinks.html')
+def changeDrinks():
+    return render_template('/change_drinks.html')
+
+
+@app.route('/pic_vol/<fileName>')
+def pictures(fileName):
+    print("extra routing")
+    file = './static/pic_vol/' + fileName
+    return send_file(file, mimetype='image/jpeg')
+
+
+@app.route('/<request>', methods=['GET'])
+def runFkt(request):
+    splitt = request.split('.')
+    if len(splitt) > 1 and splitt[1] == 'html':
+        return render_template('/admin.html')
+    return eval(request+'()')
+
+
+@app.route('/<request>', methods=['Post'])
+def postFnkt(request):
+    return eval(request+'()')
+
+
 def volume():
     volume = vo_cup.cupArray()
     volume_send = json.dumps(volume)
+    print("test")
     return volume_send
 
 
-@get('/getOldChoice')
-def choice():
-    obj = Drinks()
-    obj.__init__()
-    return json.dumps(obj.newchoice)
-
-
-@get('/getChoiceOption')
-def choiceOption():
-    obj = Drinks()
-    obj.readDrinks()
-    unsorted_choice = obj.drinklist
-    unsorted_choice.sort()
-    return json.dumps(unsorted_choice)
-
-
-@post('/newDrink')
-def newDrink():
-    selection = json.load(request.body)
-    addDrink = selection.get('addDrink')
-    old_drink = selection.get('oldDrink')
-    print("new drink: {}".format(addDrink))
-    print("oldDrink: {}".format(old_drink))
-    obj = Drinks()
-    obj.newDrinks(addDrink)
-    obj.newChoice(old_drink, addDrink)
-
-
-@post('/newChoice')
-def newChoice():
-    selection = json.load(request.body)
-    new_drink = selection.get('newDrink')
-    old_drink = selection.get('oldDrink')
-    print("new drink: {}".format(new_drink))
-    print("old drink: {}".format(old_drink))
-    obj = Drinks()
-    obj.newChoice(old_drink, new_drink)
-
-
-@post('/doform')
-def process():
+def doform():
     print("**11")
-    bestellung = json.load(request.body)
+    raw_bestellung = request.form.to_dict()
+    print(f"raw_bestellung: {raw_bestellung}")
+    for i in raw_bestellung:
+        bestellung = json.loads(i)
     print(bestellung)
     b = bestellung.get('verhaeltnis')
     c = bestellung.get('getraenke')
@@ -142,7 +100,7 @@ def process():
     counter_m = 0
     for i in d:
         x = float(d[counter_m])
-        counter_m = counter_m + 1
+        counter_m += 1
         mischv.append(x)
         print("debug mischv :{}".format(x))
 
@@ -154,6 +112,58 @@ def process():
         print("debug getraenke :{}".format(x))
 
     order(mischv, getraenke, menge, glas)
+    return '', 204
+
+
+def getOldChoice():
+    from drinks import Drinks
+    obj = Drinks()
+    obj.__init__()
+    return json.dumps(obj.newchoice)
+
+
+def dorecipes():
+    import recipes as re
+    recipes = re.getRecipes()
+    recipes_send = json.dumps(recipes)
+    return recipes_send
+
+
+def newDrink():
+    print("new drink ewrde ausgefuehrt")
+    raw_data = request.form.to_dict()
+    for i in raw_data:
+        selection = json.loads(i)
+    print(f"selection: {selection}")
+    addDrink = selection.get('addDrink')
+    old_drink = selection.get('oldDrink')
+    print("new drink: {}".format(addDrink))
+    print("oldDrink: {}".format(old_drink))
+    obj = Drinks()
+    obj.newDrinks(addDrink)
+    obj.newChoice(old_drink, addDrink)
+    return '', 204
+
+
+def newChoice():
+    raw_data = request.form.to_dict()
+    for i in raw_data:
+        selection = json.loads(i)
+    new_drink = selection.get('newDrink')
+    old_drink = selection.get('oldDrink')
+    print("new drink: {}".format(new_drink))
+    print("old drink: {}".format(old_drink))
+    obj = Drinks()
+    obj.newChoice(old_drink, new_drink)
+    return '', 204
+
+
+def getChoiceOption():
+    obj = Drinks()
+    obj.readDrinks()
+    unsorted_choice = obj.drinklist
+    unsorted_choice.sort()
+    return json.dumps(unsorted_choice)
 
 
 # Daten fuer Bestellung auswerten und Bestellung in App.py starten
@@ -172,7 +182,7 @@ def order(mischv, getraenke, anzahl, volume):
     x = 0
     print("**12")
     if len(order_list) > 0:
-        x = (order_list[0] * 2) + 3 # order_list[0] * 2, weil noch mischverhaeltnis reingeschrieben werden muss, +3 für glas, menge, Anazhl an mischgetraenken
+        x = (order_list[0] * 2) + 3  # order_list[0] * 2, weil noch mischverhaeltnis reingeschrieben werden muss, +3 für glas, menge, Anazhl an mischgetraenken
         ordernumber_raw = ordernumber_raw + 1
         print("**13")
         while True:
@@ -188,11 +198,11 @@ def order(mischv, getraenke, anzahl, volume):
         print("Dein Bestellung ist an erster Position")
 
 
-    #Variabel für menge der getraenke pro Bestelleung
+    # Variabel für menge der getraenke pro Bestelleung
     number = 0
     print("**14")
 
-    #Hier wird die Bestellung gefiltert, in vorlaeufigen Array geschrieben
+    # Hier wird die Bestellung gefiltert, in vorlaeufigen Array geschrieben
     if getraenke[0] != 6:
         drink1 = int(getraenke[0])
         drink_list.append(drink1)
@@ -238,23 +248,10 @@ def order(mischv, getraenke, anzahl, volume):
                             value = int(mischv[5])
                             drink_list.append(value)
                             number = number + 1
-                        else:
-                            pass
-                    else:
-                        pass
-                else:
-                    pass
-            else:
-                pass
-        else:
-            pass
-    else:
-        pass
 
-
-    #im Format: menge der Getraenke pro Bestellung, wiviele von diesen, welches Glas genutzt wird
-    #getraenk1, Mischv. 1, getraenk2, ...
-    #schreibt bestellung in Array
+    # im Format: menge der Getraenke pro Bestellung, wiviele von diesen, welches Glas genutzt wird
+    # getraenk1, Mischv. 1, getraenk2, ...
+    # schreibt bestellung in Array
     order_list.append(number)
     order_list.append(menge)
     order_list.append(volume)
@@ -265,11 +262,14 @@ def order(mischv, getraenke, anzahl, volume):
         print("**16")
 
     print("order_list Array: {}".format(order_list))
-    #loesche Array um neue Bestellung aufzunehmen
+    # loesche Array um neue Bestellung aufzunehmen
     del drink_list
 
     print("**17")
-    ap = app.App(order_list)
+    import app as appl
+    ap = appl.App(order_list)
     ap.orderManager()
 
-run(host='192.168.178.72', port=8080)
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')

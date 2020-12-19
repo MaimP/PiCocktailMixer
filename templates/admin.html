@@ -2,17 +2,18 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link href="bulma/css/bulma.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <section class="hero is-danger is-fullheight is-mobile">
-    <!-- Hero head: will stick at the top -->
-	  <div class="hero-head has-background-dark hast-text-light">
+  <section class="hero is-fullheight has-background-info-dark">
+	  <!-- Hero head: will stick at the top -->
+	  <div class="hero-head has-text-light m-3">
 			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="container">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="mdb.html">
-						<div class="content">
+						<div class="content has-text-weight-semibold is-size-3 has-text-warning">
 							<p>
 								PiCocktailMixer
 							</p>
@@ -32,7 +33,7 @@
 							Home
 						</a>
 
-						<a class="navbar-item" href="mix.html">
+						<a class="navbar-item" href="/mix.html">
 							Mixen
 						</a>
 
@@ -54,9 +55,17 @@
 								</div>
 							</div>
 						</div>
+						<a class="navbar-item" href="admin.html">
+							Admin
+						</a>
 					</div>
 				</div>
 			</nav>
+		</div>
+	</div>
+	<figure class="image is-3by1 mt-100">
+		<img src="pic_vol/csm_start-banner_80a23bf260.jpg">
+	</figure>
 			<script>
 				$(document).ready(function() {
 
@@ -70,9 +79,7 @@
 					});
 				});
 			</script>
-    <div class="container">
-      <!-- Hero content: will be in the middle -->
-      <div class="hero-body is-mobile">
+      <div class="hero-body">
         <div class="container mt-5">
           <div class="columns is-centered">
             <div class="column is-one-fifth">
@@ -111,7 +118,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
   <script>
     function login() {
       const username = "";

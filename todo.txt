@@ -1,0 +1,5 @@
+
+- auswahl der getraenke an nicht von der reihenfolge abhänging machen (for alle elemente)
+- flask Server
+- use cloudant instead of .txt
+- update flowmeter

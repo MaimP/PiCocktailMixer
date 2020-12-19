@@ -53,7 +53,6 @@ class Drinks:
             print("**2 2 else")
             print("Drink does not exist")
 
-
     def mainChoice(self):
         return self.mainchoice
 
@@ -81,10 +80,10 @@ class Drinks:
                 old_index = counter_index
             counter_index += 1
 
-
         print("new choice: {}".format(self.newchoice))
         self.writeChoice()
-        return self.newchoice
+        return self.newChoice
+
 
 if __name__ == '__main__':
     test_var = Drinks()

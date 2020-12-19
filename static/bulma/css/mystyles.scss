@@ -1,0 +1,13 @@
+@import "../sass/utilities/initial-variables.sass"
+@import "../sass/utilities/functions.sass"
+@import "../sass/utilities/derived-variables.sass"
+
+$bernsteinblue: #204859;
+$bernsteinblue-invert: findColorInvert($bernsteinblue);
+
+@import "../sass/utilities/derived-variables";
+$addColors: (
+  "bernsteinblue":($bernsteinblue, $bernsteinblue-invert),
+);
+$colors: map-merge($colors, $addColors);
+@import "bulma.min.css";
