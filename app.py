@@ -13,6 +13,7 @@ class App:
         self.FLOW_SENSOR = 20
         self.count = 0
         self.counter_array = 0
+        self.counter_all = 0
 
     def orderManager(self):
         #nach auffuellen self.number+1 loeschen um nächste bestellung fortzufahren
@@ -72,23 +73,24 @@ class App:
             self.GPIO.setup(self.FLOW_SENSOR, self.GPIO.IN, pull_up_down = self.GPIO.PUD_UP)
 
             def countPulse(channel):
-                if self.start_counter == 1:
-                    self.count = self.count + 1
+                self.count += 1
+                self.counter_all += 1
 
             self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
             flow_array = []
             self.counter = 0
             self.pump.startPump(self.drink) #self.drink gibt an welche pumpe gestartet wird
             while True:
-                self.start_counter = 1
-                self.time.sleep(1)
-                self.start_counter = 0
-                flow = ((self.count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
-                print("The flow is: %.3f ml/sek" % (flow))
-                flow_array.append(flow)
-                flow_all = sum(flow_array)
-                print("gesamt durchfluss: {}".format(flow_all))
-                self.count = 0
+            #    self.start_counter = 1
+            #    self.time.sleep(1)
+            #    self.start_counter = 0
+            #    flow = ((self.count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
+            #    print("The flow is: %.3f ml/sek" % (flow))
+            #    flow_array.append(flow)
+                flow_all = self.counter_all * 0.0068
+                print(f"flow_all: {flow_all}")
+            #    print("gesamt durchfluss: {}".format(flow_all))
+            #    self.count = 0
                 if flow_all < fillUp:
                     zaehler = zaehler + 1
                     #Debug
