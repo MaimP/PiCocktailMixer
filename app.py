@@ -75,6 +75,7 @@ class App:
             def countPulse(channel):
                 self.count += 1
                 self.counter_all += 1
+                print(f"flow_all: {self.flow_all}")
 
             self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
             flow_array = []
@@ -87,20 +88,19 @@ class App:
             #    flow = ((self.count / 7.5) * 16.6666) # Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
             #    print("The flow is: %.3f ml/sek" % (flow))
             #    flow_array.append(flow)
-                flow_all = self.counter_all * 0.0068
-                print(f"flow_all: {flow_all}")
+                self.flow_all = self.counter_all * 0.0068
             #    print("gesamt durchfluss: {}".format(flow_all))
             #    self.count = 0
-                if flow_all < fillUp:
+                if self.flow_all < fillUp:
                     zaehler = zaehler + 1
                     #Debug
-                    print("while schleife durchfuehrung nummer: {}".format(zaehler))
-                    print("es wurde aufgefuellt: {} ml".format(flow_all))
+                #    print("while schleife durchfuehrung nummer: {}".format(zaehler))
+                #    print("es wurde aufgefuellt: {} ml".format(flow_all))
 
-                elif flow_all >= fillUp:
+                elif self.flow_all >= fillUp:
                     self.pump.stopPump()
                     print("flow ist größer oder gleich fillUp")
-                    print("es wurde aufgefuellt:{} ml".format(flow_all))
+                    print("es wurde aufgefuellt:{} ml".format(self.flow_all))
                     return False
                 else:
                     self.pump.stopPump()
@@ -109,5 +109,6 @@ class App:
 
         except KeyboardInterrupt:
             print('\nkeyboard interrupt!')
+            print(f"counter_all: {self.counter_al}")
             self.GPIO.cleanup()
             self.pump.stopPump()

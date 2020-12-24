@@ -3,6 +3,7 @@ import json
 import volume_cup as vo_cup
 from drinks import Drinks
 import math
+import RPi.GPIO as GPIO
 
 
 app = Flask(__name__)
