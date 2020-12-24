@@ -75,7 +75,7 @@ class App:
             def countPulse(channel):
                 self.count += 1
                 self.counter_all += 1
-                print(f"flow_all: {self.flow_all}, counts all: {self.count_all}")
+                print(f"flow_all: {self.flow_all}, counts all: {self.counter_all}")
 
             self.GPIO.add_event_detect(self.FLOW_SENSOR, self.GPIO.FALLING, callback=countPulse)
             flow_array = []
