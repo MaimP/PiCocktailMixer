@@ -25,7 +25,7 @@ def cupArray():
     },
     {
         'name': 'Red Cup',
-        'volume': '370',
+        'volume': '250',
         'image': '/pic_vol/plastikbecher-rot-360ml-50-einheiten.jpg'
     }
     ]
